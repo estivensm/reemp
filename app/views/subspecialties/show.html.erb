@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Specialty:</strong>
+  <%= @subspecialty.specialty_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subspecialty.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @subspecialty.description %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @subspecialty.code %>
+</p>
+
+<%= link_to 'Edit', edit_subspecialty_path(@subspecialty) %> |
+<%= link_to 'Back', subspecialties_path %>

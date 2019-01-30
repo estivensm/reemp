@@ -1,0 +1,25 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "needs-validation", :novalidate => true }) do |f| %>
+  <div class="field">
+    <label class="label">Email</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form1 form-control", id: "validationCustom01", :required => true %>
+
+    <div class="invalid-feedback">
+        Este Campo Tiene Que Estar Completado Para Ingresar
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Contraseña</label>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form1 form-control", id: "validationCustom01", :required => true %>
+    <div class="invalid-feedback">
+      Este Campo Tiene Que Estar Completado Para Ingresar
+    </div>
+
+  </div>
+
+  <div class="col-12 text-center">
+    <br>
+    <%= f.submit "Iniciar Sesion", class: "btn1" %>
+  </div>
+
+<% end -%>

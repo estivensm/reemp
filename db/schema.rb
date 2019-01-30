@@ -10,10 +10,137 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_171639) do
+ActiveRecord::Schema.define(version: 2019_01_29_210731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "user_name"
+    t.string "names"
+    t.string "last_names"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "consulting_rooms", force: :cascade do |t|
+    t.string "address"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.string "city"
+    t.string "first_photo"
+    t.string "sub_photo"
+    t.string "state"
+    t.integer "user_id"
+    t.integer "reemper_information_id"
+    t.boolean "info_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "category_id"
+    t.string "country"
+    t.string "city"
+    t.integer "profession_id"
+    t.integer "specialty_id"
+    t.string "instagram"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "information_academics", force: :cascade do |t|
+    t.string "type"
+    t.date "start_date"
+    t.date "finish_date"
+    t.integer "user_id"
+    t.string "file"
+    t.text "description"
+    t.boolean "info_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "professions", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reemp_requests", force: :cascade do |t|
+    t.string "admin_state"
+    t.integer "reemper_information_id"
+    t.text "comment"
+    t.integer "number_request"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reemper_academic_informations", force: :cascade do |t|
+    t.integer "reemper_information_id"
+    t.boolean "info_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reemper_informations", force: :cascade do |t|
+    t.string "reempe_category"
+    t.string "document_type"
+    t.string "document_number"
+    t.string "professional_card"
+    t.string "academy_level"
+    t.string "judicial_background_file"
+    t.string "profesional_card_file"
+    t.text "biography"
+    t.string "reemper_type", default: "static"
+    t.boolean "reemper_state_location"
+    t.integer "reemp_level"
+    t.integer "profession_id"
+    t.integer "specialty_id"
+    t.integer "consulting_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "admin_state"
+    t.integer "user_id"
+    t.boolean "info_state"
+  end
+
+  create_table "specialties", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "category_id"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subspecialties", force: :cascade do |t|
+    t.integer "specialty_id"
+    t.string "name"
+    t.text "description"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,6 +174,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_171639) do
     t.string "user_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quelification"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
@@ -29,7 +29,41 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# control de usuario
 gem 'devise'
+# Use ActiveStorage variant
+gem 'mini_magick', '~> 4.8'
+#AASM para maquina de estados
+gem "aasm"
+#ingresar con google
+gem 'omniauth-google'
+#mensajes de alerta
+gem 'sweet-alert2-rails'
+gem 'toastr_rails'
+#subir Archivos
+gem 'carrierwave'
+gem 'file_validators'
+#documentar modelos
+gem 'annotate'
+#Guardar en amazon
+gem 'fog', '~> 1.38'
+gem 'figaro'
+#Sub Formularios
+gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
+#paginacion
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+#generar pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+#jquery
+gem 'jquery-ui-rails'
+gem 'jquery-validation-rails'
+gem 'jquery-rails'
+#Editor texto
+gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
+#bootstrap
+gem 'bootstrap', '~> 4.1.3'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
