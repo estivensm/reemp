@@ -2,7 +2,7 @@
 	<div class="col-md-5 title">
 		<h2 class="h3" style="font-size: 34px;">
 			¡Por profesionales llenos de 
-			opertunidades!
+			oportunidades!
 		</h2>
 	</div>
 
@@ -11,7 +11,7 @@
 	</div>
 	
 	<div class="col-md-8 offset-md-5 text-center">
-		<h1 class="h3" style="font-size: 34px; ">Para más Informacion </h1>
+		<h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
 	</div>
 
 	<div class="card col-12 col-md-4 offset-md-7">
@@ -43,20 +43,21 @@
 
 				<%= hidden_field_tag :city, nil, id: "city" %>
 
+			<div class="col-md-12 no-padding">
+					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
+					<br>
+			</div>
+
 
 			<div class="form-row">
 				<div class="col-md-6 no-padding">
-				    <%= select_tag 'profession_id', options_for_select(get_profession.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Profesiones'}%>
+				   <%= text_field_tag :profession_name, nil, class: "form form-control", id: "", :placeholder => "Profesiones" %>
 				</div>
 
 				<div class="col-md-6 no-padding">
-				   	<%= select_tag 'specialty_id', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Especialidad'}%>
+				   <%= text_field_tag :specialty_name, nil, class: "form form-control", id: "", :placeholder => "Especialidad" %>
 				</div>	
 				<br><br>
-			</div>
-
-			<div class="col-md-12 no-padding">
-					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
 			</div>
 
 
@@ -127,7 +128,7 @@ $("#check").change(function() {
 
   if ($input.prop("checked") == true){
   	text.style.display = 'block'
-  	contenido.style.display = 'inline-grid'
+  	contenido.style.display = 'inline-block'
   }else {
   	text.style.display = 'none'
   }
@@ -174,7 +175,7 @@ $("#check").change(function() {
 	}
 
 	.card{
-		margin-top: 20px;
+		margin-top: -36px;
 		border-radius: 15px;
 		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
 
@@ -188,6 +189,7 @@ $("#check").change(function() {
 	    width: 100px;
 	    padding: 6px;
 	    cursor: pointer;
+
 
 	} /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
@@ -213,7 +215,7 @@ $("#check").change(function() {
 	
 	.submit{
 		position: absolute;
-	    top: 450px;
+	    top: 470px;
 	    z-index: 1;
 	    right: -167px;
 	}
@@ -223,6 +225,17 @@ $("#check").change(function() {
 		font-weight: bold;
 		color: #160e50;
 	}
+
+	.h3t{
+		font-family: "Poppins", sans-serif;
+		font-weight: bold;
+		color: #160e50;
+		position: relative;
+	    top: -43px;
+	}
+
+
+
 
 	.title{
 		position: relative;
