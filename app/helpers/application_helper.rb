@@ -25,7 +25,7 @@ module ApplicationHelper
 	end
 
 	def get_category
-		Category.all
+		Category.all.order(id: :desc)
 	end
 
 	def get_profession

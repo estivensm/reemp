@@ -105,10 +105,10 @@ Specialty.create(name: "Etólogo")
 
 
 
-Category.create(name: "Mascotas")
 Category.create(name: "Salud")
-Category.create(name: "Construccion")
 Category.create(name: "Legal")
+Category.create(name: "Construccion")
 Category.create(name: "Mascotas")
+
 
 puts "Se Creo con exito!!!!!!"
