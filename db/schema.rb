@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_210731) do
     t.string "email"
     t.integer "category_id"
     t.string "country"
+    t.string "profession_name"
+    t.string "specialty_name"
     t.string "city"
     t.integer "profession_id"
     t.integer "specialty_id"
