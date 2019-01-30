@@ -1,0 +1,273 @@
+<body class="user">
+	<div class="col-md-5 title">
+		<h2 class="h3">
+			¡Por profesionales llenos de 
+			opertunidades!
+		</h2>
+	</div>
+
+	<div class="col-md-4 logo">
+		<a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/369/Screenshot_from_2019-01-16_18-54-24.png"></a>
+	</div>
+	
+	<div class="col-md-8 offset-md-5 text-center">
+		<h1 class="h3" style="font-size: 34px; ">Para más Informacion </h1>
+	</div>
+
+	<div class="card col-12 col-md-4 offset-md-7">
+		<%= form_tag create_contact_path, remote: true, class: "needs-validation", :novalidate => true  do %>
+		<div class="card-body">
+			<div class="col-md-12 no-padding">
+				<label>Nombre Completo</label>
+			    <%= text_field_tag :name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Nombre" %>
+			   	<div class="invalid-feedback">
+                </div>
+                <br>
+			</div>
+
+			<div class="col-md-12 no-padding">
+				<label>Correo Electronico</label>
+			    <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "Email" %>
+
+			    <div class="invalid-feedback">
+                </div>
+			    <br>
+			</div>
+
+			<div class="col-md-12 no-padding">
+					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
+				<br>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 no-padding">
+				    <%= select_tag 'profession_id', options_for_select(get_profession.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Profesion'}%>
+				</div>
+
+				<div class="col-md-6 no-padding">
+				   	<%= select_tag 'specialty_id', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Especialidad'}%>
+				</div>	
+				<br><br>
+			</div>
+
+
+			<div class="form-row">
+				<div class="col-md-6 no-padding">
+					<label>Recidencia</label>
+					<%= text_field_tag :city, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Pais" %>
+				</div>
+
+				<div class="col-md-6 no-padding">
+					<br>
+				    <%= text_field_tag :city, nil, class: "form form-control margin3", id: "validationCustom01", :required => true, :placeholder => "Ciudad" %>
+				</div>
+			</div>
+			<div class="col-md-12 text-center top">
+				<i class="fab fa-instagram icon"></i>
+
+					<label class="switch ">
+					  <input type="checkbox" id="check">
+					  <span class="slider round"></span>
+					</label>
+
+					<div id="contenido">
+					<%= text_field_tag :city, nil, class: "form form-control margin3", id: "text", :placeholder => "Instagram" %>
+					</div>
+			</div>
+
+			<div class="col-md-12 submit">
+				<%= button_tag class: "button" do  %>
+					<i class="fas fa-arrow-right"></i>
+				<% end -%>
+			</div>
+
+		</div>
+
+	  <% end -%>
+	</div>
+</body>
+
+
+
+<script>
+
+$("#check").change(function() {
+  var text = document.getElementById("text")
+  var contenido = document.getElementById("contenido")
+  var $input = $( this );
+
+  if ($input.prop("checked") == true){
+  	text.style.display = 'block'
+  	contenido.style.display = 'inline-grid'
+  }else {
+  	text.style.display = 'none'
+  }
+
+
+});
+</script>
+
+
+
+
+<style type="text/css" media="screen">
+
+	#text{
+		width: 172px;
+    	margin-right: 0px !important;
+    	top: -11px;
+    	position: relative;
+    	display: none;
+	}
+
+
+	.card{
+		margin-top: 20px;
+		border-radius: 15px;
+		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+
+	}
+
+	.button{
+		background: linear-gradient(to right, #1c60e4, #1cb5e0);
+		border-radius: 36px;
+	    border: none;
+	    color: #fff;
+	    width: 100px;
+	    padding: 6px;
+	    cursor: pointer;
+
+	} /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	.logo{
+		position: absolute;
+		top: 10px;
+	    top: 50px;
+	    left: -77px;
+	}
+
+	.p{
+		font-family: "Poppins", sans-serif;
+		font-weight: bold;
+		color: #160e50;
+
+	}
+
+	.modal-backdrop{
+		background: #79554821;
+		filter: blur(5px) !important;
+	}
+
+	
+	.submit{
+		position: absolute;
+	    top: 450px;
+	    z-index: 1;
+	    right: -167px;
+	}
+
+	.h3{
+		font-family: "Poppins", sans-serif;
+		font-weight: bold;
+		color: #160e50;
+	}
+
+	.title{
+		position: relative;
+    top: 187px;
+    left: 89px;
+
+	}
+
+	.margin3{
+		margin-top: 5px;
+	}
+
+	.icon{
+		color: #dfdce3;
+		font-size: 44px;
+	}
+
+	.top{
+		margin-top: 7px;
+	}
+
+	.form{
+		border-radius: 20px;
+		color: #9182ca;
+		border: 2px solid #dcdcfe;
+
+	}
+
+	.form:focus{
+		border: 2px solid #9182ca;
+	}
+
+	label{
+		color: #9182ca;
+		font-weight: bold;
+
+	}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: -16px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #160e50;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+</style>

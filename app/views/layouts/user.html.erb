@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reemp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  
+  <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html">
+          <img src="" alt="logo" />
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="index.html">
+          <img src="" alt="logo" />
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <!--
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="#" class="nav-link">Schedule
+              <span class="badge badge-primary ml-1">New</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="#" class="nav-link">
+              <i class="mdi mdi-elevation-rise"></i>Reports</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
+          </li>
+        </ul>
+      -->
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text d-none">Hola, <%= current_user.names %> !</span>
+              <img class="img-xs rounded-circle" src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item p-0">
+
+                <div class="d-flex border-bottom">
+
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                      <i class="fas fa-user"></i>
+                  </div>
+
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
+                      <i class="fas fa-users-cog"></i>
+                  </div>
+
+                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
+                      <i class="fas fa-user-edit"></i>
+                  </div>
+
+                </div>
+
+              </a>
+
+              <%= link_to "Editar Cuenta",  edit_user_registration_path, class: "dropdown-item" %>
+
+              <% if user_signed_in?%>
+                  <%= link_to "salir", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <% else %>
+                  <%= link_to "ingresar", new_user_session_path, class: "dropdown-item" %>
+              <% end -%>
+              
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name"><%= current_user.names %></p>
+                  <div>
+                    <small class="designation text-muted">Usuario Reemp</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+<!--
+            <%# if current_user.user_name.blank? %>
+                  <%# link_to  reeper_home_path + "?reemper=true", class: "btn btn-success disabled", id: "new_remper" do %>
+                      <i class="fas fa-plus-circle"></i>Ser Reemper
+                  <%# end -%>
+
+            <%# elsif !get_all_information %>
+
+                  <%# link_to  new_reemper_information_path + "?reemper=true", class: "btn btn-success", style: "" do %>
+                      <i class="fas fa-plus-circle"></i>Ser Reemper
+                  <%# end -%>
+
+
+                  <%# elsif get_pending_state %>
+
+                  <span class="badge badge-warning" style="font-size: 10px;">
+                    Tu Peticion fue Enviada <br> Correcta Mente  <br>
+                    <i class="icon fas fa-info-circle"></i>
+                  </span>
+
+
+                  <%# elsif get_denied_state %>
+
+                  <span class="badge badge-danger" style="font-size: 10px;">
+                    Tu Peticion fue Denegada <br> Suerte es lo que le digo  <br>
+                    <i class="icon fas fa-times-circle"></i>
+                  </span>
+
+                  <%# elsif get_active_state %>
+
+                  <span class="badge badge-success" style="font-size: 10px;">
+                    Tu Peticion fue Acceptada <br> Con Exito! Bienvenido <br>
+                    <i class="icon fas fa-info-circle"></i>
+                  </span>
+
+              <%# else %>
+
+                  <span class="badge badge-success" style="font-size: 10px;">
+                    Ya Puedes Enviar <br> tu solicitud de ser Reemper <br>
+                    <i class="icon fas fa-info-circle"></i>
+                  </span>
+
+
+            <%# end -%>
+
+            </div>
+          </li>
+          <li class="nav-item">
+            <%# link_to reeper_home_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-tachometer-alt"></i> Home
+            <%# end -%>
+          </li>
+
+          <li class="nav-item">
+            <%# link_to show_user_path(current_user.id), class: "nav-link" do %>
+                <i class="menu-icon fas fa-user"></i> Mi Perfil
+            <%# end -%>
+          </li>
+
+          <li class="nav-item">
+            <%# link_to my_request_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-poll-h"></i> Mis Peticiones
+            <%# end -%>
+          </li>
+
+
+          <li class="nav-item">
+            <%# link_to reeper_home_path + "?reemper=true", class: "nav-link" do %>
+                <i class="menu-icon far fa-eye"></i> Peticion
+            <%# end -%>
+          </li>
+
+          <li class="nav-item">
+            <%# link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <i class="menu-icon fas fa-sign-out-alt"></i> Salir
+            <%# end -%>
+          </li>
+          -->
+          <!--
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Basic UI Elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        -->
+        </ul>
+      </nav>
+
+  <body class="body">
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <% if params[:reemper] == "true" %>
+              <%= render "parciales/cards" %>   
+          <% end -%>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+
+<style type="text/css" media="screen">
+
+  .py-3{
+    padding: 11px !important;
+  }
+
+  .py-3 > .fas{
+    color: #5bc0de;
+  }
+
+  #new_remper:
+
+  .icon{
+        margin-top: 4px;
+    font-size: 19px;
+    cursor: pointer;
+  }
+
+  .sidebar .nav .nav-item .nav-link .badge{
+    margin-left: 0px;
+    padding: 5px;
+  }
+
+    @media (max-width: 576px) {
+
+      .navbar-menu-wrapper{
+        padding: 0px;
+      }
+
+      .navbar-nav .nav-item.dropdown .navbar-dropdown {
+          right: -12px !important;
+      }
+
+      .navbar.default-layout .navbar-menu-wrapper .navbar-nav .nav-item{
+
+        right: -27px !important;
+      }
+
+      .navbar-toggler{
+        margin-left: 10px;
+      }
+
+
+    }
+
+    /*table asdasd*/
+    @media (min-width: 768px) and (max-width: 1024px) {
+      
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+
+    }
+
+</style>
+
+<script type="text/javascript">
+
+
+(function($) {
+  'use strict';
+  $(function() {
+    $('[data-toggle="offcanvas"]').on("click", function() {
+      $('.sidebar-offcanvas').toggleClass('active')
+    });
+  });
+})(jQuery);
+
+</script>
