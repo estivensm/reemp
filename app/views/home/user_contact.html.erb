@@ -14,8 +14,8 @@
 		<h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
 	</div>
 
-	<div class="card col-12 col-md-4 offset-md-7">
-		<%= form_tag create_contact_path, remote: true, class: "needs-validation", :novalidate => true  do %>
+	<div class="card col-md-4 offset-md-7">
+		<%= form_tag create_contact_path, remote: true, class: "needs-validation", :novalidate => true, id: "form" do %>
 		<div class="card-body">
 			<div class="col-md-12 no-padding">
 				<label>Nombre Completo</label>
@@ -36,7 +36,7 @@
 
 				<div class="col-md-12 no-padding">
 					<label>Recidencia</label>
-					<%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad" %>
+					<%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad", :required => true %>
 					<br>
 				</div>
 
@@ -44,18 +44,18 @@
 				<%= hidden_field_tag :city, nil, id: "city" %>
 
 			<div class="col-md-12 no-padding">
-					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
+					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria', id: "validationCustom01", :required => true}%>
 					<br>
 			</div>
 
 
 			<div class="form-row">
 				<div class="col-md-6 no-padding">
-				   <%= text_field_tag :profession_name, nil, class: "form form-control", id: "", :placeholder => "Profesiones" %>
+				   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesiones" , id: "validationCustom01", :required => true %>
 				</div>
 
 				<div class="col-md-6 no-padding">
-				   <%= text_field_tag :specialty_name, nil, class: "form form-control", id: "", :placeholder => "Especialidad" %>
+				   <%= text_field_tag :specialty_name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
 				</div>	
 				<br><br>
 			</div>
@@ -157,9 +157,78 @@ $("#check").change(function() {
 
 <style type="text/css" media="screen">
 
+    @media (max-width: 576px) {
+
+    	.card{
+    		width: 95%;
+    		margin-left: 10px;
+    		margin-top: 89px !important;
+    		background: url("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/75/WhatsApp_Image_2019-01-30_at_1.05.16_PM.jpeg");
+    		background-size: 100% 533px;
+    	}
+
+    	.submit{
+    		top: 517px !important;
+    		left: 107px !important;
+    	}
+
+    	.text-profess{
+    		margin-bottom: 24px;
+    	}
+
+    	.h3t{
+		    top: 71px !important;
+		    left: -2px !important;
+		    font-size: 18px !important;
+    	}
+
+    	.logo{
+		    top: -16px !important;
+		    left: -108px !important;
+    	}
+
+
+    	.user{
+    		background: #fff;
+    		width: 100%;
+    		height: 714px;
+    	}
+
+    	.h3{
+			top: -119px;
+		    left: -104px;
+		    font-size: 14px !important;
+		    position: relative;
+    	}
+
+    	.card-body{
+    		padding: 5px !important;
+    	}
+
+    	.icon{
+    		    color: #7473ff !important;
+    	}
+
+    }
+
+    /*table asdasd*/
+    @media (min-width: 768px) and (max-width: 1024px) {
+      
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+
+    }
+
 	.pac-container{
 		border-radius: 5px;
 		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+	}
+
+
+	.was-validated .form-control:invalid{
+		border-color: #7473ff !important;
 	}
 
 	#text{
@@ -221,6 +290,12 @@ $("#check").change(function() {
 	}
 
 	.h3{
+		font-family: "Poppins", sans-serif;
+		font-weight: bold;
+		color: #160e50;
+	}
+
+	.h4{
 		font-family: "Poppins", sans-serif;
 		font-weight: bold;
 		color: #160e50;

@@ -1,3 +1,7 @@
 
 	$('<%= j render "parciales/sucess_message" %>').on('show.bs.modal', function (e) {
+			 document.getElementById("form").reset();
 	}).modal();
+
+	document.querySelector("form").removeClass('was-validated')
+
