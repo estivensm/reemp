@@ -32,9 +32,9 @@ module ApplicationHelper
 		Profession.all
 	end
 
-
 	def get_special
 		Specialty.all		
 	end
+
 	
 end

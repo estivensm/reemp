@@ -1,6 +1,6 @@
 <body class="user">
 	<div class="col-md-5 title">
-		<h2 class="h3">
+		<h2 class="h3" style="font-size: 34px;">
 			¡Por profesionales llenos de 
 			opertunidades!
 		</h2>
@@ -34,14 +34,19 @@
 			    <br>
 			</div>
 
-			<div class="col-md-12 no-padding">
-					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
-				<br>
-			</div>
+				<div class="col-md-12 no-padding">
+					<label>Recidencia</label>
+					<%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad" %>
+					<br>
+				</div>
+
+
+				<%= hidden_field_tag :city, nil, id: "city" %>
+
 
 			<div class="form-row">
 				<div class="col-md-6 no-padding">
-				    <%= select_tag 'profession_id', options_for_select(get_profession.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Profesion'}%>
+				    <%= select_tag 'profession_id', options_for_select(get_profession.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Profesiones'}%>
 				</div>
 
 				<div class="col-md-6 no-padding">
@@ -50,18 +55,11 @@
 				<br><br>
 			</div>
 
-
-			<div class="form-row">
-				<div class="col-md-6 no-padding">
-					<label>Recidencia</label>
-					<%= text_field_tag :city, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Pais" %>
-				</div>
-
-				<div class="col-md-6 no-padding">
-					<br>
-				    <%= text_field_tag :city, nil, class: "form form-control margin3", id: "validationCustom01", :required => true, :placeholder => "Ciudad" %>
-				</div>
+			<div class="col-md-12 no-padding">
+					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona Una Categoria'}%>
 			</div>
+
+
 			<div class="col-md-12 text-center top">
 				<i class="fab fa-instagram icon"></i>
 
@@ -71,7 +69,7 @@
 					</label>
 
 					<div id="contenido">
-					<%= text_field_tag :city, nil, class: "form form-control margin3", id: "text", :placeholder => "Instagram" %>
+					<%= text_field_tag :instagram, nil, class: "form form-control margin3", id: "text", :placeholder => "Instagram" %>
 					</div>
 			</div>
 
@@ -85,11 +83,42 @@
 
 	  <% end -%>
 	</div>
+
+    <style>
+      input {
+        height: 30px;
+        padding-left: 10px;
+        border-radius: 4px;
+        border: 1px solid rgb(186, 178, 178);
+        box-shadow: 0px 0px 12px #EFEFEF;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
+  </head>
+<!--
+    <input type="" id=""/>
+      <input type="text" id="place_id"/>
+-->
+    <script>
+      var input = document.getElementById('autocomplete');
+      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+      google.maps.event.addListener(autocomplete, 'place_changed', function(){
+         var place = autocomplete.getPlace();
+         console.log(place);
+         console.log(place.name);
+         document.getElementById("place_id").value = place.place_id;
+         document.getElementById("city").value = place.name;
+      })
+
+    
+    </script>
 </body>
 
 
 
 <script>
+
+
 
 $("#check").change(function() {
   var text = document.getElementById("text")
@@ -105,12 +134,32 @@ $("#check").change(function() {
 
 
 });
+
+    $("#city").change(function(event) {
+      var cambio =  $(this).val();
+      $.get("/paciente/" + cambio, function(data, status){
+
+        $(".show1").fadeIn()
+        $(".margin").fadeIn()
+        $(".show1").css({'margin-left':'29px'});
+        $("#name").html(data.first_name + " " + data.first_last_name)
+        $("#adress").html(data.document)
+
+          
+      });
+
+    });
 </script>
 
 
 
 
 <style type="text/css" media="screen">
+
+	.pac-container{
+		border-radius: 5px;
+		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+	}
 
 	#text{
 		width: 172px;
@@ -120,6 +169,9 @@ $("#check").change(function() {
     	display: none;
 	}
 
+	option{
+		color: #160e50;
+	}
 
 	.card{
 		margin-top: 20px;
