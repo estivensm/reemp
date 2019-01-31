@@ -11,7 +11,7 @@
 	</div>
 	
 	<div class="col-md-8 offset-md-5 text-center">
-		<h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
+		<h1 class="h3t" style="font-size: 34px; ">Para más Información </h1>
 	</div>
 
 	<div class="card col-md-4 offset-md-7">
@@ -61,7 +61,7 @@
 			</div>
 
 
-			<div class="col-md-12 text-center top">
+			<div class="col-md-12 text-center top" id="radio">
 				<i class="fab fa-instagram icon"></i>
 
 					<label class="switch ">
@@ -70,9 +70,13 @@
 					</label>
 
 					<div id="contenido">
-					<%= text_field_tag :instagram, nil, class: "form form-control margin3", id: "text", :placeholder => "Instagram" %>
+					<%= text_field_tag :instagram, nil, class: "animated fadeInRight form form-control margin3", id: "text", :placeholder => "Instagram" %>
 					</div>
 			</div>
+
+			    <div class="col-auto">
+
+
 
 			<div class="col-md-12 submit">
 				<%= button_tag class: "button" do  %>
@@ -122,15 +126,18 @@
 
 
 $("#check").change(function() {
-  var text = document.getElementById("text")
-  var contenido = document.getElementById("contenido")
+  var text = document.getElementById("text");
+  var contenido = document.getElementById("contenido");
   var $input = $( this );
 
   if ($input.prop("checked") == true){
   	text.style.display = 'block'
   	contenido.style.display = 'inline-block'
+  	$("#radio").addClass('animated fadeInRight');
+
   }else {
   	text.style.display = 'none'
+  	$("#radio").addClass('animated fadeInLeft');
   }
 
 
@@ -199,6 +206,7 @@ $("#check").change(function() {
 		    left: -104px;
 		    font-size: 14px !important;
 		    position: relative;
+
     	}
 
     	.card-body{
@@ -237,6 +245,14 @@ $("#check").change(function() {
     	top: -11px;
     	position: relative;
     	display: none;
+
+	}
+
+
+	.margin3:before{
+		content: "\f107";
+        font-family: FontAwesome;
+        background: red !important;
 	}
 
 	option{
@@ -283,10 +299,10 @@ $("#check").change(function() {
 
 	
 	.submit{
-		position: absolute;
-	    top: 470px;
+	    position: absolute;
+	    top: 0px;
 	    z-index: 1;
-	    right: -167px;
+	    right: -107px !important;
 	}
 
 	.h3{
