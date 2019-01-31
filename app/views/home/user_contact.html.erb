@@ -11,7 +11,7 @@
 	</div>
 	
 	<div class="col-md-8 offset-md-5 text-center">
-		<h1 class="h3t" style="font-size: 34px; ">Para más Información </h1>
+		<h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
 	</div>
 
 	<div class="card col-md-4 offset-md-7">
@@ -61,7 +61,7 @@
 			</div>
 
 
-			<div class="col-md-12 text-center top" id="radio">
+			<div class="col-md-12 text-center top">
 				<i class="fab fa-instagram icon"></i>
 
 					<label class="switch ">
@@ -69,14 +69,10 @@
 					  <span class="slider round"></span>
 					</label>
 
-					<div id="contenido">
-					<%= text_field_tag :instagram, nil, class: "animated fadeInRight form form-control margin3", id: "text", :placeholder => "Instagram" %>
-					</div>
+					
+					<%= text_field_tag :instagram, nil, class: "form form-control margin3 div", id: "text", :placeholder => "Instagram" %>
+					
 			</div>
-
-			    <div class="col-auto">
-
-
 
 			<div class="col-md-12 submit">
 				<%= button_tag class: "button" do  %>
@@ -90,6 +86,15 @@
 	</div>
 
     <style>
+    	.div {
+ 		
+             
+           width: 0px;
+
+            }
+
+			
+
       input {
         height: 30px;
         padding-left: 10px;
@@ -126,18 +131,23 @@
 
 
 $("#check").change(function() {
-  var text = document.getElementById("text");
-  var contenido = document.getElementById("contenido");
+  var text = document.getElementById("text")
+  var contenido = document.getElementById("contenido")
   var $input = $( this );
 
   if ($input.prop("checked") == true){
-  	text.style.display = 'block'
-  	contenido.style.display = 'inline-block'
-  	$("#radio").addClass('animated fadeInRight');
-
+  	//text.style.display = 'block'
+  	
+  	 	
+  	 $('#text').animate({width: "200px"});
+  	
   }else {
-  	text.style.display = 'none'
-  	$("#radio").addClass('animated fadeInLeft');
+  	 $('#text').animate({width: "0px"}, function(){
+  	 	$('#text').hide();
+
+  	 });
+
+
   }
 
 
@@ -176,7 +186,7 @@ $("#check").change(function() {
 
     	.submit{
     		top: 517px !important;
-    		left: 107px !important;
+    		/*left: 107px !important;*/
     	}
 
     	.text-profess{
@@ -206,11 +216,8 @@ $("#check").change(function() {
 		    left: -104px;
 		    font-size: 14px !important;
 		    position: relative;
-<<<<<<< HEAD
 		    width: 100%;
 		    text-align: center;
-=======
->>>>>>> 84e5bb5e6a68fed48054151430b58a54e442bb19
 
     	}
 
@@ -249,15 +256,8 @@ $("#check").change(function() {
     	margin-right: 0px !important;
     	top: -11px;
     	position: relative;
-    	display: none;
-
-	}
-
-
-	.margin3:before{
-		content: "\f107";
-        font-family: FontAwesome;
-        background: red !important;
+    	display:none;
+    	width: 0px;
 	}
 
 	option{
@@ -304,10 +304,10 @@ $("#check").change(function() {
 
 	
 	.submit{
-	    position: absolute;
-	    top: 0px;
+		position: absolute;
+	    top: 470px;
 	    z-index: 1;
-	    right: -107px !important;
+	    right: -167px;
 	}
 
 	.h3{
