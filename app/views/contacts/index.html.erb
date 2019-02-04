@@ -1,2 +1,29 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+
+<h1>Interesados</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Ciudad</th>
+      <th>Categoria</th>
+      <th>Especialidad</th>
+      <th>Profesion</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contact.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.city %></td>
+        <td><%= contact.category.name %></td>
+        <td><%= contact.specialty_name %></td>
+        <td><%= contact.instagram %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+

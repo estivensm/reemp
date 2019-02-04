@@ -35,7 +35,7 @@
 			</div>
 
 				<div class="col-md-12 no-padding">
-					<label>Recidencia</label>
+					<label>Residencia</label>
 					<%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad", :required => true %>
 					<br>
 				</div>
@@ -116,7 +116,7 @@
          var place = autocomplete.getPlace();
          console.log(place);
          console.log(place.name);
-         document.getElementById("place_id").value = place.place_id;
+         //document.getElementById("place_id").value = place.place_id;
          document.getElementById("city").value = place.name;
       })
 

@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:destroy]
 
+  layout 'application'
   def index
   	@contact = Contact.all
   end

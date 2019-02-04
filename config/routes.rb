@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'home/inicio'
   get "reemper/home", to: "home#reemper_home", as: "reeper_home"
   root "home#user_contact"
+  get "reempinfohc", to: "contacts#index"
   post "create_contact", to: "contacts#create", as: "create_contact"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
