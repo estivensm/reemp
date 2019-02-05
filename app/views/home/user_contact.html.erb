@@ -1,122 +1,233 @@
 <body class="user">
-	<div class="col-md-5 title">
-		<h2 class="h3" style="font-size: 34px;">
-			¡Por profesionales llenos de 
-			oportunidades!
-		</h2>
-	</div>
 
-	<div class="col-md-4 logo">
-		<a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/369/Screenshot_from_2019-01-16_18-54-24.png"></a>
-	</div>
-	
-	<div class="col-md-8 offset-md-5 text-center">
-		<h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
-	</div>
+    <div class="col-md-12 d-xl-none img-movil" style="height: 639px;"></div>
 
-	<div class="card col-md-4 offset-md-7">
-		<%= form_tag create_contact_path, remote: true, class: "needs-validation", :novalidate => true, id: "form" do %>
-		<div class="card-body">
-			<div class="col-md-12 no-padding">
-				<label>Nombre Completo</label>
-			    <%= text_field_tag :name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Nombre" %>
-			   	<div class="invalid-feedback">
+    <div class="col-md-5 title">
+        <h2 class="h3" style="font-size: 34px;">
+            ¡Por profesionales 
+            llenos de oportunidades!
+        </h2>
+    </div>
+
+    <div class="col-md-4 logo d-none">
+        <a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/369/Screenshot_from_2019-01-16_18-54-24.png"></a>
+    </div>
+    
+    <div class="col-md-8 offset-md-5 text-center">
+        <h1 class="h3t" style="font-size: 34px; ">Para más Informacion </h1>
+    </div>
+
+    <div class="card col-md-4 offset-md-7">
+        <%= form_tag create_contact_path, remote: true, class: "needs-validation", :novalidate => true, id: "form" do %>
+        <div class="card-body">
+            <div class="col-md-12 no-padding">
+                <label>Nombre Completo</label>
+                <%= text_field_tag :name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Nombre" %>
+                <div class="invalid-feedback">
                 </div>
                 <br>
-			</div>
+            </div>
 
 
 
-			<div class="col-md-12 no-padding">
-				<label>Correo Electronico</label>
-			    <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "Email" %>
+            <div class="col-md-12 no-padding">
+                <label>Correo Electronico</label>
+                <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "Email" %>
 
-			    <div class="invalid-feedback">
+                <div class="invalid-feedback">
                 </div>
-			    <br>
-			</div>
+                <br>
+            </div>
 
-				<div class="col-md-12 no-padding">
-					<label>Residencia</label>
-					<%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad", :required => true %>
-					<br>
-				</div>
-
-
-				<%= hidden_field_tag :city, nil, id: "city" %>
-
-			<div class="col-md-12 no-padding custom-select" id="select">
-					<%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form1", :prompt => 'Selecciona Una Categoria', id: "validationCustom01", :required => true}%>
-					<br>
-			</div>
+                <div class="col-md-12 no-padding">
+                    <label>Residencia</label>
+                    <%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad", :required => true %>
+                    <br>
+                </div>
 
 
-			<div class="form-row">
-				<div class="col-md-6 no-padding">
-				   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesiones" , id: "validationCustom01", :required => true %>
-				</div>
+                <%= hidden_field_tag :city, nil, id: "city" %>
 
-				<div class="col-md-6 no-padding">
-				   <%= text_field_tag :specialty_name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
-				</div>	
-				<br><br>
-			</div>
+            <div class="col-md-12 no-padding custom-select" id="select">
+                    <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form1", :prompt => 'Selecciona Una Categoria', id: "validationCustom01", :required => true}%>
+                    <br>
+            </div>
 
 
-			<div class="col-md-12 text-center top">
-				<i class="fab fa-instagram icon"></i>
+            <div class="form-row">
+                <div class="col-md-6 no-padding">
+                   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesiones" , id: "validationCustom01", :required => true %>
+                </div>
 
-					<label class="switch ">
-					  <input type="checkbox" id="check">
-					  <span class="slider round"></span>
-					</label>
+                <div class="col-md-6 no-padding">
+                   <%= text_field_tag :specialty_name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
+                </div>  
+                <br><br>
+            </div>
 
-					
-					<%= text_field_tag :instagram, nil, class: "form form-control margin3 div", id: "text", :placeholder => "Instagram" %>
-					
-			</div>
 
-			<div class="col-md-12 submit">
-				<%= button_tag class: "button" do  %>
-					<i class="fas fa-arrow-right"></i>
-				<% end -%>
-			</div>
 
-		</div>
+            <div class="col-md-12 text-center top no-padding">
+                <i class="fab fa-instagram icon"></i>
 
-	  <% end -%>
-	</div>
+                    <label class="switch ">
+                      <input type="checkbox" id="check">
+                      <span class="slider round"></span>
+                    </label>
+
+            <%= text_field_tag :instagram, nil, class: "form form-control margin3 div", id: "text", :placeholder => "Instagram", :value => "@"  %>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <h4 class="date">Seguridad de Datos</h4>
+                <i class="far fa-handshake icon-date"></i>
+                <br>
+                <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>
+                    <label class="cbx" for="cbx">
+                        <span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                    </label>
+            <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Terminos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">POLÍTICA DE PRIVACIDAD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render "parciales/info_privacity"%>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3 submit">
+                <%= button_tag class: "button opacidad", :disabled => true, id: "btn-disabled" do  %>
+                    <i class="fas fa-arrow-right"></i>
+                <% end -%>
+            </div>
+
+        </div>
+
+      <% end -%>
+    </div>
+     <br><br><br>
 
     <style>
-    	.div {
- 		
-             
-           width: 0px;
+    .div { width: 0px;}
+    .icon-date{font-size: 41px; color: #9b61db;}
+    .date{color: #9b61db;}
 
-            }
+    .img-movil{
+      background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/372/recoleccion_de_datos_reemp_web_cel-01.png')no-repeat center top;
+      background-size: cover;
+      width: 360px;
+      height: 672px;
+    }
 
-            #select{
-	            margin-bottom: 20px;
-		        border-radius: 20px !important;
-				color: #9182ca !important;
-				border: none;
-	        }
+    #select{
+        margin-bottom: 20px;
+        border-radius: 20px !important;
+        color: #9182ca !important;
+        border: none;
+    }
 
-	       	#text::after{
-              content: "\f107" !important;
-	          font-family: FontAwesome !important;
-	          background: red !important;
-			}
+    b{
+        text-decoration: underline;
+        cursor: pointer;
+        color: #340f5d;
+    }
 
-			
 
-      input {
-        height: 30px;
-        padding-left: 10px;
-        border-radius: 4px;
-        border: 1px solid rgb(186, 178, 178);
-        box-shadow: 0px 0px 12px #EFEFEF;
+    .cbx {
+      margin: auto;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+    .cbx span {
+      display: inline-block;
+      vertical-align: middle;
+      transform: translate3d(0, 0, 0);
+    }
+    .cbx span:first-child {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      transform: scale(1);
+      vertical-align: middle;
+      border: 1px solid #9098A9;
+      transition: all 0.2s ease;
+    }
+    .cbx span:first-child svg {
+      position: absolute;
+      top: 3px;
+      left: 2px;
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 16px;
+      stroke-dashoffset: 16px;
+      transition: all 0.3s ease;
+      transition-delay: 0.1s;
+      transform: translate3d(0, 0, 0);
+    }
+    .cbx span:first-child:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: #506EEC;
+      display: block;
+      transform: scale(0);
+      opacity: 1;
+      border-radius: 50%;
+    }
+    .cbx span:last-child {
+      padding-left: 8px;
+    }
+    .cbx:hover span:first-child {
+      border-color: #506EEC;
+    }
+
+    .inp-cbx:checked + .cbx span:first-child {
+      background: #506EEC;
+      border-color: #506EEC;
+      animation: wave 0.4s ease;
+    }
+    .inp-cbx:checked + .cbx span:first-child svg {
+      stroke-dashoffset: 0;
+    }
+    .inp-cbx:checked + .cbx span:first-child:before {
+      transform: scale(3.5);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    @keyframes wave {
+      50% {
+        transform: scale(0.9);
       }
+    }
+
+    input {
+      height: 30px;
+      padding-left: 10px;
+      border-radius: 4px;
+      border: 1px solid rgb(186, 178, 178);
+      box-shadow: 0px 0px 12px #EFEFEF;
+    }
 
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
@@ -152,22 +263,40 @@ $("#check").change(function() {
   var $input = $( this );
 
   if ($input.prop("checked") == true){
-  	//text.style.display = 'block'
-  	
-  	 	
-  	 $('#text').animate({width: "200px"});
-  	
+    //text.style.display = 'block'
+    
+        
+     $('#text').animate({width: "200px"});
+    
   }else {
-  	 $('#text').animate({width: "0px"}, function(){
-  	 	$('#text').hide();
+     $('#text').animate({width: "0px"}, function(){
+        $('#text').hide();
 
-  	 });
+     });
 
 
   }
 
 
 });
+
+$("#cbx").change(function() {
+  var btn = document.getElementById("btn-disabled");
+  var $input = $( this );
+
+  if ($input.prop('checked', true)){
+    //text.style.display = 'block'
+    $("#btn-disabled").removeAttr("disabled");
+    $("#btn-disabled").removeClass("opacidad");
+  
+  }else {
+    $("#btn-disabled").addattr("disabled");
+    $("#btn-disabled").addClass("opacidad");
+  }
+
+
+});
+
 
     $("#city").change(function(event) {
       var cambio =  $(this).val();
@@ -263,60 +392,84 @@ document.addEventListener("click", closeAllSelect);
 
 <style type="text/css" media="screen">
 
+    .opacidad{
+         opacity: 0.5;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+        cursor: default;
+    }
+
     @media (max-width: 576px) {
 
-    	.card{
-    		width: 95%;
-    		margin-left: 10px;
-    		margin-top: 89px !important;
-    		background: url("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/75/WhatsApp_Image_2019-01-30_at_1.05.16_PM.jpeg");
-    		background-size: 100% 533px;
-    	}
+        .card{
+            width: 95%;
+            margin-left: 10px;
+            margin-top: -114px !important;
+            background-color: transparent;
+            box-shadow: none !important;
+        }
 
-    	.submit{
-    		top: 517px !important;
-    		/*left: 107px !important;*/
-    	}
+        .select-items {
+            width: 267px !important;
+        }
 
-    	.text-profess{
-    		margin-bottom: 24px;
-    	}
-
-    	.h3t{
-		    top: 71px !important;
-		    left: -2px !important;
-		    font-size: 18px !important;
-    	}
-
-    	.logo{
-		    top: -16px !important;
-		    left: -108px !important;
-    	}
+        .top{height: 52px;}
 
 
-    	.user{
-    		background: #fff;
-    		width: 100%;
-    		height: 714px;
-    	}
 
-    	.h3{
-			top: -119px;
-		    left: -104px;
-		    font-size: 14px !important;
-		    position: relative;
-		    width: 100%;
-		    text-align: center;
+        .submit{
+            position: absolute;
+            top: 624px !important;
+            z-index: 1;
+            right: -108px !important;
 
-    	}
+        }
 
-    	.card-body{
-    		padding: 5px !important;
-    	}
+        .text-profess{
+            margin-bottom: 24px;
+        }
 
-    	.icon{
-    		    color: #7473ff !important;
-    	}
+        .h3t{
+          top: -119px !important;
+          left: -2px !important;
+          font-size: 26px !important;
+        }
+
+        .logo{
+            top: -16px !important;
+            left: -108px !important;
+        }
+
+
+        .user{
+          background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/373/recoleccion_de_datos_reemp_web_cel-01.png');
+            width: 100%;
+            height: 714px;
+            overflow: scroll;
+        }
+
+        .h3{
+            top: -119px;
+            left: -104px;
+            font-size: 34px !important;
+            position: relative;
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .card-body{
+            padding: 5px !important;
+        }
+
+        .icon{
+            color: #7473ff !important;
+        }
+
+        .title {
+          position: relative !important;
+          top: -47px !important;
+          left: 69px !important;
+        }
 
     }
 
@@ -330,278 +483,265 @@ document.addEventListener("click", closeAllSelect);
 
     }
 
-	.pac-container{
-		border-radius: 5px;
-		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
-	}
+    .pac-container{
+        border-radius: 5px;
+        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    }
 
+    .was-validated .form-control:invalid{
+        border-color: #7473ff !important;
+    }
 
-	.was-validated .form-control:invalid{
-		border-color: #7473ff !important;
-	}
+    #text{
+        width: 172px;
+        margin-right: 0px !important;
+        top: -11px;
+        position: relative;
+        display:none;
+        width: 0px;
+    }
 
-	#text{
-		width: 172px;
-    	margin-right: 0px !important;
-    	top: -11px;
-    	position: relative;
-    	display:none;
-    	width: 0px;
-	}
+    option{
+        color: #160e50;
+    }
 
-	option{
-		color: #160e50;
-	}
+    .card{
+        margin-top: -69px;
+        border-radius: 15px;
+        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    }
 
-	.card{
-		margin-top: -36px;
-		border-radius: 15px;
-		box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    .button{
+        background: linear-gradient(to right, #1c60e4, #1cb5e0);
+        border-radius: 36px;
+        border: none;
+        color: #fff;
+        width: 100px;
+        padding: 6px;
+        cursor: pointer;
+    } /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-	}
+    .logo{
+        position: absolute;
+        top: 10px;
+        top: 50px;
+        left: -77px;
+    }
 
-	.button{
-		background: linear-gradient(to right, #1c60e4, #1cb5e0);
-		border-radius: 36px;
-	    border: none;
-	    color: #fff;
-	    width: 100px;
-	    padding: 6px;
-	    cursor: pointer;
+    .custom-select {
+      position: relative;
+      font-family: Arial;
+    }
 
+    .custom-select select {
+      display: none; /*hide original SELECT element:*/
+    }
 
-	} /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .select-selected {
+      text-align: center;
+      border-radius: 20px;
+      color: #9182ca !important;
+      border: 2px solid #dcdcfe !important;
+      width: 101% !important;
+      position: relative;
+      top: -26px;
+      height: 39px;
+    }
 
-	.logo{
-		position: absolute;
-		top: 10px;
-	    top: 50px;
-	    left: -77px;
-	}
+    /*style the arrow inside the select element:*/
+    .select-selected:after {
+      position: absolute;
+      content: "";
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #fff transparent transparent transparent;
+    }
 
-	.custom-select {
-	  position: relative;
-	  font-family: Arial;
-	}
+    /*point the arrow upwards when the select box is open (active):*/
+    .select-selected.select-arrow-active:after {
+      border-color: transparent transparent #fff transparent;
+      top: 7px;
+    }
 
-	.custom-select select {
-	  display: none; /*hide original SELECT element:*/
-	}
+    /*style the items (options), including the selected item:*/
+    .select-items div,.select-selected {
+      color: #ffffff;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+    }
 
-	.select-selected {
-	  text-align: center;
-	  border-radius: 20px;
-	  color: #9182ca !important;
-	  border: 2px solid #dcdcfe !important;
-	  width: 101% !important;
-	  position: relative;
-	  top: -26px;
-	  height: 39px;
-	}
+    /*style items (options):*/
+    .select-items {
+      position: absolute;
+      top: 100%;
+      left: 20px;
+      right: 20px;
+      width: 312px;
+      color: #9182ca !important;
+      border-right: 2px solid #dcdcfe !important;
+      border-left: 2px solid #dcdcfe !important;
+      border-bottom: 2px solid #dcdcfe !important;
+      border-bottom-left-radius: 23px;
+      border-bottom-right-radius: 23px;
+      z-index: 99;
+      background: #fff;
+      box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    }
 
-	/*style the arrow inside the select element:*/
-	.select-selected:after {
-	  position: absolute;
-	  content: "";
-	  top: 14px;
-	  right: 10px;
-	  width: 0;
-	  height: 0;
-	  border: 6px solid transparent;
-	  border-color: #fff transparent transparent transparent;
-	}
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+      display: none;
+    }
 
-	/*point the arrow upwards when the select box is open (active):*/
-	.select-selected.select-arrow-active:after {
-	  border-color: transparent transparent #fff transparent;
-	  top: 7px;
-	}
+    .select-items div{
+      text-align: center;
+      color: #9182ca !important;
+    }
 
-	/*style the items (options), including the selected item:*/
-	.select-items div,.select-selected {
-	  color: #ffffff;
-	  padding: 8px 16px;
-	  border: 1px solid transparent;
-	  cursor: pointer;
-	  user-select: none;
-	}
+    .p{
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        color: #160e50;
+    }
 
-	/*style items (options):*/
-	.select-items {
-	  position: absolute;
-	  top: 100%;
-	  left: 20px;
-	  right: 20px;
-	  width: 312px;
-	  color: #9182ca !important;
-	  border-right: 2px solid #dcdcfe !important;
-	  border-left: 2px solid #dcdcfe !important;
-	  border-bottom: 2px solid #dcdcfe !important;
-	  border-bottom-left-radius: 23px;
-	  border-bottom-right-radius: 23px;
-	  z-index: 99;
-	  background: #fff;
-	  box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
-	}
+    .modal-backdrop{
+        background: #79554821;
+        filter: blur(5px) !important;
+    }
 
-	/*hide the items when the select box is closed:*/
-	.select-hide {
-	  display: none;
-	}
+    .submit{
+        position: absolute;
+        top: 557px;
+        z-index: 1;
+        right: 162px;
+    }
 
-	.select-items div{
-	  text-align: center;
-	    color: #9182ca !important;
-	}
+    .h3{
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        color: #160e50;
+    }
 
-	.select-items div:hover, .same-as-selected {
-	}
+    .h4{
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        color: #160e50;
+    }
 
-	.p{
-		font-family: "Poppins", sans-serif;
-		font-weight: bold;
-		color: #160e50;
+    .h3t{
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        color: #160e50;
+        position: relative;
+        top: -81px;
+    }
 
-	}
+    .title{
+        position: relative;
+        top: 187px;
+        left: 89px;
+    }
 
-	.modal-backdrop{
-		background: #79554821;
-		filter: blur(5px) !important;
-	}
+    .margin3{
+        margin-top: 5px;
+    }
 
-	
-	.submit{
-		position: absolute;
-	    top: 470px;
-	    z-index: 1;
-	    right: -167px;
-	}
+    .icon{
+        color: #dfdce3;
+        font-size: 44px;
+    }
 
-	.h3{
-		font-family: "Poppins", sans-serif;
-		font-weight: bold;
-		color: #160e50;
-	}
+    .top{
+        margin-top: 7px;
+        height: 49px;
+    }
 
-	.h4{
-		font-family: "Poppins", sans-serif;
-		font-weight: bold;
-		color: #160e50;
-	}
+    .form{
+        border-radius: 20px !important;
+        color: #9182ca !important;
+        border: 2px solid #dcdcfe !important;
+    }
 
-	.h3t{
-		font-family: "Poppins", sans-serif;
-		font-weight: bold;
-		color: #160e50;
-		position: relative;
-	    top: -43px;
-	}
+    .form1{
+        border-radius: 20px !important;
+        color: #9182ca !important;
+        border: 2px solid #dcdcfe !important;
+    }
 
+    .form:focus{
+        border: 2px solid #9182ca;
+    }
 
+    label{
+        color: #9182ca;
+        font-weight: bold;
 
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      top: -16px;
+    }
 
-	.title{
-		position: relative;
-    top: 187px;
-    left: 89px;
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-	}
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-	.margin3{
-		margin-top: 5px;
-	}
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-	.icon{
-		color: #dfdce3;
-		font-size: 44px;
-	}
+    input:checked + .slider {
+      background-color: #160e50;
+    }
 
-	.top{
-		margin-top: 7px;
-	}
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
 
-	.form{
-		border-radius: 20px !important;
-		color: #9182ca !important;
-		border: 2px solid #dcdcfe !important;
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
 
-	}
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
 
-	.form1{
-		border-radius: 20px !important;
-		color: #9182ca !important;
-		border: 2px solid #dcdcfe !important;
-	}
-
-	.form:focus{
-		border: 2px solid #9182ca;
-	}
-
-	label{
-		color: #9182ca;
-		font-weight: bold;
-
-	}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  top: -16px;
-}
-
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #160e50;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
+    .slider.round:before {
+      border-radius: 50%;
+    }
 
 
 </style>

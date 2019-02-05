@@ -31,7 +31,7 @@
   </nav>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content border">
       <div class="modal-body">
@@ -72,12 +72,27 @@
       });
 </script>
 
-
-
-
-
-
 <style type="text/css" media="screen">
+
+  li > .active{
+    border: 1px solid #01BAFE !important;
+    background: #fff !important;
+    color: #01BAFE !important;
+  }
+
+  @media (max-width: 576px) {
+
+    #btn-tab{
+      width: 100% !important;
+      left: -1px !important;
+    }
+
+    #btn-tab1{
+      width: 100% !important;
+      left: -1px !important;
+    }
+  
+  }
 
   .modal-backdrop{
     background-color: transparent !important;
@@ -122,20 +137,13 @@
     color: #fff;
     width: 177%;
     left: -8px;
-    background: #01BAFE !important;
+    background: #01BAFE;
     border: 1px solid #eee;
     border-radius: 27px;
     overflow: hidden;
     position: relative;
     z-index: 1;
     text-align: center;
-}
-
-
-.active1{
-  border: 1px solid #01BAFE !important;
-  background: #fff !important;
-  color: #01BAFE !important;
 }
 
 #btn-tab1:hover{
@@ -162,7 +170,7 @@
     color: #fff;
     width: 162%;
     left: 95px;
-    background: #01BAFE !important;
+    background: #01BAFE;
     border: 1px solid #eee;
     border-radius: 27px;
     overflow: hidden;
@@ -193,6 +201,7 @@
     font-size: 24px;
     margin-top: 0;
 }
+
 @media only screen and (max-width: 767px){
     .tab .nav-tabs li a{ padding: 7px 15px; }
 }
