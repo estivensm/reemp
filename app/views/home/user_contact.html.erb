@@ -296,7 +296,7 @@ $("#cbx").change(function() {
   var btn = document.getElementById("btn-disabled");
   var $input = $( this );
 
-  if ($input.prop('checked', true)){
+  if ($input.prop('checked') == true){
     //text.style.display = 'block'
     $("#btn-disabled").removeAttr("disabled");
     $("#btn-disabled").removeClass("opacidad");
@@ -304,26 +304,10 @@ $("#cbx").change(function() {
   }else {
     $("#btn-disabled").addattr("disabled");
     $("#btn-disabled").addClass("opacidad");
+
   }
-
-
 });
 
-
-    $("#city").change(function(event) {
-      var cambio =  $(this).val();
-      $.get("/paciente/" + cambio, function(data, status){
-
-        $(".show1").fadeIn()
-        $(".margin").fadeIn()
-        $(".show1").css({'margin-left':'29px'});
-        $("#name").html(data.first_name + " " + data.first_last_name)
-        $("#adress").html(data.document)
-
-          
-      });
-
-    });
 
 var x, i, j, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
