@@ -14,6 +14,8 @@
 
     </div>
 
+    <button id="show-more" class="btn-show-more">Ver mas</button>
+
     <div class="col-md-5 title d-none d-sm-block">
         <h2 class="h3" style="font-size: 34px;">
             ¡Por profesionales 
@@ -78,7 +80,6 @@
             </div>
 
 
-
             <div class="col-md-12 text-center top no-padding">
                 <i class="fab fa-instagram icon"></i>
 
@@ -91,9 +92,9 @@
             </div>
 
             <div class="col-md-12 text-center">
-                <h4 class="date">Seguridad de Datos</h4>
                 <i class="far fa-handshake icon-date"></i>
                 <br>
+                <h4 class="date">Seguridad de Datos</h4>
                 <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>
                     <label class="cbx" for="cbx">
                         <span>
@@ -213,6 +214,17 @@
       border-color: #506EEC;
     }
 
+    .btn-show-more{
+      display: none;
+    }
+
+    .btn-show{
+      display: block;
+      position: relative;
+      top: -180px;
+      right: -136px;
+    }
+
     .inp-cbx:checked + .cbx span:first-child {
       background: #506EEC;
       border-color: #506EEC;
@@ -301,12 +313,37 @@ $("#cbx").change(function() {
     $("#btn-disabled").removeAttr("disabled");
     $("#btn-disabled").removeClass("opacidad");
   
-  }else {
-    $("#btn-disabled").addattr("disabled");
+  }else{
+    $("#btn-disabled").attr('disabled', true);
     $("#btn-disabled").addClass("opacidad");
+  } 
 
-  }
 });
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+     //>=, not <=
+    if (scroll >= 500) {
+        //clearHeader, not clearheader - caps H
+        alert("message?: DOMString"):
+    }else {
+      alert("message?: asdasdasd");
+    }
+});
+
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("show-more");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("btn-show");
+  } else {
+    header.classList.remove("btn-show-more");
+  }
+}
 
 
 var x, i, j, selElmnt, a, b, c;
