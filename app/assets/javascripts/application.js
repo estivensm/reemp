@@ -19,7 +19,10 @@
 //= require turbolinks
 //= require_tree .
 
-toastr.options = {
+
+$(document).on('turbolinks:load',function() {
+
+  toastr.options = {
   "closeButton": false,
   "debug": false,
   "newestOnTop": false,
@@ -37,8 +40,6 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
-
-$(document).on('turbolinks:load',function() {
 
   (function() {
     'use strict';

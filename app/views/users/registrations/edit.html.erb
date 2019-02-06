@@ -1,0 +1,143 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "needs-validation", :novalidate => true, id: "form", remote: true}) do |f| %>
+  <div class="card col-12 col-md-8 width-card">
+    <div class="card-body">
+
+      <div class="form-group row">
+
+        <div class="col-sm-6">        
+          <label for="validationCustom01">Nombre</label>
+          <%= f.text_field :names, class: "form-control", :placeholder => "Nombre" %>
+        </div>
+
+        <div class="col-sm-6">
+          <label for="validationCustom01">Apellido</label>
+          <%= f.text_field :last_names, class: "form-control", :placeholder => "Apellido" %>
+        </div>
+
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">      
+          <label for="validationCustom01">Nombre de Usuario</label>
+          <%= f.text_field :user_name, class: "form-control", :placeholder => "Apellido" %>
+        </div>
+
+        <div class="col-sm-6">
+          <label for="validationCustom01">Numero de Telefono</label>
+          <%= f.number_field :phone, class: "form-control", :placeholder => "Numero de Telefono" %>
+        </div>
+
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">    
+          <label for="validationCustom01">Ciudad</label>
+          <%= f.text_field :city, class: "form-control", :placeholder => "Ciudad" %>
+        </div>
+
+        <div class="col-sm-6">
+                    
+          <label for="validationCustom01">Contraseña Actual</label>
+          <%= f.password_field :current_password, id: "validationCustom01", :required => true, class: "form-control", :placeholder => "Contraseña Actual" %>
+
+          <div class="invalid-feedback">
+            Requerido!
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">   
+          <label for="validationCustom01">Contraseña</label>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :placeholder => "Contraseña"  %>
+
+        </div>
+
+        <div class="col-sm-6">
+          <label for="validationCustom01">Confirmar Contraseña</label>
+          <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirmar Contraseña"  %>
+        </div>
+      </div>
+
+
+        <div class="col-md-12 text-right no-padding-right">
+            <%= f.submit "Guardar", class: "btn btn-success" %>
+            <%= link_to "Volver", :back, class: "btn btn-light" %>
+        </div>
+
+                
+    </div>
+  </div>
+
+  <div class="card col-12 col-md-4 ">
+    <div class="card-body">
+
+      <div class="text-center">
+        <h3>Avatar</h3>
+        <%= current_user.avatar? ? image_tag(current_user.avatar_url(), class: "img-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-circle")%>
+
+        <div class="col-md-12 col-12 no-padding" >
+          <br><br>
+          <label>Archivo</label>
+          <%= f.file_field :avatar, id: "validationCustom01", class: "form-control", :placeholder => "Nombre" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card col-12 col-md-12 margin-top ">
+    <div class="card-body">
+      <div class="col-12 no-padding ">
+          <span class="badge badge-danger">Eliminar Cuenta</span>
+          <hr>
+
+        <p>Recuerda que al eliminar tu cuenta.. se eliminara todo el progreso que tengas dentro de la aplicacion</p>
+
+          <%= link_to "Eliminar Mi Cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+
+  </div>
+
+<% end -%>
+
+<style type="text/css" media="screen">
+
+  .no-padding-right{
+    padding-right: 0px;
+  }
+
+  .no-padding-right{
+  }
+
+  .margin1{
+    margin-right: 10px;
+  }
+
+  #form{
+    display: contents;
+  }
+
+  .img-circle{
+    border-radius: 50%;
+    height: 148px;
+    margin-top: 10px;
+    width: 162px;
+  }
+
+  .no-padding{
+    padding: 0px;
+  }
+
+  .margin-top{
+    margin-top: 10px;
+  }
+
+  .width-card{
+    max-width: 660px;
+    margin-right: 10px;
+  }
+
+</style>
