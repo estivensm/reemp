@@ -43,7 +43,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   mount_uploader :avatar, AvatarUploader
-  validates :user_name, uniqueness: { message: "Este Nombred de usuario ya esta adquirido" }
+  validates :user_name, uniqueness: { message: "No Permitido" }
   validates :phone, uniqueness: { message: "Ingresa otro diferente" }
 
 end

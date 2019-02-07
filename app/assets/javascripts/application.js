@@ -19,9 +19,6 @@
 //= require turbolinks
 //= require_tree .
 
-
-$(document).on('turbolinks:load',function() {
-
   toastr.options = {
   "closeButton": false,
   "debug": false,
@@ -41,6 +38,7 @@ $(document).on('turbolinks:load',function() {
 }
 
 
+$(document).on('turbolinks:load',function() {
   (function() {
     'use strict';
     window.addEventListener('turbolinks:load', function() {
