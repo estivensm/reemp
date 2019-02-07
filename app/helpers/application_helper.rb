@@ -1,5 +1,59 @@
 module ApplicationHelper
 
+	def admin_menu
+
+	 	@admin = ["", "", "", "", "", "", ""]
+
+	 	if (controller.controller_name == "home" && action_name == "admin_home")
+	 		@admin = ["active", "", "", "", "", "", ""]
+
+		 	elsif  (controller.controller_name == "home" && action_name == "admin_users")
+		 		@admin = ["", "active", "", "", "", "", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "")
+		 		@admin = ["", "", "active", "", "", "", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "admin_contact")
+		 		@admin = ["", "", "", "active", "", "", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "all_admins")
+		 		@admin = ["", "", "", "", "active", "", ""]
+
+		 	elsif (controller.controller_name == "registrations")
+		 		@admin = ["", "", "", "", "", "active", ""]
+
+	 	end
+
+	 	return @admin
+	 	
+	end
+
+
+	def user_menu
+
+	 	@reemper = ["", "", "", "", ""]
+
+	 	if (controller.controller_name == "home" && action_name == "admin_home")
+	 		@reemper = ["active", "", "", "", ""]
+
+		 	elsif  (controller.controller_name == "home" && action_name == "admin_contact")
+		 		@reemper = ["", "active", "", "", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "admin_contact")
+		 		@reemper = ["", "", "active", "", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "admin_contact")
+		 		@reemper = ["", "", "", "active", ""]
+
+		 	elsif (controller.controller_name == "home" && action_name == "admin_contact")
+		 		@reemper = ["", "", "", "", "active"]
+
+	 	end
+
+	 	return @reemper
+	 	
+	end
+
 	def resource 
 		@resource ||= User.new
 	end

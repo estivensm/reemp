@@ -1,0 +1,59 @@
+<% if @contacts.any? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Ciudad</th>
+      <th>Categoria</th>
+      <th>Especialidad</th>
+      <th>Profesion</th>
+      <th>Instagram</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.city %></td>
+        <td><%= contact.category.name %></td>
+        <td><%= contact.specialty_name %></td>
+        <td><%= contact.profession_name %></td>
+        <td><%= contact.instagram %></td>
+          <td class="text-center">
+            <%= link_to contact_delete_path(contact.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-danger" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end -%>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class = "col-md-12 paginate text-center title-table1">
+      <%= will_paginate @contacts, renderer: BootstrapPagination::Rails, previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
+  </div>
+<% else %>
+  <h1 align="center">todavia no nos han contactado!</h1>
+<% end -%>
+<style type="text/css" media="screen">
+  .btn-danger{
+    background-color: red;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .btn1:hover{
+    color: #fff;
+  }
+</style>
+
+<script type="text/javascript">
+  <% if flash[:delete].present? %>
+    toastr["error"]("<%= flash[:delete] %> con <b>Exito!</b>");
+  <% end -%>
+</script>

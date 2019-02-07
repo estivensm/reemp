@@ -52,7 +52,7 @@ gem 'figaro'
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 #paginacion
 gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+gem 'will_paginate-bootstrap4'
 #generar pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Admins::RegistrationsController < Devise::RegistrationsController
-  before_action :is_admin!
+  respond_to :html, :js, :only => [:new, :update, :create]
+  layout "admin"
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -63,7 +64,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   private 
 
-  def is_admin
-    puts "asdasdasdasdads"
+  def after_update_path_for(resource)
+    edit_admin_registration_path
   end
+  
+
 end

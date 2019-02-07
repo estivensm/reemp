@@ -1,1 +1,7 @@
 <h1>hola admin</h1>
+
+<script type="text/javascript">
+  <% if notice.present? %>
+    toastr["info"]("<b><%= notice %></b>");
+  <% end -%>
+</script>

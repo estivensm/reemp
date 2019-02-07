@@ -1,0 +1,57 @@
+<% if @admins.any? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Nombre de Usuario</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+      	<td>
+      	<%= admin.avatar? ? image_tag(admin.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
+      	</td>
+        <td><%= admin.name %></td>
+        <td><%= admin.last_name %></td>
+        <td><%= admin.user_name %></td>
+        <td><%= admin.email %></td>
+          <td class="text-center">
+            <%= link_to contact_delete_path(admin.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-danger" do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end -%>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class = "col-md-12 paginate text-center title-table1">
+      <%= will_paginate @admins, renderer: BootstrapPagination::Rails, previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
+  </div>
+<% else %>
+  <h1 align="center">todavia no nos han contactado!</h1>
+<% end -%>
+<style type="text/css" media="screen">
+  .btn-danger{
+    background-color: red;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .btn1:hover{
+    color: #fff;
+  }
+</style>
+
+<script type="text/javascript">
+  <% if flash[:delete].present? %>
+    toastr["error"]("<%= flash[:delete] %> con <b>Exito!</b>");
+  <% end -%>
+</script>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Reemp</title>
+    <title>Administracion Reemp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
@@ -21,7 +21,7 @@
   
   <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html">
+        <a class="navbar-brand brand-logo" href="/admin/home">
           <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" alt="logo" />
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
@@ -50,8 +50,8 @@
           <li class="nav-item dropdown">
           <li class="nav-item dropdown d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text d-none">Hola, <%= current_user.names? ? current_user.names : "Usuario Reemp" %>!</span>
-               <%= current_user.avatar? ? image_tag(current_user.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
+              <span class="profile-text d-none">Hola, <%= current_admin.name? ? current_admin.name : "Usuario Reemp" %>!</span>
+               <%= current_admin.avatar? ? image_tag(current_admin.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <a class="dropdown-item p-0">
@@ -74,12 +74,12 @@
 
               </a>
 
-              <%= link_to "Editar Cuenta",  edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Editar Cuenta",  edit_admin_registration_path, class: "dropdown-item" %>
 
-              <% if user_signed_in?%>
-                  <%= link_to "salir", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <% if admin_signed_in?%>
+                  <%= link_to "salir", destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
               <% else %>
-                  <%= link_to "ingresar", new_user_session_path, class: "dropdown-item" %>
+                  <%= link_to "ingresar", new_admin_session_path, class: "dropdown-item" %>
               <% end -%>
               
             </div>
@@ -99,94 +99,61 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <%= current_user.avatar? ? image_tag(current_user.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
+                  <%= current_admin.avatar? ? image_tag(current_admin.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name"><%= current_user.names? ? current_user.names : "Usuario Reemp" %></p>
+                  <p class="profile-name"><%= current_admin.name? ? current_admin.name : "Usuario Reemp" %></p>
                   <div>
-                    <small class="designation text-muted">Usuario Reemp</small>
+                    <small class="designation text-muted">Administracion</small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
               </div>
-<!--
-            <%# if current_user.user_name.blank? %>
-                  <%# link_to  reeper_home_path + "?reemper=true", class: "btn btn-success disabled", id: "new_remper" do %>
-                      <i class="fas fa-plus-circle"></i>Ser Reemper
-                  <%# end -%>
 
-            <%# elsif !get_all_information %>
+          <% admin_menu %>
 
-                  <%# link_to  new_reemper_information_path + "?reemper=true", class: "btn btn-success", style: "" do %>
-                      <i class="fas fa-plus-circle"></i>Ser Reemper
-                  <%# end -%>
-
-
-                  <%# elsif get_pending_state %>
-
-                  <span class="badge badge-warning" style="font-size: 10px;">
-                    Tu Peticion fue Enviada <br> Correcta Mente  <br>
-                    <i class="icon fas fa-info-circle"></i>
-                  </span>
-
-
-                  <%# elsif get_denied_state %>
-
-                  <span class="badge badge-danger" style="font-size: 10px;">
-                    Tu Peticion fue Denegada <br> Suerte es lo que le digo  <br>
-                    <i class="icon fas fa-times-circle"></i>
-                  </span>
-
-                  <%# elsif get_active_state %>
-
-                  <span class="badge badge-success" style="font-size: 10px;">
-                    Tu Peticion fue Acceptada <br> Con Exito! Bienvenido <br>
-                    <i class="icon fas fa-info-circle"></i>
-                  </span>
-
-              <%# else %>
-
-                  <span class="badge badge-success" style="font-size: 10px;">
-                    Ya Puedes Enviar <br> tu solicitud de ser Reemper <br>
-                    <i class="icon fas fa-info-circle"></i>
-                  </span>
-
-
-            <%# end -%>
-
-            </div>
-          </li>
-          <li class="nav-item">
-            <%# link_to reeper_home_path, class: "nav-link" do %>
-                <i class="menu-icon fas fa-tachometer-alt"></i> Home
-            <%# end -%>
+          <li class="nav-item <%= @admin[0]%>">
+            <%= link_to admin_home_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-home"></i> Home
+            <% end -%>
           </li>
 
-          <li class="nav-item">
-            <%# link_to show_user_path(current_user.id), class: "nav-link" do %>
-                <i class="menu-icon fas fa-user"></i> Mi Perfil
-            <%# end -%>
+          <li class="nav-item <%= @admin[1]%>">
+            <%= link_to admin_users_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-tachometer-alt"></i> Usuario
+            <% end -%>
           </li>
 
-          <li class="nav-item">
-            <%# link_to my_request_path, class: "nav-link" do %>
-                <i class="menu-icon fas fa-poll-h"></i> Mis Peticiones
-            <%# end -%>
+          <li class="nav-item <%= @admin[2]%>">
+            <%= link_to root_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-tachometer-alt"></i> Reempers
+            <% end -%>
           </li>
 
-
-          <li class="nav-item">
-            <%# link_to reeper_home_path + "?reemper=true", class: "nav-link" do %>
-                <i class="menu-icon far fa-eye"></i> Peticion
-            <%# end -%>
+          <li class="nav-item <%= @admin[3]%>">
+            <%= link_to admin_contact_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-users"></i> Contacto
+            <% end -%>
           </li>
 
-          <li class="nav-item">
-            <%# link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          <li class="nav-item <%= @admin[4]%>">
+            <%= link_to all_admins_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-user-tie"></i> Administradores
+            <% end -%>
+          </li>
+
+          <li class="nav-item <%= @admin[5]%>">
+            <%= link_to edit_admin_registration_path, class: "nav-link" do %>
+                <i class="menu-icon fas fa-user-edit"></i> Mi Cuenta
+            <% end -%>
+          </li>
+
+          <li class="nav-item <%= @admin[6]%>">
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
                 <i class="menu-icon fas fa-sign-out-alt"></i> Salir
-            <%# end -%>
+            <% end -%>
           </li>
-          -->
+
           <!--
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -214,10 +181,15 @@
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
-          <% if params[:reemper] == "true" %>
-              <%= render "parciales/cards" %>   
+          <% if controller_name != "registrations"%>
+          <div class="card col-md-12">
+            <div class="card-body" style="padding: 10px 10px">
+              <%= yield %>
+            </div>
+          </div>
+          <% else  %>
+            <%= yield %>
           <% end -%>
-          <%= yield %>
         </div>
       </div>
     </div>
@@ -243,6 +215,14 @@
     font-size: 19px;
     cursor: pointer;
   }
+
+  .active{
+    background: linear-gradient(120deg, #00e4d0, #5983e8);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+
 
   .sidebar .nav .nav-item .nav-link .badge{
     margin-left: 0px;
@@ -274,7 +254,6 @@
           height: 42px;
           margin: auto;
       }
-
 
 
     }

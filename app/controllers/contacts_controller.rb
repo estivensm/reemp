@@ -1,11 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:destroy]
-
-  layout 'application'
-  def index
-  	@contact = Contact.all
-  end
-
+  skip_before_action :verify_authenticity_token, :only => [:create]
 
   def create
   	@contact = Contact.create(contact_params)
@@ -22,7 +17,12 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-  	
+  	if @contact.destroy
+        redirect_to admin_contact_path
+        flash[:delete] = "Eliminado"
+      else 
+        redirect_to admin_contact_path
+    end
   end
 
   private 
