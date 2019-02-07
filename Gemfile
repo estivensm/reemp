@@ -54,6 +54,7 @@ gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
 #generar pdf
+#asdasdas
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 #jquery
