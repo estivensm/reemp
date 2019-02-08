@@ -120,7 +120,7 @@
 
           <li class="nav-item <%= @admin[1]%>">
             <%= link_to admin_users_path, class: "nav-link" do %>
-                <i class="menu-icon fas fa-tachometer-alt"></i> Usuario
+                <i class="menu-icon fas fa-user"></i> Usuarios
             <% end -%>
           </li>
 
@@ -154,25 +154,37 @@
             <% end -%>
           </li>
 
-          <!--
-          <li class="nav-item">
+          <li class="nav-item <%= @admin[7]%>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">Basic UI Elements</span>
+              <i class="menu-icon fas fa-plus-square"></i>
+                <span class="menu-title">Creacion</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
+
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                  <%= link_to categories_path, class: "nav-link" do %>
+                      <i class="icon2 fas fa-arrow-right"> </i> Categorias
+                  <% end -%>
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                  <%= link_to specialties_path, class: "nav-link" do %>
+                      <i class="icon2 fas fa-arrow-right"> </i> Especiadades
+                  <% end -%>
                 </li>
+
+                <li class="nav-item">
+                  <%= link_to subspecialties_path, class: "nav-link" do %>
+                      <i class="icon2 fas fa-arrow-right"> </i> Subespecialidades
+                  <% end -%>
+                </li>
+
               </ul>
             </div>
           </li>
-        -->
+
         </ul>
       </nav>
 
@@ -211,9 +223,13 @@
   #new_remper:
 
   .icon{
-        margin-top: 4px;
+    margin-top: 4px;
     font-size: 19px;
     cursor: pointer;
+  }
+
+  .icon2{
+    margin-right: 6px;
   }
 
   .active{

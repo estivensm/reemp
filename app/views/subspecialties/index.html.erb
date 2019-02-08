@@ -1,15 +1,13 @@
-<p id="notice"><%= notice %></p>
+<h1>Subspeciadad</h1>
 
-<h1>Subspecialties</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Specialty</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Code</th>
-      <th colspan="3"></th>
+      <th>Especialidad</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Codigo</th>
+      <th colspan="3">Acciones</th>
     </tr>
   </thead>
 
@@ -20,7 +18,6 @@
         <td><%= subspecialty.name %></td>
         <td><%= subspecialty.description %></td>
         <td><%= subspecialty.code %></td>
-        <td><%= link_to 'Show', subspecialty %></td>
         <td><%= link_to 'Edit', edit_subspecialty_path(subspecialty) %></td>
         <td><%= link_to 'Destroy', subspecialty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,6 +25,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Subspecialty', new_subspecialty_path %>
+<div class="modal-footer">
+  <%= link_to 'Nueva Subspecialidad', new_subspecialty_path, class: "btn btn-success"%>
+</div>

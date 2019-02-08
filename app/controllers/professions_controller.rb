@@ -1,5 +1,7 @@
 class ProfessionsController < ApplicationController
   before_action :set_profession, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
+  layout "admin"
 
   # GET /professions
   # GET /professions.json

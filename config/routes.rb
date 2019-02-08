@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "admin/contact", to: "home#admin_contact", as: "admin_contact"
   get "admin/reempers", to: "home#admin_users", as: "admin_users"
   get "admin/all_admins", to: "home#all_admins", as: "all_admins"
+  get "browser/:especialidad", to: "home#search", as: "browser"
   delete "contact_delete/:id", to: "contacts#destroy", as: "contact_delete"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

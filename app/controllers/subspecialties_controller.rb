@@ -1,5 +1,7 @@
 class SubspecialtiesController < ApplicationController
   before_action :set_subspecialty, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
+  layout "admin"
 
   # GET /subspecialties
   # GET /subspecialties.json

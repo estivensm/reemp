@@ -1,5 +1,7 @@
 class SpecialtiesController < ApplicationController
   before_action :set_specialty, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
+  layout "admin"
 
   # GET /specialties
   # GET /specialties.json

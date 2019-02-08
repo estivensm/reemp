@@ -8,6 +8,10 @@ class HomeController < ApplicationController
 
   end
 
+  def search
+    @parametro = params[:especialidad]
+  end
+
   def inicio
   	
   end
