@@ -32,6 +32,7 @@ class SubspecialtiesController < ApplicationController
       if @subspecialty.save
         format.html { redirect_to @subspecialty, notice: 'Subspecialty was successfully created.' }
         format.json { render :show, status: :created, location: @subspecialty }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @subspecialty.errors, status: :unprocessable_entity }

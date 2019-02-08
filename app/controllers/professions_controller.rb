@@ -32,6 +32,7 @@ class ProfessionsController < ApplicationController
       if @profession.save
         format.html { redirect_to @profession, notice: 'Profession was successfully created.' }
         format.json { render :show, status: :created, location: @profession }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @profession.errors, status: :unprocessable_entity }

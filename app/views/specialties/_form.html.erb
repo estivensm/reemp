@@ -1,37 +1,65 @@
-<%= form_with(model: specialty, local: true) do |form| %>
-  <% if specialty.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(specialty.errors.count, "error") %> prohibited this specialty from being saved:</h2>
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header padding-lef">
+            <div class="container-fluid">
+              <div class="col-md-9">
+                  <% if action_name == "edit"%>
+                    <h4 class="modal-title">Editar Especialidad</h4>
+                  <%else%>
+                    <h4 class="modal-title">Crear Nuevo Especialidad</h4>
+                  <% end -%>
+              </div>    
+            </div>
+        </div>
+      <%= form_with(model: specialty, local: true) do |form| %>
+        <div class="modal-body">
+            <% if specialty.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(specialty.errors.count, "error") %> prohibited this specialty from being saved:</h2>
 
-      <ul>
-      <% specialty.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+                <ul>
+                <% specialty.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-row">
+              <div class="col-md-6">
+                <%= form.label :Nombre %>
+                <%= form.text_field :name, class: "form form-control" %>
+              </div>
+
+              <div class="col-md-6">
+                <%= form.label "Pertenece A la Categoria" %>
+                <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control", :prompt => 'Selecciona Una Categoria', id: "validationCustom01", :required => true}%>
+                <br>
+              </div>
+            </div>
+
+            <div class="col-md-12 no-padding">
+              <%= form.label :Codigo %>
+              <%= form.text_field :code, class: "form form-control" %>
+              <br>
+            </div>
+
+            <div class="col-md-12 no-padding">
+              <%= form.label :description %>
+              <%= form.text_area :description, class: "form form-control" ,:rows => 10 %>
+              <br>
+            </div>
+        </div>
+
+      <div class="modal-footer">
+        <%= form.submit "Guardar", class: "btn btn-success" %>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+      </div>
+
       <% end %>
-      </ul>
+
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.number_field :category_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

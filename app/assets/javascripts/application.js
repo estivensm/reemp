@@ -15,9 +15,12 @@
 //= require jquery3
 //= require toastr_rails
 //= require popper
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
 
   toastr.options = {
   "closeButton": false,

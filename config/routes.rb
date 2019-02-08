@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :subspecialties
-  resources :specialties
-  resources :professions
-  resources :categories
+  resources :subspecialties, :except => [:show]
+  resources :specialties, :except => [:show]
+  resources :professions, :except => [:show]
+  resources :categories, :except => [:show]
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   devise_for :admins, :controllers => { :registrations => "admins/registrations" }

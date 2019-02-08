@@ -1,4 +1,4 @@
-<h1>Specialidad</h1>
+<h1>Especialidad</h1>
 
 <table class="table">
   <thead>
@@ -18,9 +18,17 @@
         <td><%= specialty.description %></td>
         <td><%= specialty.category_id %></td>
         <td><%= specialty.code %></td>
-        <td><%= link_to 'Editar', edit_specialty_path(specialty) %></td>
+        <td><%= link_to 'Editar', edit_specialty_path(specialty), remote: true %></td>
         <td>
-          <%= link_to 'Eliminar', specialty, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to specialty, method: :delete, data: {
+          confirm: '¿Estas Seguro?',
+          'confirm-button-text': 'Borrar',
+          'cancel-button-text': 'Cancelar',
+          'confirm-button-color': '#CC0000',
+           text: 'Recuerda que el registro se borrara permanentemente',
+          'image-url': ''}, class: "" do %>
+          <span class="glyphicon glyphicon-trash"></span> Eliminar 
+        <% end -%>
             
         </td>
       </tr>
@@ -29,6 +37,23 @@
 </table>
 
 <div class="modal-footer">
-  <%= link_to 'Nueva Especialidad', new_specialty_path, class: "btn btn-success"%>
+  <%= link_to 'Nueva Especialidad', new_specialty_path, remote: true, class: "btn btn-success"%>
 </div>
 
+<script type="text/javascript">
+
+  <% if flash[:success].present?%>
+        toastr["success"]("<%= flash[:success] %> <b> Exito!</b>");
+  <% elsif  flash[:edit].present? %>
+        toastr["info"]("<%= flash[:edit] %> <b> Exito!</b>");
+  <% elsif  flash[:destroy].present? %>
+        toastr["error"]("<%= flash[:destroy] %> <b> Exito!</b>");
+  <% end -%>
+
+</script>
+
+<style type="text/css" media="screen">
+  .modal-backdrop{
+    background-color: #0000005e !important;
+  }
+</style>

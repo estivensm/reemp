@@ -30,8 +30,10 @@ class SpecialtiesController < ApplicationController
 
     respond_to do |format|
       if @specialty.save
-        format.html { redirect_to @specialty, notice: 'Specialty was successfully created.' }
+        format.html { redirect_to specialties_path }
         format.json { render :show, status: :created, location: @specialty }
+        flash[:success] = "La Specialidad de guardo con"
+        format.js
       else
         format.html { render :new }
         format.json { render json: @specialty.errors, status: :unprocessable_entity }
@@ -44,8 +46,9 @@ class SpecialtiesController < ApplicationController
   def update
     respond_to do |format|
       if @specialty.update(specialty_params)
-        format.html { redirect_to @specialty, notice: 'Specialty was successfully updated.' }
+        format.html { redirect_to specialties_path}
         format.json { render :show, status: :ok, location: @specialty }
+        flash[:edit] = "La Specialidad se Actualizo con"
       else
         format.html { render :edit }
         format.json { render json: @specialty.errors, status: :unprocessable_entity }
@@ -58,8 +61,9 @@ class SpecialtiesController < ApplicationController
   def destroy
     @specialty.destroy
     respond_to do |format|
-      format.html { redirect_to specialties_url, notice: 'Specialty was successfully destroyed.' }
+      format.html { redirect_to specialties_path }
       format.json { head :no_content }
+      flash[:destroy] = "La Specialidad se Elimino con"
     end
   end
 

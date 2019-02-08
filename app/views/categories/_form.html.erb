@@ -1,32 +1,65 @@
-<%= form_with(model: category, local: true) do |form| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header padding-lef">
+            <div class="container-fluid padding-lef">
+              <div class="col-md-9 padding-lef">
+                  <% if action_name == "edit"%>
+                    <h4 class="modal-title">Editar Categoria</h4>
+                  <%else%>
+                    <h4 class="modal-title">Crear Nuevo Categoria</h4>
+                  <% end -%>
+              </div>    
+            </div>
+        </div>
 
-      <ul>
-      <% category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(model: category, local: true, html: {class: "needs-validation", :novalidate => true }) do |form| %>
+ <div class="modal-body">
+    <% if category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+        <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="col-md-12">
+      <label for="validationCustom01">Nombre</label>
+      <%= form.text_field :name, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Nombre" %>
+
+      <div class="invalid-feedback">
+        Requerido!
+      </div>
+      <br>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="col-md-12">
+      <%= form.label :Codigo %>
+      <%= form.text_field :code, class: "form form-control" %>
+      <br>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    <div class="col-md-12">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form form-control" ,:rows => 10 %>
+    </div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code %>
-  </div>
+  </div> 
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="modal-footer">
+      <%= form.submit "Guardar", class: "btn btn-success" %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+    </div>
+
+    </div>
   </div>
-<% end %>
+</div>
+<% end -%>
+

@@ -16,7 +16,7 @@
         <td><%= category.name %></td>
         <td><%= category.description %></td>
         <td><%= category.code %></td>
-        <td><%= link_to 'Editar', edit_category_path(category), class: "btn-danger" %></td>
+        <td><%= link_to 'Editar', edit_category_path(category), remote: true, class: "btn-danger" %></td>
         <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-danger" %></td>
       </tr>
     <% end %>
@@ -26,5 +26,23 @@
 <br>
 
 <div class="modal-footer">
-  <%= link_to 'Nueva Categoria', new_category_path, class: "btn btn-success"%>
+  <%= link_to 'Nueva Categoria', new_category_path, class: "btn btn-success", remote: true %>
 </div>
+
+<style type="text/css" media="screen">
+  .modal-backdrop{
+    background-color: #0000005e !important;
+  }
+</style>
+
+<script type="text/javascript">
+
+  <% if flash[:success].present?%>
+        toastr["success"]("<%= flash[:success] %> <b> Exito!</b>");
+  <% elsif  flash[:edit].present? %>
+        toastr["info"]("<%= flash[:edit] %> <b> Exito!</b>");
+  <% elsif  flash[:destroy].present? %>
+        toastr["error"]("<%= flash[:destroy] %> <b> Exito!</b>");
+  <% end -%>
+
+</script>

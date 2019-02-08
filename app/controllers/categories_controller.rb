@@ -30,8 +30,10 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_path }
         format.json { render :show, status: :created, location: @category }
+        flash[:success] = "La categoria de guardo con"
+        format.js
       else
         format.html { render :new }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -44,8 +46,9 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_path}
         format.json { render :show, status: :ok, location: @category }
+        flash[:edit] = "La categoria se Actualizo con"
       else
         format.html { render :edit }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -58,8 +61,9 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to categories_path}
       format.json { head :no_content }
+      flash[:destroy] = "La categoria se Elimino con"
     end
   end
 
@@ -74,3 +78,4 @@ class CategoriesController < ApplicationController
       params.require(:category).permit(:name, :description, :code)
     end
 end
+ 
