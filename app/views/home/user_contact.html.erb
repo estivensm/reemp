@@ -1,6 +1,8 @@
 <body class="user">
 
-    <div class="col-md-12 d-block d-sm-none img-movil" style="height: 639px; "></div>
+    <div class="col-md-12 d-block d-sm-none" style="height: 639px; padding: 0px; ">
+      <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/376/recoleccion_de_datos_reemp_web_cel-01__1_-min.png" class="img-fluid" alt="Responsive image">
+    </div>
 
     <div class="col-md-5 title d-block d-sm-none">
 
@@ -137,129 +139,6 @@
       <% end -%>
     </div>
      <br><br><br>
-
-    <style>
-    .div { width: 0px;}
-    .icon-date{font-size: 41px; color: #9b61db;}
-    .date{color: #9b61db;}
-
-    .img-movil{
-      background: url(https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/376/recoleccion_de_datos_reemp_web_cel-01__1_-min.png)no-repeat center top;
-      background-size: 100% 546px;
-      width: 360px;
-      height: 654px;
-      overflow: hidden;
-    }
-
-
-    #select{
-        margin-bottom: 20px;
-        border-radius: 20px !important;
-        color: #9182ca !important;
-        border: none;
-    }
-
-    b{
-        text-decoration: underline;
-        cursor: pointer;
-        color: #340f5d;
-    }
-
-
-    .cbx {
-      margin: auto;
-      -webkit-user-select: none;
-      user-select: none;
-      cursor: pointer;
-    }
-    .cbx span {
-      display: inline-block;
-      vertical-align: middle;
-      transform: translate3d(0, 0, 0);
-    }
-    .cbx span:first-child {
-      position: relative;
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-      transform: scale(1);
-      vertical-align: middle;
-      border: 1px solid #9098A9;
-      transition: all 0.2s ease;
-    }
-    .cbx span:first-child svg {
-      position: absolute;
-      top: 3px;
-      left: 2px;
-      fill: none;
-      stroke: #FFFFFF;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 16px;
-      stroke-dashoffset: 16px;
-      transition: all 0.3s ease;
-      transition-delay: 0.1s;
-      transform: translate3d(0, 0, 0);
-    }
-    .cbx span:first-child:before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      background: #506EEC;
-      display: block;
-      transform: scale(0);
-      opacity: 1;
-      border-radius: 50%;
-    }
-    .cbx span:last-child {
-      padding-left: 8px;
-    }
-    .cbx:hover span:first-child {
-      border-color: #506EEC;
-    }
-
-    #show-more{
-      position: relative;
-      top: -180px;
-      right: -140px;
-      background: #7373ff;
-      padding: 8px;
-      color: #fff;
-      border-radius: 30px;
-      cursor: pointer;
-      width: 80px;
-    }
-
-    .inp-cbx:checked + .cbx span:first-child {
-      background: #506EEC;
-      border-color: #506EEC;
-      animation: wave 0.4s ease;
-    }
-    .inp-cbx:checked + .cbx span:first-child svg {
-      stroke-dashoffset: 0;
-    }
-    .inp-cbx:checked + .cbx span:first-child:before {
-      transform: scale(3.5);
-      opacity: 0;
-      transition: all 0.6s ease;
-    }
-
-    @keyframes wave {
-      50% {
-        transform: scale(0.9);
-      }
-    }
-
-    input {
-      height: 30px;
-      padding-left: 10px;
-      border-radius: 4px;
-      border: 1px solid rgb(186, 178, 178);
-      box-shadow: 0px 0px 12px #EFEFEF;
-    }
-
-    </style>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
   </head>
 <!--
@@ -406,6 +285,109 @@ document.addEventListener("click", closeAllSelect);
 
 
 <style type="text/css" media="screen">
+    .div { width: 0px;}
+    .icon-date{font-size: 41px; color: #9b61db;}
+    .date{color: #9b61db;}
+
+
+    #select{
+        margin-bottom: 20px;
+        border-radius: 20px !important;
+        color: #9182ca !important;
+        border: none;
+    }
+
+    b{
+        text-decoration: underline;
+        cursor: pointer;
+        color: #340f5d;
+    }
+
+
+    .cbx {
+      margin: auto;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+    .cbx span {
+      display: inline-block;
+      vertical-align: middle;
+      transform: translate3d(0, 0, 0);
+    }
+    .cbx span:first-child {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      transform: scale(1);
+      vertical-align: middle;
+      border: 1px solid #9098A9;
+      transition: all 0.2s ease;
+    }
+    .cbx span:first-child svg {
+      position: absolute;
+      top: 3px;
+      left: 2px;
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 16px;
+      stroke-dashoffset: 16px;
+      transition: all 0.3s ease;
+      transition-delay: 0.1s;
+      transform: translate3d(0, 0, 0);
+    }
+    .cbx span:first-child:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: #506EEC;
+      display: block;
+      transform: scale(0);
+      opacity: 1;
+      border-radius: 50%;
+    }
+    .cbx span:last-child {
+      padding-left: 8px;
+    }
+    .cbx:hover span:first-child {
+      border-color: #506EEC;
+    }
+
+    #show-more{
+      position: relative;
+      top: -180px;
+      right: -140px;
+      background: #7373ff;
+      padding: 8px;
+      color: #fff;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 80px;
+    }
+
+    .inp-cbx:checked + .cbx span:first-child {
+      background: #506EEC;
+      border-color: #506EEC;
+      animation: wave 0.4s ease;
+    }
+    .inp-cbx:checked + .cbx span:first-child svg {
+      stroke-dashoffset: 0;
+    }
+    .inp-cbx:checked + .cbx span:first-child:before {
+      transform: scale(3.5);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    @keyframes wave {
+      50% {
+        transform: scale(0.9);
+      }
+    }
 
     .opacidad{
          opacity: 0.5;
@@ -429,7 +411,11 @@ document.addEventListener("click", closeAllSelect);
       }
 
       .submit{
-        right: -138px !important;
+        right: -138px;
+      }
+
+      .select-items {
+        width: 319px !important;
       }
 
     }
@@ -439,6 +425,7 @@ document.addEventListener("click", closeAllSelect);
       .img-movil{
         display: none;
       } 
+
 
       .user{
         overflow: auto;
@@ -488,7 +475,7 @@ document.addEventListener("click", closeAllSelect);
             position: absolute;
             top: 640px !important;
             z-index: 1;
-            right: -106px !important;
+            right: -108px !important;
             margin-bottom: 62px;
 
         }
