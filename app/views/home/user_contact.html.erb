@@ -1,6 +1,6 @@
 <body class="user">
 
-    <div class="col-md-12 d-xl-none img-movil" style="height: 639px;"></div>
+    <div class="col-md-12 d-block d-sm-none img-movil" style="height: 639px; "></div>
 
     <div class="col-md-5 title d-block d-sm-none">
 
@@ -144,10 +144,11 @@
     .date{color: #9b61db;}
 
     .img-movil{
-      background: url('')no-repeat center top;
-      background-size: cover;
+      background: url(https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/376/recoleccion_de_datos_reemp_web_cel-01__1_-min.png)no-repeat center top;
+      background-size: 100% 546px;
       width: 360px;
-      height: 672px;
+      height: 654px;
+      overflow: hidden;
     }
 
     #select{
@@ -485,7 +486,8 @@ document.addEventListener("click", closeAllSelect);
             position: absolute;
             top: 640px !important;
             z-index: 1;
-            right: -108px;
+            right: -106px !important  ;
+
             margin-bottom: 62px;
 
         }
