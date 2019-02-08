@@ -411,6 +411,49 @@ document.addEventListener("click", closeAllSelect);
         cursor: default;
     }
 
+    /* query para iphone 6/7/8 */
+    @media screen and (min-device-width : 414px) and (-webkit-device-pixel-ratio: 3){
+      .img-movil{
+           width: 414px;
+
+      }
+
+      .h3{
+        top: -66px !important;
+      }
+
+      .h12{
+            top: -67px !important;
+      }
+
+      .submit{
+        right: -135px !important;
+      }
+
+    }
+    /* query para orizontal iphone 6/7/8 */
+    @media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 3) {
+
+      .img-movil{
+        display: none;
+      } 
+
+      .user{
+        overflow: auto;
+        background-size: 170% 731px;
+      }
+
+      .card{
+        width: 442px;
+        float: right;
+        margin-right: 17px;
+        margin-top: -30px !important;
+      }
+
+    }
+
+
+
     @media (max-width: 576px) {
 
         .card{
@@ -442,7 +485,7 @@ document.addEventListener("click", closeAllSelect);
             position: absolute;
             top: 640px !important;
             z-index: 1;
-            right: -108px !important;
+            right: -108px;
             margin-bottom: 62px;
 
         }
