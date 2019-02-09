@@ -108,7 +108,7 @@
                             </svg>
                         </span>
                     </label>
-            <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Términos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
+              <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Términos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
             </div>
 
             <!-- Modal -->
@@ -128,11 +128,20 @@
               </div>
             </div>
 
-            <div class="col-md-3 submit">
+            <div class="col-md-3 submit d-none d-sm-block">
+                <%= button_tag class: "button opacidad", :disabled => true, id: "btn-disabled2" do  %>
+                    <i class="fas fa-arrow-right"></i>
+                <% end -%>
+            </div>
+
+            <br>
+
+            <div class="col-md-12 text-center d-block d-sm-none">
                 <%= button_tag class: "button opacidad", :disabled => true, id: "btn-disabled" do  %>
                     <i class="fas fa-arrow-right"></i>
                 <% end -%>
             </div>
+
 
         </div>
 
@@ -205,6 +214,22 @@ $("#cbx").change(function() {
 
 });
 
+
+$("#cbx").change(function() {
+  var btn = document.getElementById("btn-disabled2");
+  var $input = $( this );
+
+  if ($input.prop('checked') == true){
+    //text.style.display = 'block'
+    $(btn).removeAttr("disabled");
+    $(btn).removeClass("opacidad");
+  
+  }else{
+    $(btn).attr('disabled', true);
+    $(btn).addClass("opacidad");
+  } 
+
+});
 
 
 var x, i, j, selElmnt, a, b, c;
@@ -300,7 +325,8 @@ document.addEventListener("click", closeAllSelect);
     b{
         text-decoration: underline;
         cursor: pointer;
-        color: #340f5d;
+        color: #9182ca;
+        font-weight: normal;
     }
 
 
@@ -598,7 +624,7 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .button{
-        background: linear-gradient(to right, #1c60e4, #1cb5e0);
+        background: linear-gradient(to right, #4e00ed, #00f5ff);
         border-radius: 36px;
         border: none;
         color: #fff;
@@ -748,8 +774,9 @@ document.addEventListener("click", closeAllSelect);
 
     .form{
         border-radius: 20px !important;
-        color: #9182ca !important;
+        color: #630fd6 !important;
         border: 2px solid #dbbcf2 !important;
+    
     }
 
     .form1{
