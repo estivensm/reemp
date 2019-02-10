@@ -50,7 +50,7 @@
 
 
             <div class="col-md-12 no-padding">
-                <label>Correo Electronico</label>
+                <label>Correo Electrónico</label>
                 <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "Email" %>
 
                 <div class="invalid-feedback">
@@ -108,7 +108,7 @@
                             </svg>
                         </span>
                     </label>
-            <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Terminos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
+              <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Términos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
             </div>
 
             <!-- Modal -->
@@ -128,11 +128,20 @@
               </div>
             </div>
 
-            <div class="col-md-3 submit">
+            <div class="col-md-3 submit d-none d-sm-block">
+                <%= button_tag class: "button opacidad", :disabled => true, id: "btn-disabled2" do  %>
+                    <i class="fas fa-arrow-right"></i>
+                <% end -%>
+            </div>
+
+            <br>
+
+            <div class="col-md-12 text-center d-block d-sm-none">
                 <%= button_tag class: "button opacidad", :disabled => true, id: "btn-disabled" do  %>
                     <i class="fas fa-arrow-right"></i>
                 <% end -%>
             </div>
+
 
         </div>
 
@@ -205,6 +214,22 @@ $("#cbx").change(function() {
 
 });
 
+
+$("#cbx").change(function() {
+  var btn = document.getElementById("btn-disabled2");
+  var $input = $( this );
+
+  if ($input.prop('checked') == true){
+    //text.style.display = 'block'
+    $(btn).removeAttr("disabled");
+    $(btn).removeClass("opacidad");
+  
+  }else{
+    $(btn).attr('disabled', true);
+    $(btn).addClass("opacidad");
+  } 
+
+});
 
 
 var x, i, j, selElmnt, a, b, c;
@@ -300,7 +325,8 @@ document.addEventListener("click", closeAllSelect);
     b{
         text-decoration: underline;
         cursor: pointer;
-        color: #340f5d;
+        color: #9182ca;
+        font-weight: normal;
     }
 
 
@@ -399,19 +425,20 @@ document.addEventListener("click", closeAllSelect);
     @media screen and (min-device-width : 414px) and (-webkit-device-pixel-ratio: 3){
 
       .h3{
-        top: -110px !important;
+        top: -62px !important;
       }
 
       .h12{
-            top: -110px !important;
+            top: -65px !important;
       }
 
       .submit{
-        right: -138px;
+        right: -117px !important;
+
       }
 
       .select-items {
-        width: 319px !important;
+        width: 317px !important;
       }
 
     }
@@ -423,18 +450,20 @@ document.addEventListener("click", closeAllSelect);
         overflow: auto;
         background-size: 170% 731px;
         overflow-x: hidden;
+        height: 1400px !important;
+        background-image: url("") !important;
       }
 
       .card{
         width: 442px;
         margin-right: 17px;
-        margin-left: 151px;
+        margin-left: 160px;
         margin-top: 47px !important;
 
       }
 
       .submit{
-          top: 605px !important;
+          top: 625px !important;
           right: -158px !important;
       }
 
@@ -453,6 +482,7 @@ document.addEventListener("click", closeAllSelect);
       .h3t{
         position: relative !important;
         top: 20px !important;
+        left: -266px;
       }
 
 
@@ -481,7 +511,7 @@ document.addEventListener("click", closeAllSelect);
         }
 
         .select-items {
-            width: 267px !important;
+            width: 267px;
         }
 
         .top{height: 58px !important;}
@@ -492,7 +522,7 @@ document.addEventListener("click", closeAllSelect);
             position: absolute;
             top: 640px !important;
             z-index: 1;
-            right: -108px !important;
+            right: -133px !important;
             margin-bottom: 62px;
 
         }
@@ -597,7 +627,7 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .button{
-        background: linear-gradient(to right, #1c60e4, #1cb5e0);
+        background: linear-gradient(to right, #4e00ed, #00f5ff);
         border-radius: 36px;
         border: none;
         color: #fff;
@@ -747,8 +777,9 @@ document.addEventListener("click", closeAllSelect);
 
     .form{
         border-radius: 20px !important;
-        color: #9182ca !important;
+        color: #630fd6 !important;
         border: 2px solid #dbbcf2 !important;
+    
     }
 
     .form1{
