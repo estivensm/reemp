@@ -85,7 +85,15 @@
 
         <p>Recuerda que al eliminar tu cuenta.. se eliminara todo el progreso que tengas dentro de la aplicacion</p>
 
-          <%= link_to "Eliminar Mi Cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+          <%= link_to registration_path(resource_name), method: :delete, title: "Emilinar Cuenta", data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Se borrara todo el progreso dentro de la Aplicacion',
+                'image-url': ''}, class: "btn btn-danger" do %>
+              <span class="glyphicon glyphicon-trash"></span> Eliminar Cuenta
+          <% end -%>
       </div>
     </div>
 

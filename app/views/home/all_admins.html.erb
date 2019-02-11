@@ -2,34 +2,66 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Avatar</th>
+      <th class="text-left">Avatar</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>Nombre de Usuario</th>
       <th>Email</th>
-      <th>Acciones</th>
+      <th class="text-center">Acciones</th>
     </tr>
   </thead>
 
   <tbody>
     <% @admins.each do |admin| %>
       <tr>
-      	<td>
+      	<td class="text-left">
       	<%= admin.avatar? ? image_tag(admin.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
       	</td>
         <td><%= admin.name %></td>
         <td><%= admin.last_name %></td>
         <td><%= admin.user_name %></td>
         <td><%= admin.email %></td>
-          <td class="text-center">
-            <%= link_to contact_delete_path(admin.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-danger" do %>
-              <i class="fas fa-trash-alt"></i>
+        <td class="text-center">
+        <% if current_admin.email == admin.email %>
+        
+        <% else %>
+            <%= link_to destroy_path(admin.id), method: :delete, title: "Emilinar Cuenta", data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Recuerda que el registro se borrara permanentemente',
+                'image-url': ''}, class: "btn btn-danger" do %>
+              <span class="glyphicon glyphicon-trash"></span> 
             <% end -%>
+        <% end -%>
+
+            <%= link_to root_path, class: "btn btn-primary", title: "Editar" do %>
+              <i class="fas fa-user-edit"></i>
+            <% end -%>
+
           </td>
         </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="sk-cube-grid" id="cube">
+  <div class="sk-cube sk-cube1"></div>
+  <div class="sk-cube sk-cube2"></div>
+  <div class="sk-cube sk-cube3"></div>
+  <div class="sk-cube sk-cube4"></div>
+  <div class="sk-cube sk-cube5"></div>
+  <div class="sk-cube sk-cube6"></div>
+  <div class="sk-cube sk-cube7"></div>
+  <div class="sk-cube sk-cube8"></div>
+  <div class="sk-cube sk-cube9"></div>
+</div>
+
+
+<div class="modal-footer">
+  <%= link_to 'Nuevo Administrador', new_path, remote: true, class: "btn btn-success"%>
+</div>
 
   <div class = "col-md-12 paginate text-center title-table1">
       <%= will_paginate @admins, renderer: BootstrapPagination::Rails, previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
@@ -37,21 +69,82 @@
 <% else %>
   <h1 align="center">todavia no nos han contactado!</h1>
 <% end -%>
-<style type="text/css" media="screen">
-  .btn-danger{
-    background-color: red;
-    padding: 5px;
-    color: #fff;
-    border-radius: 5px;
-  }
 
-  .btn1:hover{
-    color: #fff;
-  }
-</style>
+
 
 <script type="text/javascript">
   <% if flash[:delete].present? %>
     toastr["error"]("<%= flash[:delete] %> con <b>Exito!</b>");
   <% end -%>
 </script>
+
+
+
+<style type="text/css" media="screen">
+.sk-cube-grid {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+    position: absolute;
+    top: 107px;
+    left: 400px;
+    display: none;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background: linear-gradient(120deg, #00e4d0, #5983e8);
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}
+</style>

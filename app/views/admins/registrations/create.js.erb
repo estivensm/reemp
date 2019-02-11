@@ -1,0 +1,15 @@
+<% if devise_error_messages!.present? %>
+	toastr["error"]("Error <br> <b><%= flash[:error] = resource.errors.full_messages.first %></b>");
+<% else %>
+	$('#product-modal').modal('hide');
+	var splinner = document.getElementById("cube");
+	toastr["success"]("El Adminstrador se creo con <b> Exito!</b>");
+		    	cube.style.display = 'block'
+	    setTimeout(function () {
+
+	       location.reload()
+	    }, 100);
+
+<% end %>
+
+

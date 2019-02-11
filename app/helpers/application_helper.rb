@@ -81,10 +81,6 @@ module ApplicationHelper
 	  devise_mapping.to
 	end
 
-	def devise_error_messages!
-    	flash[:error] = resource.errors.full_messages.first
-  	end
-
 	def get_category
 		Category.all.order(id: :desc)
 	end
