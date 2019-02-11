@@ -1,26 +1,55 @@
-<h2>Log asdasdasd</h2>
+<div class="card col-md-4 offset-md-4">
+  <div class="card-body">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="col-md-12 text-center img-admin">
+        <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" alt="">
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "needs-validation", :novalidate => true }) do |f| %>
+        <div class="col-md-12 no-padding">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form form-control", placeholder: "Email", id: "validationCustom01", :required => true %>
+
+          <div class="invalid-feedback">
+              Este Campo Tiene Que Estar Completado
+          </div>
+          <br>
+        </div>
+
+        <div class="col-md-12 no-padding">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: "form form-control", placeholder: "Contraseña", id: "validationCustom01", :required => true %>
+
+          <div class="invalid-feedback">
+              Este Campo Tiene Que Estar Completado
+          </div>
+          <br>
+        </div>
+
+        <div class="col-md-12 text-center">
+          <%= f.submit "Ingresar", class: "btn btn-success" %>
+          <%= link_to "Volver", :back, class: "btn btn-light" %>
+        </div>
+      <% end %>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+<style type="text/css" media="screen">
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  .card{
+    border-radius: 15px;
+    margin-top: 6%;
+    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  }
 
-<%= render "admins/shared/links" %>
+  body{
+    height: 668px;
+  }
+
+  .img-admin img{
+    width: 329px;
+  }
+
+</style>

@@ -3,6 +3,7 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js, :only => [:new, :update, :create]
   layout "admin", :except => [:new]
+  before_action :set_admin, :only => [:destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -30,6 +31,26 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # def destroy
   #   super
   # end
+
+  def create
+    @admin = Admin.create(admin_params)
+
+    respond_to do |format|
+      if @admin.save
+        format.html { redirect_to contact_path }
+        format.js
+      else
+        format.html { render :new }
+      end
+    end
+    
+  end
+
+  def new_form
+    respond_to do |format|
+        format.js
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -62,11 +83,26 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def destroy
+    if @admin.destroy
+      redirect_to all_admins_path
+      flash[:delete] = "El Administrador se elimino con"
+      
+    end
+  end
+
   private 
 
   def after_update_path_for(resource)
     edit_admin_registration_path
   end
-  
+
+  def set_admin 
+    @admin = Admin.find(params[:id])
+  end
+
+  def admin_params
+    params.permit(:name, :user_name, :last_name, :avatar, :email, :password, :password_confirmation)
+  end
 
 end

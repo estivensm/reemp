@@ -1,0 +1,80 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header padding-lef">
+    
+            <div class="container-fluid padding-lef">
+              <div class="col-md-9 padding-lef">
+                  <% if action_name == "edit"%>
+                    <h4 class="modal-title">Editar Rol</h4>
+                  <%else%>
+                    <h4 class="modal-title">Crear Nuevo Administrador</h4>
+                  <% end -%>
+              </div>    
+            </div>
+        </div>
+
+  <%= form_tag new_admin_path, remote: true, class: "needs-validation", :novalidate => true  do %>
+   <div class="modal-body col-md-12">
+
+      <div class="col-md-6">
+          <%= label_tag "Nombre" %>
+          <%= text_field_tag :name, nil, class: "form form-control", placeholder: "Nombre" %>
+      </div>
+
+      <div class="col-md-6">
+          <%= label_tag "Apellido" %>
+          <%= text_field_tag :last_name, nil, class: "form form-control", placeholder: "Apellido" %>
+          <br>
+      </div>
+
+      <div class="col-md-6">
+          <%= label_tag "Nombre de Usuario" %>
+          <%= text_field_tag :user_name, nil, class: "form form-control", placeholder: "Nombre de Usuario" %>
+      </div>
+
+      <div class="col-md-6">
+          <%= label_tag "Correo Electronico" %>
+          <%= text_field_tag :email, nil, class: "form form-control", placeholder: "Correo Electronico", id: "validationCustom01", :required => true %>
+          <div class="invalid-feedback">
+            Requerido!
+          </div>
+          <br>
+      </div>
+
+      <div class="col-md-6">
+          <%= label_tag "Contraseña" %>
+          <%=  password_field_tag :password, nil, class: "form form-control", placeholder: "Contraseña", id: "validationCustom01", :required => true %>
+
+          <div class="invalid-feedback">
+            Requerido!
+          </div>
+      </div>
+
+      <div class="col-md-6">
+          <%= label_tag "Confirmar Contraseña" %>
+          <%= password_field_tag :password_confirmation, nil, class: "form form-control", placeholder: "Confirmar Contraseña", id: "validationCustom01", :required => true %>
+
+          <div class="invalid-feedback">
+            Requerido!
+          </div>
+      </div>
+
+    </div> 
+
+      <div class="modal-footer">
+        <%= submit_tag "Guardar", class: "btn btn-success" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+      </div>
+
+    <% end -%>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  .modal-footer{
+    border-top: none;
+  }
+</style>
