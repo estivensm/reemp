@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Admins::RegistrationsController < Devise::RegistrationsController
+  before_action :set_admin, :only => [:destroy, :admin_edit, :update_a]
   respond_to :html, :js, :only => [:new, :update, :create]
   layout "admin", :except => [:new]
-  before_action :set_admin, :only => [:destroy, :edit_admin, :update_a]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -61,7 +61,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
 
-  def edit_admin
+  def admin_edit
     respond_to do |format|
         format.js
     end
