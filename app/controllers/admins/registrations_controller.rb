@@ -3,7 +3,7 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js, :only => [:new, :update, :create]
   layout "admin", :except => [:new]
-  before_action :set_admin, :only => [:destroy, :edit_admin, :update_admin]
+  before_action :set_admin, :only => [:destroy, :edit_admin, :update_a]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -45,13 +45,16 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     
   end
 
-  def update_admin
+  def update_a
     respond_to do |format|
       if @admin.update(admin_params)
+        format.html { redirect_to all_admins_path }
         format.js
+        puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         
       else
-        format.html { render :new }
+        format.html { redirect_to all_admins_path }
+        puts "noooooooooooooooooooooooooooooooooooooooooooooooooo"
       end
     end
 
@@ -125,7 +128,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   end
 
   def admin_params
-    params.permit(:name, :user_name, :last_name, :avatar, :email, :password, :password_confirmation)
+    params.permit(:name, :user_name, :last_name, :avatar, :email, :password, :password_confirmation, :current_password)
   end
 
 end

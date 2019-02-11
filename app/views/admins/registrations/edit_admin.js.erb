@@ -1,4 +1,4 @@
-$('<%= j render "form_update" %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "form_update", admin: @admin %>').on('hidden.bs.modal', function (e) {
 $(this).remove();
 $('.modal-backdrop').remove();
 }).modal();
