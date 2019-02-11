@@ -1,7 +1,7 @@
 <body class="user col-md-12">
 
     <div class="col-md-12 d-block d-sm-none" style="height: 639px; padding: 0px; ">
-      <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/376/recoleccion_de_datos_reemp_web_cel-01__1_-min.png" class="img-fluid" alt="Responsive image">
+      <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" class="img-fluid" alt="Responsive image">
     </div>
 
     <div class="col-md-5 title d-block d-sm-none">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-md-4 logo d-none d-sm-block">
-        <a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/369/Screenshot_from_2019-01-16_18-54-24.png"></a>
+        <a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png"></a>
     </div>
 
     <div class="col-md-4 logo2 d-block d-sm-none">
@@ -68,12 +68,12 @@
                 <%= hidden_field_tag :city, nil, id: "city" %>
 
             <div class="col-md-12 no-padding custom-select" id="select">
-                    <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form1", :prompt => 'Selecciona Una Categoría', id: "validationCustom01", :required => true}%>
+                    <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form1", :prompt => 'Selecciona una categoría', id: "validationCustom01", :required => true}%>
                     <br>
             </div>
 
                 <div class="col-md-6 no-padding-left">
-                   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesion" , id: "validationCustom01", :required => true %>
+                   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesión" , id: "validationCustom01", :required => true %>
                 </div>
 
                 <div class="col-md-6 no-padding">
@@ -82,7 +82,7 @@
 
 
             <div class="col-md-12 text-center top no-padding">
-                <i class="fab fa-instagram icon"></i>
+                <i class="fab fa-instagram icon" id="icon"></i>
 
                     <label class="switch ">
                       <input type="checkbox" id="check">
@@ -175,15 +175,17 @@
 $("#check").change(function() {
   var text = document.getElementById("text")
   var contenido = document.getElementById("contenido")
+  var icon = document.getElementById("icon");
   var $input = $( this );
 
   if ($input.prop("checked") == true){
     //text.style.display = 'block'
     
-        
+      icon.style.color = '#9b61db'
      $('#text').animate({width: "200px"});
     
   }else {
+        icon.style.color = '#dfdce3'
      $('#text').animate({width: "0px"}, function(){
         $('#text').hide();
 
@@ -604,7 +606,7 @@ document.addEventListener("click", closeAllSelect);
         }
 
         .icon{
-            color: #7473ff !important;
+            color: #9b61db !important;
         }
 
         .title {
@@ -806,7 +808,12 @@ document.addEventListener("click", closeAllSelect);
         border-radius: 20px !important;
         color: #630fd6 !important;
         border: 2px solid #dbbcf2 !important;
+                box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
     
+    }
+
+    .select-selected{
+                      box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
     }
 
     .form1{
