@@ -38,16 +38,21 @@
       </div>
 
       <div class="form-group row">
-        <div class="col-sm-6">   
-          <label for="validationCustom01">Contraseña</label>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :placeholder => "Contraseña"  %>
 
-        </div>
+        <fieldset class="col-12 col-sm-12 header-poner">
+          <legend class="text-change">Actualizacion de Contraseñas</legend>
+            <div class="col-sm-6">   
+              <label for="validationCustom01">Contraseña</label>
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :placeholder => "Contraseña"  %>
 
-        <div class="col-sm-6">
-          <label for="validationCustom01">Confirmar Contraseña</label>
-          <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirmar Contraseña"  %>
-        </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="validationCustom01">Confirmar Contraseña</label>
+              <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirmar Contraseña"  %>
+            </div>
+        </fieldset>
+
       </div>
 
 
