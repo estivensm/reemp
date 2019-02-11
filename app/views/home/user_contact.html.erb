@@ -33,7 +33,7 @@
     
     
     <div class="col-md-8 offset-md-5 text-center">
-        <h1 class="h3t" style="font-size: 34px; ">Para más Información </h1>
+        <h1 class="h3t" style="font-size: 34px; ">Para más información </h1>
     </div>
 
     <div class="card col-md-4 offset-md-7">
@@ -72,7 +72,7 @@
                     <br>
             </div>
 
-                <div class="col-md-6 no-padding-left">
+                <div class="col-md-6 no-padding">
                    <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesión" , id: "validationCustom01", :required => true %>
                 </div>
 
@@ -185,7 +185,7 @@ $("#check").change(function() {
      $('#text').animate({width: "200px"});
     
   }else {
-        icon.style.color = '#dfdce3'
+        icon.style.color = 'rgb(203, 203, 203)'
      $('#text').animate({width: "0px"}, function(){
         $('#text').hide();
 
@@ -458,6 +458,10 @@ document.addEventListener("click", closeAllSelect);
         top: -79px !important;
       }
 
+      .form{
+        box-shadow: 0px 0px 0px #9b61db, 0px 1px 13px #9b61db !important;
+      }
+
       .h12{
             top: -81px !important;
       }
@@ -469,6 +473,10 @@ document.addEventListener("click", closeAllSelect);
 
       .select-items {
         width: 317px !important;
+      }
+
+      .select-selected{
+        box-shadow: 0px 0px 0px #9b61db, 0px 1px 13px #9b61db !important;
       }
 
     }
@@ -605,9 +613,6 @@ document.addEventListener("click", closeAllSelect);
             padding: 5px !important;
         }
 
-        .icon{
-            color: #9b61db !important;
-        }
 
         .title {
           position: relative !important;
@@ -795,7 +800,7 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .icon{
-        color: #dfdce3;
+        color: rgb(203, 203, 203);
         font-size: 44px;
     }
 
