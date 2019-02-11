@@ -36,7 +36,7 @@
             <% end -%>
         <% end -%>
 
-            <%= link_to root_path, class: "btn btn-primary", title: "Editar" do %>
+            <%= link_to edit_admin_path(admin.id), class: "btn btn-primary", title: "Editar", remote: true do %>
               <i class="fas fa-user-edit"></i>
             <% end -%>
 
