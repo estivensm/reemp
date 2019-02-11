@@ -6,7 +6,7 @@ class SubspecialtiesController < ApplicationController
   # GET /subspecialties
   # GET /subspecialties.json
   def index
-    @subspecialties = Subspecialty.all
+    @subspecialties = Subspecialty.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /subspecialties/1

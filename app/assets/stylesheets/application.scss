@@ -106,9 +106,7 @@
     height: 672px;
   }
 
-
-
-   .user{
+  .user{
     background: url('https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/73/1.jpg')no-repeat center top;
     background-size: 100% 670px;
     height: 672px;
@@ -2662,11 +2660,6 @@ tbody.collapse.show {
 .breadcrumb-item.active {
   color: #495057; }
 
-.pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem; }
 
 .page-link {
   position: relative;
@@ -2710,32 +2703,6 @@ tbody.collapse.show {
   cursor: auto;
   background-color: #fff;
   border-color: #dee2e6; }
-
-.pagination-lg .page-link {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  line-height: 1.5; }
-
-.pagination-lg .page-item:first-child .page-link {
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem; }
-
-.pagination-lg .page-item:last-child .page-link {
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem; }
-
-.pagination-sm .page-link {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5; }
-
-.pagination-sm .page-item:first-child .page-link {
-  border-top-left-radius: 0.2rem;
-  border-bottom-left-radius: 0.2rem; }
-
-.pagination-sm .page-item:last-child .page-link {
-  border-top-right-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem; }
 
 .badge {
   display: inline-block;
@@ -5992,9 +5959,10 @@ input:focus {
           .navbar.default-layout .navbar-menu-wrapper .navbar-nav.header-links .nav-item .nav-link {
             height: 63px;
             font-size: 12px;
-            padding: 16px 25px;
+            padding: 16px 3px;
             display: -webkit-flex;
             display: flex;
+            width: 125px;
             -webkit-align-items: center;
             align-items: center; }
             .navbar.default-layout .navbar-menu-wrapper .navbar-nav.header-links .nav-item .nav-link i {
@@ -6724,24 +6692,6 @@ pre {
 
 
 
-.btn-inverse-outline-dark {
-  color: #424964;
-  background-image: none;
-  background: transparent;
-  border-color: rgba(66, 73, 100, 0.2); }
-  .btn-inverse-outline-dark:hover {
-    color: #424964;
-    background-color: rgba(66, 73, 100, 0.2);
-    border-color: rgba(66, 73, 100, 0.2); }
-  .btn-inverse-outline-dark.focus, .btn-inverse-outline-dark:focus {
-    box-shadow: 0 0 0 3px rgba(66, 73, 100, 0.5); }
-  .btn-inverse-outline-dark.disabled, .btn-inverse-outline-dark:disabled {
-    color: #424964;
-    background-color: transparent; }
-  .btn-inverse-outline-dark.active, .btn-inverse-outline-dark:active,
-  .show > .btn-inverse-outline-dark.dropdown-toggle {
-    color: #ffffff;
-    border-color: #424964; }
 
 /* Cards */
 .card {
@@ -7756,8 +7706,6 @@ html, body{
     font-size: 45px;
 }
 
-
-
       legend {
         color:#0481b1;
         font-size:16px;
@@ -7771,6 +7719,7 @@ html, body{
         font-weight:bold; 
         width: auto;
     }
+
     fieldset {
         border-radius:4px;
         background: #fff; 
@@ -7788,4 +7737,23 @@ html, body{
 
 .float{
     float: right;
+}
+
+.no-padding{
+  padding: 0px;
+}
+
+label{
+    font-weight: normal !important;
+}
+
+.pagination > .active > span{
+  background: linear-gradient(120deg, #00e4d0, #5983e8);
+  color: #fff;
+  border-color: #00e4d0;
+}
+
+.pagination > .active{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
