@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   devise_for :admins, :controllers => { :registrations => "admins/registrations" }
-
+  default_url_options :host => 'reemp.herokuapp.com' 
   devise_scope :admin do
 
     #get "users/new_user", to: "users/admin#new_user", as: "new_user"
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get "new", to: "admins/registrations#new_form", as: "new"
     post "new_admin", to: "admins/registrations#create", as: 'new_admin'
     delete "destroy/:id", to: "admins/registrations#destroy", as: "destroy"
+    patch "editar_admin/:id", to: "admins/registrations#editar_admin", as: "editar_admin"
+    post "update_admin", to: "admins/registrations#update_a", as: "update_admin"
 
   end
   

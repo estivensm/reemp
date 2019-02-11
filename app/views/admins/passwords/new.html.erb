@@ -1,16 +1,52 @@
-<h2>Forgot your password?</h2>
+<div class="card col-md-4 offset-md-4">
+  <div class="card-body">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="col-md-12 text-center img-admin">
+        <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" alt="">
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+		<h3 align="center">Olvidastes Tu Contraseña?</h3>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "needs-validation", :novalidate => true }) do |f| %>
+		  <%= devise_error_messages! %>
+		  <br>
+		  <div class="col-md-12">
+		    <%= f.label "Email" %>
+		    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form form-control", :placeholder => "Correo Electronico", id: "validationCustom01", :required => true %>
 
-<%= render "admins/shared/links" %>
+			  <div class="invalid-feedback">
+	              Este Campo Tiene Que Estar Completado
+	          </div>
+	          <br><br>
+		  </div>
+
+		  <div class="col-md-12 text-center">
+		    <%= f.submit "Enviar", class: "btn btn-success" %>
+
+		    <%- if controller_name != 'sessions' %>
+  				<%= link_to "Ingresar", new_session_path(resource_name), class: "btn btn-light" %><br />
+			<% end -%>
+		  </div>
+
+		<% end %>
+
+	</div>
+</div>
+
+<style type="text/css" media="screen">
+
+  .card{
+    border-radius: 15px;
+    margin-top: 6%;
+    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  }
+
+  body{
+    height: 668px;
+  }
+
+  .img-admin img{
+    width: 250px;
+  }
+
+</style>
