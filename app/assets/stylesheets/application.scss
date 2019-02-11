@@ -15,6 +15,7 @@
  *= require sweetalert2
  *= require_self
  */
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
   a:hover{
@@ -110,7 +111,6 @@
    .user{
     background: url('https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/73/1.jpg')no-repeat center top;
     background-size: 100% 670px;
-    width: 1299px;
     height: 672px;
     overflow: hidden;
   }

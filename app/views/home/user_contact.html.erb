@@ -1,4 +1,4 @@
-<body class="user">
+<body class="user col-md-12">
 
     <div class="col-md-12 d-block d-sm-none" style="height: 639px; padding: 0px; ">
       <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/376/recoleccion_de_datos_reemp_web_cel-01__1_-min.png" class="img-fluid" alt="Responsive image">
@@ -72,17 +72,13 @@
                     <br>
             </div>
 
-
-            <div class="form-row">
-                <div class="col-md-6 no-padding">
+                <div class="col-md-6 no-padding-left">
                    <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesiones" , id: "validationCustom01", :required => true %>
                 </div>
 
                 <div class="col-md-6 no-padding">
                    <%= text_field_tag :specialty_name, nil, class: "form form-control form-espe", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
                 </div>  
-                <br><br>
-            </div>
 
 
             <div class="col-md-12 text-center top no-padding">
@@ -109,6 +105,7 @@
                         </span>
                     </label>
               <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Términos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
+              <br><br>
             </div>
 
             <!-- Modal -->
@@ -421,15 +418,46 @@ document.addEventListener("click", closeAllSelect);
         cursor: default;
     }
 
+    @media only screen
+    (device-width: 1920px)
+    and (orientation: landscape) {
+      .user{
+        background-color: red !important;
+      }
+    }
+
+
+    /* MacBook Air */
+    @media only screen and (min-width: 1440px) { 
+      .user{
+        background-size: 100% 743px;
+        height: 743px;
+      }
+
+      .card{
+            margin-top: -40px !important;
+      }
+
+      .h3t{
+            top: -56px !important;
+      }
+
+      .submit{
+        top: 534px !important;
+        right: 184px !important;
+      }
+
+    }
+
     /* query para iphone 6/7/8 */
     @media screen and (min-device-width : 414px) and (-webkit-device-pixel-ratio: 3){
 
       .h3{
-        top: -62px !important;
+        top: -79px !important;
       }
 
       .h12{
-            top: -65px !important;
+            top: -81px !important;
       }
 
       .submit{
@@ -450,7 +478,7 @@ document.addEventListener("click", closeAllSelect);
         overflow: auto;
         background-size: 170% 731px;
         overflow-x: hidden;
-        height: 1400px !important;
+        height: 1401px !important;
         background-image: url("") !important;
       }
 
@@ -482,7 +510,7 @@ document.addEventListener("click", closeAllSelect);
       .h3t{
         position: relative !important;
         top: 20px !important;
-        left: -266px;
+        left: 15px;
       }
 
 
@@ -503,7 +531,7 @@ document.addEventListener("click", closeAllSelect);
 
         .logo2 img{
             position: absolute;
-            top: -729px;
+            top: -750px;
             left: 12px;
             width: 169px;
             height: 95px;
@@ -546,13 +574,12 @@ document.addEventListener("click", closeAllSelect);
         .user{
             background: #e3e0fe !important;
             width: 100%;
-            height: 1400px !important;
-            overflow: auto;
+            height: 1401px !important;
             overflow-x: hidden;
         }
 
         .h3{
-          top: -119px;
+          top: -147px;
           left: -121px;
           font-size: 31px !important;
           position: relative;
@@ -561,7 +588,7 @@ document.addEventListener("click", closeAllSelect);
         }
 
         .h12{
-          top: -118px;
+          top: -148px;
           left: -78px;
           font-size: 26px !important;
           position: relative;
@@ -730,7 +757,7 @@ document.addEventListener("click", closeAllSelect);
 
     .submit{
         position: absolute;
-        top: 557px;
+        top: 536px;
         z-index: 1;
         right: 162px;
     }
