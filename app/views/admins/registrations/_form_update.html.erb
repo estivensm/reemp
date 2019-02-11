@@ -53,6 +53,8 @@
           </div>
       </div>
 
+      <%= hidden_field_tag :id, nil, :value => @admin.id %>
+
       <div class="col-md-6">
           <%= label_tag "Confirmar Contraseña" %>
           <%= password_field_tag :password_confirmation, nil, class: "form form-control", placeholder: "Confirmar Contraseña", id: "validationCustom01", :required => true %>
