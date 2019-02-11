@@ -3,7 +3,7 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js, :only => [:new, :update, :create]
   layout "admin", :except => [:new]
-  before_action :set_admin, :only => [:destroy, :edit_admin, :update_invoice]
+  before_action :set_admin, :only => [:destroy, :edit_admin, :update_admin]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -37,7 +37,6 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
     respond_to do |format|
       if @admin.save
-        format.html { redirect_to contact_path }
         format.js
       else
         format.html { render :new }
@@ -46,11 +45,11 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     
   end
 
-  def update_invoice
+  def update_admin
     respond_to do |format|
       if @admin.update(admin_params)
         format.js
-        puts "actualizooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+        
       else
         format.html { render :new }
       end

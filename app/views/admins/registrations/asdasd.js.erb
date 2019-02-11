@@ -1,0 +1,5 @@
+<% if devise_error_messages!.present? %>
+	toastr["error"]("Error <br> <b><%= flash[:error] = resource.errors.full_messages.first %></b>");
+<% else %>
+	toastr["success"]("la Informacion se Actulizo con <b> Exito!</b>");
+<% end %>

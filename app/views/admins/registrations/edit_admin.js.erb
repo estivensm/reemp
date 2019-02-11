@@ -1,1 +1,4 @@
-alert("message?: DOMString");
+$('<%= j render "form_update" %>').on('hidden.bs.modal', function (e) {
+$(this).remove();
+$('.modal-backdrop').remove();
+}).modal();
