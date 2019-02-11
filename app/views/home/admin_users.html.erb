@@ -22,7 +22,7 @@
         <td><%= user.user_name %></td>
         <td><%= user.email %></td>
           <td class="text-center">
-            <%= link_to contact_delete_path(contact.id), method: :delete, data: {
+            <%= link_to contact_delete_path(user.id), method: :delete, data: {
                 confirm: '¿Estas Seguro?',
                 'confirm-button-text': 'Borrar',
                 'cancel-button-text': 'Cancelar',
@@ -44,18 +44,7 @@
 <% else %>
   <h1 align="center">Todavia No hay Usuarios!</h1>
 <% end -%>
-<style type="text/css" media="screen">
-  .btn-danger{
-    background-color: red;
-    padding: 5px;
-    color: #fff;
-    border-radius: 5px;
-  }
 
-  .btn1:hover{
-    color: #fff;
-  }
-</style>
 
 <script type="text/javascript">
   <% if flash[:delete].present? %>

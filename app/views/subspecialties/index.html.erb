@@ -18,13 +18,23 @@
         <td><%= subspecialty.name %></td>
         <td><%= subspecialty.description %></td>
         <td><%= subspecialty.code %></td>
-        <td><%= link_to 'Edit', edit_subspecialty_path(subspecialty) %></td>
-        <td><%= link_to 'Destroy', subspecialty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to edit_subspecialty_path(subspecialty), remote: true, class: "btn btn-info" do %>
+            <i class="fas fa-edit"></i>
+          <% end -%>
+
+          <%= link_to subspecialty, method: :delete, data: {
+                confirm: '¿Estas Seguro?',
+                'confirm-button-text': 'Borrar',
+                'cancel-button-text': 'Cancelar',
+                'confirm-button-color': '#CC0000',
+                 text: 'Recuerda que el registro se borrara permanentemente',
+                'image-url': ''}, class: "btn btn-danger" do %>
+              <span class="glyphicon glyphicon-trash"></span> 
+          <% end -%>
+        </td>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<div class="modal-footer">
-  <%= link_to 'Nueva Subspecialidad', new_subspecialty_path, class: "btn btn-success"%>
-</div>

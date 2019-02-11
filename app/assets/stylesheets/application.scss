@@ -37,6 +37,10 @@
     margin-right: 10px;
   }
 
+  .modal-footer{
+  border-top: none;
+  }
+
   .ingresar_login:hover{
     color:#A60A71;
   }
@@ -5857,6 +5861,7 @@ input:focus {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(120deg, #00e4d0, #5983e8);
   transition: background 0.25s ease;
+      border-bottom-color: #fff;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
   -ms-transition: background 0.25s ease; }

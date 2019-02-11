@@ -35,6 +35,14 @@
             <li class="nav-item">
               <%= link_to 'Nueva Especialidad', new_specialty_path, remote: true, class: "nav-link"%>
             </li>
+            <% elsif controller_name == "categories"%>
+            <li class="nav-item">
+              <%= link_to 'Nueva Categoria', new_category_path, remote: true, class: "nav-link"%>
+            </li>
+            <% elsif controller_name == "subspecialties"%>
+            <li class="nav-item">
+              <%= link_to 'Nueva Subspecialidad', new_subspecialty_path, remote: true, class: "nav-link"%>
+            </li>
           <% end -%>
 
         </ul>
