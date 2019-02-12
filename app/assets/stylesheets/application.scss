@@ -15,7 +15,6 @@
  *= require sweetalert2
  *= require_self
  */
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
   a:hover{
@@ -7685,10 +7684,6 @@ html, body{
     padding-right: 0px !important;
 }
 
-
-.modal-content{
-    width: 80%;
-}
 
 .no-padding{
     padding: 0px;
