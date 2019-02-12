@@ -6,14 +6,6 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/reset-min.css"
     />
     <link
@@ -97,7 +89,7 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
     instantsearch.widgets.configure({
       aroundLatLngViaIP: true,
       hitsPerPage: 12,
-      filters: 'id = <%= @parametro %>'
+      //filters: 'id = <%= @parametro %>'
     })
   );
 
@@ -180,7 +172,7 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
       container: '#map',
       googleReference: window.google,
       enableRefineControl: false,
-      zoom: 100,
+      zoom: 51.5245134,
       builtInMarker: {
         createOption: function(hit) {
           return {

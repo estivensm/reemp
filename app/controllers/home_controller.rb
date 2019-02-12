@@ -9,7 +9,12 @@ class HomeController < ApplicationController
   end
 
   def search
-    @parametro = params[:especialidad]
+    @category = params[:category_id]
+    @search = params[:search]
+    @search1 = params[:search1]
+    @search2 = params[:search2]
+
+    puts @category
   end
 
   def inicio
