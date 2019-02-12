@@ -41,7 +41,7 @@
         <div class="card-body">
             <div class="col-md-12 no-padding">
                 <label>Nombre Completo</label>
-                <%= text_field_tag :name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Nombre" %>
+                <%= text_field_tag :name, nil, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "" %>
                 <div class="invalid-feedback">
                 </div>
                 <br>
@@ -51,7 +51,7 @@
 
             <div class="col-md-12 no-padding">
                 <label>Correo Electrónico</label>
-                <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "Email" %>
+                <%= email_field_tag :email, nil, class: "form form-control", id: "validationCustom01", :required => true,:placeholder => "" %>
 
                 <div class="invalid-feedback">
                 </div>
@@ -60,7 +60,7 @@
                 <section id="about-us" class=""></section>
                 <div class="col-md-12 no-padding">
                     <label>Residencia</label>
-                    <%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "Ciudad", :required => true %>
+                    <%= text_field_tag :country, nil, class: "form form-control value", id: "autocomplete", :placeholder => "", :required => true %>
                     <br>
                 </div>
 
@@ -73,11 +73,11 @@
             </div>
 
                 <div class="col-md-6 no-padding">
-                   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesión" , id: "validationCustom01", :required => true %>
+                   <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "" , id: "validationCustom01", :required => true %>
                 </div>
 
                 <div class="col-md-6 no-padding">
-                   <%= text_field_tag :specialty_name, nil, class: "form form-control form-espe", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
+                   <%= text_field_tag :specialty_name, nil, class: "form form-control form-espe", id: "validationCustom01", :required => true, :placeholder => "" %>
                 </div>  
 
 
@@ -89,7 +89,7 @@
                       <span class="slider round"></span>
                     </label>
 
-            <%= text_field_tag :instagram, nil, class: "form form-control margin3 div", id: "text", :placeholder => "Instagram", :value => "@"  %>
+            <%= text_field_tag :instagram, nil, class: "form form-control margin3 div", id: "text", :placeholder => "", :value => "@"  %>
             </div>
 
             <div class="col-md-12 text-center">

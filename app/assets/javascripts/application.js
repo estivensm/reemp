@@ -15,6 +15,8 @@
 //= require jquery3
 //= require jquery_ujs
 //= require toastr_rails
+//= require algolia/v3/algoliasearch.min
+//= require hogan
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require bootstrap-sprockets

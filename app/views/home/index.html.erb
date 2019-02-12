@@ -16,20 +16,42 @@
           <h3 class="h3">Selecciona la categoría <br> de tu interés</h3><br><br>
 
           <div class="col-md-12">
-            <a href="" class="ingresar link_salud margin-right">Salud</a>
-            <a href="" class="ingresar link_mascotas">Mascotas</a><br>
+            <button class="ingresar link_salud margin-right" type="" id="salud">Salud</button>
+            <button class="ingresar link_mascotas margin-right" type="" id="masko">Mascotas</button>
           </div>
 
           <div class="col-md-12" style="margin-top: 20px">
-            <%= link_to "Construcción", browser_path(:especialidad => 2), class: "ingresar link_construccion margin-right" %>
-            <a href="" class="ingresar link_legal">Legal</a>
+            <%#= link_to "Construcción", browser_path(:especialidad => 2), class: "ingresar link_construccion margin-right", id: "cons" %>
+            <button class="ingresar link_construccion margin-right" type="" id="cons">Construcción</button>
+            <button class="ingresar link_legal margin-right" type="" id="legal">Legal</button>
           </div>
 
       </div>
-      
-    </div>
-  </nav>
-</div>
+
+      <div class="col-md-4 offset-md-5 card-input">
+
+        <div class="col-md-12" style="display: none;" id="imput-salud">
+          <label>Salud</label><br>
+          <input type="text" name="email" placeholder="Name, email or company" id="q" class="form form-control">
+        </div>
+
+        <div class="col-md-12" id="imput-masco" style="display: none;">
+          <label>Mascotas</label><br>
+          <input type="text" name="email" placeholder="Name, email or company" id="" class="form form-control">
+        </div>
+
+        <div class="col-md-12" style="display: none;" id="imput-const">
+          <label>Construcción</label><br>
+          <input type="text" name="email" placeholder="Name, email or company" id="" class="form form-control">
+        </div>
+
+        <div class="col-md-12" style="display: none;" id="imput-legal">
+          <label>Legal</label><br>
+          <input type="text" name="email" placeholder="Name, email or company" id="" class="form form-control">
+        </div>
+
+      </div>
+
 
 <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -61,15 +83,76 @@
     </div>
   </div>
 </div>
-
+<script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <script type="text/javascript">
-      $('#exampleModalCenter').on('shown.bs.modal', function () {
-        $(".background").addClass('fondo_visible');
-      });
+    $("#salud").click(function(event) {
+      $("#imput-masco").hide("linear");
+    });
+  $(document).ready(function() {
 
-      $("#exampleModalCenter").on('hide.bs.modal', function(){
-         $(".background").removeClass('fondo_visible');
-      });
+    var salud = document.getElementById("salud");
+    var masco = document.getElementById("masko");
+    var cons = document.getElementById("cons");
+    var legal = document.getElementById("legal");
+
+    var imputsa = document.getElementById("imput-salud");
+    var imputmas = document.getElementById("imput-masco");
+    var imputconst = document.getElementById("imput-const");
+    var imputlegal = document.getElementById("imput-legal");
+
+
+
+    $(salud).click(function(event) {
+      $(imputsa).show("linear");
+      $(imputmas).hide("linear");
+      $(imputconst).hide("linear");
+      $(imputlegal).hide("linear");
+    });
+
+    $(masco).click(function(event) {
+      $(imputmas).show("linear"); 
+      $(imputsa).hide("linear"); 
+      $(imputconst).hide("linear"); 
+      $(imputlegal).hide("linear");       
+    });
+
+    $(cons).click(function(event) {
+      $(imputconst).show("linear");  
+      $(imputmas).hide("linear"); 
+      $(imputsa).hide("linear"); 
+      $(imputlegal).hide("linear"); 
+    });
+
+    $(legal).click(function(event) {
+      $(imputlegal).show("linear");  
+      $(imputconst).hide("linear");  
+      $(imputmas).hide("linear"); 
+      $(imputsa).hide("linear");    
+    });
+
+    var client = algoliasearch('DJ3JJMGZSP', '0f9abe035e333810031a60c33a56907c');
+    var template = Hogan.compile('<div class="hit-auto-complete">' +
+        '<div class="Nombre">{{{_highlightResult.name.value}}}</div>' +
+        '<div class="descripcion">{{{_highlightResult.description.value}}}</div>' +
+      '</div>');
+    var ac = autocomplete('#q', { hint: true }, {
+      source: autocomplete.sources.hits(client.initIndex('Contact_production'), { hitsPerPage: 5 }),
+      displayKey: 'email',
+      templates: {
+        suggestion: function(hit) {
+          return template.render(hit);
+        }
+      }
+    }).on('autocomplete:selected', function(event, suggestion) {
+      console.log('onselected', suggestion);
+    });
+
+    $('.search-terms a').click(function(e) {
+      ac.autocomplete.setVal($(this).text());
+      ac.autocomplete.open();
+      ac.focus();
+    })
+  });
 </script>
 
 <style type="text/css" media="screen">
@@ -92,6 +175,26 @@
       left: -1px !important;
     }
   
+  }
+
+  .hit-auto-complete{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  em{
+    background-color: red;
+  }
+
+  .display{
+    display: none;
+  }
+
+  .card-input{
+    position: relative;
+    top: -250px;
   }
 
   .modal-backdrop{
