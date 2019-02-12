@@ -22,6 +22,10 @@
     text-decoration: none;
   }
 
+  img{
+    cursor: none;
+  }
+
   .h3{
     margin-left: 20px;
     font-weight: bold;
@@ -7678,11 +7682,6 @@ html, body{
     padding-right: 0px !important;
 }
 
-.modal{
-  top: 67px;
-  right: -138px;
-
-}
 
 .modal-content{
     width: 80%;

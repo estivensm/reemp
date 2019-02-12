@@ -18,7 +18,7 @@
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require bootstrap-sprockets
-//= require turbolinks
+//= require turbolinks 
 //= require_tree .
 
 

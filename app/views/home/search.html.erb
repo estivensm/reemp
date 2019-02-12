@@ -20,7 +20,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto"
     />
-    <link rel="stylesheet" type="text/css" href="main.css">
   </head>
 
   <body>
@@ -36,29 +35,19 @@
         <div id="search-box"></div>
       </header>
     </div>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-7 aisdemo--left-column">
           <div class="aisdemo-filters">
             <div class="row aisdemo-filter">
               <div class="col-sm-2 aisdemo-filter-title">Dates</div>
-              <div class="col-sm-3">
-                <input class="date form-control" value="10/30/3015" disabled />
-              </div>
-              <div class="col-sm-3">
-                <input class="date form-control" value="10/30/3015" disabled />
-              </div>
               <div class="col-sm-3"><div id="guests"></div></div>
             </div>
 
             <div class="row aisdemo-filter">
               <div class="col-sm-2 aisdemo-filter-title">Room Type</div>
               <div id="room_types"></div>
-            </div>
-
-            <div class="row aisdemo-filter">
-              <div class="col-sm-2 aisdemo-filter-title">Price Range</div>
-              <div class="col-sm-9" id="price"></div>
             </div>
           </div>
 
@@ -83,12 +72,14 @@
     <script src="https://cdn.jsdelivr.net/npm/scriptjs@2.5.9/dist/script.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.32.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@3.0.0"></script>
-    <script src="search.js"></script>
   </body>
 </html>
 
 
 <script type="text/javascript">
+  $(document).on('turbolinks:load',function() {
+  
+
   /* global instantsearch algoliasearch $script */
 
 $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
@@ -144,7 +135,7 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
     '</div>' +
     '</div>';
 
-  var noResultsTemplate = '<div class="text-center">No results found matching <strong>{{query}}</strong>.</div>';
+  var noResultsTemplate = '<div class="text-center">No se encontraron resultados con <strong>{{query}}</strong>.</div>';
 
   search.addWidget(
     instantsearch.widgets.hits({
@@ -185,28 +176,11 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
   );
 
   search.addWidget(
-    instantsearch.widgets.rangeSlider({
-      container: '#price',
-      attribute: 'price',
-      pips: false,
-      tooltips: {
-        format: function(rawValue) {
-          return '$' + parseInt(rawValue);
-        },
-      },
-    })
-  );
-
-
-
-
-  search.addWidget(
     instantsearch.widgets.geoSearch({
       container: '#map',
       googleReference: window.google,
       enableRefineControl: false,
-      initialPosition: {lat:6.2411950345475145,lng:-75.59599123921497}, 
-      initialZoom: 200, 
+      zoom: 100,
       builtInMarker: {
         createOption: function(hit) {
           return {
@@ -243,9 +217,11 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
 
 */
 
-  search.start();
+    search.start();
+  });
 });
 </script>
+
 
 
 <style type="text/css" media="screen">

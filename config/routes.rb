@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   
   
   get 'home/index'
-  get 'home/inicio'
   get "reemper/home", to: "home#reemper_home", as: "reeper_home"
   root "home#user_contact"
-  get "reempinfohc", to: "contacts#index"
   post "create_contact", to: "contacts#create", as: "create_contact"
   get "admin/home", to: "home#admin_home", as: "admin_home"
   get "admin/contact", to: "home#admin_contact", as: "admin_contact"
