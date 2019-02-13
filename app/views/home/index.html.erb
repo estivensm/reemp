@@ -117,9 +117,16 @@
     var imputconst = document.getElementById("imput-const");
     var imputlegal = document.getElementById("imput-legal");
 
+    var icon = document.getElementById("");
+
 
 
     $(salud).click(function(event) {
+      $(this).addClass('opacidad');
+      $(masco).removeClass('opacidad');
+      $(cons).removeClass('opacidad');
+      $(legal).removeClass('opacidad');
+
       $(imputsa).show("linear");
       $(imputmas).hide("linear");
       $(imputconst).hide("linear");
@@ -127,6 +134,11 @@
     });
 
     $(masco).click(function(event) {
+      $(this).addClass('opacidad');
+      $(salud).removeClass('opacidad');
+      $(cons).removeClass('opacidad');
+      $(legal).removeClass('opacidad');
+
       $(imputmas).show("linear"); 
       $(imputsa).hide("linear"); 
       $(imputconst).hide("linear"); 
@@ -134,6 +146,11 @@
     });
 
     $(cons).click(function(event) {
+      $(this).addClass('opacidad');
+      $(salud).removeClass('opacidad');
+      $(masco).removeClass('opacidad');
+      $(legal).removeClass('opacidad');
+
       $(imputconst).show("linear");  
       $(imputmas).hide("linear"); 
       $(imputsa).hide("linear"); 
@@ -141,6 +158,11 @@
     });
 
     $(legal).click(function(event) {
+      $(this).addClass('opacidad');
+      $(salud).removeClass('opacidad');
+      $(masco).removeClass('opacidad');
+      $(cons).removeClass('opacidad');
+
       $(imputlegal).show("linear");  
       $(imputconst).hide("linear");  
       $(imputmas).hide("linear"); 
@@ -165,8 +187,8 @@
   #imput-legal{margin-top: 26px;}
 
   .h3{
-        margin-left: 3px;
-            margin-top: 0px;
+    margin-left: 3px;
+    margin-top: 0px;
   }
 
   #imput-masco .form{
@@ -187,6 +209,11 @@
   #imput-legal .form{
     border-radius: 5px;
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  }
+
+  .opacidad{
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
   }
 
   .icon-row{
