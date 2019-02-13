@@ -14,13 +14,17 @@
       <div class="col-md-9 offset-md-1 info" >
           <div class="col-md-12">
             <button class="ingresar link_salud margin-right" type="" id="salud">Salud</button>
+            <i class="fas fa-check" id="icon-check"></i>
             <button class="ingresar link_mascotas margin-right" type="" id="masko">Mascotas</button>
+            <i class="fas fa-check" id="icon-masco"></i>
           </div>
 
           <div class="col-md-12" style="margin-top: 20px">
             <%#= link_to "Construcción", browser_path(:especialidad => 2), class: "ingresar link_construccion margin-right", id: "cons" %>
             <button class="ingresar link_construccion margin-right" type="" id="cons">Construcción</button>
+            <i class="fas fa-check" id="icon-cons"></i>
             <button class="ingresar link_legal margin-right" type="" id="legal">Legal</button>
+            <i class="fas fa-check" id="icon-legal"></i>
           </div>
 
         <%= form_tag browser_path, :method => 'get' do %>
@@ -117,12 +121,19 @@
     var imputconst = document.getElementById("imput-const");
     var imputlegal = document.getElementById("imput-legal");
 
-    var icon = document.getElementById("");
-
-
+    var icon_salud = document.getElementById("icon-check");
+    var icon_masco = document.getElementById("icon-masco");
+    var icon_cons = document.getElementById("icon-cons");
+    var icon_legal = document.getElementById("icon-legal");
 
     $(salud).click(function(event) {
       $(this).addClass('opacidad');
+
+      $(icon_salud).addClass('show');
+      $(icon_masco).removeClass('show').addClass('hide')
+      $(icon_cons).removeClass('show').addClass('hide')
+      $(icon_legal).removeClass('show').addClass('hide')
+
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
       $(legal).removeClass('opacidad');
@@ -135,6 +146,13 @@
 
     $(masco).click(function(event) {
       $(this).addClass('opacidad');
+      
+      $(icon_masco).addClass('show');
+      $(icon_salud).removeClass('show').addClass('hide');
+      $(icon_cons).removeClass('show').addClass('hide')
+      $(icon_legal).removeClass('show').addClass('hide')
+
+
       $(salud).removeClass('opacidad');
       $(cons).removeClass('opacidad');
       $(legal).removeClass('opacidad');
@@ -147,6 +165,12 @@
 
     $(cons).click(function(event) {
       $(this).addClass('opacidad');
+
+      $(icon_cons).addClass('show');
+      $(icon_masco).removeClass('show').addClass('hide');
+      $(icon_salud).removeClass('show').addClass('hide');
+      $(icon_legal).removeClass('show').addClass('hide');
+
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(legal).removeClass('opacidad');
@@ -159,6 +183,12 @@
 
     $(legal).click(function(event) {
       $(this).addClass('opacidad');
+
+      $(icon_legal).addClass('show');
+      $(icon_cons).removeClass('show').addClass('hide');
+      $(icon_masco).removeClass('show').addClass('hide');
+      $(icon_salud).removeClass('show').addClass('hide');
+
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
@@ -179,6 +209,42 @@
     border: 1px solid #01BAFE !important;
     background: #fff !important;
     color: #01BAFE !important;
+  }
+
+  #icon-check{
+    position: absolute;
+    left: 60px;
+    top: 9px;
+    display: none;
+  }
+
+  #icon-masco{
+    position: absolute;
+    left: 213px;
+    top: 9px;
+    display: none;
+  }
+
+  #icon-cons{
+    position: absolute;
+    left: 106px;
+    top: 9px;
+    display: none;
+  }
+
+  #icon-legal{
+    position: absolute;
+    left: 280px;
+    top: 9px;
+    display: none;
+  }
+
+  .show{
+    display: block;
+  }
+
+  .hide{
+    display: none;
   }
 
   #imput-masco{margin-top: 26px;}
