@@ -89,7 +89,7 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
     instantsearch.widgets.configure({
       aroundLatLngViaIP: true,
       hitsPerPage: 12,
-      //filters: 'id = <%= @parametro %>'
+      filters: 'category_id = <%= @category %>'
     })
   );
 
