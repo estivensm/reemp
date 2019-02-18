@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reempers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Document type</th>
+      <th>Document numer</th>
+      <th>Profession card</th>
+      <th>Academy leve</th>
+      <th>Profession</th>
+      <th>University</th>
+      <th>University state</th>
+      <th>Biography</th>
+      <th>Language</th>
+      <th>Specialty</th>
+      <th>Category</th>
+      <th>User</th>
+      <th>Verified</th>
+      <th>Category name</th>
+      <th>Specialty name</th>
+      <th>City</th>
+      <th>Valoration</th>
+      <th>Academy level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reempers.each do |reemper| %>
+      <tr>
+        <td><%= reemper.document_type %></td>
+        <td><%= reemper.document_numer %></td>
+        <td><%= reemper.profession_card %></td>
+        <td><%= reemper.academy_leve %></td>
+        <td><%= reemper.profession %></td>
+        <td><%= reemper.university %></td>
+        <td><%= reemper.university_state %></td>
+        <td><%= reemper.biography %></td>
+        <td><%= reemper.language %></td>
+        <td><%= reemper.specialty_id %></td>
+        <td><%= reemper.category_id %></td>
+        <td><%= reemper.user_id %></td>
+        <td><%= reemper.verified %></td>
+        <td><%= reemper.category_name %></td>
+        <td><%= reemper.specialty_name %></td>
+        <td><%= reemper.city %></td>
+        <td><%= reemper.valoration %></td>
+        <td><%= reemper.academy_level %></td>
+        <td><%= link_to 'Show', reemper %></td>
+        <td><%= link_to 'Edit', edit_reemper_path(reemper) %></td>
+        <td><%= link_to 'Destroy', reemper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reemper', new_reemper_path %>

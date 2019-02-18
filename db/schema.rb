@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_182020) do
+ActiveRecord::Schema.define(version: 2019_02_18_133307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,29 @@ ActiveRecord::Schema.define(version: 2019_02_06_182020) do
   create_table "professions", force: :cascade do |t|
     t.string "name"
     t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reempers", force: :cascade do |t|
+    t.string "document_type"
+    t.string "document_numer"
+    t.string "profession_card"
+    t.string "academy_leve"
+    t.string "profession"
+    t.string "university"
+    t.boolean "university_state"
+    t.text "biography"
+    t.string "language"
+    t.integer "specialty_id"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.boolean "verified"
+    t.string "category_name"
+    t.string "specialty_name"
+    t.string "city"
+    t.integer "valoration"
+    t.string "academy_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

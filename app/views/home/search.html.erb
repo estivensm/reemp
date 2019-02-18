@@ -1,8 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Geo search by Algolia</title>
+<br><br>
+<div class="card col-md-4">
+  <fieldset>
+    <legend>Buscadores</legend>
+
+    <label>Buscar Reemper</label>
+    <div id="search-box"></div><br>
+
+    <label>Categorias</label>
+    <div id="autocomplete"></div>
+  </fieldset>
+</div>
+
+<div class="card col-md-4">
+  <fieldset>
+    <legend>Mapa</legend>
+    <div id="map"></div>
+  </fieldset>
+</div>
+
+<div class="card col-md-4">
+  <fieldset>
+    <legend>Resultados</legend>
+    <div class="col-dm-12" id="hits"></div>
+    <div class="col-dm-12" id="hits1"></div>
+    <div id="stats"></div>
+  </fieldset>
+</div>  
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" id="btn-show" data-target="#myModal" style="display: none;">
+  Launch demo modal
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="p"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>                                                                                                                                                                                                                                                            
+  
+<div class="card col-md-4" id="results" style="margin-top: 100px;">
+  <fieldset>
+        <div class="col-md-12" id="pagination"></div>
+  </fieldset>
+</div>
 
     <link
       rel="stylesheet"
@@ -12,206 +69,277 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto"
     />
-  </head>
 
-  <body>
-    <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
-      <header class="navbar navbar-static-top aisdemo-navbar">
-        <a
-          href="https://community.algolia.com/instantsearch.js/"
-          class="is-logo"
-        >
-          <img src="" width="40" />
-        </a>
-        <a href="./" class="logo">A</a> <i class="fa fa-search"></i>
-        <div id="search-box"></div>
-      </header>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-7 aisdemo--left-column">
-          <div class="aisdemo-filters">
-            <div class="row aisdemo-filter">
-              <div class="col-sm-2 aisdemo-filter-title">Dates</div>
-              <div class="col-sm-3"><div id="guests"></div></div>
-            </div>
-
-            <div class="row aisdemo-filter">
-              <div class="col-sm-2 aisdemo-filter-title">Room Type</div>
-              <div id="room_types"></div>
-            </div>
-          </div>
-
-          <div class="row"><div id="stats"></div></div>
-        </div>
-
-        <div class="col-sm-5 aisdemo--right-column"><div id="map"></div></div>
-      </div>
-    </div>
-
-    <div class="container-fluid" id="results">
-      <div class="row"><div id="hits"></div></div>
-      <div class="row">
-        <div id="pagination"></div>
-        <div class="thank-you">
-          Data from <a href="https://www.airbnb.com/">airbnb.com</a>, user pics
-          from <a href="https://randomuser.me/">randomuser.me</a>
-        </div>
-      </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/scriptjs@2.5.9/dist/script.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.32.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@3.0.0"></script>
-  </body>
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/algolia.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.css">
+
+
+    <div id="autocomplete"></div>
+    <div id="hits"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.30.0/dist/algoliasearchLite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@beta"></script>
+</body>
+
 </html>
 
 
+<style type="text/css" media="screen">
+
+em {
+  background: cyan;
+  font-style: normal;
+}
+
+.ais-Hits-item{
+  width: calc(103% - 1rem);
+  margin-top: 2rem;
+  margin-bottom: 1em;
+}
+
+.ais-GeoSearch-marker{
+  cursor: pointer;
+}
+
+</style>
+
 <script type="text/javascript">
-  $(document).on('turbolinks:load',function() {
-  
 
-  /* global instantsearch algoliasearch $script */
+$(document).on('turbolinks:load',function() {
+    
+    /* global instantsearch algoliasearch $script */
 
-$script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
-  const search = instantsearch({
-    searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
-    indexName: 'Place_production',
-    routing: true
-  });
+  $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
+    const search = instantsearch({
+      searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
+      indexName: 'Place_production',
+      routing: true
+    });
 
+    const autocomplete = instantsearch.connectors.connectAutocomplete(
+    ({ indices, refine, widgetParams }, isFirstRendering) => {
+      const { container, onSelectChange } = widgetParams;
 
+      if (isFirstRendering) {
+        container.html('<select id="ais-autocomplete"></select>');
 
-  console.log(search);
+        container.find('select').selectize({
+          options: [],
+          valueField: 'category.name',
+          labelField: 'name',
+          placeholder: 'Categorias',
+          highlight: false,
+          onType: refine,
+          onBlur() {
+            refine(this.getValue());
+          },
+          score() {
+            return function() {
+              return 1;
+            };
+          },
+            onChange(value) {
+              onSelectChange(value);
+              refine(value);
+            },
+          });
 
-  search.addWidget(
-    instantsearch.widgets.configure({
-      aroundLatLngViaIP: true,
-      hitsPerPage: 12,
-      filters: 'category_id = <%= @category %>'
-    })
-  );
+          return;
+        }
 
+        const [select] = container.find('select');
 
-  search.addWidget(
-    instantsearch.widgets.searchBox({
-      container: '#search-box',
-      placeholder: 'Where are you going?',
-      showSubmit: true,
-      cssClasses: {
-        input: 'form-control',
+        indices.forEach(index => {
+          select.selectize.clearOptions();
+          index.results.hits.forEach(h => select.selectize.addOption(h));
+          select.selectize.refreshOptions(select.selectize.isOpen);
+        });
       }
-    })
-  );
+    );
 
-  search.addWidget(
-    instantsearch.widgets.stats({
-      container: '#stats'
-    })
-  );
+    search.addWidget(
+      autocomplete({
+        container: $('#autocomplete'),
+        onSelectChange(value) {
+          search.helper.setQuery(value).search();
+        },
+      })
+    );
 
-  var hitTemplate =
-    '<div class="hit col-sm-3">' +
-    '<div class="pictures-wrapper">' +
-      '<img class="picture" src="{{picture_url}}" />' +
-      '<img class="profile" src="{{user.user.thumbnail_url}}" />' +
-    '</div>' +
-    '<div class="infos">' +
-    '<h4 class="media-heading">{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}}</h4>' +
-    '<p>' +
-    '{{room_type}} - ' +
-    '{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}},'+
-    '{{#helpers.highlight}}{ "attribute": "" }{{/helpers.highlight}}' +
-    '</p>' +
-    '</div>' +
-    '</div>';
+    search.addWidget(
+      instantsearch.widgets.configure({
+        aroundLatLngViaIP: true,
+        hitsPerPage: 12
+        //filters: 'category_id = <%= @category %>'
+      })
+    );
 
-  var noResultsTemplate = '<div class="text-center">No se encontraron resultados con <strong>{{query}}</strong>.</div>';
 
-  search.addWidget(
-    instantsearch.widgets.hits({
-      container: '#hits',
-      templates: {
-        empty: noResultsTemplate,
-        item: hitTemplate
-      }
-    })
-  );
+    search.addWidget(
+      instantsearch.widgets.searchBox({
+        container: '#search-box',
+        placeholder: 'Reempers',
+        showSubmit: false,
+        cssClasses: {
+          input: 'form-control',
+        }
+      })
+    );
 
-  search.addWidget(
-    instantsearch.widgets.pagination({
-      container: '#pagination',
-      scrollTo: '#results',
-      cssClasses: {
-        list: 'pagination',
-        selectedItem: 'active'
-      }
-    })
-  );
+    search.addWidget(
+      instantsearch.widgets.stats({
+        container: '#stats'
+      })
+    );
 
- 
+    var hitTemplate =
+      '<div class="card hit col-sm-12">' +
+        '<div class="card-body infos">' +
+          '<h4 class="media-heading">{{category.name}}</h4>' +
+          '<p>' +
+          '{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}},'+
+          '<%= link_to "Ver Registro",  CGI::unescape(contact_path("{{objectID}}")) %>'+
+          '</p>' +
+        '</div>' +
+      '</div>';
 
-  search.addWidget(
-    instantsearch.widgets.refinementList({
-      container: '#room_types',
-      attribute: 'name',
-      restrictSearchableAttributes: [
-        'title',
-        'author'
-      ],
-      sortBy: ['name:asc'],
-      cssClasses: {
-        item: ['col-sm-3']
-      },
-    })
-  );
+    var noResultsTemplate = '<div class="text-center">No se encontraron resultados con <strong>{{query}}</strong>.</div>';
 
+    search.addWidget(
+      instantsearch.widgets.hits({
+        container: '#hits',
+        templates: {
+          empty: noResultsTemplate,
+          item: hitTemplate
+        }
+      })
+    );
+
+    search.addWidget(
+      instantsearch.widgets.pagination({
+        container: '#pagination',
+        scrollTo: '#results',
+        cssClasses: {
+          list: 'pagination',
+          selectedItem: 'active'
+        }
+      })
+    );
+
+
+   
+  /*
+    search.addWidget(
+      instantsearch.widgets.refinementList({
+        container: '#room_types',
+        attribute: 'name',
+        restrictSearchableAttributes: [
+          'title',
+          'author'
+        ],
+        sortBy: ['name:asc'],
+        cssClasses: {
+          item: ['col-sm-3']
+        },
+      })
+    );
+  */
+  /*
   search.addWidget(
     instantsearch.widgets.geoSearch({
-      container: '#map',
+      container: '#maps',
       googleReference: window.google,
-      enableRefineControl: false,
-      zoom: 51.5245134,
-      builtInMarker: {
-        createOption: function(hit) {
-          return {
-            title: hit.description
-          };
-        },
+      templates: {
+        HTMLMarker: `
+          <span class="marker">
+            {{ city }} - {{ airport_id }}
+          </span>
+        `,
       },
     })
   );
+  */
+    var hello = 'hola'
 
-  /*
-  const widget = instantsearch.widgets.geoSearch({ 
-    container: string|HTMLElement, 
-    googleReference: object, 
-    initialZoom: [number], 
-    initialPosition: 6.2411950345475145, 
-    paddingBoundingBox: [Padding], 
-    templates: [GeoSearchTemplates], 
-    cssClasses: [GeoSearchCSSClasses], 
-    mapOptions: [object], 
-    builtInMarker: [BuiltInMarkerOptions], 
-    customHTMLMarker: [CustomHTMLMarkerOptionsboolean], 
-    enableClearMapRefinement: [boolean], 
-    enableRefineControl: [boolean], 
-    enableRefineOnMapMove: [boolean], 
-    enableGeolocationWithIP: [boolean], 
-    position: 6.2411950345475145, 
-    radius: [number], 
-    precision: [number], 
-    transformItems: [function], 
-  }: GeoSearchWidgetOptions);
 
-  search.addWidget(widget);
+    search.addWidget(
+      instantsearch.widgets.geoSearch({
+        container: '#map',
+        googleReference: window.google,
+        enableRefineControl: false,
+        enableRefineOnMapMove: true,
+        streetViewControl: true,
+        initialZoom: 10, 
+        templates: {
+          HTMLMarker: '<img src="//platform.docplanner.com/img/general/icons/map-pin-calendar-small-shadow.png?v=5" alt="">',
+          reset: 'Limpiar Busqueda',
+        },
+        mapOptions: {
+          streetViewControl: true,
+        },
+        customHTMLMarker: {
+          createOptions(item) {
+            return {
+              anchor: {
+                x: 0,
+                y: 0,
+              },
+            };
+          },
+          events: {
+            click({ event, item, marker, map }) {
+              $("#btn-show").click();
+              document.getElementById("p").innerHTML = item.category.name;
+            },
+          },
+        },
+      }),
+    );
 
-*/
 
-    search.start();
+    /*
+    const widget = instantsearch.widgets.geoSearch({ 
+      container: string|HTMLElement, 
+      googleReference: object, 
+      initialZoom: [number], 
+      initialPosition: 6.2411950345475145, 
+      paddingBoundingBox: [Padding], 
+      templates: [GeoSearchTemplates], 
+      cssClasses: [GeoSearchCSSClasses], 
+      mapOptions: [object], 
+      builtInMarker: [BuiltInMarkerOptions], 
+      customHTMLMarker: [CustomHTMLMarkerOptionsboolean], 
+      enableClearMapRefinement: [boolean], 
+      enableRefineControl: [boolean], 
+      enableRefineOnMapMove: [boolean], 
+      enableGeolocationWithIP: [boolean], 
+      position: 6.2411950345475145, 
+      radius: [number], 
+      precision: [number], 
+      mapOptions: {
+          mapTypeId: window.google.maps.MapTypeId.SATELLITE,
+      },
+      transformItems: [function], 
+    }: GeoSearchWidgetOptions);
+
+    search.addWidget(widget);
+
+  */
+
+      search.start();
+    });
   });
-});
 </script>
 
 
@@ -341,6 +469,10 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
   color: #82888a;
 }
 
+em{
+  background-color: red !important;
+}
+
 .aisdemo-filters #room_types .ais-RefinementList-count {
   display: none;
 }
@@ -435,16 +567,12 @@ $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTv
   background-color: #ff585b;
   color: #fff;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 33px;
   font-size: 0.85em;
 }
 
 /* RESULTS
 // ------------------------- */
-#results {
-  padding: 40px 20px;
-  background: #edefed;
-}
 
 #hits .ais-Hits-list {
   list-style: none;

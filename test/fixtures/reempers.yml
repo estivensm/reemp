@@ -1,0 +1,68 @@
+# == Schema Information
+#
+# Table name: reempers
+#
+#  id               :bigint(8)        not null, primary key
+#  document_type    :string
+#  document_numer   :string
+#  profession_card  :string
+#  academy_leve     :string
+#  profession       :string
+#  university       :string
+#  university_state :boolean
+#  biography        :text
+#  language         :string
+#  specialty_id     :integer
+#  category_id      :integer
+#  user_id          :integer
+#  verified         :boolean
+#  category_name    :string
+#  specialty_name   :string
+#  city             :string
+#  valoration       :integer
+#  academy_level    :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_type: MyString
+  document_numer: MyString
+  profession_card: MyString
+  academy_leve: MyString
+  profession: MyString
+  university: MyString
+  university_state: false
+  biography: MyText
+  language: MyString
+  specialty_id: 1
+  category_id: 1
+  user_id: 1
+  verified: false
+  category_name: MyString
+  specialty_name: MyString
+  city: MyString
+  valoration: 1
+  academy_level: MyString
+
+two:
+  document_type: MyString
+  document_numer: MyString
+  profession_card: MyString
+  academy_leve: MyString
+  profession: MyString
+  university: MyString
+  university_state: false
+  biography: MyText
+  language: MyString
+  specialty_id: 1
+  category_id: 1
+  user_id: 1
+  verified: false
+  category_name: MyString
+  specialty_name: MyString
+  city: MyString
+  valoration: 1
+  academy_level: MyString

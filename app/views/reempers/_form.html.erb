@@ -1,0 +1,305 @@
+
+<%= form_with(model: reemper, local: true, :html => {class: "needs-validation", :novalidate => true}) do |form| %>
+  <% if reemper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reemper.errors.count, "error") %> prohibited this reemper from being saved:</h2>
+
+      <ul>
+      <% reemper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<legend>
+  <% if action_name == "new" %>
+    Ser Reemper
+  <% else %>
+    Editar Informacion
+  <% end -%>
+
+  <div class="col-md-2.5" style="float: right; margin-top: 11px;">
+    <label class="visible">Visible</label>
+    <label class="switch">
+        <input type="checkbox" id="check" name="reemper[university_state]">
+        <span class="slider round"></span>
+    </label>
+
+    <label class="label label-success" id="label-change" style="display: none;">Si</label>
+  </div>
+</legend>
+<br>
+
+<div class="col-md-4" style="padding-left: 0px;">
+
+  <legend>Personal <i class=" icon-rigth fas fa-user"></i> </legend>
+  <br>
+  <div class="col-md-12">
+    <label>Tipo de Documento</label>
+    <%= form.select 'document_type', options_for_select(select_documento), {:prompt => 'Selecciona una Opcion'},{:class => 'form form-control', id: "validationCustom01", :required => true }%>
+
+    <div class="invalid-feedback">
+      Selecciona Alguna!! 
+    </div>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+    <label>Numero de Documento</label>
+    <%= form.text_field :document_numer, class: "form form-control", placeholder: "Numero de Documento", id: "validationCustom01", :required => true %>
+    <div class="invalid-feedback">
+      Requerido!
+    </div>
+    <br>
+  </div>
+
+
+  <div class="col-md-12">
+    <%= form.label :Ciudad %>
+    <%= form.text_field :city , id: "autocomplete", class: "form form-control", :required => true %>
+    <div class="invalid-feedback">
+      Requerido!
+    </div>
+  </div>
+
+</div>
+
+<div class="col-md-4">
+
+  <legend>informacion Academica <i class=" icon-rigth fas fa-university"></i> </legend>
+  <br>
+  <div class="col-md-12">
+    <%= form.label "Nivel Academico" %>
+    <%= form.select 'academy_level', options_for_select(select_level), {:prompt => 'Selecciona Nivel Academico'},{:class => 'form form-control', id: "validationCustom01", :required => true }%>
+    <div class="invalid-feedback">
+      Selecciona Alguna!! 
+    </div>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label "Universidad" %>
+    <%= form.text_field :university, class: "form form-control", placeholder: "Universidad" %>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+   <label>Profession</label>
+    <%= form.text_field :profession, class: "form form-control", placeholder: "Profession"  %>
+  </div>
+
+
+
+</div>
+
+<div class="col-md-4" style="padding-right: 0px;">
+  <legend>INFORMACION ADICIONAL <i class=" icon-rigth fas fa-question-circle"></i> </legend>
+  <br>
+  <div class="col-md-12">
+    <label>Categoria</label>
+      <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona una categoría', id: "validationCustom01", :required => true}%>
+
+
+    <div class="invalid-feedback">
+      Selecciona Alguna!! 
+    </div>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label "Especialidad" %>
+    <%= select_tag 'specialty_id', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona una categoría', id: "validationCustom01", :required => true}%>
+    <div class="invalid-feedback">
+      Selecciona Alguna!! 
+    </div>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label "Idiomas " %>
+    <%= form.select 'language', options_for_select(get_lenguaje), {:prompt => 'Selecciona Idiomas'},{:class => 'form form-control' }%>
+    <br>
+  </div>
+
+</div>
+
+  <div class="col-md-12">
+    <%= form.label "Biografia" %>
+    <%= form.text_area :biography, class: "ckeditor", :rows => 10 %>
+  </div>
+
+
+<!--
+
+
+
+
+
+ 
+
+
+
+  <div class="col-md-12">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name %>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label :specialty_name %>
+    <%= form.text_field :specialty_name %>
+  </div>
+-->
+
+
+
+
+  <%= form.hidden_field :valoration %>
+  <%= form.hidden_field :verified %>
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+
+
+  <div class="modal-footer col-md-12">
+    <%= form.submit "Guardar", class: "btn btn-success" %>
+  </div>
+<% end %>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
+    <script>
+
+      $("#check").change(function() {
+        var label = document.getElementById("label-change");
+        var $input = $( this );
+
+        if ($input.prop("checked") == true){
+          $(label).css({'display' : 'block'});  
+          $(label).removeClass('label label-danger').addClass('label label-success');
+          $(label).text('Si');
+        }else {
+          $(label).removeClass('label label-success').addClass('label label-danger');
+          $(label).text('No');
+
+        }
+
+
+      });
+      var input = document.getElementById('autocomplete');
+      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+      google.maps.event.addListener(autocomplete, 'place_changed', function(){
+         var place = autocomplete.getPlace();
+         console.log(place);
+         console.log(place.name);
+         //document.getElementById("place_id").value = place.place_id;
+         document.getElementById("city").value = place.name;
+      })
+
+
+
+    
+    </script>
+
+    <style type="text/css" media="screen">
+
+      #label-change{
+        float: right;
+        padding: 12px;
+        position: relative;
+        top: -17px;
+        margin-left: 10px;
+      }
+
+      .icon-rigth{
+        float: right;
+      }
+
+      .visible{
+        text-transform: none !important;
+        position: relative;
+        top: -10px
+      }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      top: -16px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    .form{
+        color: rgba(4, 129, 177, 0.5) !important;
+        box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+    
+    }
+
+    .form-text{
+      box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+    }
+
+    .cke_1{
+      box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+    }
+
+    .cke_top{
+      border-bottom: none;
+    }
+
+    .cke_bottom{
+      border-top: none;
+    }
+
+
+    </style>

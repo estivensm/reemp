@@ -17,6 +17,7 @@
 //= require toastr_rails
 //= require algolia/v3/algoliasearch.min
 //= require hogan
+//= require ckeditor-jquery
 //= require chosen-jquery
 //= require sweetalert2
 //= require sweet-alert2-rails
@@ -45,6 +46,13 @@
 
 
 $(document).on('turbolinks:load',function() {
+
+$('.ckeditor').ckeditor({
+  // optional config
+  
+  }) ;
+
+
 
   $('.chosen-select1').chosen(
         {

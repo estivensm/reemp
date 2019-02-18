@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reempers
   resources :subspecialties, :except => [:show]
   resources :specialties, :except => [:show]
   resources :professions, :except => [:show]
