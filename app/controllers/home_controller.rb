@@ -13,8 +13,6 @@ class HomeController < ApplicationController
     @search = params[:search]
     @search1 = params[:search1]
     @search2 = params[:search2]
-
-    puts @category
   end
 
   def inicio

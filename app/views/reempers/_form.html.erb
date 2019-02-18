@@ -164,7 +164,7 @@
     <%= form.submit "Guardar", class: "btn btn-success" %>
   </div>
 <% end %>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=<%= ENV["GOOGLE_API"] %>"></script>
     <script>
 
       $("#check").change(function() {

@@ -117,12 +117,12 @@ em {
 <script type="text/javascript">
 
 $(document).on('turbolinks:load',function() {
-    
+
     /* global instantsearch algoliasearch $script */
 
-  $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
+  $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=<%= ENV["GOOGLE_API"] %>', function() {
     const search = instantsearch({
-      searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
+      searchClient: algoliasearch('<%= ENV.fetch("ALGOLIA_API")%>', '<%= ENV.fetch("ALGOLIA_INDEX")%>'),
       indexName: 'Place_production',
       routing: true
     });
@@ -209,7 +209,7 @@ $(document).on('turbolinks:load',function() {
           '<h4 class="media-heading">{{category.name}}</h4>' +
           '<p>' +
           '{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}},'+
-          '<%= link_to "Ver Registro",  CGI::unescape(contact_path("{{objectID}}")) %>'+
+          '<%= link_to "Ver Registro",  CGI::unescape(contact_delete_path("{{objectID}}")) %>'+
           '</p>' +
         '</div>' +
       '</div>';
