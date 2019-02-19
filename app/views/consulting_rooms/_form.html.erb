@@ -121,15 +121,15 @@
   });
 
   var map = L.map('map-example-container', {
-    scrollWheelZoom: true,
-    zoomControl: true,
-            streetViewControl: true
+    scrollWheelZoom: false,
+    zoomControl: false
   });
 
   var osmLayer = new L.TileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 1,
-      maxZoom: 100
+      maxZoom: 13,
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
     }
   );
 
@@ -201,8 +201,8 @@
     var featureGroup = L.featureGroup(markers);
     map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
   }
-
 })();
+
 
 
   function readURL(input) {
@@ -274,6 +274,6 @@
         border-radius: 4px;
       }
 
-      #map-example-container {height: 300px;}
+      #map-example-container {height: 266px;}
 
     </style>
