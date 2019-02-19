@@ -21,7 +21,7 @@
 
 <br>
 
-
+  <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
 <div class="col-md-6">
   <legend>Ubicacion</legend>
 
@@ -32,21 +32,27 @@
     <div class="invalid-feedback">
       Requerido!
     </div>
+    <br>
   </div>
 
 
   <div class="col-md-12">
     <%= form.label "Ciudad" %>
     <%= form.text_field :city, id: "autocomplete", class: "form form-control", :placeholder => "Ciudad" %>
+    <br>
   </div>
 
 </div>
 
+<div class="col-md-6" style="height: 200px;">
+  <legend>Mapa</legend>
+  <div id="map"></div>
+</div>
 
-<div class="col-md-6">
-    <legend>Fotografias</legend>
+<div class="col-md-10">
+     <legend>Fotografias</legend>
 
-    <div class="col-md-12">
+    <div class="col-md-5">
     <%= form.label "Primera Fotografia" %>
     <%= form.file_field :first_photo, class: "form form-control", id: "img1", :required => true %>
 
@@ -56,26 +62,20 @@
 
   </div>
 
-  <div class="col-md-12">
+  <div class="col-md-5">
     <%= form.label "Segunda Fotografia" %>
     <%= form.file_field :sub_photo, class: "form form-control", id: "img2", :required => true %>
 
     <div class="col-md-12"  style="padding: 0px;">
-          <img id="" src="#" alt="" />
+          <img id="blah1" src="#" alt="" />
     </div>
 
-  </div>
+  </div> 
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-
-  <div class="card col-md-4 offset-md-8 map">
-    <div class="card-body">
-        <div id="maps"></div>
-    </div>
-  </div>
 <!--
   <div class="field">
     <%= form.label :state %>
@@ -102,6 +102,25 @@
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
 <script>
 
+        function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        // Create a map object and specify the DOM element
+        // for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 4
+        });
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+      }
+
+
   function readURL(input) {
 
     if (input.files && input.files[0]) {
@@ -109,6 +128,7 @@
 
       reader.onload = function(e) {
         $('#blah').attr('src', e.target.result);
+        $("#blah").fadeIn(3000);
       }
 
       reader.readAsDataURL(input.files[0]);
@@ -119,13 +139,13 @@
     readURL(this);
   });
 
-  function readURL(input) {
+    function read(input) {
 
     if (input.files && input.files[0]) {
       var reader = new FileReader();
 
       reader.onload = function(e) {
-        $('#blah').attr('src', e.target.result);
+        $('#blah1').attr('src', e.target.result);
       }
 
       reader.readAsDataURL(input.files[0]);
@@ -133,8 +153,9 @@
   }
 
   $("#img2").change(function() {
-    readURL(this);
+    read(this);
   });
+
 
 
 
@@ -162,4 +183,11 @@
       .map{
         border: 1px solid red;
       }
+
+      .col-md-12 img{
+        width: 295px;
+        margin-top: 10px;
+        border-radius: 4px;
+      }
+
     </style>
