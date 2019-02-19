@@ -17,7 +17,28 @@
 #  updated_at  :datetime         not null
 #
 
-class ConsultingRoom < ApplicationRecord
+class ConsultingRoom < ActiveRecord::Base
+	belongs_to :user
+	include AlgoliaSearch
+
+	algoliasearch per_environment: true  do
+
+	    attribute :user do
+	      { name: user.names }
+	    end
+
+	   	#attribute :reemper do
+	      #{ name: reemper.name }
+	    #end
+
+	    attribute :address, :city, :first_photo, :sub_photo, :user_id, :reemper_id, :info_state
+
+	    geoloc :lat, :lng
+
+
+
+	end
+
 	mount_uploader :first_photo, ConsultingFistUploader
 	mount_uploader :sub_photo, ConsultingSubUploader
 end

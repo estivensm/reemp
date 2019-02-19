@@ -5,15 +5,11 @@
   <%= @consulting_room.address %>
 </p>
 
-<p>
-  <strong>Lat:</strong>
-  <%= @consulting_room.lat %>
-</p>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap2">
+</script>
 
-<p>
-  <strong>Lng:</strong>
-  <%= @consulting_room.lng %>
-</p>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:small%7Ccolor:red%7C#{@consulting_room.lat},#{@consulting_room.lng}&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg", alt: "Map" %>
 
 <p>
   <strong>City:</strong>

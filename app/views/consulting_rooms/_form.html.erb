@@ -19,16 +19,14 @@
   <% end -%>
 </legend>
 
-<br>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
 <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
 
-
-<div class="col-md-6">
+<div class="col-md-6 no-padding-left">
   <legend>Ubicacion</legend>
-
-  <div class="col-md-12">
+  <br>
+  <div class="col-md-12 no-padding">
     <%= form.label "Direccion" %>
 
     <%= form.text_field :address, class: "form form-control", id: "validationCustom01", :required => true, :placeholder => "Ejem: Carrera 80c #34a-105" %>
@@ -40,25 +38,28 @@
   </div>
 
 
-  <div class="col-md-12">
+  <div class="col-md-12 no-padding">
     <%= form.label "Ciudad" %>
     <%= form.text_field :city, id: "autocomplete", class: "form form-control", :placeholder => "Ciudad" %>
     <br>
   </div>
 
-  <div class="col-md-12">
-      <label>Buscar</label>
-       <input type="search" id="input-map" class="form form-control" placeholder="Where are we going?" />
+  <div class="col-md-12 no-padding-left">
+  	  <label class="btn btn-success" onclick="buscar()">Buscar mi Ubicacion</label>
   </div>
 
 </div>
+  
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap2">
+</script>
 
-<div class="col-md-6" style="height: 400px;">
+<div class="col-md-6 no-padding-right" style="height: 400px;">
   <legend>Mapa</legend>
-  <div id="map-example-container"></div><br>
+  <div id="map2"></div><br>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-12 no-padding-left">
      <legend>Fotografias</legend>
 
     <div class="col-md-5">
@@ -82,9 +83,6 @@
   </div> 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
 <!--
   <div class="field">
     <%= form.label :state %>
@@ -96,11 +94,13 @@
     <%= form.check_box :info_state %>
   </div>
 -->
-  <%= form.hidden_field :lat, :value => 1 %>
-  <%= form.hidden_field :lng, :value => 1 %>
 
   <%= form.hidden_field :user_id, :value => current_user.id  %>
   <%= form.hidden_field :reemper_id %>
+  <%= form.hidden_field :lat, id: "place_latitude" %>
+  <%= form.hidden_field :lng, id: "place_longitude" %>
+
+
 
 
   <div class="modal-footer col-md-12">
@@ -108,100 +108,183 @@
   </div>
 
 <% end %>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
-    <script src="https://cdn.jsdelivr.net/npm/places.js@1.15.5"></script>
+
 
 <script>
 
-(function() {
-  var placesAutocomplete = places({
-    appId: 'plCC6QC1KFHV',
-    apiKey: '1c3b9226a5891eafe44c0f90feff3b56',
-    container: document.querySelector('#input-map')
-  });
+   document.addEventListener("DOMContentLoaded", function(){
+    var latitud = document.getElementById("reverse-geo-lat").value
+    var longitud = document.getElementById("reverse-geo-lng").value
 
-  var map = L.map('map-example-container', {
-    scrollWheelZoom: false,
-    zoomControl: false
-  });
+      initMap2(latitud, longitud)
+    });
 
-  var osmLayer = new L.TileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 1,
-      maxZoom: 13,
-      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    document.addEventListener("DOMContentLoaded", initMap2);
+
+function initMap2() {
+    var lat = document.getElementById('place_latitude').value;
+    var lng = document.getElementById('place_longitude').value;
+    
+    // if not defined create default position
+    if (!lat || !lng){
+        lat= 4.0000000;
+        lng=-72.0000000;
+        document.getElementById('place_latitude').value = lat;
+        document.getElementById('place_longitude').value = lng;
     }
-  );
-
-  var markers = [];
-
-  map.setView(new L.LatLng(0, 0), 1);
-  map.addLayer(osmLayer);
-
-  placesAutocomplete.on('suggestions', handleOnSuggestions);
-  placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
-  placesAutocomplete.on('change', handleOnChange);
-  placesAutocomplete.on('clear', handleOnClear);
-
-  function handleOnSuggestions(e) {
-    markers.forEach(removeMarker);
-    markers = [];
-
-    if (e.suggestions.length === 0) {
-      map.setView(new L.LatLng(0, 0), 1);
-      return;
+    var myCoords = new google.maps.LatLng(lat, lng);
+    var mapOptions = {
+    center: myCoords,
+    zoom: 4
+    };
+    var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myCoords,
+        animation: google.maps.Animation.DROP,
+        map: map,
+        draggable: true
+    });
+    // refresh marker position and recenter map on marker
+    function refreshMarker(){
+        var lat = document.getElementById('place_latitude').value;
+        var lng = document.getElementById('place_longitude').value;
+        var myCoords = new google.maps.LatLng(lat, lng);
+        marker.setPosition(myCoords);
+        map.setCenter(marker.getPosition());   
     }
+    // when input values change call refreshMarker
+    document.getElementById('place_latitude').onchange = refreshMarker;
+    document.getElementById('place_longitude').onchange = refreshMarker;
+    // when marker is dragged update input values
+    marker.addListener('drag', function() {
+        latlng = marker.getPosition();
+        newlat=(Math.round(latlng.lat()*1000000))/1000000;
+        newlng=(Math.round(latlng.lng()*1000000))/1000000;
+        console.log(newlat);
+        console.log(newlng);
+        document.getElementById('place_latitude').value = newlat;
+        document.getElementById('place_longitude').value = newlng;
+    });
+    // When drag ends, center (pan) the map on the marker position
+    marker.addListener('dragend', function() {
+        map.panTo(marker.getPosition());
+			               	toastr["success"]("<b>Seleccionado</b>");   
+    });
+}
 
-    e.suggestions.forEach(addMarker);
-    findBestZoom();
-  }
 
-  function handleOnChange(e) {
-    markers
-      .forEach(function(marker, markerIndex) {
-        if (markerIndex === e.suggestionIndex) {
-          markers = [marker];
-          marker.setOpacity(1);
-          findBestZoom();
+
+
+
+
+
+
+ function buscar(){
+ 	 var map, infoWindow;
+      
+        map = new google.maps.Map(document.getElementById('map2'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+
+        infoWindow = new google.maps.InfoWindow;
+
+
+
+   
+
+        
+     
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+
+            };  
+
+	        document.getElementById("place_latitude").value = pos.lat
+	        document.getElementById("place_longitude").value = pos.lng
+
+   	          var mapOptions = {
+   					 center: pos,
+   					 zoom: 4
+			    };
+			    var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
+			   	 var marker = new google.maps.Marker({
+			        position: pos,
+			        animation: google.maps.Animation.DROP,
+			        map: map,
+			        draggable: true
+			    });
+
+				function refreshMarker(){
+			        var lat = document.getElementById('place_latitude').value;
+			        var lng = document.getElementById('place_longitude').value;
+			        //var myCoords = new google.maps.LatLng(lat, lng);
+			        marker.setPosition(pos);
+			        map.setCenter(marker.getPosition());   
+			    }
+			    // when input values change call refreshMarker
+			    document.getElementById('place_latitude').onchange = refreshMarker;
+			    document.getElementById('place_longitude').onchange = refreshMarker;
+			    // when marker is dragged update input values
+			    marker.addListener('drag', function() {
+			        latlng = marker.getPosition();
+			        newlat=(Math.round(latlng.lat()*1000000))/1000000;
+			        newlng=(Math.round(latlng.lng()*1000000))/1000000;
+			        console.log(newlat);
+			        console.log(newlng);
+			        document.getElementById('place_latitude').value = newlat;
+			        document.getElementById('place_longitude').value = newlng;
+			    });
+			    // When drag ends, center (pan) the map on the marker position
+			    marker.addListener('dragend', function() {
+			        map.panTo(marker.getPosition());
+			               	toastr["success"]("<b>Seleccionado</b>");  
+			    });
+
+
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Aqui Estas.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+            map.setZoom(15);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
         } else {
-          removeMarker(marker);
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
         }
-      });
-  }
 
-  function handleOnClear() {
-    map.setView(new L.LatLng(0, 0), 1);
-    markers.forEach(removeMarker);
-  }
 
-  function handleOnCursorchanged(e) {
-    markers
-      .forEach(function(marker, markerIndex) {
-        if (markerIndex === e.suggestionIndex) {
-          marker.setOpacity(1);
-          marker.setZIndexOffset(1000);
-        } else {
-          marker.setZIndexOffset(0);
-          marker.setOpacity(0.5);
-        }
-      });
-  }
+      }
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
 
-  function addMarker(suggestion) {
-    var marker = L.marker(suggestion.latlng, {opacity: .4});
-    marker.addTo(map);
-    markers.push(marker);
-  }
 
-  function removeMarker(marker) {
-    map.removeLayer(marker);
-  }
 
-  function findBestZoom() {
-    var featureGroup = L.featureGroup(markers);
-    map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
-  }
-})();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -247,18 +330,6 @@
 
 
 
-                      
-      var input = document.getElementById('autocomplete');
-      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
-      google.maps.event.addListener(autocomplete, 'place_changed', function(){
-         var place = autocomplete.getPlace();
-         console.log(place);
-         console.log(place.name);
-         //document.getElementById("place_id").value = place.place_id;
-         document.getElementById("city").value = place.name;
-      })
-
-
 
     
     </script>
@@ -275,5 +346,22 @@
       }
 
       #map-example-container {height: 266px;}
+
+#map {
+    width: 600px;
+    height: 400px;
+}
+
+#map2 {
+    width: 457px;
+    height: 256px;
+}
+
+    .reverse-geo-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 
     </style>
