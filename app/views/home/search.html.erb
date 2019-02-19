@@ -122,8 +122,8 @@ $(document).on('turbolinks:load',function() {
 
   $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=<%= ENV["GOOGLE_API"] %>', function() {
     const search = instantsearch({
-      searchClient: algoliasearch('<%= ENV.fetch("ALGOLIA_API")%>', '<%= ENV.fetch("ALGOLIA_INDEX")%>'),
-      indexName: 'Place_production',
+      searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
+      indexName: 'ConsultingRoom_production',
       routing: true
     });
 
