@@ -5,7 +5,7 @@ class ReempersController < ApplicationController
   # GET /reempers
   # GET /reempers.json
   def index
-    @reempers = Reemper.all
+    @reempers = Reemper.where(user_id: current_user.id)
   end
 
   # GET /reempers/1
