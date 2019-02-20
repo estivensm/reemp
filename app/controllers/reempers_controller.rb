@@ -70,7 +70,7 @@ class ReempersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reemper_params
-      params.require(:reemper).permit(:document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :specialty_id, :category_id, :user_id, :verified, :category_name, :specialty_name, :city, :valoration, :academy_level)
+      params.require(:reemper).permit(:document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :specialty_id, :category_id, :user_id, :verified, :category_name, :specialty_name, :city, :valoration, :academy_level, :lat, :lng)
     end
     
 end

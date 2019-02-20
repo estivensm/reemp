@@ -5,7 +5,7 @@ class ConsultingRoomsController < ApplicationController
   # GET /consulting_rooms
   # GET /consulting_rooms.json
   def index
-    @consulting_rooms = ConsultingRoom.all
+    @consulting_rooms = ConsultingRoom.where(user_id: current_user.id)
   end
 
   # GET /consulting_rooms/1
