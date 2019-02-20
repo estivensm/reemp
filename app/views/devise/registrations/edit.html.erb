@@ -33,7 +33,7 @@
       <div class="form-group row">
         <div class="col-sm-6">    
           <label for="validationCustom01">Ciudad</label>
-          <%= f.text_field :city, class: "form-control", :placeholder => "Ciudad" %>
+          <%= f.text_field :city, class: "form-control", :placeholder => "Ciudad", id: "address" %>
         </div>
 
         <div class="col-sm-6">
@@ -63,7 +63,7 @@
             <label for="validationCustom01">Confirmar Contraseña</label>
             <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirmar Contraseña"  %>
           </div>
-          
+
         </fieldset>
       </div>
 
@@ -112,6 +112,27 @@
   </fieldset>
 
 <% end -%>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.15.5"></script>
+<script type="text/javascript">
+      (function() {
+      var placesAutocomplete = places({
+        appId: 'plCC6QC1KFHV',
+        apiKey: '1c3b9226a5891eafe44c0f90feff3b56',
+        container: document.querySelector('#address')
+      });
+
+      var $address = document.querySelector('#address-value')
+      placesAutocomplete.on('change', function(e) {
+        $address.textContent = e.suggestion.value
+      });
+
+      placesAutocomplete.on('clear', function() {
+        $address.textContent = 'none';
+      });
+
+    })();
+</script>
+<script type="text/javascript"></script>
 
 <style type="text/css" media="screen">
 
