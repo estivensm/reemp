@@ -47,23 +47,6 @@
 
 $(document).on('turbolinks:load',function() {
 
-$('.ckeditor').ckeditor({
-  // optional config
-  
-  }) ;
-
-
-
-  $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          placeholder_text_single: "Seleccione una opción",
-          placeholder_text_multiple: "Seleccione una varias opciones",
-          width: "460px"
-
-  });
 
   (function() {
     'use strict';
@@ -82,6 +65,24 @@ $('.ckeditor').ckeditor({
       });
     }, false);
   })();
+
+  $('.ckeditor').ckeditor({
+  // optional config
+  
+  }) ;
+
+
+
+  $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          placeholder_text_single: "Seleccione una opción",
+          placeholder_text_multiple: "Seleccione una varias opciones",
+          width: "460px"
+
+  });
 
 
   
