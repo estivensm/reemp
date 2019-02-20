@@ -16,6 +16,7 @@ class ConsultingRoomsController < ApplicationController
   # GET /consulting_rooms/new
   def new
     @consulting_room = ConsultingRoom.new
+    @remper = Reemper.where(user_id: current_user.id).first
   end
 
   # GET /consulting_rooms/1/edit

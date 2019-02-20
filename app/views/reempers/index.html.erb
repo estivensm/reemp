@@ -39,9 +39,9 @@
         <td><%= reemper.university_state %></td>
         <td><%= reemper.biography %></td>
         <td><%= reemper.language %></td>
-        <td><%= reemper.specialty_id %></td>
-        <td><%= reemper.category_id %></td>
-        <td><%= reemper.user_id %></td>
+        <td><%= reemper.specialty.name if reemper.specialty %></td>
+        <td><%= reemper.category.name if reemper.category %></td>
+        <td><%= reemper.user.names %></td>
         <td><%= reemper.verified %></td>
         <td><%= reemper.category_name %></td>
         <td><%= reemper.specialty_name %></td>

@@ -56,13 +56,14 @@
   </div>
 
 
-  <div class="col-md-12">
+<div class="col-md-12">
     <%= form.label :Ciudad %>
-    <%= form.text_field :city , id: "autocomplete", class: "form form-control", :required => true %>
+    <%= form.text_field :city , id: "address", class: "form form-control", :required => true %>
+    <br><br> 
     <div class="invalid-feedback">
       Requerido!
-    </div>
-  </div>
+    </div> 
+</div>
 
 </div>
 
@@ -94,12 +95,13 @@
 
 </div>
 
+
 <div class="col-md-4" style="padding-right: 0px;">
   <legend>INFORMACION ADICIONAL <i class=" icon-rigth fas fa-question-circle"></i> </legend>
   <br>
   <div class="col-md-12">
     <label>Categoria</label>
-      <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona una categoría', id: "validationCustom01", :required => true}%>
+      <%= form.select 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona una categoría'}%>
 
 
     <div class="invalid-feedback">
@@ -110,7 +112,7 @@
 
   <div class="col-md-12">
     <%= form.label "Especialidad" %>
-    <%= select_tag 'specialty_id', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form form-control", :prompt => 'Selecciona una categoría', id: "validationCustom01", :required => true}%>
+    <%= form.select 'specialty_id', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{class: "form form-control", :prompt => 'Selecciona una categoría'}%>
     <div class="invalid-feedback">
       Selecciona Alguna!! 
     </div>
@@ -155,8 +157,7 @@
 
 
 
-  <%= form.hidden_field :valoration %>
-  <%= form.hidden_field :verified %>
+
   <%= form.hidden_field :user_id, :value => current_user.id %>
 
 
@@ -164,6 +165,7 @@
     <%= form.submit "Guardar", class: "btn btn-success" %>
   </div>
 <% end %>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.15.5"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=<%= ENV["GOOGLE_API"] %>"></script>
     <script>
 
@@ -183,17 +185,24 @@
 
 
       });
-      var input = document.getElementById('autocomplete');
-      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
-      google.maps.event.addListener(autocomplete, 'place_changed', function(){
-         var place = autocomplete.getPlace();
-         console.log(place);
-         console.log(place.name);
-         //document.getElementById("place_id").value = place.place_id;
-         document.getElementById("city").value = place.name;
-      })
 
+    (function() {
+      var placesAutocomplete = places({
+        appId: 'plCC6QC1KFHV',
+        apiKey: '1c3b9226a5891eafe44c0f90feff3b56',
+        container: document.querySelector('#address')
+      });
 
+      var $address = document.querySelector('#address-value')
+      placesAutocomplete.on('change', function(e) {
+        $address.textContent = e.suggestion.value
+      });
+
+      placesAutocomplete.on('clear', function() {
+        $address.textContent = 'none';
+      });
+
+    })();
 
     
     </script>

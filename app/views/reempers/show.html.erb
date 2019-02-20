@@ -1,94 +1,391 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-4 card float " id="show-reemper">
+    <div class="card-body cardby">
 
-<p>
-  <strong>Document type:</strong>
-  <%= @reemper.document_type %>
-</p>
+      <div class="col-md-12 img text-center">
+         <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "rounded-circle")%>
 
-<p>
-  <strong>Document numer:</strong>
-  <%= @reemper.document_numer %>
-</p>
+        <form>
+          <fieldset class="col-md-12 starability-basic text-center">
+            <legend>Valorar <i class="far fa-star"></i> </legend>
+            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
 
-<p>
-  <strong>Profession card:</strong>
-  <%= @reemper.profession_card %>
-</p>
+            <input type="radio" id="rate1" name="rating" value="1" />
+            <label for="rate1">1 star.</label>
 
-<p>
-  <strong>Academy leve:</strong>
-  <%= @reemper.academy_leve %>
-</p>
+            <input type="radio" id="rate2" name="rating" value="2" />
+            <label for="rate2">2 stars.</label>
 
-<p>
-  <strong>Profession:</strong>
-  <%= @reemper.profession %>
-</p>
+            <input type="radio" id="rate3" name="rating" value="3" />
+            <label for="rate3">3 stars.</label>
 
-<p>
-  <strong>University:</strong>
-  <%= @reemper.university %>
-</p>
+            <input type="radio" id="rate4" name="rating" value="4" />
+            <label for="rate4">4 stars.</label>
 
-<p>
-  <strong>University state:</strong>
-  <%= @reemper.university_state %>
-</p>
+            <input type="radio" id="rate5" name="rating" value="5" />
+            <label for="rate5">5 stars.</label>
 
-<p>
-  <strong>Biography:</strong>
-  <%= @reemper.biography %>
-</p>
+            <span class="starability-focus-ring"></span>
+          </fieldset>
+        </form>
 
-<p>
-  <strong>Language:</strong>
-  <%= @reemper.language %>
-</p>
+      </div>
 
-<p>
-  <strong>Specialty:</strong>
-  <%= @reemper.specialty_id %>
-</p>
+      <div class="col-md-12" style="margin-top: 10px;">
+        <legend class="text-center">Ubicacion <i class="fas fa-map-marked-alt"></i></legend>
+        <div id="map"></div>
+      </div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @reemper.category_id %>
-</p>
+    </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @reemper.user_id %>
-</p>
+<div class="col-md-7 no-padding" style="max-width: 65.33333%;">
+  <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><span><i class="fas fa-building"></i></span> Mis Consultorios</a></li>
+      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span> Experiencia</a></li>
+    </ul>
+                <!-- Tab panes -->
+    <div class="tab-content tabs">
 
-<p>
-  <strong>Verified:</strong>
-  <%= @reemper.verified %>
-</p>
+      <div role="tabpanel" class="tab-pane fade" id="Section2">
+        <% @consultorio.each do |consul| %>
+          <fieldset>
+            <legend>Imagenes</legend>
+              <div class="col-md-6">
+                <%= consul.first_photo? ? image_tag(consul.first_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+              </div>
 
-<p>
-  <strong>Category name:</strong>
-  <%= @reemper.category_name %>
-</p>
+              <div class="col-md-6">
+                <%= consul.sub_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+              </div>
 
-<p>
-  <strong>Specialty name:</strong>
-  <%= @reemper.specialty_name %>
-</p>
+          </fieldset>
 
-<p>
-  <strong>City:</strong>
-  <%= @reemper.city %>
-</p>
+          <fieldset>
+            <legend>Localizacion</legend>
+            <div id="map1"></div>
+          </fieldset>
 
-<p>
-  <strong>Valoration:</strong>
-  <%= @reemper.valoration %>
-</p>
+          <script type="text/javascript">
+          function initMap1() {
+            var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
 
-<p>
-  <strong>Academy level:</strong>
-  <%= @reemper.academy_level %>
-</p>
+            // Create a map object and specify the DOM element
+            // for display.
+            var map = new google.maps.Map(document.getElementById('map1'), {
+              center: myLatLng,
+              zoom: 5
+            });
 
-<%= link_to 'Edit', edit_reemper_path(@reemper) %> |
-<%= link_to 'Back', reempers_path %>
+            // Create a marker and set its position.
+            var marker = new google.maps.Marker({
+              map: map,
+              position: myLatLng,
+              title: 'Hello World!'
+            });
+          }
+          </script>
+
+        <% end -%>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade" id="Section3">
+        <fieldset>
+          <legend>Sobre mí <i class="fas fa-users"></i> </legend>
+            <%== @reemper.biography %>
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend> Idiomas <i class="fas fa-globe"></i></legend>
+            <%= @reemper.language %>
+        </fieldset>
+        <br>
+        <fieldset>
+          <legend>Mis Redes Sociales <i class="fab fa-twitter"></i> </legend>
+
+            <div class="col-md-2 text-center no-padding">
+              <button class="facebook">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+            </div>
+
+            <div class="col-md-2 text-center no-padding">
+              <button class="instagram">
+                <i class="fab fa-instagram"></i>
+              </button>               
+            </div>
+
+            <div class="col-md-2 text-center no-padding">
+              <button class="twitter">
+                <i class="fab fa-twitter"></i>
+              </button>           
+            </div>
+
+        </fieldset>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<%= form_tag new_reemper_path do %>
+
+  <%= hidden_field_tag  :valoration, nil%>
+  <%= hidden_field_tag :id, nil, :value => @reemper.user.id %>
+<% end -%>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap"async defer></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap1"async defer></script>
+
+<script type="text/javascript">
+
+
+      function initMap() {
+        var myLatLng = {lat: <%= @reemper.lat %>, lng: <%= @reemper.lng %>};
+
+        // Create a map object and specify the DOM element
+        // for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 5
+        });
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+      }
+
+
+
+
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("show-reemper");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+ 
+ var star1 = document.getElementById("rate1");
+ var star2 = document.getElementById("rate2");
+ var star3 = document.getElementById("rate3");
+ var star4 = document.getElementById("rate4");
+ var star5 = document.getElementById("rate5");
+
+ $(star1).click(function(event) {
+  var valor = star1.value
+  console.log(valor)
+ });
+
+ $(star2).click(function(event) {
+  var valor2 = star2.value
+  console.log(valor2)
+ });
+
+
+ $(star3).click(function(event) {
+  var valor3 = star3.value
+  console.log(valor3)
+ });
+
+
+ $(star4).click(function(event) {
+  var valor4 = star4.value
+  console.log(valor4)
+ });
+
+
+ $(star5).click(function(event) {
+  var valor5 = star5.value
+  console.log(valor5)
+ });
+
+
+</script>
+<style type="text/css" media="screen">
+
+    .img-thumbnail{
+          height: 159px;
+    }
+  .img-not2{
+    height: 44px;
+  }
+
+  .float{
+    float: right;
+    background-color: #f2f8f9;
+  }
+
+  .color{
+    background-color: #f2f8f9;
+  }
+
+  .img img{
+    height: 185px;
+    margin-bottom: 10px;
+  }
+
+  #map{
+    height: 177px ;
+  }
+
+  #map1{
+    height: 177px ;
+  }
+
+
+  .facebook{
+    background-color: #3b5998;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    height: 51px;
+    width: 54px;
+  }
+
+  .instagram{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    height: 51px;
+    width: 54px;
+  }
+
+  .twitter{
+    background-color: #1da1f2;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    height: 51px;
+    width: 54px;
+  }
+
+  .cardby{
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+  }
+
+  .gm-control-active{
+    background: linear-gradient(120deg, #00e4d0, #5983e8) !important;
+  }
+
+  legend{
+        border-radius: 44px;
+  }
+
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab{ text-align: center; }
+.tab .nav-tabs{
+    display: inline-block;
+    position: relative;
+    border-bottom: none;
+    margin-bottom: 17px;
+    margin-top: 10px;
+}
+.tab .nav-tabs li{
+    margin: 0;
+}
+.tab .nav-tabs li a{
+    display: block;
+    padding: 80px 20px 10px;
+    background: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid #fff;
+    margin-right: 0;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li a span{
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #f2f2f2;
+    margin: auto;
+    font-size: 22px;
+    color: #999;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    transform: rotate(45deg);
+}
+.tab .nav-tabs li.active a span{
+    background: linear-gradient(120deg, #00e4d0, #5983e8);
+    color: #fff;
+}
+.tab .nav-tabs li a span i{
+    transform: rotate(-45deg);
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover{
+    color: #999;
+    border: none;
+    border-bottom: 2px solid #fff;
+}
+.tab .nav-tabs li.active a{
+    border-bottom: 2px solid #00e4d0;
+}
+.tab .tab-content{
+    padding-top: 10px;
+    margin-top: -5px;
+    font-size: 15px;
+    color: #757575;
+    line-height: 26px;
+    text-align: left;
+    border-top: 1px solid #e5e5e5;
+}
+.tab .tab-content h3{
+    font-size: 24px;
+    margin-top: 0;
+}
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .tab .nav-tabs li:last-child{
+        margin-bottom: 0;
+    }
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 923px;
+    float: right;
+    width: 320px;
+    margin-top: 73px;
+    margin-left: 10px;
+}
+
+</style>

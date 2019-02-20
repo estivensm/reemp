@@ -12,4 +12,5 @@
 #
 
 class Specialty < ApplicationRecord
+	has_many :reemper
 end

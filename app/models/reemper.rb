@@ -25,5 +25,35 @@
 #  updated_at       :datetime         not null
 #
 
-class Reemper < ApplicationRecord
+class Reemper < ActiveRecord::Base
+	
+	belongs_to :category, optional: true
+	belongs_to :specialty, optional: true
+	belongs_to :user
+
+	include AlgoliaSearch
+
+	algoliasearch per_environment: true  do
+
+	    attribute :user_id do
+	      { name: user.names }
+	    end
+
+	   	attribute :category_id do
+	      { name: user.names }
+	    end
+
+	   	attribute :specialty_id do
+	      { name: user.names }
+	    end
+
+	   	#attribute :reemper do
+	      #{ name: reemper.name }
+	    #end
+
+	    attribute :document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :verified, :city, :valoration, :academy_level
+
+	    geoloc :lat, :lng
+
+	end
 end

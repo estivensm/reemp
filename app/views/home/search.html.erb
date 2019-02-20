@@ -1,4 +1,4 @@
-<br><br>
+<br>
 <div class="card col-md-4">
   <fieldset>
     <legend>Buscadores</legend>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="card col-md-4">
-  <fieldset>
+  <fieldset style="height: 566px;">
     <legend>Resultados</legend>
     <div class="col-dm-12" id="hits"></div>
     <div class="col-dm-12" id="hits1"></div>
@@ -54,13 +54,14 @@
     </div>
   </div>
 </div>                                                                                                                                                                                                                                                            
-  
+<!--  
 <div class="card col-md-4" id="results" style="margin-top: 100px;">
   <fieldset>
         <div class="col-md-12" id="pagination"></div>
   </fieldset>
 </div>
 
+-->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/reset-min.css"
@@ -225,7 +226,7 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-
+/*
     search.addWidget(
       instantsearch.widgets.pagination({
         container: '#pagination',
@@ -236,7 +237,7 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-
+*/
 
    
   /*
@@ -592,8 +593,8 @@ em{
   border-radius: 30px;
 }
 #hits .ais-Hits-list .hit .infos {
-  height: 90px;
-  padding: 16px 20px;
+    height: 90px;
+    padding: 0px 0px;
 }
 #hits .ais-Hits-list .hit .infos h4 {
   font-size: 1em;
@@ -647,6 +648,20 @@ em{
 }
 .thank-you a {
   color: #ff585b;
+}
+
+.ais-Hits{
+  max-height: 415px;
+}
+
+.ais-Hits-list{
+  max-height: 478px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.ais-Hits-item{
+  margin-right: 10px;
 }
 
 </style>
