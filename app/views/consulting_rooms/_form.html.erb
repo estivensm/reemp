@@ -40,8 +40,8 @@
 
   <div class="col-md-12 no-padding">
     <%= form.label "Ciudad" %>
-    <%= form.text_field :city, id: "autocomplete", class: "form form-control", :placeholder => "Ciudad" %>
-    <br>
+    <%= form.text_field :city, id: "address", class: "form form-control", :placeholder => "Ciudad", :required => true %>
+    <br><br>
   </div>
 
 
@@ -107,13 +107,30 @@
 
   <div class="modal-footer col-md-12">
     <%= form.submit "Guardar", class: "btn btn-success" %>
-    <%= button_to "Guardar", params: { start_point: 3.month.ago }, class: "btn btn-success"%>
   </div>
 
 <% end %>
-
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.15.5"></script>
 
 <script>
+
+      (function() {
+      var placesAutocomplete = places({
+        appId: 'plCC6QC1KFHV',
+        apiKey: '1c3b9226a5891eafe44c0f90feff3b56',
+        container: document.querySelector('#address')
+      });
+
+      var $address = document.querySelector('#address-value')
+      placesAutocomplete.on('change', function(e) {
+        $address.textContent = e.suggestion.value
+      });
+
+      placesAutocomplete.on('clear', function() {
+        $address.textContent = 'none';
+      });
+
+    })();
 
    document.addEventListener("DOMContentLoaded", function(){
     var latitud = document.getElementById("reverse-geo-lat").value

@@ -1,142 +1,148 @@
-<div class="col-md-4 card float " id="show-reemper">
-    <div class="card-body cardby">
+<div class="container">
+  <div class="row">
 
-      <div class="col-md-12 img text-center">
-         <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "rounded-circle")%>
+    <div class="col-md-7 no-padding" style="max-width: 65.33333%;">
+      <div class="tab" role="tabpanel">
+                    <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active" ><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><span><i class="fas fa-building"></i></span> Mis Consultorios</a></li>
+          <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span> Experiencia</a></li>
+        </ul>
+                    <!-- Tab panes -->
+        <div class="tab-content tabs">
 
-        <form>
-          <fieldset class="col-md-12 starability-basic text-center">
-            <legend>Valorar <i class="far fa-star"></i> </legend>
-            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+          <div role="tabpanel" class="tab-pane fade in active" id="Section2">
+            <% @consultorio.each do |consul| %>
+              <fieldset>
+                <legend>Imagenes</legend>
+                  <div class="col-md-6">
+                    <%= consul.first_photo? ? image_tag(consul.first_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+                  </div>
 
-            <input type="radio" id="rate1" name="rating" value="1" />
-            <label for="rate1">1 star.</label>
+                  <div class="col-md-6">
+                    <%= consul.sub_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+                  </div>
 
-            <input type="radio" id="rate2" name="rating" value="2" />
-            <label for="rate2">2 stars.</label>
+              </fieldset>
 
-            <input type="radio" id="rate3" name="rating" value="3" />
-            <label for="rate3">3 stars.</label>
+              <fieldset style="margin-top: 10px; margin-bottom: 10px;">
+                <legend>Localizacion</legend>
+                <div id="map1"></div>
+              </fieldset>
 
-            <input type="radio" id="rate4" name="rating" value="4" />
-            <label for="rate4">4 stars.</label>
+              <script type="text/javascript">
+              function initMap1() {
+                var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
 
-            <input type="radio" id="rate5" name="rating" value="5" />
-            <label for="rate5">5 stars.</label>
+                // Create a map object and specify the DOM element
+                // for display.
+                var map = new google.maps.Map(document.getElementById('map1'), {
+                  center: myLatLng,
+                  zoom: 5
+                });
 
-            <span class="starability-focus-ring"></span>
-          </fieldset>
-        </form>
+                // Create a marker and set its position.
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: myLatLng,
+                  title: 'Hello World!'
+                });
+              }
+              </script>
 
+            <% end -%>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="Section3">
+            <fieldset>
+              <legend>Sobre mí <i class="fas fa-users"></i> </legend>
+                <%== @reemper.biography %>
+            </fieldset>
+            <br>
+            <fieldset>
+              <legend> Idiomas <i class="fas fa-globe"></i></legend>
+                <%= @reemper.language %>
+            </fieldset>
+            <br>
+            <fieldset>
+              <legend>Mis Redes Sociales <i class="fab fa-twitter"></i> </legend>
+
+                <div class="col-md-2 text-center no-padding">
+                  <button class="facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                </div>
+
+                <div class="col-md-2 text-center no-padding">
+                  <button class="instagram">
+                    <i class="fab fa-instagram"></i>
+                  </button>               
+                </div>
+
+                <div class="col-md-2 text-center no-padding">
+                  <button class="twitter">
+                    <i class="fab fa-twitter"></i>
+                  </button>           
+                </div>
+
+            </fieldset>
+
+          </div>
+        </div>
       </div>
-
-      <div class="col-md-12" style="margin-top: 10px;">
-        <legend class="text-center">Ubicacion <i class="fas fa-map-marked-alt"></i></legend>
-        <div id="map"></div>
-      </div>
-
     </div>
-</div>
 
-<div class="col-md-7 no-padding" style="max-width: 65.33333%;">
-  <div class="tab" role="tabpanel">
-                <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><span><i class="fas fa-building"></i></span> Mis Consultorios</a></li>
-      <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span> Experiencia</a></li>
-    </ul>
-                <!-- Tab panes -->
-    <div class="tab-content tabs">
+    <div class="col-md-4">
+      <div class="card float " id="show-reemper">
+        <div class="card-body cardby">
+          <div class="col-md-12 img text-center">
+                 <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "rounded-circle")%>
 
-      <div role="tabpanel" class="tab-pane fade" id="Section2">
-        <% @consultorio.each do |consul| %>
-          <fieldset>
-            <legend>Imagenes</legend>
-              <div class="col-md-6">
-                <%= consul.first_photo? ? image_tag(consul.first_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
-              </div>
+            <form>
+              <fieldset class="col-md-12 starability-basic text-center">
+                <legend>Valorar <i class="far fa-star"></i> </legend>
+                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
 
-              <div class="col-md-6">
-                <%= consul.sub_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
-              </div>
+                <input type="radio" id="rate1" name="rating" value="1" />
+                <label for="rate1">1 star.</label>
 
-          </fieldset>
+                <input type="radio" id="rate2" name="rating" value="2" />
+                <label for="rate2">2 stars.</label>
 
-          <fieldset>
-            <legend>Localizacion</legend>
-            <div id="map1"></div>
-          </fieldset>
+                <input type="radio" id="rate3" name="rating" value="3" />
+                <label for="rate3">3 stars.</label>
 
-          <script type="text/javascript">
-          function initMap1() {
-            var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
+                <input type="radio" id="rate4" name="rating" value="4" />
+                <label for="rate4">4 stars.</label>
 
-            // Create a map object and specify the DOM element
-            // for display.
-            var map = new google.maps.Map(document.getElementById('map1'), {
-              center: myLatLng,
-              zoom: 5
-            });
+                <input type="radio" id="rate5" name="rating" value="5" />
+                <label for="rate5">5 stars.</label>
 
-            // Create a marker and set its position.
-            var marker = new google.maps.Marker({
-              map: map,
-              position: myLatLng,
-              title: 'Hello World!'
-            });
-          }
-          </script>
+                <span class="starability-focus-ring"></span>
+              </fieldset>
+            </form>
 
-        <% end -%>
+          </div>
+          <div class="col-md-12" style="margin-top: 10px;">
+            <legend class="text-center">Ubicacion <i class="fas fa-map-marked-alt"></i></legend>
+            <div id="map"></div>
+          </div>
+        </div>
       </div>
-
-      <div role="tabpanel" class="tab-pane fade" id="Section3">
-        <fieldset>
-          <legend>Sobre mí <i class="fas fa-users"></i> </legend>
-            <%== @reemper.biography %>
-        </fieldset>
-        <br>
-        <fieldset>
-          <legend> Idiomas <i class="fas fa-globe"></i></legend>
-            <%= @reemper.language %>
-        </fieldset>
-        <br>
-        <fieldset>
-          <legend>Mis Redes Sociales <i class="fab fa-twitter"></i> </legend>
-
-            <div class="col-md-2 text-center no-padding">
-              <button class="facebook">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-            </div>
-
-            <div class="col-md-2 text-center no-padding">
-              <button class="instagram">
-                <i class="fab fa-instagram"></i>
-              </button>               
-            </div>
-
-            <div class="col-md-2 text-center no-padding">
-              <button class="twitter">
-                <i class="fab fa-twitter"></i>
-              </button>           
-            </div>
-
-        </fieldset>
-
-      </div>
-
     </div>
+    
   </div>
 </div>
 
 
 
-<%= form_tag new_reemper_path do %>
+    <%= form_tag new_reemper_path do %>
 
-  <%= hidden_field_tag  :valoration, nil%>
-  <%= hidden_field_tag :id, nil, :value => @reemper.user.id %>
-<% end -%>
+      <%= hidden_field_tag  :valoration, nil%>
+      <%= hidden_field_tag :id, nil, :value => @reemper.user.id %>
+    <% end -%>
+  </div>
+</div>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap"async defer></script>

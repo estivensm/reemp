@@ -1,6 +1,6 @@
 class ReempersController < ApplicationController
   before_action :set_reemper, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, exept: [:show]
 
   # GET /reempers
   # GET /reempers.json
@@ -11,12 +11,14 @@ class ReempersController < ApplicationController
   # GET /reempers/1
   # GET /reempers/1.json
   def show
+    render :layout => "application"
     @consultorio = ConsultingRoom.where(reemper_id: @reemper.id)
   end
 
   # GET /reempers/new
   def new
     @reemper = Reemper.new
+
   end
 
   # GET /reempers/1/edit
