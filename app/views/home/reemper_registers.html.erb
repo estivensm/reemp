@@ -20,12 +20,12 @@
         	</td>
           <td class="text-center"><%= reemper.user.names %></td>
           <td class="text-center"><%= reemper.user.last_names %></td>
-          <td class="email"><%= reemper.user.email %></td>
+          <td class="text-left"><%= reemper.user.email %></td>
           <td class="text-center"><%= reemper.user.phone%></td>
 
           <td>
 
-          <label class="label-show" data-toggle="modal" data-target="#modal-show<%= reemper.id %>">Informacion Reemper</label>
+          <label class="label-show" data-toggle="modal" data-target="#modal-show<%= reemper.id %>">Informacion</label>
           <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal-show<%= reemper.id %>">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -148,6 +148,8 @@
                   'image-url': ''}, class: "btn btn-danger" do %>
             <span class="glyphicon glyphicon-trash"></span> 
           <% end -%>
+
+          <%= link_to "ver", reemper_registration_path(:name => reemper.user.names), target: '_blank'%>
 
           </td>
         </tr>

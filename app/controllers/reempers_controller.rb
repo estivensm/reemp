@@ -1,6 +1,6 @@
 class ReempersController < ApplicationController
   before_action :set_reemper, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, exept: [:show]
+  before_action :authenticate_user!, :except => [:show]
   before_action :authenticate_admin!, only: [:index]
 
 
@@ -28,7 +28,7 @@ class ReempersController < ApplicationController
 
     respond_to do |format|
       if @reemper.save
-        format.html { redirect_to @reemper, notice: 'Reemper was successfully created.' }
+        format.html { redirect_to reeper_home_path, notice: 'Reemper was successfully created.' }
         format.json { render :show, status: :created, location: @reemper }
       else
         format.html { render :new }
@@ -64,7 +64,9 @@ class ReempersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reemper
-      @reemper = Reemper.find(params[:id])
+
+      usuario = User.where(names: params[:name].to_s)
+      @reemper = Reemper.where(user_id: usuario).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
