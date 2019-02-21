@@ -1,67 +1,69 @@
-<br>
-<div class="card col-md-4">
-  <fieldset>
-    <legend>Buscadores</legend>
+<div class="container" style="margin-top: 10px; height: 579px;">
+  <div class="row">
+    <div class="col-md-5 show-reempers">
+      <legend style="margin-top: 17px;">
+        Reempers <div id="stats"></div>
+      </legend>
+        <div class="col-dm-12 no-padding" id="hits"></div>
+        <div class="col-dm-12 no-padding" id="hits1"></div><br>
 
-    <label>Buscar Reemper</label>
-    <div id="search-box"></div><br>
-
-    <label>Categorias</label>
-    <div id="autocomplete"></div>
-  </fieldset>
-</div>
-
-<div class="card col-md-4">
-  <fieldset>
-    <legend>Mapa</legend>
-    <div id="map"></div>
-  </fieldset>
-</div>
-
-<div class="card col-md-4">
-  <fieldset style="height: 566px;">
-    <legend>Resultados</legend>
-    <div class="col-dm-12" id="hits"></div>
-    <div class="col-dm-12" id="hits1"></div>
-    <div id="stats"></div>
-  </fieldset>
-</div>  
-
-<!-- Button trigger modal -->
-<!-- Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" id="btn-show" data-target="#myModal" style="display: none;">
-  Launch demo modal
-</button>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p id="p"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>                                                                                                                                                                                                                                                            
-<!--  
-<div class="card col-md-4" id="results" style="margin-top: 100px;">
-  <fieldset>
+      <div class="col-md-12" id="results">
         <div class="col-md-12" id="pagination"></div>
-  </fieldset>
-</div>
+      </div>
 
+    </div>
+
+    <div class="col-md-7 no-padding-right" id="map-reemper">
+        <legend style="margin-top: 3px;">Mapa</legend>
+        <div id="map"></div>
+    </div>
+<!--
+    <div class="card col-md-4">
+        <legend>Buscadores</legend>
+
+        <label>Buscar Reemper</label>
+        <div id="search-box"></div><br>
+
+        <label>Categorias</label>
+        <div id="autocomplete"></div>
+    </div>
 -->
+
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn-show" data-target="#myModal" style="display: none;">
+      Launch demo modal
+    </button>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="p"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>                             
+</div> 
+<br><br>                        
+ 
+
+
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/reset-min.css"
@@ -105,15 +107,46 @@ em {
 
 .ais-Hits-item{
   width: calc(103% - 1rem);
-  margin-top: 2rem;
-  margin-bottom: 1em;
+  margin-bottom: 10px;
+  border: initial !important;
+  padding: 5px !important;
+  box-shadow: initial !important;
 }
 
 .ais-GeoSearch-marker{
   cursor: pointer;
 }
 
+.show-reempers{
+  box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  margin-bottom: 10px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    margin-left: 10px;
+    left: 821px;
+    width: 356px;
+}
+
+
 </style>
+
+<script type="text/javascript">
+  window.onscroll = function() {myFunction()};
+
+  var header = document.getElementById("map-reemper");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+</script>
 
 <script type="text/javascript">
 
@@ -124,10 +157,10 @@ $(document).on('turbolinks:load',function() {
   $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=<%= ENV["GOOGLE_API"] %>', function() {
     const search = instantsearch({
       searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
-      indexName: 'ConsultingRoom_production',
+      indexName: 'Reemper_production',
       routing: true
     });
-
+    /*
     const autocomplete = instantsearch.connectors.connectAutocomplete(
     ({ indices, refine, widgetParams }, isFirstRendering) => {
       const { container, onSelectChange } = widgetParams;
@@ -169,20 +202,13 @@ $(document).on('turbolinks:load',function() {
       }
     );
 
+
     search.addWidget(
       autocomplete({
         container: $('#autocomplete'),
         onSelectChange(value) {
           search.helper.setQuery(value).search();
         },
-      })
-    );
-
-    search.addWidget(
-      instantsearch.widgets.configure({
-        aroundLatLngViaIP: true,
-        hitsPerPage: 12
-        //filters: 'category_id = <%= @category %>'
       })
     );
 
@@ -197,6 +223,16 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
+    */
+
+
+    search.addWidget(
+      instantsearch.widgets.configure({
+        aroundLatLngViaIP: true,
+        hitsPerPage: 12
+        //filters: 'category_id = <%= @category %>'
+      })
+    );
 
     search.addWidget(
       instantsearch.widgets.stats({
@@ -205,14 +241,25 @@ $(document).on('turbolinks:load',function() {
     );
 
     var hitTemplate =
-      '<div class="card hit col-sm-12">' +
-        '<div class="card-body infos">' +
-          '<h4 class="media-heading">{{category.name}}</h4>' +
-          '<p>' +
-          '{{#helpers.highlight}}{ "attribute": "name" }{{/helpers.highlight}},'+
-          '<%= link_to "Ver Registro",  CGI::unescape(contact_delete_path("{{objectID}}")) %>'+
-          '</p>' +
-        '</div>' +
+      '<div class="card col-sm-12 no-padding card-reemper">'+
+        '<div class="card-body" style="padding-left: 17px; padding-right: 17px;">'+
+          '<div class="col-md-3 no-padding-left">'+
+            '<img class="img-xs rounded-circle" src="https://juliosuarezanturi.files.wordpress.com/2012/10/josefaerrazuriz.jpg" />'+
+          '</div>'+
+          '<div class="col-md-9 no-padding-right">'+
+            '<h4 style="font-size: 16px;">Estiven Salazar <i class="fas fa-check-circle"></i> </h4>'+
+            '<label style="font-size: 14px;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
+            '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
+            '<b> <i class="fas fa-map-marker-alt"></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
+          '</div>'+
+
+          '<div class="col-md-12 no-padding" style="margin-top: 10px;">'+
+            '<p>'+
+              '{{#helpers.highlight}}{ "attribute": "biography" }{{/helpers.highlight}}'+
+            '</p>'+
+          '</div>'+
+
+        '</div>'+
       '</div>';
 
     var noResultsTemplate = '<div class="text-center">No se encontraron resultados con <strong>{{query}}</strong>.</div>';
@@ -226,7 +273,7 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-/*
+
     search.addWidget(
       instantsearch.widgets.pagination({
         container: '#pagination',
@@ -237,7 +284,7 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-*/
+
 
    
   /*
@@ -349,6 +396,11 @@ $(document).on('turbolinks:load',function() {
   /* GENERAL
 // ------------------------- */
 
+.card-reemper{
+    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
 
 .aisdemo--left-column {
   height: 400px;
@@ -359,6 +411,16 @@ $(document).on('turbolinks:load',function() {
   padding-left: 0;
 }
 
+.img-xs{
+    width: 86px;
+    height: 104px;
+    border-radius: initial !important;
+    margin-right: 10px;
+}
+
+.picture{
+  height: 10px;
+}
 /* HEADER
 // ------------------------- */
 .aisdemo-navbar {
@@ -542,9 +604,10 @@ em{
 #stats {
   font-size: 1em;
   font-weight: normal;
-  position: absolute;
-  bottom: 0;
-  padding: 5px 15px;
+  float: right;
+  background: #fff;
+  padding: 0px 7px;
+  box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
 }
 
 /* MAP
@@ -594,7 +657,7 @@ em{
 }
 #hits .ais-Hits-list .hit .infos {
     height: 90px;
-    padding: 0px 0px;
+    padding: 6px 6px;
 }
 #hits .ais-Hits-list .hit .infos h4 {
   font-size: 1em;
@@ -624,44 +687,24 @@ em{
   padding: 3px;
 }
 #pagination .ais-Pagination-link {
-  color: #ff585b;
+  color: #40436f;
   border-radius: 4px;
   background: transparent;
 }
 #pagination .pagination > .active > a {
-  color: #ffffff;
-  border-color: #ff585b;
-  background: #ff585b;
+    color: #ffffff;
+    border-color: #40436f;
+    background: #40436f;
 }
 #pagination .pagination > li > a:focus,
 #pagination .pagination > li > a:hover,
 #pagination .pagination > li > span:focus,
 #pagination .pagination > li > span:hover {
   color: #ffffff;
-  border-color: #ff585b;
-  background: #ff585b;
+  border-color: #40436f;
+  background: #40436f;
 }
 
-.thank-you {
-  text-align: center;
-  font-size: 0.8em;
-}
-.thank-you a {
-  color: #ff585b;
-}
 
-.ais-Hits{
-  max-height: 415px;
-}
-
-.ais-Hits-list{
-  max-height: 478px;
-  overflow: scroll;
-  overflow-x: hidden;
-}
-
-.ais-Hits-item{
-  margin-right: 10px;
-}
 
 </style>

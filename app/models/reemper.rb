@@ -35,16 +35,16 @@ class Reemper < ActiveRecord::Base
 
 	algoliasearch per_environment: true  do
 
-	    attribute :user_id do
+	    attribute :user do
 	      { name: user.names }
 	    end
 
-	   	attribute :category_id do
-	      { name: user.names }
+	   	attribute :category do
+	      { name: category.name }
 	    end
 
-	   	attribute :specialty_id do
-	      { name: user.names }
+	   	attribute :specialty do
+	      { name: specialty.name }
 	    end
 
 	   	#attribute :reemper do
