@@ -1,0 +1,210 @@
+<% if @reempers.any? %>
+<legend>Reempers Registrados</legend>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="width text-center">Avatar</th>
+      <th class="width text-center">Nombre</th>
+      <th class="width text-center">Apellido</th>
+      <th class="width-email text-center">Email</th>
+      <th class="text-center width">Telefono</th>
+      <th class="width text-center">Acciones</th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <% @reempers.each do |reemper| %>
+        <tr>
+        	<td class="text-center">
+        	<%= reemper.user.avatar? ? image_tag(reemper.user.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
+        	</td>
+          <td class="text-center"><%= reemper.user.names %></td>
+          <td class="text-center"><%= reemper.user.last_names %></td>
+          <td class="email"><%= reemper.user.email %></td>
+          <td class="text-center"><%= reemper.user.phone%></td>
+
+          <td>
+
+          <label class="label-show" data-toggle="modal" data-target="#modal-show<%= reemper.id %>">Informacion Reemper</label>
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal-show<%= reemper.id %>">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="container-fluid">
+                  <div class="row">
+
+                  <div class="col-md-4">
+                    <legend>PERSONAL</legend><br>
+
+                    <strong>Tipo de Documento</strong>
+                    <p><%= reemper.document_type %></p>  
+
+                    <strong>Numero de Documento</strong>
+                    <p><%= reemper.document_numer %></p>   
+
+                    <strong>Ciudad</strong>
+                    <p><%= reemper.city %></p>   
+
+                  </div>
+
+                  <div class="col-md-4">
+                    <legend>INFORMACION ACADEMICA</legend><br>
+
+                    <strong>Nivel Academico</strong>
+                    <p><%= get_academic(reemper.academy_level) %></p>  
+
+                    <strong>Univesidad</strong>
+                    <p><%= reemper.university %></p>   
+
+                    <strong>Profession</strong>
+                    <p><%= reemper.profession %></p>                 
+                  </div>
+
+                  <div class="col-md-4">
+                    <legend>INFORMACION ADICIONAL</legend><br>
+
+                    <strong>Categoria</strong>
+                    <p><%= reemper.category.name %></p>  
+
+                    <strong>Especialidad</strong>
+                    <p><%= reemper.specialty.name %></p>   
+
+                    <strong>Idiomas</strong>
+                    <p><%= reemper.language %></p>  
+
+                  </div>
+
+                  <div class="col-md-12" style=" white-space: normal; ">
+                      <legend>BIOGRAFIA</legend>
+                        <%== reemper.biography %>
+                  </div>
+
+                  <% consultorio =  ConsultingRoom.where(user_id: reemper.user.id) %>
+
+                  <% if consultorio.any? %>
+
+                    <div class="col-md-12" style="margin-top: 20px;">
+                      <legend>Informacion del Consultorio</legend>
+
+                        <% consultorio.each do |consultorio|%>
+
+                        <div class="col-md-8 no-padding-left">
+                          <legend>Imagenes</legend>
+
+                          <div class="col-md-6 no-padding-left img">
+                            <%= consultorio.first_photo? ? image_tag(consultorio.first_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
+                          </div>
+
+                          <div class="col-md-6 no-padding-right img1">
+                            <%= consultorio.sub_photo? ? image_tag(consultorio.sub_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
+                          </div>
+                          
+                        </div>
+
+                        <div class="col-md-4 no-padding-right">
+                          <legend>Ubicacion</legend>
+                          <div id="map"></div>
+
+                        <script type="text/javascript">
+                          function initMap() {
+                            var myLatLng = {lat: <%= consultorio.lat %>, lng: <%= consultorio.lng %>};
+
+                            // Create a map object and specify the DOM element
+                            // for display.
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              center: myLatLng,
+                              zoom: 5
+                            });
+
+                            // Create a marker and set its position.
+                            var marker = new google.maps.Marker({
+                              map: map,
+                              position: myLatLng,
+                              title: 'Hello World!'
+                            });
+                          }
+                          </script>
+
+                          
+                        </div>
+
+                        <% end -%>
+
+                    </div>
+
+                  <% end -%>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= link_to destroy_path(reemper.id), method: :delete, title: "Emilinar Cuenta", data: {
+                  confirm: '¿Estas Seguro?',
+                  'confirm-button-text': 'Borrar',
+                  'cancel-button-text': 'Cancelar',
+                  'confirm-button-color': '#CC0000',
+                   text: 'Recuerda que el registro se borrara permanentemente',
+                  'image-url': ''}, class: "btn btn-danger" do %>
+            <span class="glyphicon glyphicon-trash"></span> 
+          <% end -%>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap"async defer></script>
+<style type="text/css" media="screen">
+
+  .img img{
+    width: 100% !important;
+    height: 160px !important;
+    border-radius: inherit !important;
+  }
+
+  .img1 img{
+    width: 100% !important;
+    height: 160px !important;
+    border-radius: inherit !important;
+  }
+
+  .width{
+    width: 10%;
+  }
+
+  .width-email{
+    width: 22%;
+  }
+
+  .email{
+    max-width: 0px;
+    overflow-x: overlay;
+  }
+
+  .label-show{
+    cursor: pointer;
+    background-color: #47cbd4;
+    padding: 3px;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+  .modal-content{
+    padding: 10px;
+    border-radius: 0px;
+    background-clip: initial;
+    box-shadow: 0 3px 9px #47cbd4 !important;
+  }
+
+  #map{
+    height: 161px;
+  }
+
+  #map img{
+    border-radius: inherit !important;
+  }
+
+
+</style>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :consulting_rooms
-  resources :reempers
+  resources :reempers, :except => [:index]
   resources :subspecialties, :except => [:show]
   resources :specialties, :except => [:show]
   resources :professions, :except => [:show]
@@ -30,10 +30,11 @@ Rails.application.routes.draw do
   post "create_contact", to: "contacts#create", as: "create_contact"
   get "admin/home", to: "home#admin_home", as: "admin_home"
   get "admin/contact", to: "home#admin_contact", as: "admin_contact"
-  get "admin/reempers", to: "home#admin_users", as: "admin_users"
+  get "admin/users", to: "home#admin_users", as: "admin_users"
   get "admin/all_admins", to: "home#all_admins", as: "all_admins"
   get "browser", to: "home#search", as: "browser"
   delete "contact_delete/:id", to: "contacts#destroy", as: "contact_delete"
+  get "admin/all_reempers", to: "home#reemper_registers", as: "reemper_registers"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

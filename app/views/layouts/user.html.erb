@@ -139,10 +139,15 @@
                 </div>
               </div>
               <% user_menu %>
-              <%= link_to  new_reemper_path, class: "btn btn-success", id: "new_remper" do %>
-                <i class="fas fa-plus-circle"></i> Ser Reemper
+              <% if remmper_have %>
+                <span class="badge badge-success">Ya Eres Reemper</span>
+              <% else %>
+
+                <%= link_to  new_reemper_path, class: "btn btn-success", id: "new_remper" do %>
+                  <i class="fas fa-plus-circle"></i> Ser Reemper
+                <% end -%>
+                <br>
               <% end -%>
-              <br>
 
               <li class="nav-item <%= @reemper[0] %>">
                 <%= link_to reeper_home_path, class: "nav-link" do %>
@@ -150,11 +155,15 @@
                 <% end -%>
               </li>
 
-              <li class="nav-item <%= @reemper[1] %>">
+              <% if remmper_have && consulting_room %>
+              <% else %>
+                        <li class="nav-item <%= @reemper[1] %>">
                 <%= link_to new_consulting_room_path, class: "nav-link" do %>
                     <i class="menu-icon fas fa-user-edit"></i> Consutorio
                 <% end -%>
-              </li>
+              </li>        
+  
+              <% end -%>
 
               <li class="nav-item <%= @reemper[1] %>">
                 <%= link_to edit_user_registration_path, class: "nav-link" do %>

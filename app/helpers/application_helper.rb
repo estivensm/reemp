@@ -37,7 +37,8 @@ module ApplicationHelper
   			["1","1"],
   			["2","2"],
   			["3","3"],
-  			["4","4"]
+  			["4","4"],
+  			["5","5"]
   		]
   		
   	end
@@ -194,6 +195,32 @@ module ApplicationHelper
 
 	def get_special
 		Specialty.all		
+	end
+
+	def remmper_have
+		Reemper.where(user_id: current_user.id).present?
+	end
+
+	def consulting_room
+		ConsultingRoom.where(user_id: current_user.id).present?
+	end
+
+	def get_academic(number)
+		if number == "1"
+			return "Bajo"
+
+			elsif number == "2"
+			return "Bajo"
+
+			elsif number == "3"
+			return "Mediano"
+
+			elsif number == "4"
+			return "Alto"
+
+			elsif number == "5"
+			return "Alto"
+		end
 	end
 
 	

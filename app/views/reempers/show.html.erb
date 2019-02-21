@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-7 no-padding" style="max-width: 65.33333%;">
+    <div class="col-md-8 no-padding" style="max-width: 65.33333%;">
       <div class="tab" role="tabpanel">
                     <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -93,7 +93,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="card float " id="show-reemper">
+      <div class="card" id="show-reemper">
         <div class="card-body cardby">
           <div class="col-md-12 img text-center">
                  <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "rounded-circle")%>
@@ -123,16 +123,17 @@
             </form>
 
           </div>
-          <div class="col-md-12" style="margin-top: 10px;">
-            <legend class="text-center">Ubicacion <i class="fas fa-map-marked-alt"></i></legend>
-            <div id="map"></div>
+            <div class="col-md-12" style="margin-top: 10px;">
+              <legend class="text-center">Ubicacion <i class="fas fa-map-marked-alt"></i></legend>
+              <div id="map"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    
-  </div>
+  <br>
 </div>
+
 
 
 
@@ -231,9 +232,9 @@ function myFunction() {
     height: 44px;
   }
 
-  .float{
-    float: right;
+  #show-reemper{
     background-color: #f2f8f9;
+    margin-top: 42px;
   }
 
   .color{
@@ -387,11 +388,9 @@ a:hover,a:focus{
 .sticky {
     position: fixed;
     top: 0;
-    left: 923px;
-    float: right;
-    width: 320px;
-    margin-top: 73px;
     margin-left: 10px;
+    left: 821px;
+    width: 356px;
 }
 
 </style>

@@ -24,7 +24,12 @@ class HomeController < ApplicationController
   end
 
   def reemper_home
-    
+      
+  end
+
+  def reemper_registers
+    @reempers = Reemper.all
+    render :layout => "admin" 
   end
 
   def admin_home
