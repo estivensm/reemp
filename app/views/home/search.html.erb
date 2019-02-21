@@ -244,10 +244,10 @@ $(document).on('turbolinks:load',function() {
       '<div class="card col-sm-12 no-padding card-reemper">'+
         '<div class="card-body" style="padding-left: 17px; padding-right: 17px;">'+
           '<div class="col-md-3 no-padding-left">'+
-            '<img class="img-xs rounded-circle" src="https://juliosuarezanturi.files.wordpress.com/2012/10/josefaerrazuriz.jpg" />'+
+            '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
           '</div>'+
           '<div class="col-md-9 no-padding-right">'+
-            '<h4 style="font-size: 16px;"> {{#helpers.highlight}}{ "attribute": "user_id.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
+            '<h4 style="font-size: 16px;"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
             '<label style="font-size: 14px;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
             '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
             '<b> <i class="fas fa-map-marker-alt"></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
