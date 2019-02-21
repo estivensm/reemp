@@ -247,7 +247,7 @@ $(document).on('turbolinks:load',function() {
             '<img class="img-xs rounded-circle" src="https://juliosuarezanturi.files.wordpress.com/2012/10/josefaerrazuriz.jpg" />'+
           '</div>'+
           '<div class="col-md-9 no-padding-right">'+
-            '<h4 style="font-size: 16px;">Estiven Salazar <i class="fas fa-check-circle"></i> </h4>'+
+            '<h4 style="font-size: 16px;"> {{#helpers.highlight}}{ "attribute": "user_id.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
             '<label style="font-size: 14px;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
             '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
             '<b> <i class="fas fa-map-marker-alt"></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
