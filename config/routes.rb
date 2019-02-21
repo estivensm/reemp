@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :consulting_rooms
-  resources :reempers, :except => [:index]
+  resources :reempers, :except => [:index, :show]
+  get "reemper/:name", to: "reempers#show", as: "reemper_registration"
   resources :subspecialties, :except => [:show]
   resources :specialties, :except => [:show]
   resources :professions, :except => [:show]
