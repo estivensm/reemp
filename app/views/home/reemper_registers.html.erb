@@ -18,10 +18,10 @@
         	<td class="text-center">
         	<%= reemper.user.avatar? ? image_tag(reemper.user.avatar_url(), class: "img-xs rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-xs rounded-circle")%>
         	</td>
-          <td class="text-center"><%= reemper.user.names %></td>
-          <td class="text-center"><%= reemper.user.last_names %></td>
+          <td class="text-center"><%= reemper.user.names if reemper.user %></td>
+          <td class="text-center"><%= reemper.user.last_names if reemper.user %></td>
           <td class="text-left"><%= reemper.user.email %></td>
-          <td class="text-center"><%= reemper.user.phone%></td>
+          <td class="text-center"><%= reemper.user.phone if reemper.user %></td>
 
           <td>
 
