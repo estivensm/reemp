@@ -29,10 +29,10 @@
             <i class="fas fa-check" id="icon-legal"></i>
           </div>
 
-        <%= form_tag browser_path, :method => 'get' do %>
+        <%= form_tag browser_path, :method => 'post' do %>
 
           <div class="col-md-6" style="display: none;" id="imput-salud">
-            <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", id: "validationCustom01", :prompt => 'Especiadad(Cirugia Plastica)'}%>
+            <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)'}%>
 
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
@@ -41,26 +41,40 @@
           </div>
 
           <div class="col-md-6" id="imput-masco" style="display: none;">
-            <%= text_field_tag :search,params[:search], autocomplete: "off", placeholder: "mascotas", class: "form form-control"%>
+            <%= select_tag 'specialties', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadades'}%>
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
           </div>
 
           <div class="col-md-6" style="display: none;" id="imput-const">
-            <%= text_field_tag :search1,params[:search1], autocomplete: "off", placeholder: "construccion", class: "form form-control"%>
+            <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "construccion", class: "form form-control" , id: "" %>
+
+            <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
+
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
 
           </div>
 
-          <div class="col-md-6" style="display: none;" id="imput-legal">
-            <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "legal", class: "form form-control"%>
+          <div class="col-md-6" style="display: none;" id="imput-const">
+            <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "construccion", class: "form form-control" %>
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
           </div> 
+
+          <div class="col-md-6" style="display: none;" id="imput-legal">
+            <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "legal", class: "form form-control" %>
+            <%= button_tag class: "submit1", :title => "Buscar" do %>
+              <i class="fas fa-arrow-right icon-row"></i>            
+            <% end -%>
+          </div> 
+
+          <div class="col-md-5 text-center search-map" style="display: none;">
+              <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
+          </div>
 
         <% end -%>
 
@@ -99,9 +113,22 @@
     </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
 <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
+
+      var input = document.getElementById('autocomplete');
+      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+      google.maps.event.addListener(autocomplete, 'place_changed', function(){
+         var place = autocomplete.getPlace();
+         console.log(place);
+         console.log(place.name);
+         //document.getElementById("place_id").value = place.place_id;
+         document.getElementById("city").value = place.name;
+      })
+
+    
 
     var salud = document.getElementById("salud");
     var masco = document.getElementById("masko");
@@ -120,7 +147,7 @@
 
     $(salud).click(function(event) {
       $(this).addClass('opacidad');
-
+      $(".search-map").show("linear");
       $(icon_salud).addClass('show');
       $(icon_masco).removeClass('show').addClass('hide')
       $(icon_cons).removeClass('show').addClass('hide')
@@ -144,7 +171,7 @@
       $(icon_cons).removeClass('show').addClass('hide')
       $(icon_legal).removeClass('show').addClass('hide')
 
-
+      $(".search-map").show("linear");
       $(salud).removeClass('opacidad');
       $(cons).removeClass('opacidad');
       $(legal).removeClass('opacidad');
@@ -166,7 +193,7 @@
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(legal).removeClass('opacidad');
-
+      $(".search-map").show("linear");
       $(imputconst).show("linear");  
       $(imputmas).hide("linear"); 
       $(imputsa).hide("linear"); 
@@ -180,7 +207,7 @@
       $(icon_cons).removeClass('show').addClass('hide');
       $(icon_masco).removeClass('show').addClass('hide');
       $(icon_salud).removeClass('show').addClass('hide');
-
+      $(".search-map").show("linear");
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
@@ -201,6 +228,11 @@
     border: 1px solid #01BAFE !important;
     background: #fff !important;
     color: #01BAFE !important;
+  }
+
+  .search-map{
+    float: right;
+    margin-top: 27px;
   }
 
   #icon-check{
@@ -250,22 +282,22 @@
   }
 
   #imput-masco .form{
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
   }
 
   #imput-const .form{
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
   }
 
   #imput-salud .form{
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
   }
 
   #imput-legal .form{
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
   }
 

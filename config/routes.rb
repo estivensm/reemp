@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   get "admin/contact", to: "home#admin_contact", as: "admin_contact"
   get "admin/users", to: "home#admin_users", as: "admin_users"
   get "admin/all_admins", to: "home#all_admins", as: "all_admins"
-  get "browser", to: "home#search", as: "browser"
+  get "buscador(/:category)(/:specialties)(/:city)", to: "home#buscador", as: "buscador"
+  post "browser", to: "home#search", as: "browser"
   delete "contact_delete/:id", to: "contacts#destroy", as: "contact_delete"
   get "admin/all_reempers", to: "home#reemper_registers", as: "reemper_registers"
 

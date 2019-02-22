@@ -1,1 +1,8 @@
 <h1>Hola <%= current_user.names %></h1>
+
+
+<script type="text/javascript">
+	<% if notice.present? %>
+		    toastr["success"]("<%= notice %>");
+	<% end -%>
+</script>

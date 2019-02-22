@@ -9,14 +9,33 @@ class HomeController < ApplicationController
   end
 
   def search
-    @category = params[:category_id]
-    @search = params[:search]
-    @search1 = params[:search1]
-    @search2 = params[:search2]
+    @category = Category.where(id: params[:category_id]).first
+    @especialidad = Specialty.where(id: params[:specialties]).first
+    @ciudad = params[:city]
+    puts @ciudad
+
+    if @category.present?
+      redirect_to buscador_path(@category.name, @ciudad)
+      puts "categoria sola"
+
+    elsif @especialidad.present?
+      redirect_to buscador_path(@especialidad.name, @ciudad)
+      
+    end
+
+    #redirect_to buscador_path(@category.name, @especialidad.name, @search1)
   end
 
   def inicio
   	
+  end
+
+  def buscador
+    @category = params[:category_id]
+    @search = params[:search]
+    @search1 = params[:search1]
+    @search2 = params[:search2]
+    
   end
 
   def user_contact
