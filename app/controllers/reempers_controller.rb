@@ -28,7 +28,7 @@ class ReempersController < ApplicationController
 
     respond_to do |format|
       if @reemper.save
-        format.html { redirect_to reeper_home_path, notice: 'Fue Creado con Exito!' }
+        format.html { redirect_to new_consulting_room_path, notice: 'Fue Creado con Exito!' }
         format.json { render :show, status: :created, location: @reemper }
       else
         format.html { render :new }

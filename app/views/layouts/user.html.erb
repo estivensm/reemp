@@ -139,6 +139,7 @@
                 </div>
               </div>
               <% user_menu %>
+
               <% if remmper_have %>
                 <span class="badge badge-success">Ya Eres Reemper</span>
               <% else %>
@@ -155,11 +156,10 @@
                 <% end -%>
               </li>
 
-              <% if remmper_have && consulting_room %>
-              <% else %>
+              <% if remmper_have.present? && consulting_room.present? %>
                         <li class="nav-item <%= @reemper[1] %>">
-                <%= link_to new_consulting_room_path, class: "nav-link" do %>
-                    <i class="menu-icon fas fa-user-edit"></i> Consutorio
+                <%= link_to consulting_rooms_path, class: "nav-link" do %>
+                    <i class="menu-icon fas fa-user-edit"></i> Mis Consultorios
                 <% end -%>
               </li>        
   

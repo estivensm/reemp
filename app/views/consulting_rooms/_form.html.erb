@@ -45,6 +45,7 @@
   </div>
 
 
+
   <div class="col-md-12 no-padding-left">
       <label class="btn btn-success" onclick="buscar()">Buscar mi Ubicacion</label>
   </div>
@@ -64,13 +65,13 @@
 <div class="col-md-12 no-padding-left">
      <legend>Fotografias</legend>
 
-    <div class="col-md-5">
-    <%= form.label "Primera Fotografia" %>
-    <%= form.file_field :first_photo, class: "form form-control", id: "img1", :required => true %>
+    <div class="col-md-5 no-padding-left">
+      <%= form.label "Primera Fotografia" %>
+      <%= form.file_field :first_photo, class: "form form-control", id: "img1", :required => true %>
 
-    <div class="col-md-12" style="padding: 0px;">
-        <img id="blah" src="#" alt="" />
-    </div>
+      <div class="col-md-12" style="padding: 0px;">
+          <img id="blah" src="#" alt="" />
+      </div>
 
   </div>
 
@@ -113,6 +114,7 @@
 <script src="https://cdn.jsdelivr.net/npm/places.js@1.15.5"></script>
 
 <script>
+
 
       (function() {
       var placesAutocomplete = places({
