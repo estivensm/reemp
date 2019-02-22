@@ -66,13 +66,6 @@ $(document).on('turbolinks:load',function() {
     }, false);
   })();
 
-  $('.ckeditor').ckeditor({
-  // optional config
-  
-  }) ;
-
-
-
   $('.chosen-select1').chosen(
         {
 
@@ -83,6 +76,13 @@ $(document).on('turbolinks:load',function() {
           width: "460px"
 
   });
+
+  $('.ckeditor').ckeditor({
+  // optional config
+  
+  }) ;
+
+
 
 
   
