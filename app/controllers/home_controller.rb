@@ -16,11 +16,10 @@ class HomeController < ApplicationController
 
     if @category.present?
       redirect_to buscador_path(@category.name, @ciudad)
-      puts "categoria sola"
 
     elsif @especialidad.present?
       redirect_to buscador_path(@especialidad.name, @ciudad)
-      
+
     end
 
     #redirect_to buscador_path(@category.name, @especialidad.name, @search1)
@@ -31,11 +30,8 @@ class HomeController < ApplicationController
   end
 
   def buscador
-    @category = params[:category_id]
-    @search = params[:search]
-    @search1 = params[:search1]
-    @search2 = params[:search2]
-    
+   @ciudad = params[:specialties]
+   @categorias = params[:category]
   end
 
   def user_contact

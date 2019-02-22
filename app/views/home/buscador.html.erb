@@ -1,5 +1,15 @@
+<%= render "parciales/menu_show" %>
 <div class="container" style="margin-top: 10px; height: 579px;">
   <div class="row">
+
+    <div class="col-md-12 no-padding-left">
+      <ol class="breadcrumb">
+          <li><a href="/home/index">Home</a></li>
+          <li><a href="#"><%= @categorias %></a></li>
+          <li><a href="active"><%= @ciudad %></a></li>
+      </ol>
+    </div>
+
     <div class="col-md-5 show-reempers">
       <legend style="margin-top: 17px;">
         Reempers <div id="stats"></div>
@@ -7,7 +17,7 @@
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div><br>
 
-      <div class="col-md-12" id="results">
+      <div class="col-md-12">
         <div class="col-md-12" id="pagination"></div>
       </div>
 
@@ -126,8 +136,13 @@ em {
     position: fixed;
     top: 0;
     margin-left: 10px;
-    left: 821px;
-    width: 356px;
+    left: 540px;
+    width: 665px;
+}
+
+body{
+  height: 1500px;
+  overflow: hidden;
 }
 
 
@@ -229,8 +244,7 @@ $(document).on('turbolinks:load',function() {
     search.addWidget(
       instantsearch.widgets.configure({
         aroundLatLngViaIP: true,
-        hitsPerPage: 12
-        //filters: 'category_id = <%= @category %>'
+        hitsPerPage: 5
       })
     );
 
@@ -277,7 +291,6 @@ $(document).on('turbolinks:load',function() {
     search.addWidget(
       instantsearch.widgets.pagination({
         container: '#pagination',
-        scrollTo: '#results',
         cssClasses: {
           list: 'pagination',
           selectedItem: 'active'
@@ -705,6 +718,58 @@ em{
   background: #40436f;
 }
 
+.breadcrumb{
+    display: inline-block;
+    padding: 0 20px 0 0;
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+    border-radius: 0;
+    position: relative;
+        margin-bottom: 13px;
+}
+.breadcrumb li{
+    float: left;
+    margin-right: 10px;
+    background: #161054;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+.breadcrumb li:last-child{
+    padding: -7px 18px;
+    margin-right: 0;
+    background: #f48b07;
+    color: #fff;
+    position: relative;
+}
+.breadcrumb li:hover{ background: #f48b07; }
+.breadcrumb li:before{ display: none; }
+.breadcrumb li a{
+    display: block;
+    padding: 2px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+@media only screen and (max-width: 767px){
+    .breadcrumb li{ margin-right: 3px; }
+    .breadcrumb li a,
+    .breadcrumb li:last-child{ padding: 10px; }
+}
+@media only screen and (max-width: 479px){
+    .breadcrumb li{ margin-right: 3px; }
+    .breadcrumb li a,
+    .breadcrumb li:last-child{
+        font-size: 13px;
+        font-weight: normal;
+        padding: 4px 3px;
+    }
+}
 
 
 </style>

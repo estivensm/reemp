@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" class="logo-img"></a>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      </li>
+
+        <%= form_tag browser_path, :method => 'post',class: "needs-validation", :novalidate => true do %>
+
+        <div class="col-md-6 navbar-text" style="margin-right: 0px;">
+          <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)', id: "validationCustom01", :required => true}%>
+
+          <div class="invalid-feedback"></div>
+        </div>
+
+        <div class="col-md-5 navbar-text" style="margin-left: 0px; padding-left: 0px;">
+            <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
+        </div>
+
+        <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
+
+        <div class="col-md-2" style="float: right;">
+          <%= button_tag class: "submit1", :title => "Buscar" do %>
+              <i class="fas fa-arrow-right icon-row"></i> Buscar            
+          <% end -%>
+        </div>
+
+      <% end -%>
+
+    </ul>
+    <span class="navbar-text">
+      <button class="btn-logins">Ingresar</button>
+    </span>
+  </div>
+</nav>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
+<style type="text/css" media="screen">
+
+  .btn-logins{
+    background: #ffffff;
+    border: inherit;
+    border-radius: 55px;
+    padding: 9px;
+    width: 145px;
+    color: #40436f;
+    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  }
+
+  .logo-img{
+    width: 151px;
+    position: relative;
+    top: -28px;
+  }
+
+  .navbar{
+    margin-bottom: 0px;
+    background-color: transparent !important;
+    padding-bottom: 0px;
+    height: 100px;
+  }
+
+  .submit1{
+    background: #210554;
+    color: #fff;
+    border: initial;
+    padding: 8px;
+    border-radius: 25px;
+    position: absolute;
+    top: -56px;
+    right: -38px;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+      var input = document.getElementById('autocomplete');
+      var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+      google.maps.event.addListener(autocomplete, 'place_changed', function(){
+         var place = autocomplete.getPlace();
+         console.log(place);
+         console.log(place.name);
+         //document.getElementById("place_id").value = place.place_id;
+         document.getElementById("city").value = place.name;
+      })
+</script>
