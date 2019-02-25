@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :consulting_rooms, :except => [:edit, :update]
+  resources :consulting_rooms, :except => [:edit]
   get "My/:name/Editar", to: "consulting_rooms#edit", as: "my_roms"
   patch "My/:name", to: "consulting_rooms#update", as: "update_room"
   resources :reempers, :except => [:index, :show]

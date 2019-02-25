@@ -1,5 +1,5 @@
 class ConsultingRoomsController < ApplicationController
-  before_action :set_consulting_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_consulting_room, only: [:show, :edit]
     before_action :authenticate_user!
 
   # GET /consulting_rooms
@@ -43,6 +43,7 @@ class ConsultingRoomsController < ApplicationController
   # PATCH/PUT /consulting_rooms/1
   # PATCH/PUT /consulting_rooms/1.json
   def update
+    @consulting_room = ConsultingRoom.find(params[:id])
     respond_to do |format|
       if @consulting_room.update(consulting_room_params)
         format.html { redirect_to consulting_rooms_path, notice: 'Consulting room was successfully updated.' }
@@ -57,6 +58,7 @@ class ConsultingRoomsController < ApplicationController
   # DELETE /consulting_rooms/1
   # DELETE /consulting_rooms/1.json
   def destroy
+    @consulting_room = ConsultingRoom.find(params[:id])
     @consulting_room.destroy
     respond_to do |format|
       format.html { redirect_to consulting_rooms_url, notice: 'Consulting room was successfully destroyed.' }

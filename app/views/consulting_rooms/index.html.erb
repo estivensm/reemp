@@ -7,11 +7,19 @@
          <div class="col-md-12 no-padding">
             <%= consulting_room.first_photo? ? image_tag(consulting_room.first_photo_url(), class: "img-not") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
 
+            <div class="col-md-4 float-right no-padding-right">
+              <div id="map"></div>
+            </div>
+
+            <div class="col-md-4 float-right">
+            </div>
+
             <hr>
 
             <div class="col-md-2 no-padding">
               <%= consulting_room.sub_photo? ? image_tag(consulting_room.sub_photo_url(), class: "img-not2") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not2")%>
             </div>
+
 
             <div class="col-md-2 no-padding float text-center">
               <%#= link_to 'Show', consulting_room %>
@@ -34,15 +42,42 @@
          </div>
       </div>
     </div>
+
+<script type="text/javascript">
+  function initMap() {
+    var myLatLng = {lat: <%= consulting_room.lat %>, lng: <%= consulting_room.lng %>};
+
+    // Create a map object and specify the DOM element
+    // for display.
+    var map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    zoom: 5
+  });
+
+  // Create a marker and set its position.
+  var marker = new google.maps.Marker({
+      map: map,
+      position: myLatLng,
+      title: 'Hello World!'
+    });
+  }
+</script>
 <% end -%>
 
             
-          
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap">
+</script>
+
 <style type="text/css">
  
   .card-show{
     background: #f2f8f9;
     border-radius: 4px;
+  }
+
+  #map{
+    height: 125px;
   }
 
   .img-not{
