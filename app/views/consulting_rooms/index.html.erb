@@ -15,7 +15,7 @@
 
             <div class="col-md-2 no-padding float text-center">
               <%#= link_to 'Show', consulting_room %>
-              <%= link_to edit_consulting_room_path(consulting_room), class: "btn btn-info" do %>
+              <%= link_to my_roms_path(:name => consulting_room.user.names), class: "btn btn-info" do %>
                 <i class="fas fa-pencil-alt"></i>
               <% end -%>
 

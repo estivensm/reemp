@@ -67,7 +67,8 @@ class ConsultingRoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_consulting_room
-      @consulting_room = ConsultingRoom.find(params[:id])
+      user = User.where(names: params[:name].to_s)
+      @consulting_room = ConsultingRoom.where(user_id: user).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
