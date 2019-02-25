@@ -18,14 +18,14 @@
 #
 
 class ConsultingRoom < ActiveRecord::Base
+	include AlgoliaSearch
+	belongs_to :user
+
 	after_create :reemper
 
 	def reemper
 		Reemper.where(user_id: self.user.id).update(lat: self.lat , lng: self.lng);
 	end
-
-	belongs_to :user
-	include AlgoliaSearch
 
 	algoliasearch per_environment: true  do
 

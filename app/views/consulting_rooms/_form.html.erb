@@ -70,7 +70,11 @@
       <%= form.file_field :first_photo, class: "form form-control", id: "img1", :required => true %>
 
       <div class="col-md-12" style="padding: 0px;">
+        <% if action_name == "edit"%>
+          <img src="<%= @consulting_room.first_photo_url()%>" alt="" id="blah">
+          <% else %>
           <img id="blah" src="#" alt="" />
+        <% end -%>
       </div>
 
   </div>
@@ -80,7 +84,12 @@
     <%= form.file_field :sub_photo, class: "form form-control", id: "img2", :required => true %>
 
     <div class="col-md-12"  style="padding: 0px;">
-          <img id="blah1" src="#" alt="" />
+      <% if action_name == "edit"%>
+        <img src="<%= @consulting_room.sub_photo_url()%>" alt="" id="blah1" >
+        <% else %>
+        <img id="blah1" src="#" alt="" />
+      <% end -%>
+
     </div>
 
   </div> 
@@ -97,7 +106,6 @@
     <%= form.check_box :info_state %>
   </div>
 -->
-
   <%= form.hidden_field :user_id, :value => current_user.id  %>
   <%= form.hidden_field :reemper_id, :value => @remper.id %>
   <%= form.hidden_field :lat, id: "place_latitude" %>
