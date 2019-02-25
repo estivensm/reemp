@@ -10,20 +10,20 @@
       </ol>
     </div>
 
-    <div class="col-md-5 show-reempers">
+    <div class="col-md-5 col-lg-5 show-reempers">
       <legend style="margin-top: 17px;">
         Reempers <div id="stats"></div>
       </legend>
-        <div class="col-dm-12 no-padding" id="hits"></div>
-        <div class="col-dm-12 no-padding" id="hits1"></div><br>
+        <div class="col-dm-12 col-lg-12 no-padding" id="hits"></div>
+        <div class="col-dm-12 col-lg-12 no-padding" id="hits1"></div><br>
 
-      <div class="col-md-12">
-        <div class="col-md-12" id="pagination"></div>
+      <div class="col-md-12 col-lg-12">
+        <div class="col-md-12 col-lg-12" id="pagination"></div>
       </div>
 
     </div>
 
-    <div class="col-md-7 no-padding-right" id="map-reemper">
+    <div class="col-md-7 col-lg-7 no-padding-right" id="map-reemper">
         <legend style="margin-top: 3px;">Mapa</legend>
         <div id="map"></div>
     </div>
@@ -169,11 +169,11 @@ $(document).on('turbolinks:load',function() {
 
     /* global instantsearch algoliasearch $script */
 
-  $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=<%= ENV["GOOGLE_API"] %>', function() {
+  $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
     const search = instantsearch({
       searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
       indexName: 'Reemper_production',
-      routing: true
+      routing: true,
     });
     /*
     const autocomplete = instantsearch.connectors.connectAutocomplete(
@@ -239,12 +239,15 @@ $(document).on('turbolinks:load',function() {
       })
     );
     */
+   
 
 
     search.addWidget(
       instantsearch.widgets.configure({
         aroundLatLngViaIP: true,
-        hitsPerPage: 5
+        hitsPerPage: 5,
+        //filters: "user.name: E"
+
       })
     );
 
