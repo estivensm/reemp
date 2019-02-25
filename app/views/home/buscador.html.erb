@@ -271,7 +271,7 @@ $(document).on('turbolinks:load',function() {
             '<p>'+
               '{{#helpers.highlight}}{ "attribute": "biography" }{{/helpers.highlight}}'+
             '</p>'+
-            '<%= link_to "Ver Registro",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank' %>'+
+            '<%= link_to "Ver Registro",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
           '</div>'+
 
         '</div>'+
@@ -409,6 +409,23 @@ $(document).on('turbolinks:load',function() {
 <style type="text/css" media="screen">
   /* GENERAL
 // ------------------------- */
+
+.reemper-show{
+    padding: 4px;
+    background-color: #44416e;
+    border-radius: 42px;
+    color: #fff;
+}
+
+.reemper-show:hover{
+      color: #fff;
+      text-decoration: none;
+}
+
+.reemper-show:visited{
+      color: #fff;
+      text-decoration: none;
+}
 
 .card-reemper{
     box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
