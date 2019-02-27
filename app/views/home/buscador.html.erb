@@ -73,7 +73,7 @@
 <br><br>                        
  
 
-
+<%= render "parciales/sesion" %>
 
     <link
       rel="stylesheet"
@@ -264,9 +264,8 @@ $(document).on('turbolinks:load',function() {
     search.addWidget(
       instantsearch.widgets.configure({
         aroundLatLngViaIP: true,
-        hitsPerPage: 5,
+        hitsPerPage: 5
         //filters: "user.name: E"
-
       })
     );
 
@@ -279,16 +278,17 @@ $(document).on('turbolinks:load',function() {
     var hitTemplate =
       '<div class="card col-sm-12 no-padding card-reemper">'+
         '<div class="card-body" style="padding-left: 17px; padding-right: 17px;">'+
-          '<div class="col-md-3 no-padding-left">'+
+          '<div class="form-row">'+
+          '<div class="col-md-4 no-padding-left">'+
             '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
           '</div>'+
-          '<div class="col-md-9 no-padding-right">'+
+          '<div class="col-md-4 no-padding-right">'+
             '<h4 style="font-size: 16px;"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
             '<label style="font-size: 14px;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
             '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
             '<b> <i class="fas fa-map-marker-alt"></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
           '</div>'+
-
+                  '</div>'+
           '<div class="col-md-12 no-padding" style="margin-top: 10px;">'+
             '<p>'+
               '{{#helpers.highlight}}{ "attribute": "biography" }{{/helpers.highlight}}'+
@@ -465,7 +465,7 @@ $(document).on('turbolinks:load',function() {
 }
 
 .img-xs{
-    width: 86px;
+    width: 118px;
     height: 104px;
     border-radius: initial !important;
     margin-right: 10px;

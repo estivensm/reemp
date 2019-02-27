@@ -8,13 +8,13 @@
 
             <%= form_tag browser_path, :method => 'post',class: "needs-validation", :novalidate => true do %>
 
-            <div class="col-md-6 navbar-text" style="margin-right: 0px;">
+            <div class="col-md-6 navbar-text">
               <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)', id: "validationCustom01", :required => true}%>
 
               <div class="invalid-feedback"></div>
             </div>
 
-            <div class="col-md-5 navbar-text" style="margin-left: 0px; padding-left: 0px;">
+            <div class="col-md-5 navbar-text">
                 <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
             </div>
 
@@ -31,10 +31,11 @@
 
     </ul>
     <span class="navbar-text">
-      <button class="btn-logins">Ingresar</button>
+      <button class="btn-logins" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</button>
     </span>
   </div>
 </nav>
+
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg"></script>
 <style type="text/css" media="screen">
 
@@ -50,8 +51,6 @@
 
   .logo-img{
     width: 151px;
-    position: relative;
-    top: -28px;
   }
 
   .navbar{

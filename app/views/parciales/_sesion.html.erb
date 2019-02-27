@@ -1,0 +1,180 @@
+<div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content border">
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tab" role="tabpanel">
+                    <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class=""><a class="" href="#Section4" aria-controls="home" role="tab" data-toggle="tab" id="btn-tab">Iniciar Sesion</a></li>
+                    <li role="presentation"><a href="#Section5" aria-controls="profile" role="tab" data-toggle="tab" id="btn-tab1">Crear Cuenta</a></li>
+                  </ul>
+                    <!-- Tab panes -->
+                  <div class="tab-content tabs">
+                  <div role="tabpanel" class="tab-pane animated bounceInLeft in active" id="Section4">
+                          <%= render "devise/sessions/new" %>
+                  </div>
+                  <div role="tabpanel" class="tab-pane animated bounceInRight" id="Section5">
+                          <%= render "devise/registrations/new_user"%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+
+.btn1{
+      border-radius: 17px;
+      border: none;
+      padding: 5px;
+      width: 52%;
+      cursor: pointer;
+      background: linear-gradient(to right, #ff8c00, #ff0080); 
+      color: #fff;
+}
+
+.form1{
+    border-radius: 21px;
+    margin-bottom: 5px;
+    background: #c5c5c512 !important;
+}
+
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+
+.tab .nav-tabs{
+    border: none;
+    margin-bottom: 10px;
+}
+
+#btn-tab{
+    display: block;
+    padding: 10px;
+    margin: 0 10px 0 0;
+    background: #fcfcfc;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #fff;
+    width: 177%;
+    left: -8px;
+    background: #01BAFE;
+    border: 1px solid #eee;
+    border-radius: 27px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+#btn-tab1:hover{
+  border: 1px solid #01BAFE !important;
+  background: #fff !important;
+  color: #01BAFE !important;
+}
+
+#btn-tab:hover{
+  border: 1px solid #01BAFE !important;
+  background: #fff !important;
+  color: #01BAFE !important;
+}
+
+
+
+#btn-tab1{
+    display: block;
+    padding: 10px;
+    margin: 0 10px 0 0;
+    background: #fcfcfc;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #fff;
+    width: 162%;
+    left: 95px;
+    background: #01BAFE;
+    border: 1px solid #eee;
+    border-radius: 27px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+
+.tab .nav-tabs li a:after{
+    background: #000;
+    transition: all 0.4s ease-in 0.3s;
+}
+
+.tab .nav-tabs li.active a:before,
+.tab .nav-tabs li.active a:after{
+    opacity: 1;
+    transform: scale(4);
+}
+
+.tab .tab-content{
+    margin-top: 0;
+    font-size: 15px;
+    color: #fff;
+    line-height: 30px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+  li > .active{
+    border: 1px solid #01BAFE !important;
+    background: #fff !important;
+    color: #01BAFE !important;
+  }
+
+.tab .tab-content h3{
+    font-size: 24px;
+    margin-top: 0;
+}
+
+@media only screen and (max-width: 767px){
+  .tab .nav-tabs li a{ padding: 7px 15px; }
+}
+@media only screen and (max-width: 479px){
+.tab .nav-tabs li{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.tab .nav-tabs li a:before,
+.tab .nav-tabs li a:after{
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+
+    #btn-tab{
+      width: 100% !important;
+      left: -1px !important;
+    }
+
+    #btn-tab1{
+      width: 100% !important;
+      left: -1px !important;
+  }  
+}
+
+.modal-backdrop{
+  background-color: #00000040 !important;
+}
+
+  .label{
+    color: gray;
+  }
+
+</style>

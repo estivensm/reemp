@@ -1,103 +1,446 @@
 <%= render "parciales/menu_show"%>
 <div class="container">
 
-  <div class="col-md-7 no-padding-left">
-    <ol class="breadcrumb no-padding-left">
-      <li><a href="/home/index">Pagina de Inicio</a></li>
-      <li><a href="#"><%= @reemper.category.name %></a></li>
-      <li><a href="#"><%= @reemper.city %></a></li>
-      <li class="active"><a href="#"><%= @reemper.user.names %></a></li>
-    </ol>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb no-padding-left">
+    <li class="breadcrumb-item"><a href="/home/index">Pagina de Inicio</a></li>
+    <li class="breadcrumb-item"><a href="#"><%= @reemper.category.name %></a></li>
+    <li class="breadcrumb-item"><a href="#"><%= @reemper.city %></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @reemper.user.names %></li>
+  </ol>
+</nav>
+
+<div class="float-right col-md-offset-3 col-md-5 col-sm-offset-1 col-sm-10" style="max-width: 48.66667%; margin-bottom: 20px;">
+  <div class="email-signature email-padding">
+    <% @consultorio.each do |consul| %>
+      <legend>Consutorio</legend>
+      <div class="form-row">
+
+        <div class="col-md-6">
+          <strong>Ciudad</strong>
+          <p><%= consul.city %></p>          
+        </div>
+
+        <div class="col-md-6">
+          <strong>Direccion</strong>
+          <p><%= consul.address %></p>
+        </div>
+
+        <br><br>
+
+        <div class="col-md-6 no-padding">
+            <%= consul.first_photo? ? image_tag(consul.first_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+        </div>
+
+        <div class="col-md-6 ">
+            <%= consul.sub_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+        </div>
+
+      </div>
+              <fieldset style="margin-top: 10px; margin-bottom: 10px;">
+                <legend>Localizacion</legend>
+                <div id="map1"></div>
+              </fieldset>
+
+            <script type="text/javascript">
+              function initMap1() {
+                var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
+
+                // Create a map object and specify the DOM element
+                // for display.
+                var map = new google.maps.Map(document.getElementById('map1'), {
+                  center: myLatLng,
+                  zoom: 5
+                });
+
+                // Create a marker and set its position.
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: myLatLng,
+                  title: 'Hello World!'
+                });
+              }
+              </script>
+              <br>
+
+              <div class="col-md-12 text-center float-right no-padding-right">
+
+                <%= link_to :back, class: "btn btn-outline-success" do  %>
+                  <i class="far fa-calendar-alt"></i> Agendar Cita
+                <% end -%>
+
+                <%= link_to :back, class: "btn btn-dark" do %>
+                  <i class="fas fa-angle-left"></i> Volver
+                <% end -%>
+              </div>
+    <% end -%>
   </div>
+</div>
 
 
-    <div class="card col-md-7 no-padding-left user-most">
+<div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 no-padding">
+  <div class="email-signature">
 
-      <div class="card-body user-body">
-          <div class="col-md-3 show-img">
-            <img src="//s3-sa-east-1.amazonaws.com/doctoralia.co/doctor/6ff24c/6ff24c3d28d8591c5fc58fb0d771a275_220_square.jpg" alt="">
-          </div>
-
-          <div class="col-md-8">
-
-            <h3><%= @reemper.user.names %> <i class="fas fa-check-circle"></i> </h3>
-            <h5><%= @reemper.category.name %></h5>
-            <h4><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h4>
-
-            <div class="col-md-5 no-padding-left">
-              <button class="btn1">
-                <i class="fas fa-calendar-alt"></i> Agendar Cita
-              </button>
-            </div>
-
-            <div class="col-md-6 no-padding-left">
-              <button class="btn2">
-                Enviar Mensaje
-              </button>
-            </div>
-
-          </div>
-
-          <div class="col-md-12">
-            <hr>
-
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Consultorios</a></li>
-                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Precios</a></li>
-                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Opiniones (3)</a></li>
-                <li role="presentation"><a href="#Section4" aria-controls="settings" role="tab" data-toggle="tab">Dudas</a></li>
-            </ul>
-
-          </div>
-      </div>  
-
+    <div class="signature-img">
+      <img src="<%= @reemper.user.avatar_url()%>" alt="">
     </div>
 
-    <div class="card col-md-4 no-padding-left float-right" style="background-color: red;">
-      <div class="card-body">
-          <h1>asdasdasd</h1>
-      </div>  
+    <div class="signature-details">
+      <h2 class="title"><%= @reemper.user.names %></h2>
+      <span class="post"><%= @reemper.category.name %></span>
     </div>
 
+    <ul class="signature-content">
+      <li><span class="fas fa-map-marker-alt"></span> #2021, Lorem Ipsum</li>
+      <li><span class="fa fa-envelope"></span> <%= @reemper.user.email %> </li>
+      <li><span class="fas fa-mobile-alt"></span> <%= @reemper.user.phone %> </li>
+      <li><span class="fa fa-globe"></span> yourwebsite.com</li>
+    </ul>
 
-        <div class="col-md-7 no-padding">
-          <div>
-              <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="Section1">
-                        <legend> 
-                            Consultorios <h3 class="float-right"><%= @consultorio.count %></h3>
-                        </legend>
+    <ul class="nav nav-tabs float-right" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Informacion Sobre mi</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Precios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Experiencia</a>
+      </li>
+    </ul>
 
-                    <% @consultorio.each do |consul| %>
+  </div>
+</div>
 
-                      <h1>asdddddddddddddddddddddddddddddddddddddddddd</h1>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="Section2">
-                        <h3>Section 2</h3>
-                        <p>
-                            2 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque iaculis sagittis. Cras et convallis risus, nec maximus justo. Mauris dignissim tellus eu lorem efficitur faucibus. Etiam diam risus, molestie eu porta sit amet, bibendum nec nisi. Ut iaculis pulvinar dapibus. Cras diam turpis, tincidunt ac efficitur id, dignissim at.
-                        </p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="Section3">
-                        <h3>Section 3</h3>
-                        <p>
-                            3 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius quis ipsum a rutrum. Donec quis consequat sem. Donec gravida nisi quis nibh vestibulum ullamcorper. Suspendisse turpis sapien, lobortis vel.
-                        </p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="Section4">
-                        <h3>Section 4</h3>
-                        <p>
-                            4 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum ante in velit faucibus, a efficitur nisl vestibulum. Sed a nisi eget tellus eleifend mattis. Nam vulputate leo in posuere imperdiet. Mauris a mollis nulla. Nulla euismod sed neque eget lacinia. Donec at lacus et arcu consectetur aliquet ac sed tellus. Donec non dapibus turpis
-                        </p>
-                    </div>
 
-                  <% end -%>
-                </div>
-            </div>
+
+<br>
+
+
+<div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 no-padding">
+  <div class="email-signature email-padding">
+
+    <div class="tab-content" id="myTabContent">
+
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <h5>Biografia</h5>
+        <p>
+          <%== @reemper.biography%>
+        </p>
+
+        <div class="col-md-12 no-padding">
+          <hr>
+        </div>
+
+        <div class="col-md-12 no-padding">
+          <h5>Mis Estudios</h5>
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-md-4">
+            <strong>Universidad</strong>
+            <p><%= @reemper.university%></p>
+          </div>
+
+          <div class="col-md-4">
+            <strong>Nivel Academico</strong>
+            <p><%= get_academic(@reemper.academy_level) %></p>
+          </div>
+
+          <div class="co-md-4">
+            <strong>Profession</strong>
+            <p><%= @reemper.profession %></p>
+          </div>
         </div>
 
 
 
+        <div class="col-md-12 no-padding">
+          <hr>
+        </div>
+
+        <div class="form-row">
+
+          <div class="col-md-12 no-padding">
+              <h5>Redes Sociales</h5>
+          </div>
+
+          <div class="col-md-2 text-center no-padding">
+              <button class="facebook">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+          </div>
+
+          <div class="col-md-2 text-center no-padding">
+            <button class="instagram">
+              <i class="fab fa-instagram"></i>
+            </button>               
+          </div>
+
+          <div class="col-md-2 text-center no-padding">
+            <button class="twitter">
+              <i class="fab fa-twitter"></i>
+            </button>           
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <legend>Precios</legend>
+        <p>
+          
+        </p>
+      </div>
+
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <legend>Mi Experiencia</legend>
+        <p>
+          
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= render "parciales/sesion" %>
+
+<style type="text/css" media="screen">
+
+.btn-infoper{
+  padding: 5px;
+  background: #4d92d8;
+  margin-right: 6px;
+}
+
+.btn-info2{
+  padding: 5px;
+  background: #4d92d8;
+  margin-right: 6px;
+}
+
+.btn-info3{
+  padding: 5px;
+  background: #4d92d8;
+  margin-right: 6px;
+}
+
+  a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab .nav-tabs{
+    border-bottom: none;
+    position: relative;
+}
+
+.nav-tabs{
+  border-bottom: initial;
+}
+
+.nav > .active > .active{
+    color: #fff !important;
+    border: initial !important;
+    background: initial !important;
+}
+
+
+.tab .nav-tabs li{
+    margin-bottom: 0;
+}
+.tab .nav-tabs li a{
+    display: block;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 0;
+    background: #fafafa;
+    font-size:17px;
+    font-weight: 700;
+    color: #732c7b;
+    margin-right: 1px;
+    text-align: center;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover{
+    background: #af94be;
+    color: #fff;
+    border: none;
+}
+.tab .nav-tabs li a:after{
+    content: "";
+    width: 100%;
+    border-top: 2px solid #f2f2f2;
+    position: absolute;
+    top: -3px;
+    left: 0;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li.active a:after,
+.tab .nav-tabs li a:hover:after{
+    border-top: 2px solid #732c7b;
+}
+.tab .tab-content{
+    padding: 20px;
+    margin-top: 0;
+    border-radius: 0 0 5px 5px;
+    font-size: 15px;
+    color: #757575;
+    line-height: 30px;
+}
+.tab .tab-content h3{
+    font-size: 24px;
+    margin-top: 0;
+}
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .tab .nav-tabs li:last-child{
+        margin-bottom: 0;
+    }
+}
+
+
+  .email-signature{
+    background: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 50px 20px 15px 120px;
+    overflow: hidden;
+    position: relative;
+}
+.email-signature:before{
+    content: "";
+    background: linear-gradient(to right,#181e5a 49%,#181e5a75 50%);
+    width: 18px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.email-signature .signature-img{
+    background: #fff;
+    width: 140px;
+    height: 140px;
+    padding: 3px;
+    border-radius: 50%;
+    border: 5px solid #181e5a;
+    overflow: hidden;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    z-index: 1;
+}
+.email-signature .signature-img img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.email-signature .signature-details{
+    color: #fff;
+    background: #3498db;
+    text-align: center;
+    padding: 15px 10px 15px 50px;
+    margin-bottom: 20px;
+    border-right: 15px solid #2980b9;
+}
+.email-signature .title{
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+.email-signature .post{
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.email-signature .signature-content{
+    padding: 20px 10px 0 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+}
+.email-signature .signature-content:before,
+.email-signature .signature-content:after{
+    content: "";
+    background: #2980b9;
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -25px;
+}
+.email-signature .signature-content:after{
+    background: #181e5a;
+    height: 80%;
+    top: 20px;
+    left: -35px;
+}
+.email-signature .signature-content li{
+    color: #95afc0;
+    font-size: 16px;
+    margin: 0 0 10px;
+    display: block;
+}
+.email-signature .signature-content li span{
+    color:#181e5a;
+    font-size: 20px;
+    text-align: center;
+    line-height: 23px;
+    height: 23px;
+    width: 25px;
+    margin: 2px 2px 0 0;
+}
+
+.email-padding{
+  padding: 30px !important;
+}
+
+@media screen and (max-width:576px){
+    .email-signature{ padding: 200px 0 15px; }
+    .email-signature:before{
+        background: linear-gradient(to bottom,#f39c12 49%,#f1c40f 50%);
+        width: 100%;
+        height: 15px;
+    }
+    .email-signature .signature-img{
+        margin: 0 auto;
+        top: 26px;
+        left: 0;
+        right: 0;
+    }
+    .email-signature .signature-details{
+        padding: 10px;
+        border-right: none;
+    }
+    .email-signature .signature-content{
+        text-align: center;
+        padding: 0;
+    }
+    .email-signature .signature-content:before,
+    .email-signature .signature-content:after{
+        width: 60%;
+        height: 4px;
+        transform: translateX(-50%);
+        top: -103px;
+        left: 50%;
+    }
+    .email-signature .signature-content:after{
+        width: 45%;
+        top: -112px;
+    }
+}
+</style>
 <!--
     <div class="col-md-8 no-padding" style="max-width: 65.33333%;">
       <div class="tab" role="tabpanel">
@@ -245,45 +588,12 @@
 </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap"async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap1"async defer></script>
 
 
 <script type="text/javascript">
 
 
-      function initMap() {
-        var myLatLng = {lat: <%= @reemper.lat %>, lng: <%= @reemper.lng %>};
-
-        // Create a map object and specify the DOM element
-        // for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: myLatLng,
-          zoom: 5
-        });
-
-        // Create a marker and set its position.
-        var marker = new google.maps.Marker({
-          map: map,
-          position: myLatLng,
-          title: 'Hello World!'
-        });
-      }
-
-
-
-
-window.onscroll = function() {myFunction()};
-
-var header = document.getElementById("show-reemper");
-var sticky = header.offsetTop;
-
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
-}
  
  var star1 = document.getElementById("rate1");
  var star2 = document.getElementById("rate2");
@@ -351,10 +661,6 @@ function myFunction() {
         color: #6b7270;
   }
 
-  .user-body{
-    padding-left: 5px !important;
-  }
-
   .user-most{
     background-color: #fff;
     border-radius: 6px;
@@ -374,64 +680,6 @@ function myFunction() {
     margin-bottom: 10px;
   }
 
-  a:hover,a:focus{
-    text-decoration: none;
-    outline: none;
-}
-.nav-tabs {
-    border-bottom: initial;
-}
-.nav-tabs > li{
-    margin-right: 1px;
-}
-.nav-tabs > li > a{
-    border-radius: 0px;
-    border: 1px solid #e4e4e4;
-    border-right: 0px none;
-    margin-right: 0px;
-    padding: 8px 17px;
-    color:#222222;
-    transition: all 0.3s ease-in 0s;
-}
-.nav-tabs > li:last-child{
-    border-right:1px solid #ededed;
-}
-.nav-tabs > li > a{
-    padding: 15px 30px;
-    border:1px solid #ededed;
-    border-right: 0px none;
-    border-top: 2px solid #ededed;
-    background: #ededed;
-    color: #8f8f8f;
-    font-weight: bold;
-}
-.nav-tabs > li > a:hover{
-    border-bottom-color: #ededed;
-    border-right: 0px none;
-    background: #f1f1f1;
-    color: #444;
-}
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:focus,
-.nav-tabs > li.active > a:hover{
-    border-top: 2px solid #3498db;
-    border-right: 0px none;
-    color: #444;
-}
-.tab-content > .tab-pane{
-    border: 1px solid #e4e4e4;
-    border-top: 0px none;
-    padding: 20px;
-    line-height: 22px;
-}
-.tab-content > .tab-pane > h3{
-    margin-top: 0;
-}
-
-.tab-content{
-  background-color: #FFF;
-  margin-top: 20px;
-}
 
 
 
@@ -440,7 +688,7 @@ function myFunction() {
   }
 
   #map1{
-    height: 177px ;
+    height: 177px;
   }
 
 
