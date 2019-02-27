@@ -72,14 +72,16 @@
                     <br>
             </div>
 
-                <div class="col-md-6 no-padding">
+            <div class="form-row">
+                <div class="col-md-6">
                    <%= text_field_tag :profession_name, nil, class: "form form-control text-profess", :placeholder => "Profesión" , id: "validationCustom01", :required => true %>
                 </div>
 
-                <div class="col-md-6 no-padding">
+                <div class="col-md-6">
                    <%= text_field_tag :specialty_name, nil, class: "form form-control form-espe", id: "validationCustom01", :required => true, :placeholder => "Especialidad" %>
                 </div>  
 
+            </div>
 
             <div class="col-md-12 text-center top no-padding">
                 <i class="fab fa-instagram icon" id="icon"></i>
@@ -105,7 +107,6 @@
                         </span>
                     </label>
               <small>Aceptar</small> <b data-toggle="modal" data-target="#exampleModalLong"> Términos</b> y <b data-toggle="modal" data-target="#exampleModalLong" >Condiciones</b>
-              <br><br>
             </div>
 
             <!-- Modal -->
@@ -655,7 +656,7 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .card{
-        margin-top: -100px;
+        margin-top: -83px;
         border-radius: 15px;
         box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
     }
@@ -776,7 +777,7 @@ document.addEventListener("click", closeAllSelect);
         font-weight: bold;
         color: #160e50;
         position: relative;
-        top: -100px;
+        top: -84px;
     }
 
     .title{
