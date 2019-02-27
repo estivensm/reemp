@@ -77,6 +77,7 @@ class ConsultingRoomsController < ApplicationController
     def have_consulting_room?
       if ConsultingRoom.where(user_id: current_user.id).present?
          render file: "#{Rails.root}/public/404", :layout => false, :status => :not_found
+       end  
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

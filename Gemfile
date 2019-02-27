@@ -66,13 +66,12 @@ gem 'jquery-rails'
 #Editor texto
 gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 #bootstrap
-gem 'bootstrap-sass', '~> 3.4.0'
+gem 'bootstrap', '~> 4.3.1'
 #angolia 
 gem 'algoliasearch-rails', '~> 1.14.0'
 gem 'hogan_assets'
 #buscador
 gem 'chosen-rails'
-gem 'bootstrap-chosen-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
