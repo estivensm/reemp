@@ -1,6 +1,7 @@
 class ConsultingRoomsController < ApplicationController
   before_action :set_consulting_room, only: [:show, :edit]
-    before_action :authenticate_user!
+  before_action :have_consulting_room?, only: [:new, :create]
+  before_action :authenticate_user!
 
   # GET /consulting_rooms
   # GET /consulting_rooms.json
@@ -71,6 +72,11 @@ class ConsultingRoomsController < ApplicationController
     def set_consulting_room
       user = User.where(names: params[:name].to_s)
       @consulting_room = ConsultingRoom.where(user_id: user).first
+    end
+
+    def have_consulting_room?
+      if ConsultingRoom.where(user_id: current_user.id).present?
+         render file: "#{Rails.root}/public/404", :layout => false, :status => :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

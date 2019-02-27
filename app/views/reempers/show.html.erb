@@ -1,14 +1,112 @@
+<%= render "parciales/menu_show"%>
 <div class="container">
-  <div class="row">
 
+  <div class="col-md-7 no-padding-left">
+    <ol class="breadcrumb no-padding-left">
+      <li><a href="/home/index">Pagina de Inicio</a></li>
+      <li><a href="#"><%= @reemper.category.name %></a></li>
+      <li><a href="#"><%= @reemper.city %></a></li>
+      <li class="active"><a href="#"><%= @reemper.user.names %></a></li>
+    </ol>
+  </div>
+
+
+    <div class="card col-md-7 no-padding-left user-most">
+
+      <div class="card-body user-body">
+          <div class="col-md-3 show-img">
+            <img src="//s3-sa-east-1.amazonaws.com/doctoralia.co/doctor/6ff24c/6ff24c3d28d8591c5fc58fb0d771a275_220_square.jpg" alt="">
+          </div>
+
+          <div class="col-md-8">
+
+            <h3><%= @reemper.user.names %> <i class="fas fa-check-circle"></i> </h3>
+            <h5><%= @reemper.category.name %></h5>
+            <h4><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></h4>
+
+            <div class="col-md-5 no-padding-left">
+              <button class="btn1">
+                <i class="fas fa-calendar-alt"></i> Agendar Cita
+              </button>
+            </div>
+
+            <div class="col-md-6 no-padding-left">
+              <button class="btn2">
+                Enviar Mensaje
+              </button>
+            </div>
+
+          </div>
+
+          <div class="col-md-12">
+            <hr>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Consultorios</a></li>
+                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Precios</a></li>
+                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Opiniones (3)</a></li>
+                <li role="presentation"><a href="#Section4" aria-controls="settings" role="tab" data-toggle="tab">Dudas</a></li>
+            </ul>
+
+          </div>
+      </div>  
+
+    </div>
+
+    <div class="card col-md-4 no-padding-left float-right" style="background-color: red;">
+      <div class="card-body">
+          <h1>asdasdasd</h1>
+      </div>  
+    </div>
+
+
+        <div class="col-md-7 no-padding">
+          <div>
+              <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="Section1">
+                        <legend> 
+                            Consultorios <h3 class="float-right"><%= @consultorio.count %></h3>
+                        </legend>
+
+                    <% @consultorio.each do |consul| %>
+
+                      <h1>asdddddddddddddddddddddddddddddddddddddddddd</h1>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Section2">
+                        <h3>Section 2</h3>
+                        <p>
+                            2 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque iaculis sagittis. Cras et convallis risus, nec maximus justo. Mauris dignissim tellus eu lorem efficitur faucibus. Etiam diam risus, molestie eu porta sit amet, bibendum nec nisi. Ut iaculis pulvinar dapibus. Cras diam turpis, tincidunt ac efficitur id, dignissim at.
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Section3">
+                        <h3>Section 3</h3>
+                        <p>
+                            3 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius quis ipsum a rutrum. Donec quis consequat sem. Donec gravida nisi quis nibh vestibulum ullamcorper. Suspendisse turpis sapien, lobortis vel.
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Section4">
+                        <h3>Section 4</h3>
+                        <p>
+                            4 -Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum ante in velit faucibus, a efficitur nisl vestibulum. Sed a nisi eget tellus eleifend mattis. Nam vulputate leo in posuere imperdiet. Mauris a mollis nulla. Nulla euismod sed neque eget lacinia. Donec at lacus et arcu consectetur aliquet ac sed tellus. Donec non dapibus turpis
+                        </p>
+                    </div>
+
+                  <% end -%>
+                </div>
+            </div>
+        </div>
+
+
+
+<!--
     <div class="col-md-8 no-padding" style="max-width: 65.33333%;">
       <div class="tab" role="tabpanel">
-                    <!-- Nav tabs -->
+
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active" ><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab"><span><i class="fas fa-building"></i></span> Mis Consultorios</a></li>
           <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab"><span><i class="fa fa-briefcase"></i></span> Experiencia</a></li>
         </ul>
-                    <!-- Tab panes -->
+
         <div class="tab-content tabs">
 
           <div role="tabpanel" class="tab-pane fade in active" id="Section2">
@@ -130,6 +228,7 @@
           </div>
         </div>
       </div>
+    -->
     </div>
   <br>
 </div>
@@ -148,7 +247,6 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap"async defer></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg&callback=initMap1"async defer></script>
 
 <script type="text/javascript">
 
@@ -225,11 +323,41 @@ function myFunction() {
 </script>
 <style type="text/css" media="screen">
 
-    .img-thumbnail{
-          height: 159px;
-    }
-  .img-not2{
-    height: 44px;
+  .show-img img{
+    height: 140px;
+    width: 140px;
+    border-radius: 11px;
+  }
+
+  .btn1{
+    background-color: #2f7add;
+    color: #FFF;
+    border: initial;
+    border-radius: 7px;
+    padding: 10px;
+  }
+
+  .btn2{
+    color: #5458c3;
+    border: initial;
+    border-radius: 7px;
+    padding: 10px;
+    border: 1px solid #517adc;
+    background-color: #ffff;
+
+  }
+
+  h5{
+        color: #6b7270;
+  }
+
+  .user-body{
+    padding-left: 5px !important;
+  }
+
+  .user-most{
+    background-color: #fff;
+    border-radius: 6px;
   }
 
   #show-reemper{
@@ -246,6 +374,67 @@ function myFunction() {
     margin-bottom: 10px;
   }
 
+  a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.nav-tabs {
+    border-bottom: initial;
+}
+.nav-tabs > li{
+    margin-right: 1px;
+}
+.nav-tabs > li > a{
+    border-radius: 0px;
+    border: 1px solid #e4e4e4;
+    border-right: 0px none;
+    margin-right: 0px;
+    padding: 8px 17px;
+    color:#222222;
+    transition: all 0.3s ease-in 0s;
+}
+.nav-tabs > li:last-child{
+    border-right:1px solid #ededed;
+}
+.nav-tabs > li > a{
+    padding: 15px 30px;
+    border:1px solid #ededed;
+    border-right: 0px none;
+    border-top: 2px solid #ededed;
+    background: #ededed;
+    color: #8f8f8f;
+    font-weight: bold;
+}
+.nav-tabs > li > a:hover{
+    border-bottom-color: #ededed;
+    border-right: 0px none;
+    background: #f1f1f1;
+    color: #444;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover{
+    border-top: 2px solid #3498db;
+    border-right: 0px none;
+    color: #444;
+}
+.tab-content > .tab-pane{
+    border: 1px solid #e4e4e4;
+    border-top: 0px none;
+    padding: 20px;
+    line-height: 22px;
+}
+.tab-content > .tab-pane > h3{
+    margin-top: 0;
+}
+
+.tab-content{
+  background-color: #FFF;
+  margin-top: 20px;
+}
+
+
+
   #map{
     height: 177px ;
   }
@@ -253,6 +442,7 @@ function myFunction() {
   #map1{
     height: 177px ;
   }
+
 
 
   .facebook{
@@ -292,105 +482,23 @@ function myFunction() {
     background: linear-gradient(120deg, #00e4d0, #5983e8) !important;
   }
 
-  legend{
-        border-radius: 44px;
+
+  .sticky {
+      position: fixed;
+      top: 0;
+      margin-left: 10px;
+      left: 821px;
+      width: 356px;
   }
 
-a:hover,a:focus{
-    outline: none;
-    text-decoration: none;
-}
-.tab{ text-align: center; }
-.tab .nav-tabs{
-    display: inline-block;
-    position: relative;
-    border-bottom: none;
-    margin-bottom: 17px;
-    margin-top: 10px;
-}
-.tab .nav-tabs li{
-    margin: 0;
-}
-.tab .nav-tabs li a{
-    display: block;
-    padding: 80px 20px 10px;
-    background: #fff;
-    font-size: 17px;
-    font-weight: 700;
-    color: #999;
-    text-transform: uppercase;
-    text-align: center;
-    border-radius: 0;
-    border: none;
-    border-bottom: 2px solid #fff;
-    margin-right: 0;
-    overflow: hidden;
-    z-index: 1;
-    position: relative;
-    transition: all 0.3s ease 0s;
-}
-.tab .nav-tabs li a span{
-    display: block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    background: #f2f2f2;
-    margin: auto;
-    font-size: 22px;
-    color: #999;
-    border-radius: 5px;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    transform: rotate(45deg);
-}
-.tab .nav-tabs li.active a span{
-    background: linear-gradient(120deg, #00e4d0, #5983e8);
-    color: #fff;
-}
-.tab .nav-tabs li a span i{
-    transform: rotate(-45deg);
-}
-.tab .nav-tabs li.active a,
-.tab .nav-tabs li a:hover{
-    color: #999;
-    border: none;
-    border-bottom: 2px solid #fff;
-}
-.tab .nav-tabs li.active a{
-    border-bottom: 2px solid #00e4d0;
-}
-.tab .tab-content{
-    padding-top: 10px;
-    margin-top: -5px;
-    font-size: 15px;
-    color: #757575;
-    line-height: 26px;
-    text-align: left;
-    border-top: 1px solid #e5e5e5;
-}
-.tab .tab-content h3{
-    font-size: 24px;
-    margin-top: 0;
-}
-@media only screen and (max-width: 479px){
-    .tab .nav-tabs li{
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .tab .nav-tabs li:last-child{
-        margin-bottom: 0;
-    }
-}
+  body{
+    background-color: #edeef2;
+  }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    margin-left: 10px;
-    left: 821px;
-    width: 356px;
-}
+  .navbar{
+    background-color: #fff !important;
+    margin-bottom: 10px;
+    height: 77px;
+  }
 
-</style>
+  </style>

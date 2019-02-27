@@ -1,6 +1,7 @@
 class ReempersController < ApplicationController
   before_action :set_reemper, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show]
+  before_action :is_reemper?, only: [:new, :create]
   before_action :authenticate_admin!, only: [:index]
 
 
@@ -67,6 +68,14 @@ class ReempersController < ApplicationController
 
       usuario = User.where(names: params[:name].to_s)
       @reemper = Reemper.where(user_id: usuario).first
+    end
+
+    def is_reemper?
+      if ConsultingRoom.where(user_id: current_user.id).present?
+         render file: "#{Rails.root}/public/404", :layout => false, :status => :not_found
+       else
+        redirect_to consulting_rooms_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
