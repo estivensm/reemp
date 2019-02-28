@@ -31,6 +31,11 @@
 
         <%= form_tag browser_path, :method => 'post' do %>
 
+        <div class="form-row">
+
+        <div class="col-md-12" id="autocomplete"></div>
+
+
           <div class="col-md-6" style="display: none;" id="imput-salud">
             <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)'}%>
 
@@ -75,12 +80,164 @@
           <div class="col-md-5 text-center search-map" style="display: none;">
               <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
           </div>
+        </div>
 
         <% end -%>
 
       </div>
     </div>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/algolia.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.css">
+
+  <title>autocomplete-results-page</title>
+
+
+
+  <div class="container">
+    <h1>InstantSearch.js - Results page with an autocomplete</h1>
+    <div id="autocomplete"></div>
+    <div id="hits"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.30.0/dist/algoliasearchLite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@beta"></script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  /* global $ instantsearch algoliasearch */
+
+const searchClient = algoliasearch(
+  'DJ3JJMGZSP',
+  'ddbd8bb0730c9044fca8d4ddf2bb5152'
+);
+
+
+const autocomplete = instantsearch.connectors.connectAutocomplete(
+  ({ indices, refine, widgetParams }, isFirstRendering) => {
+    const { container, onSelectChange } = widgetParams;
+
+    if (isFirstRendering) {
+      container.html('<select id="ais-autocomplete"></select>');
+
+      container.find('select').selectize({
+        options: [],
+        valueField: 'name',
+        labelField: 'name',
+        highlight: false,
+        onType: refine,
+        onBlur() {
+          refine(this.getValue());
+        },
+        score() {
+          return function() {
+            return 1;
+          };
+        },
+        onChange(value) {
+          onSelectChange(value);
+          refine(value);
+        },
+      });
+
+      return;
+    }
+
+    console.log($("#ais-autocomplete").val());
+
+    const [select] = container.find('select');
+
+    indices.forEach(index => {
+      select.selectize.clearOptions();
+      index.results.hits.forEach(h => select.selectize.addOption(h));
+      select.selectize.refreshOptions(select.selectize.isOpen);
+    });
+  }
+);
+
+const suggestions = instantsearch({
+  indexName: 'Contact_development',
+  searchClient,
+});
+
+suggestions.addWidget(
+  instantsearch.widgets.configure({
+    hitsPerPage: 5,
+  })
+);
+
+suggestions.addWidget(
+  autocomplete({
+    container: $('#autocomplete'),
+    onSelectChange(value) {
+      console.log(this);
+      search.helper.setQuery(value).search();
+    },
+  })
+);
+
+const search = instantsearch({
+  indexName: 'Contact_development',
+  searchClient,
+});
+
+search.addWidget(
+  instantsearch.widgets.configure({
+    hitsPerPage: 10,
+  })
+);
+
+
+suggestions.start();
+search.start();
+
+</script>
+
+<style type="text/css" media="screen">
+  h1 {
+  margin-bottom: 1rem;
+}
+
+em {
+  background: cyan;
+  font-style: normal;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.ais-hits {
+  margin-top: 1em;
+}
+
+.hit-name {
+  margin-bottom: 0.5em;
+}
+
+.hit-description {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}
+
+
+.hit-id {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}
+
+</style>
 
 <%= render "parciales/sesion" %>
 

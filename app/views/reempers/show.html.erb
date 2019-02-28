@@ -1,4 +1,5 @@
 <%= render "parciales/menu_show"%>
+
 <div class="container">
 
 <nav aria-label="breadcrumb">
@@ -10,7 +11,7 @@
   </ol>
 </nav>
 
-<div class="float-right col-md-offset-3 col-md-5 col-sm-offset-1 col-sm-10" style="max-width: 48.66667%; margin-bottom: 20px;">
+<div class="float-right col-md-5 col-sm-12" style="max-width: 48.66667%; margin-bottom: 20px;">
   <div class="email-signature email-padding">
     <% @consultorio.each do |consul| %>
       <legend>Consutorio</legend>
@@ -29,60 +30,105 @@
         <br><br>
 
         <div class="col-md-6 no-padding">
+          <a class="lightboxgallery-gallery-item" target="_blank" href="<%= consul.first_photo_url() %>" data-title="<%= @reemper.user.names %>" data-alt="Ness Joshua" data-desc="MI Consultorio">
             <%= consul.first_photo? ? image_tag(consul.first_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+          </a>
         </div>
 
         <div class="col-md-6 ">
-            <%= consul.sub_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+          <a class="lightboxgallery-gallery-item" target="_blank" href="<%= consul.sub_photo_url() %>" data-title="<%= @reemper.user.names %>" data-alt="Ness Joshua" data-desc="MI Consultorio">
+            <%= consul.first_photo? ? image_tag(consul.sub_photo_url(), class: "img-thumbnail") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-not")%>
+          </a>
         </div>
 
       </div>
-              <fieldset style="margin-top: 10px; margin-bottom: 10px;">
-                <legend>Localizacion</legend>
-                <div id="map1"></div>
-              </fieldset>
 
-            <script type="text/javascript">
-              function initMap1() {
-                var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
+      <fieldset style="margin-top: 10px; margin-bottom: 10px;">
+        <legend>Localizacion</legend>
+        <div id="map1"></div>
+      </fieldset>
 
-                // Create a map object and specify the DOM element
-                // for display.
-                var map = new google.maps.Map(document.getElementById('map1'), {
-                  center: myLatLng,
-                  zoom: 5
-                });
+      <script type="text/javascript">
+      function initMap1() {
+          var myLatLng = {lat: <%= consul.lat %>, lng: <%= consul.lng %>};
 
-                // Create a marker and set its position.
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: myLatLng,
-                  title: 'Hello World!'
-                });
-              }
-              </script>
-              <br>
+            // Create a map object and specify the DOM element
+            // for display.
+          var map = new google.maps.Map(document.getElementById('map1'), {
+            center: myLatLng,
+            zoom: 5
+          });
 
-              <div class="col-md-12 text-center float-right no-padding-right">
+          // Create a marker and set its position.
+          var marker = new google.maps.Marker({
+            map: map,
+            position: myLatLng,
+            title: 'Hello World!'
+          });
+        }
+      </script>
 
-                <%= link_to :back, class: "btn btn-outline-success" do  %>
-                  <i class="far fa-calendar-alt"></i> Agendar Cita
-                <% end -%>
+      <br>
 
-                <%= link_to :back, class: "btn btn-dark" do %>
-                  <i class="fas fa-angle-left"></i> Volver
-                <% end -%>
+      <div class="col-md-12 text-center float-right no-padding-right">
+
+        <%= link_to :back, class: "btn btn-outline-success" do  %>
+          <i class="far fa-calendar-alt"></i> Agendar Cita
+        <% end -%>
+
+        <% if user_signed_in?%>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-messaje">
+            Enviar Mensaje
+          </button>
+
+          <div class="modal fade" id="modal-messaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Mensaje para <%= @reemper.user.names %></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="show_submit" method="get" accept-charset="utf-8">
+
+                    <div class="col-md-12">
+                      <textarea name="" rows="10" class="form form-control" placeholder="Mensaje"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-outline-success">Enviar</button>
+                </div>
               </div>
+            </div>
+          </div>
+
+        <% else %>
+
+        <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+          <i class="fas fa-sign-in-alt"></i> Ingresa Para Enviar Mensaje
+        </button>
+
+        <% end -%>
+
+      </div>
+
     <% end -%>
   </div>
 </div>
 
 
-<div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 no-padding">
+<div class="col-md-6 col-sm-12 no-padding">
   <div class="email-signature">
 
     <div class="signature-img">
-      <img src="<%= @reemper.user.avatar_url()%>" alt="">
+      <a class="lightboxgallery-gallery-item" target="_blank" href="<%= @reemper.user.avatar_url()%>" data-title="<%= @reemper.user.names %>" data-alt="Ness Joshua" data-desc="Yo">
+        <img src="<%= @reemper.user.avatar_url()%>" alt="">
+      </a>
     </div>
 
     <div class="signature-details">
@@ -91,7 +137,7 @@
     </div>
 
     <ul class="signature-content">
-      <li><span class="fas fa-map-marker-alt"></span> #2021, Lorem Ipsum</li>
+      <li><span class="fas fa-map-marker-alt"></span> <%= @reemper.specialty.name %></li>
       <li><span class="fa fa-envelope"></span> <%= @reemper.user.email %> </li>
       <li><span class="fas fa-mobile-alt"></span> <%= @reemper.user.phone %> </li>
       <li><span class="fa fa-globe"></span> yourwebsite.com</li>
@@ -117,7 +163,7 @@
 <br>
 
 
-<div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 no-padding">
+<div class="col-md-6 col-sm-12 no-padding">
   <div class="email-signature email-padding">
 
     <div class="tab-content" id="myTabContent">
@@ -148,10 +194,21 @@
             <p><%= get_academic(@reemper.academy_level) %></p>
           </div>
 
-          <div class="co-md-4">
+          <div class="col-md-4">
             <strong>Profession</strong>
             <p><%= @reemper.profession %></p>
           </div>
+
+          <div class="col-md-4">
+            <strong>Idiomas</strong>
+            <p><%= @reemper.language %></p>
+          </div>
+
+          <div class="col-md-4">
+            <strong>Especialidad</strong>
+            <p><%= @reemper.specialty.name %> </p>
+          </div>
+
         </div>
 
 
@@ -190,14 +247,12 @@
       </div>
 
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <legend>Precios</legend>
         <p>
           
         </p>
       </div>
 
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <legend>Mi Experiencia</legend>
         <p>
           
         </p>
@@ -211,111 +266,21 @@
 
 <style type="text/css" media="screen">
 
-.btn-infoper{
-  padding: 5px;
-  background: #4d92d8;
-  margin-right: 6px;
-}
-
-.btn-info2{
-  padding: 5px;
-  background: #4d92d8;
-  margin-right: 6px;
-}
-
-.btn-info3{
-  padding: 5px;
-  background: #4d92d8;
-  margin-right: 6px;
-}
-
-  a:hover,a:focus{
-    outline: none;
-    text-decoration: none;
-}
-.tab .nav-tabs{
-    border-bottom: none;
-    position: relative;
-}
-
-.nav-tabs{
-  border-bottom: initial;
-}
-
-.nav > .active > .active{
+.nav-link > .active{
     color: #fff !important;
     border: initial !important;
     background: initial !important;
 }
 
 
-.tab .nav-tabs li{
-    margin-bottom: 0;
-}
-.tab .nav-tabs li a{
-    display: block;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 0;
-    background: #fafafa;
-    font-size:17px;
-    font-weight: 700;
-    color: #732c7b;
-    margin-right: 1px;
-    text-align: center;
-    z-index: 1;
-    transition: all 0.3s ease 0s;
-}
-.tab .nav-tabs li.active a,
-.tab .nav-tabs li a:hover{
-    background: #af94be;
-    color: #fff;
-    border: none;
-}
-.tab .nav-tabs li a:after{
-    content: "";
-    width: 100%;
-    border-top: 2px solid #f2f2f2;
-    position: absolute;
-    top: -3px;
-    left: 0;
-    transition: all 0.3s ease 0s;
-}
-.tab .nav-tabs li.active a:after,
-.tab .nav-tabs li a:hover:after{
-    border-top: 2px solid #732c7b;
-}
-.tab .tab-content{
-    padding: 20px;
-    margin-top: 0;
-    border-radius: 0 0 5px 5px;
-    font-size: 15px;
-    color: #757575;
-    line-height: 30px;
-}
-.tab .tab-content h3{
-    font-size: 24px;
-    margin-top: 0;
-}
-@media only screen and (max-width: 479px){
-    .tab .nav-tabs li{
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    .tab .nav-tabs li:last-child{
-        margin-bottom: 0;
-    }
-}
-
-
-  .email-signature{
+.email-signature{
     background: #fff;
     font-family: 'Roboto Condensed', sans-serif;
     padding: 50px 20px 15px 120px;
     overflow: hidden;
     position: relative;
 }
+
 .email-signature:before{
     content: "";
     background: linear-gradient(to right,#181e5a 49%,#181e5a75 50%);
@@ -325,6 +290,7 @@
     top: 0;
     left: 0;
 }
+
 .email-signature .signature-img{
     background: #fff;
     width: 140px;
@@ -338,11 +304,13 @@
     left: 30px;
     z-index: 1;
 }
+
 .email-signature .signature-img img{
     width: 100%;
     height: auto;
     border-radius: 50%;
 }
+
 .email-signature .signature-details{
     color: #fff;
     background: #3498db;
@@ -351,6 +319,7 @@
     margin-bottom: 20px;
     border-right: 15px solid #2980b9;
 }
+
 .email-signature .title{
     font-size: 25px;
     font-weight: 600;
@@ -358,18 +327,21 @@
     letter-spacing: 1px;
     margin: 0;
 }
+
 .email-signature .post{
     font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .email-signature .signature-content{
     padding: 20px 10px 0 0;
     margin: 0;
     list-style: none;
     position: relative;
 }
+
 .email-signature .signature-content:before,
 .email-signature .signature-content:after{
     content: "";
@@ -380,18 +352,21 @@
     top: 0;
     left: -25px;
 }
+
 .email-signature .signature-content:after{
     background: #181e5a;
     height: 80%;
     top: 20px;
     left: -35px;
 }
+
 .email-signature .signature-content li{
     color: #95afc0;
     font-size: 16px;
     margin: 0 0 10px;
     display: block;
 }
+
 .email-signature .signature-content li span{
     color:#181e5a;
     font-size: 20px;
@@ -409,7 +384,7 @@
 @media screen and (max-width:576px){
     .email-signature{ padding: 200px 0 15px; }
     .email-signature:before{
-        background: linear-gradient(to bottom,#f39c12 49%,#f1c40f 50%);
+        background: linear-gradient(to bottom,#181e5a 49%,#181e5a75 50%);
         width: 100%;
         height: 15px;
     }
@@ -440,6 +415,7 @@
         top: -112px;
     }
 }
+
 </style>
 <!--
     <div class="col-md-8 no-padding" style="max-width: 65.33333%;">
@@ -750,3 +726,16 @@
   }
 
   </style>
+
+    <script type="text/javascript">
+  jQuery(function($) {
+    $(document).on('click', '.lightboxgallery-gallery-item', function(event) {
+      event.preventDefault();
+      $(this).lightboxgallery({
+        showCounter: true,
+        showTitle: true,
+        showDescription: true
+      });
+    });
+  });
+  </script>
