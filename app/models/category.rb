@@ -13,4 +13,17 @@
 class Category < ApplicationRecord
 	has_many :contacts
 	has_many :reemper
+	has_many :specialty
+
+	include AlgoliaSearch
+
+	algoliasearch per_environment: true  do
+
+	   	attribute :category do
+	      { name: category.name }
+	    end
+
+	    attribute :name, :description
+
+	end
 end

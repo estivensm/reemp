@@ -13,4 +13,5 @@
 
 class Specialty < ApplicationRecord
 	has_many :reemper
+	belongs_to :category, optional: true
 end

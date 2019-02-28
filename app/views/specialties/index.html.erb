@@ -16,7 +16,7 @@
       <tr>
         <td><%= specialty.name %></td>
         <td><%= specialty.description %></td>
-        <td><%= specialty.category_id %></td>
+        <td><%= specialty.category.name if specialty.category %></td>
         <td><%= specialty.code %></td>
         <td>
 
