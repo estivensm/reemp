@@ -1,7 +1,7 @@
 class ReempersController < ApplicationController
   before_action :set_reemper, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show]
-  before_action :is_reemper?, only: [:new, :create]
+  #before_action :is_reemper?, only: [:new, :create]
   before_action :authenticate_admin!, only: [:index]
 
 
@@ -33,10 +33,10 @@ class ReempersController < ApplicationController
           if ConsultingRoom.where(user_id: current_user.id).present?
             redirect_to reeper_home_path
           else
-            new_consulting_room_path
+            redirect_to new_consulting_room_path
           end
         }
-        
+
         format.json { render :show, status: :created, location: @reemper }
       else
         format.html { render :new }
