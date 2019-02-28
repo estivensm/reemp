@@ -34,7 +34,7 @@
         <div class="form-row">
 
 
-          <div class="col-md-6" style="display: none;" id="imput-salud">
+          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-salud">
             <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)'}%>
 
             <%= button_tag class: "submit1", :title => "Buscar" do %>
@@ -43,14 +43,14 @@
 
           </div>
 
-          <div class="col-md-6" id="imput-masco" style="display: none;">
+          <div class="col-md-6 no-padding-left" id="imput-masco" style="display: none;">
             <%= select_tag 'specialties', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadades'}%>
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
           </div>
 
-          <div class="col-md-6" style="display: none;" id="imput-const">
+          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
             <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "construccion", class: "form form-control" , id: "" %>
 
             <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
@@ -61,15 +61,15 @@
 
           </div>
 
-          <div class="col-md-6" style="display: none;" id="imput-const">
+          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
             <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "construccion", class: "form form-control" %>
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
           </div> 
 
-          <div class="col-md-6" style="display: none;" id="imput-legal">
-            <input name="email" placeholder="Nombre, Email" id="q" class="form form-control">
+          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-legal">
+            <input name="email" placeholder="Reempers" id="q" class="form form-control">
           </div> 
 
           <div class="col-md-5 text-center search-map" style="display: none;">
@@ -83,21 +83,39 @@
     </div>
 
 
-    <div class="col-md-12">
-
-    </div>
 
 <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     var client = algoliasearch('DJ3JJMGZSP', '0f9abe035e333810031a60c33a56907c');
+
     var template = Hogan.compile(
-      '<div class="hit-auto-complete">' +
-        '<div class="Nombre">{{{_highlightResult.user.name.value}}}</div>' +
-        '<div class="Comentario">{{{_highlightResult.user.email.value}}}</div>' +
-        '<div class="descripcion">{{{_highlightResult.description.value}}}</div>' +
-        '<%= link_to "Ver",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
+      '<div class="card reemper-card col-md-10" style="margin-top: 10px; margin-bottom: 10px;">'+
+        '<div class="card-body card-reemp">'+
+
+          '<div class="container">'+
+            '<div class="row">'+
+
+              '<div class="col-md-3 no-padding">'+
+                '<img src="{{{_highlightResult.user.avatar.value}}}" alt="" class="img-xs rounded-circle">'+
+              '</div>'+
+
+              '<div class="col-md-9 no-padding">'+
+                '<h5>{{{_highlightResult.user.name.value}}}</h5>'+
+                '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
+                '<p>salazar-moncada-estiven@hotmail.com</p>'+
+              '</div>'+
+
+              '<div class="col-md-6 float-right">'+
+                '<%= link_to "Ver Registro",  CGI::unescape(reemper_registration_path("{{user.name}}")), target: '_blank', class: "reemper-show" %>'+
+              '</div>'+
+
+            '</div>'+
+          '</div>'+
+
+        '</div>'+
       '</div>'
+
       );
     var ac = autocomplete('#q', { hint: true }, {
       source: autocomplete.sources.hits(client.initIndex('Reemper_production'), { hitsPerPage: 5 }),
@@ -126,6 +144,22 @@
   margin-bottom: 1rem;
 }
 
+.algolia-autocomplete{
+  width: 100% !important;
+}
+
+.img-xs{
+  width: 80px;
+  height: 80px;
+}
+
+.reemper-card{
+  box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+}
+
+.card-reemp{
+  padding: 5px !important;
+}
 em {
   background: cyan;
   font-style: normal;
@@ -144,6 +178,7 @@ em {
 .hit-name {
   margin-bottom: 0.5em;
 }
+
 
 .hit-description {
   color: #888;
@@ -256,7 +291,6 @@ em {
       $(icon_cons).removeClass('show').addClass('hide');
       $(icon_masco).removeClass('show').addClass('hide');
       $(icon_salud).removeClass('show').addClass('hide');
-      $(".search-map").show("linear");
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
