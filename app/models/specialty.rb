@@ -14,4 +14,17 @@
 class Specialty < ApplicationRecord
 	has_many :reemper
 	belongs_to :category, optional: true
+
+	include AlgoliaSearch
+
+	algoliasearch per_environment: true  do
+
+	   	attribute :category do
+	      { name: category.name }
+	    end
+
+	    attribute :name, :description
+
+	end
+
 end
