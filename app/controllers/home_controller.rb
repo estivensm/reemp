@@ -5,6 +5,14 @@ class HomeController < ApplicationController
   layout "user", :only => [:reemper_home]
 
   def index
+    categoria = Category.where(name: "Salud")
+    @specialties = Specialty.where(category_id: categoria).all
+
+    catemas = Category.where(name: "Mascotas")
+    @specmas = Specialty.where(category_id: catemas).all
+
+    catecons = Category.where(name: "Construccion")
+    @specate = Specialty.where(category_id: catecons).all
 
   end
 

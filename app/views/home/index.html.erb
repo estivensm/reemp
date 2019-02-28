@@ -35,7 +35,12 @@
 
 
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-salud">
-            <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)'}%>
+
+            <select name="category_id" class="form form-control">
+              <% @specialties.each do |espec|  %>
+                 <option><%= espec.name %></option>
+              <% end %>
+            </select>
 
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
@@ -44,14 +49,22 @@
           </div>
 
           <div class="col-md-6 no-padding-left" id="imput-masco" style="display: none;">
-            <%= select_tag 'specialties', options_for_select(get_special.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadades'}%>
+            <select name="specialties" class="form form-control">
+              <% @specmas.each do |espec|  %>
+                 <option><%= espec.name %></option>
+              <% end %>
+            </select>
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
           </div>
 
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
-            <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "construccion", class: "form form-control" , id: "" %>
+            <select name="search2" class="form form-control">
+              <% @specate.each do |espec|  %>
+                 <option><%= espec.name %></option>
+              <% end %>
+            </select>
 
             <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
@@ -351,7 +364,7 @@ em {
   }
 
   #imput-masco{margin-top: 26px; padding-left: 14px;}
-  #imput-const{margin-top: 26px; padding-left: 14px;}
+  #imput-const{margin-top: 26px; padding-left: 14px;} 
   #imput-salud{margin-top: 26px; padding-left: 14px;}
   #imput-legal{margin-top: 26px;}
 

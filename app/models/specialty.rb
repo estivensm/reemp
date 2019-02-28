@@ -19,11 +19,11 @@ class Specialty < ApplicationRecord
 
 	algoliasearch per_environment: true  do
 
-	   	attribute :category do
-	      { name: category.name }
-	    end
+	   	##attribute :category do
+	      #{ name: category.name }
+	    #end
 
-	    attribute :name, :description
+	    attribute :name, :description, :code
 
 	end
 
