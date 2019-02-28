@@ -25,15 +25,13 @@
             <%#= link_to "Construcción", browser_path(:especialidad => 2), class: "ingresar link_construccion margin-right", id: "cons" %>
             <button class="ingresar link_construccion margin-right" type="" id="cons">Construcción</button>
             <i class="fas fa-check" id="icon-cons"></i>
-            <button class="ingresar link_legal margin-right" type="" id="legal">Legal</button>
+            <button class="ingresar link_legal margin-right" type="" id="legal">Reemper</button>
             <i class="fas fa-check" id="icon-legal"></i>
           </div>
 
         <%= form_tag browser_path, :method => 'post' do %>
 
         <div class="form-row">
-
-        <div class="col-md-12" id="autocomplete"></div>
 
 
           <div class="col-md-6" style="display: none;" id="imput-salud">
@@ -71,10 +69,7 @@
           </div> 
 
           <div class="col-md-6" style="display: none;" id="imput-legal">
-            <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "legal", class: "form form-control" %>
-            <%= button_tag class: "submit1", :title => "Buscar" do %>
-              <i class="fas fa-arrow-right icon-row"></i>            
-            <% end -%>
+            <input name="email" placeholder="Nombre, Email" id="q" class="form form-control">
           </div> 
 
           <div class="col-md-5 text-center search-map" style="display: none;">
@@ -87,118 +82,44 @@
       </div>
     </div>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/algolia.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.css">
 
-  <title>autocomplete-results-page</title>
+    <div class="col-md-12">
 
+    </div>
 
-
-  <div class="container">
-    <h1>InstantSearch.js - Results page with an autocomplete</h1>
-    <div id="autocomplete"></div>
-    <div id="hits"></div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.30.0/dist/algoliasearchLite.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@beta"></script>
-
-
-
-
-
-
-
+<script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <script type="text/javascript">
-  /* global $ instantsearch algoliasearch */
-
-const searchClient = algoliasearch(
-  'DJ3JJMGZSP',
-  'ddbd8bb0730c9044fca8d4ddf2bb5152'
-);
-
-
-const autocomplete = instantsearch.connectors.connectAutocomplete(
-  ({ indices, refine, widgetParams }, isFirstRendering) => {
-    const { container, onSelectChange } = widgetParams;
-
-    if (isFirstRendering) {
-      container.html('<select id="ais-autocomplete"></select>');
-
-      container.find('select').selectize({
-        options: [],
-        valueField: 'name',
-        labelField: 'name',
-        highlight: false,
-        onType: refine,
-        onBlur() {
-          refine(this.getValue());
-        },
-        score() {
-          return function() {
-            return 1;
-          };
-        },
-        onChange(value) {
-          onSelectChange(value);
-          refine(value);
-        },
-      });
-
-      return;
-    }
-
-    console.log($("#ais-autocomplete").val());
-
-    const [select] = container.find('select');
-
-    indices.forEach(index => {
-      select.selectize.clearOptions();
-      index.results.hits.forEach(h => select.selectize.addOption(h));
-      select.selectize.refreshOptions(select.selectize.isOpen);
+  $(document).ready(function() {
+    var client = algoliasearch('DJ3JJMGZSP', '0f9abe035e333810031a60c33a56907c');
+    var template = Hogan.compile(
+      '<div class="hit-auto-complete">' +
+        '<div class="Nombre">{{{_highlightResult.user.name.value}}}</div>' +
+        '<div class="Comentario">{{{_highlightResult.user.email.value}}}</div>' +
+        '<div class="descripcion">{{{_highlightResult.description.value}}}</div>' +
+        '<%= link_to "Ver",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
+      '</div>'
+      );
+    var ac = autocomplete('#q', { hint: true }, {
+      source: autocomplete.sources.hits(client.initIndex('Reemper_production'), { hitsPerPage: 5 }),
+      displayKey: 'email',
+      templates: {
+        suggestion: function(hit) {
+          return template.render(hit);
+        }
+      }
+    }).on('autocomplete:selected', function(event, suggestion) {
+      console.log('onselected', suggestion);
     });
-  }
-);
 
-const suggestions = instantsearch({
-  indexName: 'Contact_development',
-  searchClient,
-});
-
-suggestions.addWidget(
-  instantsearch.widgets.configure({
-    hitsPerPage: 5,
-  })
-);
-
-suggestions.addWidget(
-  autocomplete({
-    container: $('#autocomplete'),
-    onSelectChange(value) {
-      console.log(this);
-      search.helper.setQuery(value).search();
-    },
-  })
-);
-
-const search = instantsearch({
-  indexName: 'Contact_development',
-  searchClient,
-});
-
-search.addWidget(
-  instantsearch.widgets.configure({
-    hitsPerPage: 10,
-  })
-);
-
-
-suggestions.start();
-search.start();
-
+    $('.search-terms a').click(function(e) {
+      ac.autocomplete.setVal($(this).text());
+      ac.autocomplete.open();
+      ac.focus();
+    })
+  });
 </script>
+
+
 
 <style type="text/css" media="screen">
   h1 {

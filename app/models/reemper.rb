@@ -36,7 +36,7 @@ class Reemper < ActiveRecord::Base
 	algoliasearch per_environment: true  do
 
 	    attribute :user do
-	      { name: user.names, avatar: user.avatar_url }
+	      { name: user.names, email: user.email, avatar: user.avatar_url }
 	    end
 
 	   	attribute :category do
