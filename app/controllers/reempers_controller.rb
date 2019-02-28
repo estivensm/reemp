@@ -29,7 +29,14 @@ class ReempersController < ApplicationController
 
     respond_to do |format|
       if @reemper.save
-        format.html { redirect_to new_consulting_room_path, notice: 'Fue Creado con Exito!' }
+        format.html {
+          if ConsultingRoom.where(user_id: current_user.id).present?
+            redirect_to reeper_home_path
+          else
+            new_consulting_room_path
+          end
+        }
+        
         format.json { render :show, status: :created, location: @reemper }
       else
         format.html { render :new }
@@ -71,10 +78,8 @@ class ReempersController < ApplicationController
     end
 
     def is_reemper?
-      if ConsultingRoom.where(user_id: current_user.id).present?
+      if Reemper.where(user_id: current_user.id).present?
          render file: "#{Rails.root}/public/404", :layout => false, :status => :not_found
-       else
-        redirect_to consulting_rooms_url
       end
     end
 
