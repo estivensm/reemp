@@ -103,7 +103,7 @@
               '<div class="col-md-9 no-padding">'+
                 '<h5>{{{_highlightResult.user.name.value}}}</h5>'+
                 '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
-                '<p>salazar-moncada-estiven@hotmail.com</p>'+
+                '<p>{{{_highlightResult.user.email.value}}}</p>'+
               '</div>'+
 
               '<div class="col-md-6 float-right">'+
@@ -146,6 +146,7 @@
 
 .algolia-autocomplete{
   width: 100% !important;
+  padding-left: 14px;
 }
 
 .img-xs{
@@ -294,7 +295,7 @@ em {
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
-
+      $(".search-map").hide("linear");
       $(imputlegal).show("linear");  
       $(imputconst).hide("linear");  
       $(imputmas).hide("linear"); 

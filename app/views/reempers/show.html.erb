@@ -13,6 +13,7 @@
 
 <div class="float-right col-md-5 col-sm-12" style="max-width: 48.66667%; margin-bottom: 20px;">
   <div class="email-signature email-padding">
+    <% if @consultorio.any? %>
     <% @consultorio.each do |consul| %>
       <legend>Consutorio</legend>
       <div class="form-row">
@@ -116,6 +117,16 @@
         <% end -%>
 
       </div>
+
+    <% end -%>
+    
+    <% else %>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <b class="text-center">ESTA PERSONA NO HA LLENADO ESTA INFORMACION</b>
+      </div>
+    </div>
 
     <% end -%>
   </div>
