@@ -31,7 +31,11 @@
 
     </ul>
     <span class="navbar-text">
+      <% if user_signed_in? %>
+        <%= button_to "Home", reeper_home_path , class: "btn-logins", method: :get %>
+      <% else %>
       <button class="btn-logins" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</button>
+      <% end -%>
     </span>
   </div>
 </nav>
@@ -67,7 +71,7 @@
     padding: 8px;
     border-radius: 25px;
     position: absolute;
-    top: -56px;
+    top: -41px;
     right: -38px;
   }
 

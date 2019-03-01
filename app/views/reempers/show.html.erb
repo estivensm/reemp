@@ -11,7 +11,7 @@
   </ol>
 </nav>
 
-<div class="float-right col-md-5 col-sm-12" style="max-width: 48.66667%; margin-bottom: 20px;">
+<div class="float-right col-md-6">
   <div class="email-signature email-padding">
     <% if @consultorio.any? %>
     <% @consultorio.each do |consul| %>
@@ -77,43 +77,16 @@
           <i class="far fa-calendar-alt"></i> Agendar Cita
         <% end -%>
 
-        <% if user_signed_in?%>
+        <% if user_signed_in? %>
+          <% if is_me?.id != @reemper.id %>
 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-messaje">
-            Enviar Mensaje
-          </button>
+              <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+          <% end -%>
 
-          <div class="modal fade" id="modal-messaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Mensaje para <%= @reemper.user.names %></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="show_submit" method="get" accept-charset="utf-8">
-
-                    <div class="col-md-12">
-                      <textarea name="" rows="10" class="form form-control" placeholder="Mensaje"></textarea>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-outline-success">Enviar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <% else %>
-
-        <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
-          <i class="fas fa-sign-in-alt"></i> Ingresa Para Enviar Mensaje
-        </button>
-
+          <% else %>
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+              <i class="fas fa-sign-in-alt"></i> Ingresa Para Enviar Mensaje
+            </button>
         <% end -%>
 
       </div>

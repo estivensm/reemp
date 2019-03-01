@@ -23,12 +23,18 @@
 #  academy_level    :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  lat              :decimal(, )
+#  lng              :decimal(, )
+#  instagram        :string
+#  facebook         :string
+#  twitter          :string
 #
 
 class Reemper < ActiveRecord::Base
 	
 	belongs_to :category, optional: true
 	belongs_to :specialty, optional: true
+	belongs_to :contac_reemper, optional: true
 	belongs_to :user
 
 	include AlgoliaSearch

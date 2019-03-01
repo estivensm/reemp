@@ -36,6 +36,7 @@
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-salud">
 
             <select name="category_id" class="form form-control">
+            <option value="">Selecciona una especialidad de salud</option>
               <% @specialties.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
@@ -49,10 +50,12 @@
 
           <div class="col-md-6 no-padding-left" id="imput-masco" style="display: none;">
             <select name="specialties" class="form form-control">
-              <% @specmas.each do |espec|  %>
-                 <option><%= espec.name %></option>
-              <% end %>
-            </select>
+               <option value="">Selecciona una especialidad de mascotas</option>
+                <% @specmas.each do |espec|  %>
+                   <option><%= espec.name %></option>
+                <% end %>
+              </select>
+              
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
@@ -60,18 +63,20 @@
 
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
             <select name="search2" class="form form-control">
+              <option value="">Selecciona una especialidad de construccion</option>
               <% @specate.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
 
-            <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
             <%= button_tag class: "submit1", :title => "Buscar" do %>
               <i class="fas fa-arrow-right icon-row"></i>            
             <% end -%>
 
           </div>
+
+                      <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-legal">
             <input name="email" placeholder="Nombre,Ciudad" id="q" class="form form-control">

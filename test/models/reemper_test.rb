@@ -23,6 +23,11 @@
 #  academy_level    :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  lat              :decimal(, )
+#  lng              :decimal(, )
+#  instagram        :string
+#  facebook         :string
+#  twitter          :string
 #
 
 require 'test_helper'

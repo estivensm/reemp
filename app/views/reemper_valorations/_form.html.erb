@@ -1,0 +1,37 @@
+<%= form_with(model: reemper_valoration, local: true) do |form| %>
+  <% if reemper_valoration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reemper_valoration.errors.count, "error") %> prohibited this reemper_valoration from being saved:</h2>
+
+      <ul>
+      <% reemper_valoration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id_id %>
+    <%= form.text_field :user_id_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reemper_id %>
+    <%= form.text_field :reemper_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valoration %>
+    <%= form.number_field :valoration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

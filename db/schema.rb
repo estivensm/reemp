@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_193415) do
+ActiveRecord::Schema.define(version: 2019_03_01_160725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2019_02_20_193415) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contac_reempers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reemper_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -72,6 +80,15 @@ ActiveRecord::Schema.define(version: 2019_02_20_193415) do
   create_table "professions", force: :cascade do |t|
     t.string "name"
     t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reemper_valorations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reemper_id"
+    t.integer "valoration"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

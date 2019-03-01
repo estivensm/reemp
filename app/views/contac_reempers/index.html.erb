@@ -1,0 +1,26 @@
+
+  <legend>Mensajes Enviados de Usuarios</legend>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>EL Usuario</th>
+        <th>Reemper</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contac_reempers.each do |contac_reemper| %>
+        <tr>
+          <td><%= contac_reemper.user.names %></td>
+          <td><%= contac_reemper.reemper_id %></td>
+          <td><%= contac_reemper.description %></td>
+          <td><%= link_to 'Show', contac_reemper %></td>
+          <td><%= link_to 'Edit', edit_contac_reemper_path(contac_reemper) %></td>
+          <td><%= link_to 'Destroy', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :reemper_valorations, :except => [:show]
+  resources :contac_reempers, :except => [:show]
   resources :consulting_rooms, :except => [:edit]
   get "My/:name/Editar", to: "consulting_rooms#edit", as: "my_roms"
   patch "My/:name", to: "consulting_rooms#update", as: "update_room"

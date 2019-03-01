@@ -159,7 +159,7 @@
               <% if remmper_have.present? && consulting_room.present? %>
                         <li class="nav-item <%= @reemper[1] %>">
                 <%= link_to consulting_rooms_path, class: "nav-link" do %>
-                    <i class="menu-icon fas fa-user-edit"></i> Mis Consultorios
+                    <i class="menu-icon fas fa-building"></i> Mis Consultorios
                 <% end -%>
               </li>        
   
@@ -167,7 +167,19 @@
 
               <li class="nav-item <%= @reemper[1] %>">
                 <%= link_to edit_user_registration_path, class: "nav-link" do %>
-                    <i class="menu-icon fas fa-user-edit"></i> Mi Cuenta
+                    <i class="menu-icon fa  s fa-user"></i> Mi Cuenta
+                <% end -%>
+              </li>
+
+              <li class="nav-item <%= @reemper[1] %>">
+                <%= link_to contac_reempers_path, class: "nav-link" do %>
+                    <i class="menu-icon fas fa-envelope"></i> Mensajes de Usuarios
+                <% end -%>
+              </li>
+
+              <li class="nav-item <%= @reemper[5] %>">
+                <%= link_to buscador_path, class: "nav-link",  target: '_blank' do %>
+                    <i class="menu-icon fas fa-users"></i> Reempers
                 <% end -%>
               </li>
 <!--

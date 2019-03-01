@@ -16,8 +16,11 @@
  *= require sweetalert2
  *= require_self
  */
+
 @import "bootstrap";
 @import "chosen";
+@import "toastr";
+@import "sweetalert2";
 
   a:hover{
     text-decoration: none;

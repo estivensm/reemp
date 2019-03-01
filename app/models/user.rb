@@ -42,6 +42,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :consulting_rooms
+  has_many :contac_reemper
   has_one :reemper
 
   mount_uploader :avatar, AvatarUploader

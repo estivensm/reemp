@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @contac_reemper.user_id %>
+</p>
+
+<p>
+  <strong>Reemper:</strong>
+  <%= @contac_reemper.reemper_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @contac_reemper.description %>
+</p>
+
+<%= link_to 'Edit', edit_contac_reemper_path(@contac_reemper) %> |
+<%= link_to 'Back', contac_reempers_path %>

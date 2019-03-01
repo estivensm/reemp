@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reemper Valorations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Reemper</th>
+      <th>Valoration</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reemper_valorations.each do |reemper_valoration| %>
+      <tr>
+        <td><%= reemper_valoration.user_id %></td>
+        <td><%= reemper_valoration.reemper_id %></td>
+        <td><%= reemper_valoration.valoration %></td>
+        <td><%= reemper_valoration.description %></td>
+        <td><%= link_to 'Show', reemper_valoration %></td>
+        <td><%= link_to 'Edit', edit_reemper_valoration_path(reemper_valoration) %></td>
+        <td><%= link_to 'Destroy', reemper_valoration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reemper Valoration', new_reemper_valoration_path %>

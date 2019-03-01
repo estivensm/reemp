@@ -1,0 +1,45 @@
+
+
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header padding-lef">
+            <h4 class="modal-title">Enviar Mensaje</h4>  
+        </div>
+
+    <%= form_with(model: contac_reemper, html: {class: "needs-validation", :novalidate => true, remote: true }) do |form| %>
+     <div class="modal-body">
+        <% if contac_reemper.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(contac_reemper.errors.count, "error") %> prohibited this contac_reemper from being saved:</h2>
+
+            <ul>
+            <% contac_reemper.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
+        <div class="field">
+          <%= form.label "Mensaje" %>
+          <%= form.text_area :description, :rows => 9, class: "form form-control" %>
+        </div>
+
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+        <%= form.hidden_field :reemper_id, :value => @reemper.id %>
+    </div> 
+
+    <div class="modal-footer">
+      <%= form.submit "Guardar", class: "btn btn-success" %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+    </div>
+
+    </div>
+  </div>
+</div>
+<% end -%>
+

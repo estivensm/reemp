@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @reemper_valoration.user_id %>
+</p>
+
+<p>
+  <strong>Reemper:</strong>
+  <%= @reemper_valoration.reemper_id %>
+</p>
+
+<p>
+  <strong>Valoration:</strong>
+  <%= @reemper_valoration.valoration %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @reemper_valoration.description %>
+</p>
+
+<%= link_to 'Edit', edit_reemper_valoration_path(@reemper_valoration) %> |
+<%= link_to 'Back', reemper_valorations_path %>
