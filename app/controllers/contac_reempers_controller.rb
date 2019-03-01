@@ -6,7 +6,7 @@ class ContacReempersController < ApplicationController
   def index
     usuario = User.where(id: current_user.id)
     @reemper = Reemper.where(user_id: usuario).all
-    @contac_reempers = ContacReemper.where(reemper_id: @reemper.id)
+    @contac_reempers = ContacReemper.where(reemper_id: @reemper)
   end
 
   # GET /contac_reempers/1
