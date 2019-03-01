@@ -13,12 +13,16 @@ class HomeController < ApplicationController
 
     catecons = Category.where(name: "Construccion")
     @specate = Specialty.where(category_id: catecons).all
-
+    puts "accion indexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   end
 
   def search
-    @category = Category.where(id: params[:category_id]).first
-    @especialidad = Specialty.where(id: params[:specialties]).first
+    categoria = Category.where(name: "Salud")
+    @category = Specialty.where(id: params[:category_id]).where(category_id: categoria).first
+
+    catemas = Category.where(name: "Mascotas")
+    @especialidad = Specialty.where(category_id: catemas).first
+
     @ciudad = params[:city]
     puts @ciudad
 
@@ -27,7 +31,6 @@ class HomeController < ApplicationController
 
     elsif @especialidad.present?
       redirect_to buscador_path(@especialidad.name, @ciudad)
-
     end
 
     #redirect_to buscador_path(@category.name, @especialidad.name, @search1)

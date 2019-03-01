@@ -148,7 +148,7 @@
     </div>
 
     <ul class="signature-content">
-      <li><span class="fas fa-map-marker-alt"></span> <%= @reemper.specialty.name %></li>
+      <li><span class="fas fa-map-marker-alt"></span> <%= @reemper.specialty.name if  @reemper.specialty %></li>
       <li><span class="fa fa-envelope"></span> <%= @reemper.user.email %> </li>
       <li><span class="fas fa-mobile-alt"></span> <%= @reemper.user.phone %> </li>
       <li><span class="fa fa-globe"></span> yourwebsite.com</li>
@@ -217,7 +217,7 @@
 
           <div class="col-md-4">
             <strong>Especialidad</strong>
-            <p><%= @reemper.specialty.name %> </p>
+            <p><%= @reemper.specialty.name if @reemper.specialty %> </p>
           </div>
 
         </div>

@@ -22,7 +22,6 @@
           </div>
 
           <div class="col-md-12" style="margin-top: 20px">
-            <%#= link_to "Construcción", browser_path(:especialidad => 2), class: "ingresar link_construccion margin-right", id: "cons" %>
             <button class="ingresar link_construccion margin-right" type="" id="cons">Construcción</button>
             <i class="fas fa-check" id="icon-cons"></i>
             <button class="ingresar link_legal margin-right" type="" id="legal">Reemper</button>
@@ -73,13 +72,6 @@
             <% end -%>
 
           </div>
-
-          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
-            <%= text_field_tag :search2,params[:search2], autocomplete: "off", placeholder: "construccion", class: "form form-control" %>
-            <%= button_tag class: "submit1", :title => "Buscar" do %>
-              <i class="fas fa-arrow-right icon-row"></i>            
-            <% end -%>
-          </div> 
 
           <div class="col-md-6 no-padding-left" style="display: none;" id="imput-legal">
             <input name="email" placeholder="Nombre,Ciudad" id="q" class="form form-control">
