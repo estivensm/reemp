@@ -4,10 +4,9 @@ class ContacReempersController < ApplicationController
   # GET /contac_reempers
   # GET /contac_reempers.json
   def index
-    #usuario = User.where(id: current_user.id)
-    #@reemper = Reemper.where(user_id: usuario).first
-    #@contac_reempers = ContacReemper.where(reemper_id: @reemper.id)
-    @contac_reempers = ContacReemper.all
+    usuario = User.where(id: current_user.id)
+    @reemper = Reemper.where(user_id: usuario).all
+    @contac_reempers = ContacReemper.where(reemper_id: @reemper.id)
   end
 
   # GET /contac_reempers/1

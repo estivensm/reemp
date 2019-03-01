@@ -80,6 +80,7 @@
         <% if user_signed_in? %>
 
           <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+          
           <% else %>
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
               <i class="fas fa-sign-in-alt"></i> Ingresa Para Enviar Mensaje
