@@ -229,5 +229,10 @@ module ApplicationHelper
     	return @reemper
 	end
 
+	def remmper
+		usuario = User.where(id: current_user.id)
+		Reemper.where(user_id: usuario).exists?
+	end
+
 	
 end

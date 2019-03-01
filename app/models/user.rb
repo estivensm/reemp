@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_one :reemper
 
   mount_uploader :avatar, AvatarUploader
-  validates :user_name, uniqueness: { message: "No Permitido" }
-  validates :phone, uniqueness: { message: "Ingresa otro diferente" }
+  #validates :user_name, uniqueness: { message: "No Permitido" }
+  #validates :phone, uniqueness: { message: "Ingresa otro diferente" }
 
 end

@@ -78,10 +78,12 @@
         <% end -%>
 
         <% if user_signed_in? %>
-          <% if is_me?.id != @reemper.id %>
+          <% if remmper %>
+            <% if is_me?.id != @reemper.id %>
 
-              <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
-          <% end -%>
+                <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+            <% end -%>
+          <% end %>
 
           <% else %>
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
