@@ -8,7 +8,7 @@
           <a href="" class="ingresar_login" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</a>
         </div>
     </div>
-
+   </nav>
     <div class="row">
 
 
@@ -27,70 +27,97 @@
             <button class="ingresar link_legal margin-right" type="" id="legal">Reemper</button>
             <i class="fas fa-check" id="icon-legal"></i>
           </div>
-
+        <div class="col-md-12 form-search" >
+          
+        
         <%= form_tag browser_path, :method => 'post' do %>
 
-        <div class="form-row">
+        <div class="row" >
 
 
-          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-salud">
+          <div class="col-md-5 " >
 
-            <select name="category_id" class="form form-control">
+            <select name="category_id" class="form form-control" style="display: none;" id="imput-salud">
             <option value="">Selecciona una especialidad de salud</option>
               <% @specialties.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
-
-            <%= button_tag class: "submit1", :title => "Buscar" do %>
-              <i class="fas fa-arrow-right icon-row"></i>            
-            <% end -%>
-
-          </div>
-
-          <div class="col-md-6 no-padding-left" id="imput-masco" style="display: none;">
-            <select name="specialties" class="form form-control">
+              <select name="specialties" class="form form-control" style="display: none;" id="imput-masco" >
                <option value="">Selecciona una especialidad de mascotas</option>
                 <% @specmas.each do |espec|  %>
                    <option><%= espec.name %></option>
                 <% end %>
-              </select>
-              
-            <%= button_tag class: "submit1", :title => "Buscar" do %>
-              <i class="fas fa-arrow-right icon-row"></i>            
-            <% end -%>
-          </div>
-
-          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-const">
-            <select name="search2" class="form form-control">
+              </select>  
+               <select name="search2" class="form form-control" style="display: none;" id="imput-const">
               <option value="">Selecciona una especialidad de construccion</option>
               <% @specate.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
-
-
-            <%= button_tag class: "submit1", :title => "Buscar" do %>
-              <i class="fas fa-arrow-right icon-row"></i>            
-            <% end -%>
-
+              <div style="display: none;" id="imput-legal">
+                 <input name="email" placeholder="Nombre,Ciudad" id="q" class="form form-control" >
+              </div>
+              
           </div>
 
+        
+
+       
                       <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
-          <div class="col-md-6 no-padding-left" style="display: none;" id="imput-legal">
-            <input name="email" placeholder="Nombre,Ciudad" id="q" class="form form-control">
-          </div> 
+         
 
-          <div class="col-md-5 text-center search-map" style="display: none;">
-              <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
+          <div class="col-md-4 text-center search-map" style="display: none;">
+              <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control city ss" , id: "autocomplete" %>
           </div>
+          <div class="col-md-2 ">
+             <%= button_tag class: "submit1", :title => "Buscar" , style:"display:none" do %>
+              Buscar <i class="fas fa-arrow-right icon-row"></i>            
+            <% end -%> 
+            </div>  
         </div>
-
+            
         <% end -%>
-
+         </div> 
       </div>
     </div>
+</div>
+
+  <div class="row msg">
+      <h1 >¡ Por ciudades llenas de oportunidades !</h1>
+  </div>
+
+  <div class="row" style="margin-top: 50px">
+        <div class="col-md-6">
+          <div class=" col-md-12 text-center"><h2 style="color: gray">Reempers Estaticos</h2></div>
+          <div class="row" style="margin-top: 40px;padding:10px">
+               <div class=" col-md-6">
+            <img width="300px;" src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/400/3.jpg" alt="">
+          </div>
+            <div class=" col-md-6">
+              <p class="reemper-description" style="color: gray;margin-top: 50px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic </p>
+          </div>
+          </div>
+       
+          
+        </div>
+
+        <div class="col-md-6">
+            
+ <div class=" col-md-12 text-center"><h2 style="color: gray">Reempers Dinamicos</h2></div>
+          <div class="row" style="margin-top: 40px;padding:10px"">
+          <div class=" col-md-6 ">
+           <img width="300px;" src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/399/2.jpg" alt="">
+          </div>
+            <div class=" col-md-6 ">
+                     <p class="reemper-description" style="color: gray;margin-top: 50px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic </p>
+          </div>
+
+          </div>
+          
+        </div>
+    </div>  
 
 
 
@@ -150,13 +177,46 @@
 
 
 <style type="text/css" media="screen">
+  .msg{
+        display: block;
+    text-align: center;
+    width: 100%;
+    background: blue;
+    color: white;
+    padding: 25px;
+    margin:0px;
+  }
+.flex-container {
+  display: flex;
+  justify-content: center;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+.form-search
+{
+    padding: 10px 30px;
+    border-radius: 25px;
+    margin-top: 50px;
+}
+.city
+{
+margin: 5px 0px;
+}
   h1 {
   margin-bottom: 1rem;
 }
 
 .algolia-autocomplete{
   width: 100% !important;
-  padding-left: 14px;
+  
 }
 
 .img-xs{
@@ -241,8 +301,10 @@ em {
     var icon_legal = document.getElementById("icon-legal");
 
     $(salud).click(function(event) {
+      $(".form-search").css('background','#09b8fa8a')
       $(this).addClass('opacidad');
       $(".search-map").show("linear");
+      $(".submit1").show('linear');
       $(icon_salud).addClass('show');
       $(icon_masco).removeClass('show').addClass('hide')
       $(icon_cons).removeClass('show').addClass('hide')
@@ -260,7 +322,7 @@ em {
 
     $(masco).click(function(event) {
       $(this).addClass('opacidad');
-      
+       $(".form-search").css('background','#e059a166')
       $(icon_masco).addClass('show');
       $(icon_salud).removeClass('show').addClass('hide');
       $(icon_cons).removeClass('show').addClass('hide')
@@ -279,7 +341,7 @@ em {
 
     $(cons).click(function(event) {
       $(this).addClass('opacidad');
-
+       $(".form-search").css('background','#fda03b78')
       $(icon_cons).addClass('show');
       $(icon_masco).removeClass('show').addClass('hide');
       $(icon_salud).removeClass('show').addClass('hide');
@@ -297,7 +359,7 @@ em {
 
     $(legal).click(function(event) {
       $(this).addClass('opacidad');
-
+       $(".form-search").css('background','#9f6cde69')
       $(icon_legal).addClass('show');
       $(icon_cons).removeClass('show').addClass('hide');
       $(icon_masco).removeClass('show').addClass('hide');
@@ -321,7 +383,7 @@ em {
 
   .search-map{
     float: right;
-    margin-top: 27px;
+   
   }
 
   #icon-check{
@@ -360,11 +422,11 @@ em {
     display: none;
   }
 
-  #imput-masco{margin-top: 26px; padding-left: 14px;}
-  #imput-const{margin-top: 26px; padding-left: 14px;} 
-  #imput-salud{margin-top: 26px; padding-left: 14px;}
-  #imput-legal{margin-top: 26px;}
-
+  #imput-masco{margin: 5px 0px; padding-left: 14px;}
+  #imput-const{margin: 5px 0px; padding-left: 14px;} 
+  #imput-salud{margin: 5px 0px; padding-left: 14px;}
+  #imput-legal{margin: 5px 0px;}
+  
   .h3{
     margin-left: 3px;
     margin-top: 0px;
@@ -397,18 +459,18 @@ em {
 
   .icon-row{
     color: #fff;
+    margin-left: 5px;
   }
 
   .submit1{
     border-radius: 15px;
     border: none;
     background-color: #9B25DE;
-    z-index: 1;
-    position: relative;
-    float: right;
-    top: -32px;
-    width: 72px;
-    padding: 3px;
+    margin-top: 5px;
+    width: 120px;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
   }
 
   .hit-auto-complete{

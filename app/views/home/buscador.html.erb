@@ -1,8 +1,9 @@
 <%= render "parciales/menu_show" %>
+<br>
 <div class="container" style="margin-top: 10px; height: 579px;">
   <div class="row">
 
-    <div class="col-md-12 no-padding-left">
+    <div class="col-md-12">
       <ol class="breadcrumb">
           <li><a href="/home/index">Home</a></li>
           <li><a href="#"><%= @categorias %></a></li>
@@ -10,8 +11,8 @@
       </ol>
     </div>
 
-    <div class="col-md-5 show-reempers">
-      <legend style="margin-top: 17px;">
+    <div class="col-md-6 show-reempers">
+      <legend style="margin-top: 17px;display: none">
         Reempers <div id="stats"></div>
       </legend>
         <div class="col-dm-12 no-padding" id="hits"></div>
@@ -24,8 +25,8 @@
     </div>
 
 
-    <div class="col-md-7 no-padding-right" id="map-reemper">
-        <legend style="margin-top: 3px;">Mapa</legend>
+    <div class="col-md-6 no-padding-right" id="map-reemper">
+      
         <div id="map"></div>
     </div>
 <!--
@@ -129,7 +130,7 @@ em {
 }
 
 .show-reempers{
-  box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+  
   margin-bottom: 10px;
 }
 
@@ -282,18 +283,18 @@ $(document).on('turbolinks:load',function() {
           '<div class="col-md-4 no-padding-left">'+
             '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
           '</div>'+
-          '<div class="col-md-4 no-padding-right">'+
-            '<h4 style="font-size: 16px;"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
-            '<label style="font-size: 14px;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
-            '<span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span><br>'+
-            '<b> <i class="fas fa-map-marker-alt"></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
+          '<div class="col-md-4 no-padding-right" style="font-size: 14px;color:#0cc3f3">'+
+            '<h4 style="font-size: 16px;color:#0cc3f3"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
+            '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
+            '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
+            '<b> <i class="fas fa-map-marker-alt" ></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
           '</div>'+
                   '</div>'+
-          '<div class="col-md-12 no-padding" style="margin-top: 10px;">'+
+          '<div class="col-md-12 no-padding" style="margin-top: 10px;color:gray">'+
             '<p>'+
               '{{#helpers.highlight}}{ "attribute": "biography" }{{/helpers.highlight}}'+
             '</p>'+
-            '<%= link_to "Ver Registro",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
+            '<%= link_to "Ver Reemper",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
           '</div>'+
 
         '</div>'+
@@ -431,10 +432,13 @@ $(document).on('turbolinks:load',function() {
 <style type="text/css" media="screen">
   /* GENERAL
 // ------------------------- */
-
+.fa-star
+{
+  color:#eabc00!important;
+}
 .reemper-show{
     padding: 4px;
-    background-color: #44416e;
+    background-color: #0cc3f3;
     border-radius: 42px;
     color: #fff;
 }
@@ -740,22 +744,22 @@ em{
   padding: 3px;
 }
 #pagination .ais-Pagination-link {
-  color: #40436f;
+  color: #0cc3f3;
   border-radius: 4px;
   background: transparent;
 }
 #pagination .pagination > .active > a {
     color: #ffffff;
-    border-color: #40436f;
-    background: #40436f;
+    border-color: #0cc3f3;
+    background: #0cc3f3;
 }
 #pagination .pagination > li > a:focus,
 #pagination .pagination > li > a:hover,
 #pagination .pagination > li > span:focus,
 #pagination .pagination > li > span:hover {
   color: #ffffff;
-  border-color: #40436f;
-  background: #40436f;
+  border-color: #0cc3f3;
+  background: #0cc3f3;
 }
 
 .breadcrumb{
@@ -771,7 +775,7 @@ em{
 .breadcrumb li{
     float: left;
     margin-right: 10px;
-    background: #161054;
+    background: #0cc3f3;
     border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
