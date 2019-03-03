@@ -37,19 +37,19 @@
 
           <div class="col-md-5 " >
 
-            <select name="category_id" class="form form-control" style="display: none;" id="imput-salud">
+            <select name="category_id" class="form form-control select" style="display: none;" id="imput-salud">
             <option value="">Selecciona una especialidad de salud</option>
               <% @specialties.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
-              <select name="specialties" class="form form-control" style="display: none;" id="imput-masco" >
+              <select name="specialties" class="form form-control select" style="display: none;" id="imput-masco" >
                <option value="">Selecciona una especialidad de mascotas</option>
                 <% @specmas.each do |espec|  %>
                    <option><%= espec.name %></option>
                 <% end %>
               </select>  
-               <select name="search2" class="form form-control" style="display: none;" id="imput-const">
+               <select name="search2" class="form form-control select" style="display: none;" id="imput-const">
               <option value="">Selecciona una especialidad de construccion</option>
               <% @specate.each do |espec|  %>
                  <option><%= espec.name %></option>
@@ -61,9 +61,10 @@
               
           </div>
 
-        
+              <%= hidden_field_tag :category_id, nil , id: "category_id" %>
+               <%= hidden_field_tag :specialties, nil, id: "specialties" %>
 
-       
+        
                       <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
          
@@ -300,7 +301,14 @@ em {
     var icon_cons = document.getElementById("icon-cons");
     var icon_legal = document.getElementById("icon-legal");
 
+     $('.select').change(function(event) {
+
+        $("#specialties").val($(this).val());
+     });
+
+
     $(salud).click(function(event) {
+      $("#category_id").val($(this).text());
       $(".form-search").css('background','#09b8fa8a')
       $(this).addClass('opacidad');
       $(".search-map").show("linear");
@@ -321,6 +329,7 @@ em {
     });
 
     $(masco).click(function(event) {
+      $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#e059a166')
       $(icon_masco).addClass('show');
@@ -340,6 +349,7 @@ em {
     });
 
     $(cons).click(function(event) {
+      $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#fda03b78')
       $(icon_cons).addClass('show');
@@ -358,6 +368,7 @@ em {
     });
 
     $(legal).click(function(event) {
+      $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#9f6cde69')
       $(icon_legal).addClass('show');
