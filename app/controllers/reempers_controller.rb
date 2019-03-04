@@ -22,6 +22,22 @@ class ReempersController < ApplicationController
   def edit
   end
 
+  def request_remp
+    respond_to do |format|
+      format.js
+      redirect_to update_reemper_path(params[:lat],  params[:lng])
+    end 
+  end
+
+  def update_reemper
+    respond_to do |format|
+      format.js
+      usuario = User.where(id: current_user.id)
+      @loc_user = Reemper.where(user_id: usuario).first
+      @loc_user.update(lat: params[:lat], lng: params[:lng])
+    end 
+  end
+
   # POST /reempers
   # POST /reempers.json
   def create

@@ -33,6 +33,11 @@ Rails.application.routes.draw do
   get "reemper/home", to: "home#reemper_home", as: "reeper_home"
   root "home#user_contact"
   post "create_contact", to: "contacts#create", as: "create_contact"
+
+  post "request_remp", to: "reempers#request_remp", as: "request_remp"
+  post "update_reemper/:lat/:lng(/:act)", to: "reempers#update_reemper", as: "update_reemper"
+  post "update_consul/:lat/:lng(/:act)", to: "consulting_rooms#update_consul", as: "update_consul"
+
   get "admin/home", to: "home#admin_home", as: "admin_home"
   get "admin/contact", to: "home#admin_contact", as: "admin_contact"
   get "admin/users", to: "home#admin_users", as: "admin_users"

@@ -183,6 +183,23 @@
                     <i class="menu-icon fas fa-users"></i> Reempers
                 <% end -%>
               </li>
+
+
+              <div class="col-md-12 text-center" style="margin-top: 10px;">
+                <%# form_tag request_remp_path, method: :post, remote: true do %>
+
+                    <%# hidden_field_tag :lat, nil, :value => "12" %>
+                    <%# hidden_field_tag :lng, nil, :value => "12" %>
+
+                    <%# submit_tag "Activar Ubicacion", class: "btn btn-outline-success" %>
+                <%# end -%>
+
+                <%= link_to "Activar Ubicacion", update_reemper_path(:lat => 02124, :lng => 223), method: :post, class: "btn btn-outline-success", remote: true, style: "display: block;", id: "btn1" %>
+
+                <%= link_to "Desactivar Ubicacion",update_reemper_path(:lat => 123, :lng => 123, :act => "desac"), method: :post, class: "btn btn-outline-danger", style: "display: none;", remote: true, id: "btn2" %>
+
+              </div>
+
 <!--
             <%# if current_user.user_name.blank? %>
                   <%# link_to  reeper_home_path + "?reemper=true", class: "btn btn-success disabled", id: "new_remper" do %>
@@ -304,6 +321,23 @@
   </body>
 </html>
 
+<script type="text/javascript">
+  var bt1 =  document.getElementById("btn1")
+  var bt2 =  document.getElementById("btn2")
+
+  $(bt1).click(function(event) {
+    $(this).css({'display':'none'});
+    $(bt2).css({'display':'block'});
+  });
+
+  $(bt2).click(function(event) {
+    $(this).css({'display':'none'});
+    $(bt1).css({'display':'block'});
+
+  });
+
+</script>
+
 
 <style type="text/css" media="screen">
 
@@ -313,6 +347,13 @@
 
   .py-3 > .fas{
     color: #5bc0de;
+  }
+  .hide-btn{
+    display: none;
+  }
+
+  .show-btn{
+    display: block;
   }
 
  

@@ -27,6 +27,10 @@
             <button class="ingresar link_legal margin-right" type="" id="legal">Reemper</button>
             <i class="fas fa-check" id="icon-legal"></i>
           </div>
+          <div class="col-md-12" style="margin-top: 20px">
+            <button class="ingresar link_lagal1 margin-right" type="" id="legal-2">Legal</button>
+            <i class="fas fa-check" id="icon-cons"></i>
+          </div>
         <div class="col-md-12 form-search" >
           
         
@@ -37,35 +41,44 @@
 
           <div class="col-md-5 " >
 
-            <select name="category_id" class="form form-control select" style="display: none;" id="imput-salud">
+            <select name="" class="form form-control select" style="display: none;" id="imput-salud">
             <option value="">Selecciona una especialidad de salud</option>
               <% @specialties.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
-              <select name="specialties" class="form form-control select" style="display: none;" id="imput-masco" >
+              <select name="" class="form form-control select" style="display: none;" id="imput-masco" >
                <option value="">Selecciona una especialidad de mascotas</option>
                 <% @specmas.each do |espec|  %>
                    <option><%= espec.name %></option>
                 <% end %>
               </select>  
-               <select name="search2" class="form form-control select" style="display: none;" id="imput-const">
+            <select name="search2" class="form form-control select" style="display: none;" id="imput-const">
               <option value="">Selecciona una especialidad de construccion</option>
               <% @specate.each do |espec|  %>
                  <option><%= espec.name %></option>
               <% end %>
             </select>
+
+            <select name="" class="form form-control select" style="display: none;" id="imput-masco" >
+               <option value="">Selecciona una especialidad en legalidad</option>
+                <% @specmas.each do |espec|  %>
+                   <option><%= espec.name %></option>
+                <% end %>
+            </select>  
+
               <div style="display: none;" id="imput-legal">
                  <input name="email" placeholder="Nombre,Ciudad" id="q" class="form form-control" >
               </div>
               
           </div>
 
-              <%= hidden_field_tag :category_id, nil , id: "category_id" %>
-               <%= hidden_field_tag :specialties, nil, id: "specialties" %>
+          <%= hidden_field_tag :category_id, nil , id: "category_id" %>
+          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
+          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
 
         
-                      <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
+          <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
 
          
 
@@ -305,6 +318,7 @@ em {
 
         $("#specialties").val($(this).val());
      });
+
 
 
     $(salud).click(function(event) {

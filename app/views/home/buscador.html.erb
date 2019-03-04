@@ -205,11 +205,23 @@ $(document).on('turbolinks:load',function() {
     /* global instantsearch algoliasearch $script */
 
   $script('https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBCTHCpTg9kTvg7uBcO0wYvpA7_Tw8Lkxg', function() {
-    const search = instantsearch({
-      searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
-      indexName: 'Reemper_production',
-      routing: true,
-    });
+    <% if Rails.env.production? %>
+
+      const search = instantsearch({
+        searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
+        indexName: 'Reemper_production',
+        routing: true,
+      });
+      console.log("en produccion")
+    <% else %>
+
+      const search = instantsearch({
+        searchClient: algoliasearch('DJ3JJMGZSP', 'ddbd8bb0730c9044fca8d4ddf2bb5152'),
+        indexName: 'Reemper_development',
+        routing: true,
+      });
+      console.log("no estoy en produccion")
+    <% end -%>
     /*
     const autocomplete = instantsearch.connectors.connectAutocomplete(
     ({ indices, refine, widgetParams }, isFirstRendering) => {

@@ -25,6 +25,11 @@ class ConsultingRoomsController < ApplicationController
     @remper = Reemper.where(user_id: current_user.id).first
   end
 
+  def update_consul
+    user = User.where(names: params[:name].to_s)
+    @consulting_room = ConsultingRoom.where(user_id: user).first
+  end
+
   # POST /consulting_rooms
   # POST /consulting_rooms.json
   def create
