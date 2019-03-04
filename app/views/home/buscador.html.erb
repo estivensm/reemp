@@ -838,16 +838,18 @@ em{
   background: transparent;
 }
 #pagination .pagination > .active > a {
-    color: #ffffff;
     <% if  @categorias == "Salud" %>
       background:  #0cc3f3 !important;
       border-color: #fff;
+      color: #fdfdfdfc !important;
     <% elsif @categorias == "Mascotas" %>
       background: #DE12A1 !important;
       border-color: #fff;
+      color: #fdfdfdfc !important;
       <% elsif @categorias == "Construcción" %>
       background: #210554 !important;
       border-color: #FD9E04;
+      color: #fdfdfdfc !important;
     <% end -%>
 }
 #pagination .pagination > li > a:focus,
