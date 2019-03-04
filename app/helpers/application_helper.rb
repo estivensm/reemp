@@ -223,10 +223,10 @@ module ApplicationHelper
 		end
 	end
 
-	def is_me?
+	def me
 		usuario = User.where(id: current_user.id)
-    	@reemper = Reemper.where(user_id: usuario).first
-    	return @reemper
+    	@is_me = Reemper.where(user_id: usuario).first
+    	return @is_me
 	end
 
 	def remmper

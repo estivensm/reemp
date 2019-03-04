@@ -74,6 +74,6 @@ class ContacReempersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contac_reemper_params
-      params.require(:contac_reemper).permit(:user_id, :reemper_id, :description)
+      params.require(:contac_reemper).permit!
     end
 end

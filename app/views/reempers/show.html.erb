@@ -5,9 +5,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb no-padding-left">
     <li class="breadcrumb-item"><a href="/home/index">Pagina de Inicio</a></li>
-    <li class="breadcrumb-item"><a href="#"><%= @reemper.category.name %></a></li>
+    <li class="breadcrumb-item"><a href="#"><%= @reemper.category.name if @reemper.category %></a></li>
     <li class="breadcrumb-item"><a href="#"><%= @reemper.city %></a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%= @reemper.user.names %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @reemper.user.names if @reemper.user %></li>
   </ol>
 </nav>
 
@@ -43,11 +43,10 @@
         </div>
 
       </div>
+      <br>
 
-      <fieldset style="margin-top: 10px; margin-bottom: 10px;">
-        <legend>Localizacion</legend>
-        <div id="map1"></div>
-      </fieldset>
+      <legend>Localizacion</legend>
+      <div id="map1"></div>
 
       <script type="text/javascript">
       function initMap1() {
@@ -77,9 +76,15 @@
           <i class="far fa-calendar-alt"></i> Agendar Cita
         <% end -%>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in?  %>
 
-          <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+          <% if me.id == @reemper.id %>
+            <button type="" disabled="" class="btn btn-danger">
+              <i class="fas fa-user-times"></i> No puedes
+            </button>
+          <% else %>
+            <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+          <% end -%>
           
           <% else %>
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
@@ -114,8 +119,8 @@
     </div>
 
     <div class="signature-details">
-      <h2 class="title"><%= @reemper.user.names %></h2>
-      <span class="post"><%= @reemper.category.name %></span>
+      <h2 class="title"><%= @reemper.user.names if @reemper.user %></h2>
+      <span class="post"><%= @reemper.category.name if @reemper.category %></span>
     </div>
 
     <ul class="signature-content">
@@ -289,7 +294,7 @@
 
 .email-signature .signature-img img{
     width: 100%;
-    height: auto;
+    height: 124px;
     border-radius: 50%;
 }
 
