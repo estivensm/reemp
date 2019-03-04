@@ -14,6 +14,9 @@ class HomeController < ApplicationController
     catecons = Category.where(name: "Construccion")
     @specate = Specialty.where(category_id: catecons).all
 
+    catelegal = Category.where(name: "Legal")
+    @specilegal = Specialty.where(category_id: catelegal).all
+
   end
 
   def search

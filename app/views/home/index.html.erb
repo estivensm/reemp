@@ -60,9 +60,9 @@
               <% end %>
             </select>
 
-            <select name="" class="form form-control select" style="display: none;" id="imput-masco" >
+            <select name="" class="form form-control select" style="display: none;" id="legal-imput" >
                <option value="">Selecciona una especialidad en legalidad</option>
-                <% @specmas.each do |espec|  %>
+                <% @specilegal.each do |espec|  %>
                    <option><%= espec.name %></option>
                 <% end %>
             </select>  
@@ -75,7 +75,7 @@
 
           <%= hidden_field_tag :category_id, nil , id: "category_id" %>
           <%= hidden_field_tag :specialties, nil, id: "specialties" %>
-          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
+          <%= hidden_field_tag :legal, nil, id: "legal" %>
 
         
           <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
@@ -120,8 +120,8 @@
         <div class="col-md-6">
             
  <div class=" col-md-12 text-center"><h2 style="color: gray">Reempers Dinamicos</h2></div>
-          <div class="row" style="margin-top: 40px;padding:10px"">
-          <div class=" col-md-6 ">
+          <div class="row" style="margin-top: 40px;padding:10px">
+          <div class="col-md-6">
            <img width="300px;" src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/399/2.jpg" alt="">
           </div>
             <div class=" col-md-6 ">
@@ -200,6 +200,7 @@
     padding: 25px;
     margin:0px;
   }
+
 .flex-container {
   display: flex;
   justify-content: center;
@@ -303,11 +304,13 @@ em {
     var masco = document.getElementById("masko");
     var cons = document.getElementById("cons");
     var legal = document.getElementById("legal");
+    var legal2 = document.getElementById("legal-2")
 
     var imputsa = document.getElementById("imput-salud");
     var imputmas = document.getElementById("imput-masco");
     var imputconst = document.getElementById("imput-const");
     var imputlegal = document.getElementById("imput-legal");
+    var legalimput   = document.getElementById("legal-imput")
 
     var icon_salud = document.getElementById("icon-check");
     var icon_masco = document.getElementById("icon-masco");
@@ -335,7 +338,7 @@ em {
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
       $(legal).removeClass('opacidad');
-
+      $(legalimput).hide("linear");  
       $(imputsa).show("linear");
       $(imputmas).hide("linear");
       $(imputconst).hide("linear");
@@ -359,7 +362,8 @@ em {
       $(imputmas).show("linear"); 
       $(imputsa).hide("linear"); 
       $(imputconst).hide("linear"); 
-      $(imputlegal).hide("linear");       
+      $(imputlegal).hide("linear"); 
+      $(legalimput).hide("linear");     
     });
 
     $(cons).click(function(event) {
@@ -370,7 +374,7 @@ em {
       $(icon_masco).removeClass('show').addClass('hide');
       $(icon_salud).removeClass('show').addClass('hide');
       $(icon_legal).removeClass('show').addClass('hide');
-
+      $(".submit1").show("linear");
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(legal).removeClass('opacidad');
@@ -379,6 +383,7 @@ em {
       $(imputmas).hide("linear"); 
       $(imputsa).hide("linear"); 
       $(imputlegal).hide("linear"); 
+      $(legalimput).hide("linear");
     });
 
     $(legal).click(function(event) {
@@ -386,6 +391,7 @@ em {
       $(this).addClass('opacidad');
        $(".form-search").css('background','#9f6cde69')
       $(icon_legal).addClass('show');
+            $(".submit1").show("linear");
       $(icon_cons).removeClass('show').addClass('hide');
       $(icon_masco).removeClass('show').addClass('hide');
       $(icon_salud).removeClass('show').addClass('hide');
@@ -394,6 +400,29 @@ em {
       $(cons).removeClass('opacidad');
       $(".search-map").hide("linear");
       $(imputlegal).show("linear");  
+      $(imputconst).hide("linear");  
+      $(imputmas).hide("linear"); 
+      $(imputsa).hide("linear");  
+      $(legalimput).hide("linear");  
+    });
+
+    $(legal2).click(function(event) {
+      $("#legal").val($(this).text());
+      $(this).addClass('opacidad');
+       $(".form-search").css('background','#0b255b')
+      $(icon_legal).addClass('show');
+      $(icon_cons).removeClass('show').addClass('hide');
+      $(icon_masco).removeClass('show').addClass('hide');
+      $(icon_salud).removeClass('show').addClass('hide');
+      $(salud).removeClass('opacidad');
+      $(masco).removeClass('opacidad');
+      $(cons).removeClass('opacidad');
+      $(legal).removeClass('opacidad');
+      $(".search-map").show("linear");
+      $(".submit1").show("linear");
+      $(legalimput).show("linear");
+      $(legalimput).addClass('margin');
+      $(imputlegal).hide("linear");  
       $(imputconst).hide("linear");  
       $(imputmas).hide("linear"); 
       $(imputsa).hide("linear");    
@@ -409,6 +438,10 @@ em {
   .search-map{
     float: right;
    
+  }
+
+  .margin{
+        margin-top: 5px;
   }
 
   #icon-check{

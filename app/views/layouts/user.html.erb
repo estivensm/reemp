@@ -186,15 +186,13 @@
 
 
               <div class="col-md-12 text-center" style="margin-top: 10px;">
-                <%# form_tag request_remp_path, method: :post, remote: true do %>
+                <%= form_tag request_remp_path, method: :get, remote: true do %>
 
-                    <%# hidden_field_tag :lat, nil, :value => "12" %>
-                    <%# hidden_field_tag :lng, nil, :value => "12" %>
+                    <%= hidden_field_tag :lat, nil, id: "lat" %>
+                    <%= hidden_field_tag :lng, nil, id: "lng" %>
 
-                    <%# submit_tag "Activar Ubicacion", class: "btn btn-outline-success" %>
-                <%# end -%>
-
-                <%= link_to "Activar Ubicacion", update_reemper_path(:lat => 02124, :lng => 223), method: :post, class: "btn btn-outline-success", remote: true, style: "display: block;", id: "btn1" %>
+                    <%= submit_tag "Activar Ubicacion", class: "btn btn-outline-success", :onclick => "return getLocation();" %>
+                <% end -%>
 
                 <%= link_to "Desactivar Ubicacion",update_reemper_path(:lat => 123, :lng => 123, :act => "desac"), method: :post, class: "btn btn-outline-danger", style: "display: none;", remote: true, id: "btn2" %>
 
@@ -320,6 +318,31 @@
 
   </body>
 </html>
+
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+var lati = document.getElementById("lat");
+var longi = document.getElementById("lng");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  lati.value = position.coords.latitude
+  longi.value = position.coords.longitude
+}
+</script>
+
+
 
 <script type="text/javascript">
   var bt1 =  document.getElementById("btn1")

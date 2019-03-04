@@ -1,5 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" class="logo-img"></a>
+  <a class="navbar-brand" href="" >
+    <% if action_name == "buscador"%>
+      <% if  @categorias == "Salud" %>
+          <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/401/logo_reemp_blanco.png" class="logo-img">
+      <% elsif @categorias == "Mascotas" %>
+          <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/401/logo_reemp_blanco.png" class="logo-img">
+      <% elsif @categorias == "Construcción" %>
+          <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/401/logo_reemp_blanco.png" class="logo-img">
+      <% end -%>
+    <% else %>
+      <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" class="logo-img">
+    <% end -%>
+  </a>
+  
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -50,7 +63,11 @@
     padding: 9px;
     width: 145px;
     color: #40436f;
-    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    <% if  @categorias == "Salud" %>
+        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    <% elsif @categorias == "Mascotas" %>
+        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    <% end -%>
   }
 
   .logo-img{
@@ -59,7 +76,6 @@
 
   .navbar{
     margin-bottom: 0px;
-    background-color: transparent;
     padding-bottom: 0px;
     height: 100px;
   }

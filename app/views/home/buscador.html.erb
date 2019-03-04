@@ -143,14 +143,30 @@ em {
 }
 
 .show-reempers{
-  
   margin-bottom: 10px;
+}
+
+.gmnoprint:first-child div{
+  <% if  @categorias == "Salud" %>
+      background-color:  #0cc3f3 !important;
+      color: #fff;
+  <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1 !important;
+      color: #fff;
+  <% elsif @categorias == "Construcción" %>
+      background-color: #210554 !important;
+      color: #FD9E04;
+  <% end -%>
+}
+
+.gm-control-active img{
+  color: red !important;
 }
 
 .sticky {
     position: fixed;
     top: 0;
-    margin-left: 4px;
+    margin-left: 8px;
     left: 637px;
     width: 565px;
     margin-top: 10px;
@@ -158,7 +174,7 @@ em {
 }
 
 body{
-  height: 1500px;
+  height: 1590px;
   overflow: hidden;
 }
 
@@ -292,7 +308,7 @@ $(document).on('turbolinks:load',function() {
     search.addWidget(
       instantsearch.widgets.configure({
         aroundLatLngViaIP: true,
-        hitsPerPage: 5
+        hitsPerPage: 3
         //filters: "user.name: E"
       })
     );
@@ -310,8 +326,8 @@ $(document).on('turbolinks:load',function() {
           '<div class="col-md-4 no-padding-left">'+
             '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
           '</div>'+
-          '<div class="col-md-4 no-padding-right" style="font-size: 14px;color:#0cc3f3">'+
-            '<h4 style="font-size: 16px;color:#0cc3f3"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
+          '<div class="col-md-4 no-padding-right name-reemp">'+
+            '<h4 class="user-reemp"> {{#helpers.highlight}}{ "attribute": "user.name" }{{/helpers.highlight}} <i class="fas fa-check-circle"></i> </h4>'+
             '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
             '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
             '<b> <i class="fas fa-map-marker-alt" ></i> {{#helpers.highlight}}{ "attribute": "city" }{{/helpers.highlight}} </b>'+
@@ -459,13 +475,53 @@ $(document).on('turbolinks:load',function() {
 <style type="text/css" media="screen">
   /* GENERAL
 // ------------------------- */
+
+.bg-light{
+  <% if  @categorias == "Salud" %>
+    background-color:  #0cc3f3 !important;
+  <% elsif @categorias == "Mascotas" %>
+    background-color: #DE12A1 !important;
+    <% elsif @categorias == "Construcción" %>
+    background-color: #FD9E04 !important;
+  <% end -%>
+}
+
+.user-reemp{
+  font-size: 16px;
+
+  <% if  @categorias == "Salud" %>
+    color:  #0cc3f3 !important;
+  <% elsif @categorias == "Mascotas" %>
+    color: #DE12A1 !important;
+    <% elsif @categorias == "Construcción" %>
+    color: #FD9E04 !important;
+  <% end -%>
+}
+
+.name-reemp{
+  font-size: 14px;
+  <% if  @categorias == "Salud" %>
+    color:  #0cc3f3 !important;
+  <% elsif @categorias == "Mascotas" %>
+    color: #DE12A1 !important;
+  <% elsif @categorias == "Construcción" %>
+    color: #210554 !important;
+  <% end -%>
+}
+
 .fa-star
 {
   color:#eabc00!important;
 }
 .reemper-show{
     padding: 4px;
-    background-color: #0cc3f3;
+    <% if  @categorias == "Salud" %>
+      background-color:  #0cc3f3 !important;
+    <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1 !important;
+      <% elsif @categorias == "Construcción" %>
+      background-color: #210554 !important;
+    <% end -%>
     border-radius: 42px;
     color: #fff;
 }
@@ -771,14 +827,28 @@ em{
   padding: 3px;
 }
 #pagination .ais-Pagination-link {
-  color: #0cc3f3;
+    <% if  @categorias == "Salud" %>
+      color:  #0cc3f3 !important;
+    <% elsif @categorias == "Mascotas" %>
+      color: #DE12A1 !important;
+      <% elsif @categorias == "Construcción" %>
+      color: #FD9E04 !important;
+    <% end -%>
   border-radius: 4px;
   background: transparent;
 }
 #pagination .pagination > .active > a {
     color: #ffffff;
-    border-color: #0cc3f3;
-    background: #0cc3f3;
+    <% if  @categorias == "Salud" %>
+      background:  #0cc3f3 !important;
+      border-color: #0cc3f3;
+    <% elsif @categorias == "Mascotas" %>
+      background: #DE12A1 !important;
+      border-color: #DE12A1;
+      <% elsif @categorias == "Construcción" %>
+      background: #210554 !important;
+      border-color: #FD9E04;
+    <% end -%>
 }
 #pagination .pagination > li > a:focus,
 #pagination .pagination > li > a:hover,
@@ -786,7 +856,7 @@ em{
 #pagination .pagination > li > span:hover {
   color: #ffffff;
   border-color: #0cc3f3;
-  background: #0cc3f3;
+  background: red;
 }
 
 .breadcrumb{

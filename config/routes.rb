@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   root "home#user_contact"
   post "create_contact", to: "contacts#create", as: "create_contact"
 
-  post "request_remp", to: "reempers#request_remp", as: "request_remp"
+  get "request_remp", to: "reempers#request_remp", as: "request_remp"
   post "update_reemper/:lat/:lng(/:act)", to: "reempers#update_reemper", as: "update_reemper"
   post "update_consul/:lat/:lng(/:act)", to: "consulting_rooms#update_consul", as: "update_consul"
 
