@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
+    <%= favicon_link_tag "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/375/2.png"%>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -157,23 +157,24 @@
               </li>
 
               <% if remmper_have.present? && consulting_room.present? %>
-                        <li class="nav-item <%= @reemper[1] %>">
-                <%= link_to consulting_rooms_path, class: "nav-link" do %>
-                    <i class="menu-icon fas fa-building"></i> Mis Consultorios
-                <% end -%>
-              </li>        
-  
+              
+                <li class="nav-item <%= @reemper[1] %>">
+                  <%= link_to consulting_rooms_path, class: "nav-link" do %>
+                      <i class="menu-icon fas fa-building"></i> Mis Consultorios
+                  <% end -%>
+                </li>
+
+                <li class="nav-item <%= @reemper[1] %>">
+                  <%= link_to contac_reempers_path, class: "nav-link" do %>
+                      <i class="menu-icon fas fa-envelope"></i> Mensajes de Usuarios
+                  <% end -%>
+                </li>
+
               <% end -%>
 
               <li class="nav-item <%= @reemper[1] %>">
                 <%= link_to edit_user_registration_path, class: "nav-link" do %>
                     <i class="menu-icon fa  s fa-user"></i> Mi Cuenta
-                <% end -%>
-              </li>
-
-              <li class="nav-item <%= @reemper[1] %>">
-                <%= link_to contac_reempers_path, class: "nav-link" do %>
-                    <i class="menu-icon fas fa-envelope"></i> Mensajes de Usuarios
                 <% end -%>
               </li>
 
@@ -343,6 +344,11 @@
   .active a{
         color: red;
   }
+
+      .modal-backdrop{
+          background-color: #00000059 !important;
+    }
+
 
     @media (max-width: 576px) {
 

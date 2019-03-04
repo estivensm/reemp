@@ -10,17 +10,16 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require toastr_rails
  *= require chosen
  *= require sweetalert2
+ *= require_tree .
  *= require_self
  */
 
 @import "bootstrap";
 @import "chosen";
 @import "toastr";
-@import "sweetalert2";
 
   a:hover{
     text-decoration: none;
@@ -120,7 +119,7 @@
   .user{
     background: url('https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/73/1.jpg')no-repeat center top;
     background-size: 100% 670px;
-    height: 640px;
+    height: 668px;
     overflow: hidden;
   }
  

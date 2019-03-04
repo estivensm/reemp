@@ -6,9 +6,18 @@
     <div class="col-md-12">
       <ol class="breadcrumb">
           <li><a href="/home/index">Home</a></li>
-          <li><a href="#"><%= @categorias %></a></li>
-          <li><a href=""><%= @specate %></a></li>
-          <li><a href=""><%= @ciudad %></a></li>
+
+          <% if !@categorias.blank? %>
+            <li><a href="#"><%= @categorias %></a></li>
+          <% end -%>
+
+          <% if !@specate.blank? %>
+            <li><a href=""><%= @specate %></a></li>
+          <% end -%>
+
+          <% if !@ciudad.blank? %>
+            <li><a href=""><%= @ciudad %></a></li>
+          <% end -%>
       </ol>
     </div>
 
@@ -112,6 +121,9 @@
 
 
 <style type="text/css" media="screen">
+#map-reemper{
+  margin-top: 15px;
+}
 
 em {
   background: cyan;
@@ -138,9 +150,10 @@ em {
 .sticky {
     position: fixed;
     top: 0;
-    margin-left: 10px;
+    margin-left: 4px;
     left: 637px;
     width: 565px;
+    margin-top: 10px;
     
 }
 
