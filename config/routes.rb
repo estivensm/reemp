@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :contac_reempers, :except => [:show]
   resources :consulting_rooms, :except => [:edit]
   get "My/:name/Editar", to: "consulting_rooms#edit", as: "my_roms"
+  get "reemper/my/:name/editar/:token", to: "reempers#edit", as: "reemper_edit"
   patch "My/:name", to: "consulting_rooms#update", as: "update_room"
   resources :reempers, :except => [:index, :show]
   get "reempers/:name", to: "reempers#show", as: "reemper_registration"

@@ -21,6 +21,8 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   mount_uploader :avatar, AvatarAdminUploader
   validates :user_name, uniqueness: { message: "No Permitido" }
+  
 end

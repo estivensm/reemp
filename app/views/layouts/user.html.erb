@@ -170,6 +170,12 @@
                   <% end -%>
                 </li>
 
+                <li class="nav-item <%= @reemper[1] %>">
+                  <%= link_to reemper_edit_path(current_user.names, current_user.token), class: "nav-link" do %>
+                      <i class="menu-icon fas fa-users-cog"></i> Editar Reemper
+                  <% end -%>
+                </li>
+
               <% end -%>
 
               <li class="nav-item <%= @reemper[1] %>">

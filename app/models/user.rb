@@ -41,11 +41,23 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :consulting_rooms
-  has_many :contac_reemper
-  has_one :reemper
+
+  has_many :consulting_rooms, dependent: :destroy
+  has_many :contac_reemper, dependent: :destroy
+  has_one :reemper, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
+
+  before_create :generate_token
+
+  protected
+
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(token: random_token)
+    end
+  end
   #validates :user_name, uniqueness: { message: "No Permitido" }
   #validates :phone, uniqueness: { message: "Ingresa otro diferente" }
 

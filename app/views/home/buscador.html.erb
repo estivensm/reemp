@@ -337,7 +337,7 @@ $(document).on('turbolinks:load',function() {
             '<p>'+
               '{{#helpers.highlight}}{ "attribute": "biography" }{{/helpers.highlight}}'+
             '</p>'+
-            '<%= link_to "Ver Reemper",  CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
+            '<%= link_to "Ver Reemper",CGI::unescape(reemper_registration_path("{{user.name}}")), style: "float: right", target: '_blank', class: "reemper-show" %>'+
           '</div>'+
 
         '</div>'+
