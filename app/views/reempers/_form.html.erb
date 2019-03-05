@@ -26,8 +26,6 @@
         <input type="checkbox" id="check" name="reemper[university_state]">
         <span class="slider round"></span>
     </label>
-
-    <label class="label label-success" id="label-change" style="display: none;">Si</label>
   </div>
 </legend>
 <br>
@@ -181,13 +179,9 @@
         var $input = $( this );
 
         if ($input.prop("checked") == true){
-          $(label).css({'display' : 'block'});  
-          $(label).removeClass('label label-danger').addClass('label label-success');
-          $(label).text('Si');
+          toastr["success"]("<b>SI</b>");
         }else {
-          $(label).removeClass('label label-success').addClass('label label-danger');
-          $(label).text('No');
-
+          toastr["error"]("<b>No</b>");
         }
 
 
