@@ -19,7 +19,7 @@
 
 class ConsultingRoom < ActiveRecord::Base
 	include AlgoliaSearch
-	belongs_to :user, dependent: :destroy
+	belongs_to :user
 
 	after_create :reemper
 

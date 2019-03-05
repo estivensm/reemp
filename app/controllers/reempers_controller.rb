@@ -82,7 +82,7 @@ class ReempersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reemper
-      usuario = User.where(names: params[:name])
+      usuario = User.where(names: params[:name], token: params[:token])
       @reemper = Reemper.where(user_id: usuario).first
     end
 

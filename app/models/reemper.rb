@@ -35,7 +35,7 @@ class Reemper < ActiveRecord::Base
 	belongs_to :category, dependent: :destroy
 	belongs_to :specialty, dependent: :destroy
 	belongs_to :contac_reemper, dependent: :destroy, optional: true
-	belongs_to :user, dependent: :destroy
+	belongs_to :user
 
 	include AlgoliaSearch
 

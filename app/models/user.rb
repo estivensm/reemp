@@ -50,7 +50,6 @@ class User < ApplicationRecord
 
   before_create :generate_token
 
-  protected
 
   def generate_token
     self.token = loop do
