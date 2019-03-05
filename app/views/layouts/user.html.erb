@@ -165,12 +165,6 @@
                 </li>
 
                 <li class="nav-item <%= @reemper[1] %>">
-                  <%= link_to contac_reempers_path, class: "nav-link" do %>
-                      <i class="menu-icon fas fa-envelope"></i> Mensajes de Usuarios
-                  <% end -%>
-                </li>
-
-                <li class="nav-item <%= @reemper[1] %>">
                   <%= link_to reemper_edit_path(current_user.names, current_user.token), class: "nav-link" do %>
                       <i class="menu-icon fas fa-users-cog"></i> Editar Reemper
                   <% end -%>
@@ -185,8 +179,14 @@
               </li>
 
               <li class="nav-item <%= @reemper[5] %>">
-                <%= link_to buscador_path, class: "nav-link",  target: '_blank' do %>
-                    <i class="menu-icon fas fa-users"></i> Reempers
+                <%= link_to home_path, class: "nav-link",  target: '_blank' do %>
+                    <i class="menu-icon fas fa-users"></i> Buscar Reempers
+                <% end -%>
+              </li>
+
+              <li class="nav-item <%= @reemper[1] %>">
+                <%= link_to contac_reempers_path, class: "nav-link" do %>
+                  <i class="menu-icon fas fa-envelope"></i> Mensajes de Usuarios
                 <% end -%>
               </li>
 

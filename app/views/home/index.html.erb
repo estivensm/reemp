@@ -5,8 +5,12 @@
           <a href="" ><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png"></a>
         </div>
       <div class="col-md-3 ingresar-parent">
-          <a href="" class="ingresar_login" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</a>
-        </div>
+          <% if user_signed_in? %>
+              <a href="/reemper/home" class="ingresar_login">Home</a>
+            <% else %>
+              <a href="" class="ingresar_login" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</a>
+          <% end %>
+      </div>
     </div>
    </nav>
     <div class="row">
@@ -16,20 +20,15 @@
 
           <div class="col-md-12">
             <button class="ingresar link_salud margin-right" type="" id="salud">Salud</button>
-            <i class="fas fa-check" id="icon-check"></i>
             <button class="ingresar link_mascotas margin-right" type="" id="masko">Mascotas</button>
-            <i class="fas fa-check" id="icon-masco"></i>
           </div>
 
           <div class="col-md-12" style="margin-top: 20px">
             <button class="ingresar link_construccion margin-right" type="" id="cons">Construcción</button>
-            <i class="fas fa-check" id="icon-cons"></i>
             <button class="ingresar link_legal margin-right" type="" id="legal">Reemper</button>
-            <i class="fas fa-check" id="icon-legal"></i>
           </div>
           <div class="col-md-12" style="margin-top: 20px">
             <button class="ingresar link_lagal1 margin-right" type="" id="legal-2">Legal</button>
-            <i class="fas fa-check" id="icon-cons"></i>
           </div>
         <div class="col-md-12 form-search" >
           
@@ -312,10 +311,6 @@ em {
     var imputlegal = document.getElementById("imput-legal");
     var legalimput   = document.getElementById("legal-imput")
 
-    var icon_salud = document.getElementById("icon-check");
-    var icon_masco = document.getElementById("icon-masco");
-    var icon_cons = document.getElementById("icon-cons");
-    var icon_legal = document.getElementById("icon-legal");
 
      $('.select').change(function(event) {
 
@@ -330,10 +325,6 @@ em {
       $(this).addClass('opacidad');
       $(".search-map").show("linear");
       $(".submit1").show('linear');
-      $(icon_salud).addClass('show');
-      $(icon_masco).removeClass('show').addClass('hide')
-      $(icon_cons).removeClass('show').addClass('hide')
-      $(icon_legal).removeClass('show').addClass('hide')
 
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
@@ -349,10 +340,6 @@ em {
       $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#e059a166')
-      $(icon_masco).addClass('show');
-      $(icon_salud).removeClass('show').addClass('hide');
-      $(icon_cons).removeClass('show').addClass('hide')
-      $(icon_legal).removeClass('show').addClass('hide')
 
       $(".search-map").show("linear");
       $(salud).removeClass('opacidad');
@@ -370,10 +357,6 @@ em {
       $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#fda03b78')
-      $(icon_cons).addClass('show');
-      $(icon_masco).removeClass('show').addClass('hide');
-      $(icon_salud).removeClass('show').addClass('hide');
-      $(icon_legal).removeClass('show').addClass('hide');
       $(".submit1").show("linear");
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
@@ -390,11 +373,7 @@ em {
       $("#category_id").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#9f6cde69')
-      $(icon_legal).addClass('show');
             $(".submit1").show("linear");
-      $(icon_cons).removeClass('show').addClass('hide');
-      $(icon_masco).removeClass('show').addClass('hide');
-      $(icon_salud).removeClass('show').addClass('hide');
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');
@@ -410,10 +389,6 @@ em {
       $("#legal").val($(this).text());
       $(this).addClass('opacidad');
        $(".form-search").css('background','#0b255b')
-      $(icon_legal).addClass('show');
-      $(icon_cons).removeClass('show').addClass('hide');
-      $(icon_masco).removeClass('show').addClass('hide');
-      $(icon_salud).removeClass('show').addClass('hide');
       $(salud).removeClass('opacidad');
       $(masco).removeClass('opacidad');
       $(cons).removeClass('opacidad');

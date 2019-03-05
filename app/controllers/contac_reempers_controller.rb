@@ -6,7 +6,9 @@ class ContacReempersController < ApplicationController
   def index
     usuario = User.where(id: current_user.id)
     @reemper = Reemper.where(user_id: usuario).all
-    @contac_reempers = ContacReemper.where(reemper_id: @reemper)
+    @contac_reempers = ContacReemper.where(reemper_id: @reemper).where(state_request: "pending")
+
+    @answer_reemper = ContacReemper.where(state_request: "delivered").where(user_id: current_user.id)
   end
 
   # GET /contac_reempers/1
@@ -27,7 +29,6 @@ class ContacReempersController < ApplicationController
   # POST /contac_reempers
   # POST /contac_reempers.json
   def create
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     @contac_reemper = ContacReemper.new(contac_reemper_params)
 
     respond_to do |format|
@@ -38,6 +39,19 @@ class ContacReempersController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @contac_reemper.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def request_reemper
+    @reemper_reques = ContacReemper.create(answer: params[:answer], user_id: params[:user_id], reemper_id: params[:reemper_id], state_request: params[:state_request])
+
+    respond_to do |format|
+      if @reemper_reques.save
+        ContacReemper.where(reemper_id: @reemper).update(state_request: "delivered")
+        format.js
+      else
+        format.html { render :new }
       end
     end
   end

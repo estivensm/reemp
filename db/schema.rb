@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2019_03_01_160725) do
     t.integer "user_id"
     t.integer "reemper_id"
     t.text "description"
+    t.text "answer"
+    t.string "state_request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

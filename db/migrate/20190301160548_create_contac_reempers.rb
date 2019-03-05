@@ -4,6 +4,8 @@ class CreateContacReempers < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :reemper_id
       t.text :description
+      t.text :answer
+      t.string :state_request
 
       t.timestamps
     end

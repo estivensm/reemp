@@ -1,11 +1,10 @@
+<legend>Mensajes Enviados de Usuarios</legend>
 <% if @contac_reempers.any? %>
-  <legend>Mensajes Enviados de Usuarios</legend>
-
   <table class="table">
     <thead>
       <tr>
         <th>EL Usuario</th>
-        <th>Description</th>
+        <th>Estado el Mensaje</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -27,19 +26,21 @@
                     </button>
                   </div>
 
-                  <div class="card col-md-8 card-reemper">
+                  <div class="card card-reemper">
                     <div class="card-body" style="padding-left: 2px;">
 
                       <div class="container">
                         <div class="row">
 
-                          <div class="col-md-4">
+                          <div class="col-md-2">
                             <%= contac_reemper.user.avatar? ? image_tag(contac_reemper.user.avatar_url(), class: "img-reemper") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-reemper")%>
                           </div>
 
-                          <div class="col-md-8">
+                          <div class="col-md-4">
                             <h5><%= contac_reemper.user.names %></h5>
-                              <strong>Numero de Contacto: </strong><p><% contac_reemper.user.phone %></p>
+                              <strong>Numero de Contacto: </strong>
+                              <p><%= contac_reemper.user.phone %></p>
+
                               <strong>Email</strong>
                               <p><%= contac_reemper.user.email %></p>
                           </div>
@@ -50,15 +51,23 @@
                     </div>
                   </div>
 
+                  <div class="col-md-12">  
+                    <p><%= contac_reemper.description %></p>
+                  </div>
+
                   <div class="modal-body">
-                      <%= form_tag contac_reempers_path, remote: true, method: :post do %>
+                      <%= form_tag reemper_contact_path, remote: true, method: :post do %>
                         <div class="field">
                           <%= label_tag "Responder" %>
-                          <%= text_area_tag :description,nil, :rows => 9, class: "ckeditor" %>
+                          <%= text_area_tag :answer, nil, class: "ckeditor" %>
                         </div>
 
-                        <%= hidden_field_tag :user_id, nil, :value => current_user.id %>
-                        <%= hidden_field_tag :reemper_id, nil, :value =>  contac_reemper.reemper_id %>
+                        <%= hidden_field_tag :user_id, nil, :value => contac_reemper.user.id %>
+                        <%= hidden_field_tag :state_request, nil, :value => "delivered" %>
+
+                        <% if contac_reemper.reemper_id.present?%>
+                          <%= hidden_field_tag :reemper_id, nil, :value =>  contac_reemper.reemper_id %>
+                        <% end -%>
                   </div>
 
                   <div class="modal-footer">
@@ -69,7 +78,7 @@
                 </div>
               </div>
             </div>
-          <td><%= contac_reemper.description %></td>
+          <td><%= get_state(contac_reemper.state_request) %></td>
           <td><%= link_to 'Eliminar', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
@@ -85,6 +94,82 @@
   </div>
 <% end -%>
 
+<legend>Mensajes Respondidos</legend>
+<% if @answer_reemper.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>EL Usuario</th>
+        <th>Estado el Mensaje</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @answer_reemper.each do |contac_reemper| %>
+        <tr>
+          <td><%= contac_reemper.user.names %>
+             <i class="fas fa-info-circle" data-toggle="modal" data-target="#modal-reemper<%= contac_reemper.id%>" id="icon-info"></i>
+          </td>
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal-reemper<%= contac_reemper.id%>">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal-reemper<%= contac_reemper.id %>">Tu Respuesta <%= contac_reemper.user.names %></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <div class="card card-reemper">
+                    <div class="card-body" style="padding-left: 2px;">
+
+                      <div class="container">
+                        <div class="row">
+
+                          <div class="col-md-2">
+                            <%= contac_reemper.user.avatar? ? image_tag(contac_reemper.user.avatar_url(), class: "img-reemper") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-reemper")%>
+                          </div>
+
+                          <div class="col-md-4">
+                            <h5><%= contac_reemper.user.names %></h5>
+                              <strong>Numero de Contacto: </strong>
+                              <p><%= contac_reemper.user.phone %></p>
+
+                              <strong>Email</strong>
+                              <p><%= contac_reemper.user.email %></p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">  
+                    <p><%= contac_reemper.answer %></p>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <td><%= get_state(contac_reemper.state_request) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="col-md-12 text-center no-padding">
+          <i class="far fa-envelope"></i>       
+        </div>
+      </div>
+    </div>
+<% end -%>
 <style type="text/css" media="screen">
 
   #icon-info{
@@ -92,6 +177,7 @@
     font-size: 22px;
     color: #40afdc;
     cursor: pointer;
+
   }
     .cke_1{
       box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);

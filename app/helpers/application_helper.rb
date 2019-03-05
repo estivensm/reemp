@@ -229,9 +229,12 @@ module ApplicationHelper
     	return @is_me
 	end
 
-	def remmper
-		usuario = User.where(id: current_user.id)
-		Reemper.where(user_id: usuario).exists?
+	def get_state(state)
+		if state == "pending"
+			return "Pendiente de Responder"
+		elsif state == "delivered"
+			return "Respondido"
+		end
 	end
 
 	

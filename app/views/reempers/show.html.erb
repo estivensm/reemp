@@ -1,6 +1,6 @@
 <%= render "parciales/menu_show"%>
 
-<div class="container">
+<div class="container no-padding">
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb no-padding-left">
@@ -77,14 +77,11 @@
         <% end -%>
 
         <% if user_signed_in?  %>
-
-          <% if me.id == @reemper.id %>
-            <button type="" disabled="" class="btn btn-danger">
-              <i class="fas fa-user-times"></i> No puedes
-            </button>
+          <% if @reemper.user.id == current_user.id  %>
           <% else %>
             <%= link_to "Enviar Mensaje", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
           <% end -%>
+
           
           <% else %>
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
@@ -127,7 +124,37 @@
       <li><span class="fas fa-map-marker-alt"></span> <%= @reemper.specialty.name if  @reemper.specialty %></li>
       <li><span class="fa fa-envelope"></span> <%= @reemper.user.email %> </li>
       <li><span class="fas fa-mobile-alt"></span> <%= @reemper.user.phone %> </li>
-      <li><span class="fa fa-globe"></span> yourwebsite.com</li>
+
+     <% if user_signed_in? %>
+      <% if @reemper.user.id == current_user.id  %>
+      <% else %>
+        <li style="display: -webkit-inline-box;"><span class="fas fa-star"></span>
+          <form>
+            <div class="col-md-12 starability-basic">
+              <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+
+              <input type="radio" id="rate1" name="rating" value="1" />
+              <label for="rate1">1 star.</label>
+
+              <input type="radio" id="rate2" name="rating" value="2" />
+              <label for="rate2">2 stars.</label>
+
+              <input type="radio" id="rate3" name="rating" value="3" />
+              <label for="rate3">3 stars.</label>
+
+              <input type="radio" id="rate4" name="rating" value="4" />
+              <label for="rate4">4 stars.</label>
+
+              <input type="radio" id="rate5" name="rating" value="5" />
+              <label for="rate5">5 stars.</label>
+
+              <span class="starability-focus-ring"></span>
+            </div>
+          </form>
+        </li>
+      <% end -%>
+     <% end -%>
+
     </ul>
 
     <ul class="nav nav-tabs float-right" id="myTab" role="tablist">
@@ -145,6 +172,59 @@
   </div>
 </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Valorar A <%= @reemper.user.names %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+
+          <div class="card col-md-12 no-padding">
+            <div class="card-body">
+
+              <div class="container">
+                <div class="row">
+
+                  <div class="col-md-3 no-padding-left ">
+                     <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "img-fluid") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-fluid")%>
+                  </div>
+
+                  <div class="col-md-9">
+                    <h4> <%= @reemper.user.names %></h4>
+                    <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                    <p><%= @reemper.user.email %></p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <%= form_tag reemper_valorations_path, remote: true do %>
+
+            <div class="col-md-12 no-padding">
+              <%= label_tag "Opinion" %>
+              <%= text_area_tag :description, nil, class: "form form-control", :rows => 8 %>
+            </div>
+
+            <%= hidden_field_tag :valoration, nil, id: "valoration" %>
+            <%= hidden_field_tag :user_id, nil, :value => @reemper.user.id %>
+            <%= hidden_field_tag :reemper_id, nil, :value =>  @reemper.id %>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          <%= button_tag "Opinar", {:request => "estiven", class: "btn btn-outline-success", :type => "submit"} %>
+        </div>
+
+      <% end -%>
+    </div>
+  </div>
+</div>
 
 
 <br>
@@ -252,7 +332,26 @@
 <%= render "parciales/sesion" %>
 
 <style type="text/css" media="screen">
+  .card-va{
+    border-radius: 4px;
+    border: 1px solid gray;
+  }
 
+  .img-fluid{
+    border-radius: 50%;
+  }
+
+    .cke_1{
+      box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+    }
+
+    .cke_top{
+      border-bottom: none;
+    }
+
+    .cke_bottom{
+      border-top: none;
+    } 
 .nav-link > .active{
     color: #fff !important;
     border: initial !important;
@@ -270,7 +369,7 @@
 
 .email-signature:before{
     content: "";
-    background: linear-gradient(to right,#181e5a 49%,#181e5a75 50%);
+    /*background: linear-gradient(to right,#181e5a 49%,#181e5a75 50%);*/
     width: 18px;
     height: 100%;
     position: absolute;
@@ -299,12 +398,10 @@
 }
 
 .email-signature .signature-details{
-    color: #fff;
-    background: #3498db;
+    color: #181e5a;
     text-align: center;
     padding: 15px 10px 15px 50px;
     margin-bottom: 20px;
-    border-right: 15px solid #2980b9;
 }
 
 .email-signature .title{
@@ -502,29 +599,7 @@
           <div class="col-md-12 img text-center">
                  <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "rounded-circle",id: "user-avatar1") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "rounded-circle")%>
 
-            <form>
-              <fieldset class="col-md-12 starability-basic text-center">
-                <legend>Valorar <i class="far fa-star"></i> </legend>
-                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
 
-                <input type="radio" id="rate1" name="rating" value="1" />
-                <label for="rate1">1 star.</label>
-
-                <input type="radio" id="rate2" name="rating" value="2" />
-                <label for="rate2">2 stars.</label>
-
-                <input type="radio" id="rate3" name="rating" value="3" />
-                <label for="rate3">3 stars.</label>
-
-                <input type="radio" id="rate4" name="rating" value="4" />
-                <label for="rate4">4 stars.</label>
-
-                <input type="radio" id="rate5" name="rating" value="5" />
-                <label for="rate5">5 stars.</label>
-
-                <span class="starability-focus-ring"></span>
-              </fieldset>
-            </form>
 
           </div>
             <div class="col-md-12" style="margin-top: 10px;">
@@ -540,13 +615,6 @@
 </div>
 
 
-
-
-    <%= form_tag new_reemper_path do %>
-
-      <%= hidden_field_tag  :valoration, nil%>
-      <%= hidden_field_tag :id, nil, :value => @reemper.user.id %>
-    <% end -%>
   </div>
 </div>
 
@@ -563,33 +631,39 @@
  var star3 = document.getElementById("rate3");
  var star4 = document.getElementById("rate4");
  var star5 = document.getElementById("rate5");
+ var input = document.getElementById("valoration")
 
  $(star1).click(function(event) {
   var valor = star1.value
-  console.log(valor)
+  input.value = valor
+  $('#exampleModal').modal('show')
  });
 
  $(star2).click(function(event) {
   var valor2 = star2.value
-  console.log(valor2)
+    input.value = valor2
+  $('#exampleModal').modal('show')
  });
 
 
  $(star3).click(function(event) {
   var valor3 = star3.value
-  console.log(valor3)
+    input.value = valor3
+  $('#exampleModal').modal('show')
  });
 
 
  $(star4).click(function(event) {
   var valor4 = star4.value
-  console.log(valor4)
+    input.value = valor4
+  $('#exampleModal').modal('show')
  });
 
 
  $(star5).click(function(event) {
   var valor5 = star5.value
-  console.log(valor5)
+    input.value = valor5
+  $('#exampleModal').modal('show')
  });
 
 

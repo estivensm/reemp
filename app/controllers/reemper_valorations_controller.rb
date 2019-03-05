@@ -24,11 +24,11 @@ class ReemperValorationsController < ApplicationController
   # POST /reemper_valorations
   # POST /reemper_valorations.json
   def create
-    @reemper_valoration = ReemperValoration.new(reemper_valoration_params)
+    @reemper_valoration = ReemperValoration.create(user_id: params[:user_id], reemper_id: params[:reemper_id], valoration: params[:valoration], description: params[:description])
 
     respond_to do |format|
       if @reemper_valoration.save
-        format.html { redirect_to @reemper_valoration, notice: 'Reemper valoration was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @reemper_valoration }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class ReemperValorationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reemper_valoration_params
-      params.require(:reemper_valoration).permit(:user_id_id, :reemper_id, :valoration, :description)
+      params.require(:reemper_valoration).permit(:user_id, :reemper_id, :valoration, :description)
     end
 end

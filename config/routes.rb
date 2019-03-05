@@ -30,10 +30,11 @@ Rails.application.routes.draw do
   end
   
   
-  get 'home/index'
+  get 'home/index', as: "home"
   get "reemper/home", to: "home#reemper_home", as: "reeper_home"
   root "home#user_contact"
   post "create_contact", to: "contacts#create", as: "create_contact"
+  post "reemper_contact", to: "contac_reempers#request_reemper", as: "reemper_contact"
 
   get "request_remp", to: "reempers#request_remp", as: "request_remp"
   post "update_reemper/:lat/:lng(/:act)", to: "reempers#update_reemper", as: "update_reemper"
