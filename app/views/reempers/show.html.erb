@@ -162,13 +162,15 @@
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Informacion Sobre mi</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Precios</a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Preguntas</a>
       </li>
+      <!--
       <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Experiencia</a>
       </li>
+    -->
       <li class="nav-item">
-        <a class="nav-link" id="valora-tab" data-toggle="tab" href="#valora" role="tab" aria-controls="valora" aria-selected="false">Valoraciones</a>
+        <a class="nav-link" id="valora-tab" data-toggle="tab" href="#valora" role="tab" aria-controls="valora" aria-selected="false">Valoraciones (<%= @valoration.count %>)</a>
       </li>
     </ul>
 
@@ -317,9 +319,35 @@
       </div>
 
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <p>
-          
-        </p>
+
+        <div class="container">
+          <div class="row">
+
+              <div class="col-md-3">
+                <%= image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ") %>
+              </div>
+
+              <div class="body col-md-8">
+                <span class="tip tip-left"></span>
+                <div class="message">
+                  <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim</span>
+                </div>
+              </div>
+            
+              <div class="body col-md-8 float-right">
+                <span class="tip tip-right"></span>
+                <div class="message">
+                  <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has </span>
+                </div>
+              </div>
+
+              <div class="col-md-3 float-right">
+                <%= image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ") %>
+              </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -339,12 +367,14 @@
                         <%= valoracion.user.avatar? ? image_tag(valoracion.user.avatar_url(), class: "img img-rounded img-fluid ") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ")%>
                       </div>
                       <div class="col-md-10">
+
                           <p>
                               <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><%= valoracion.user.names %></strong></a>
                               <span class="float-right"><%= get_valoration(valoracion.valoration).html_safe %></span>
-
                          </p>
+
                          <br>
+
                          <div class="clearfix"></div>
                           <p><%= valoracion.description %></p>
                       </div>
@@ -369,6 +399,49 @@
     border-radius: 4px;
     border: 1px solid gray;
   }
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #181e5a;
+}
+
+.tip-left {
+  top: 10px;
+  left: -24px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-right {
+  top: 10px;
+  right: -24px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.body {
+  position: relative;
+  height: auto;
+  margin: 20px 10px;
+  padding: 5px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  border: 4px solid #181e5a;
+}
+
+.message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
 
   .img-fluid{
     border-radius: 50%;
