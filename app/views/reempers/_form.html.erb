@@ -109,6 +109,7 @@
     <br>
   </div>
 
+  <%= form.hidden_field :img_reemp, :value => "//platform.docplanner.com/img/general/icons/map-pin-calendar-small-shadow.png?v=5" %>
   <div class="col-md-12">
     <%= form.label "Especialidad" %>
     <%= form.select 'specialty_id', get_special.map { |u| [u.name, u.id] }, {:prompt => 'Especialidades'},{:class => 'form form-control', id: "validationCustom01", :required => true }%>

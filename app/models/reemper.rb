@@ -32,7 +32,7 @@
 
 class Reemper < ActiveRecord::Base
 	
-	belongs_to :category, dependent: :destroy
+	belongs_to :category, optional: true
 	belongs_to :specialty, dependent: :destroy
 	belongs_to :contac_reemper, dependent: :destroy, optional: true
 	belongs_to :user
@@ -57,9 +57,11 @@ class Reemper < ActiveRecord::Base
 	      #{ name: reemper.name }
 	    #end
 
-	    attribute :document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :verified, :city, :valoration, :academy_level
+	    attribute :document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :verified, :city, :valoration, :academy_level, :state_loc, :img_reemp
 
 	    geoloc :lat, :lng
-
+	    
 	end
+	#mount_uploader :img_reemp, ReemperIconUploader
 end
+

@@ -399,7 +399,7 @@ $(document).on('turbolinks:load',function() {
         streetViewControl: true,
         initialZoom: 10, 
         templates: {
-          HTMLMarker: '<img src="//platform.docplanner.com/img/general/icons/map-pin-calendar-small-shadow.png?v=5" alt="">',
+          HTMLMarker: '<img src="{{img_reemp}}" alt="" class="img-icon">',
           reset: 'Limpiar Busqueda',
         },
         mapOptions: {
@@ -513,6 +513,11 @@ $(document).on('turbolinks:load',function() {
     <% end -%>
     border-radius: 42px;
     color: #fff;
+}
+
+
+.img-icon{
+  height: 40px;
 }
 
 .reemper-show:hover{

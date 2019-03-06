@@ -197,6 +197,10 @@
                     <%= hidden_field_tag :lat, nil, id: "lat" %>
                     <%= hidden_field_tag :lng, nil, id: "lng" %>
 
+                    <%= hidden_field_tag :state_loc, nil, :value => "dinamico" %>
+                    
+                    <%= hidden_field_tag :img_reemp, nil, :value => "https://icons.s3.wasabisys.com/icon/premium/png-256/589004.png?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=9O15K3U3NW4VKPMPZZQE%2F20190306%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190306T133453Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Signature=796bf35113ac954f6db9b052cd09e6e668b1aa1578763d619b285564d7976fe8"%>
+
                     <%= submit_tag "Activar Ubicacion", class: "btn btn-outline-success", :onclick => "return getLocation();" %>
                 <% end -%>
 

@@ -26,8 +26,9 @@ class ReempersController < ApplicationController
     respond_to do |format|
       format.js
       usuario = User.where(id: current_user.id)
+
       @loc_user = Reemper.where(user_id: usuario).first
-      @loc_user.update(lat: params[:lat], lng: params[:lng])
+      @loc_user.update(lat: params[:lat], lng: params[:lng], state_loc: params[:state_loc], img_reemp: params[:img_reemp])
     end 
   end
 
@@ -99,7 +100,7 @@ class ReempersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reemper_params
-      params.require(:reemper).permit(:document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :specialty_id, :category_id, :user_id, :verified, :category_name, :specialty_name, :city, :valoration, :academy_level, :lat, :lng, :instagram, :facebook, :twitter)
+      params.require(:reemper).permit(:document_type, :document_numer, :profession_card, :academy_leve, :profession, :university, :university_state, :biography, :language, :specialty_id, :category_id, :user_id, :verified, :category_name, :specialty_name, :city, :valoration, :academy_level, :lat, :lng, :instagram, :facebook, :twitter, :state_loc, :img_reemp)
     end
     
 end
