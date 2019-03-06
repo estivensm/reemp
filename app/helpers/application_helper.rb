@@ -34,11 +34,10 @@ module ApplicationHelper
 
   	def select_level
   		[
-  			["1","1"],
-  			["2","2"],
-  			["3","3"],
-  			["4","4"],
-  			["5","5"]
+  			["Pregrado","Pregrado"],
+  			["Posgrado","Posgrado"],
+  			["Especialista","Especialista"],
+  			["Doctorado","Doctorado"]
   		]
   		
   	end

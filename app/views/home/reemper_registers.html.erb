@@ -50,7 +50,7 @@
                     <legend>INFORMACION ACADEMICA</legend><br>
 
                     <strong>Nivel Academico</strong>
-                    <p><%= get_academic(reemper.academy_level) %></p>  
+                    <p><%= reemper.academy_level %></p>  
 
                     <strong>Univesidad</strong>
                     <p><%= reemper.university %></p>   
@@ -83,56 +83,60 @@
                   <% if consultorio.any? %>
 
                     <div class="col-md-12" style="margin-top: 20px;">
-                      <legend>Informacion del Consultorio</legend>
+                      <div class="container">
+                        <div class="row">
+                        
+                          <legend>Informacion del Consultorio</legend>
 
-                        <% consultorio.each do |consultorio|%>
+                            <% consultorio.each do |consultorio|%>
 
-                        <div class="col-md-8 no-padding-left">
-                          <legend>Imagenes</legend>
+                                <div class="col-md-8 no-padding-left">
+                                  <legend>Imagenes</legend>
 
-                          <div class="col-md-6 no-padding-left img">
-                            <%= consultorio.first_photo? ? image_tag(consultorio.first_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
-                          </div>
+                                  <div class="col-md-6 no-padding-left img">
+                                    <%= consultorio.first_photo? ? image_tag(consultorio.first_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
+                                  </div>
 
-                          <div class="col-md-6 no-padding-right img1">
-                            <%= consultorio.sub_photo? ? image_tag(consultorio.sub_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
-                          </div>
-                          
-                        </div>
+                                  <div class="col-md-6 no-padding-right img1">
+                                    <%= consultorio.sub_photo? ? image_tag(consultorio.sub_photo_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
+                                  </div>
+                                  
+                                </div>
 
-                        <div class="col-md-4 no-padding-right">
-                          <legend>Ubicacion</legend>
-                          <div id="map"></div>
+                                <div class="col-md-4 no-padding-right">
+                                  <legend>Ubicacion</legend>
+                                  <div id="map"></div>
 
-                        <script type="text/javascript">
-                          function initMap() {
-                            var myLatLng = {lat: <%= consultorio.lat %>, lng: <%= consultorio.lng %>};
+                                <script type="text/javascript">
+                                  function initMap() {
+                                    var myLatLng = {lat: <%= consultorio.lat %>, lng: <%= consultorio.lng %>};
 
-                            // Create a map object and specify the DOM element
-                            // for display.
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                              center: myLatLng,
-                              zoom: 5
-                            });
+                                    // Create a map object and specify the DOM element
+                                    // for display.
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                      center: myLatLng,
+                                      zoom: 5
+                                    });
 
-                            // Create a marker and set its position.
-                            var marker = new google.maps.Marker({
-                              map: map,
-                              position: myLatLng,
-                              title: 'Hello World!'
-                            });
-                          }
-                          </script>
+                                    // Create a marker and set its position.
+                                    var marker = new google.maps.Marker({
+                                      map: map,
+                                      position: myLatLng,
+                                      title: 'Hello World!'
+                                    });
+                                  }
+                                  </script>
 
-                          
+                                  
+                                </div>
+
+                            <% end -%>
+
                         </div>
 
                         <% end -%>
-
+                      </div>  
                     </div>
-
-                  <% end -%>
-
                   </div>
                 </div>
               </div>
