@@ -237,5 +237,20 @@ module ApplicationHelper
 		end
 	end
 
+	def get_valoration(valoracion)
+		if valoracion == 1
+			return '<i class="text-warning fa fa-star"></i>'
+		elsif valoracion == 2
+			return '<i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i>'
+		elsif valoracion == 3
+			return '<i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i>'
+		elsif valoracion == 4
+			return '<i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i>'
+		elsif valoracion == 5
+			return '<i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i><i class="text-warning fa fa-star"></i>'
+		end
+		
+	end
+
 	
 end

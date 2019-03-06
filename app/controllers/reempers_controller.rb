@@ -8,6 +8,7 @@ class ReempersController < ApplicationController
   # GET /reempers/1
   # GET /reempers/1.json
   def show
+    @valoration = ReemperValoration.where(reemper_id: @reemper.id)
     @consultorio = ConsultingRoom.where(reemper_id: @reemper.id)
     render :layout => "application"
   end

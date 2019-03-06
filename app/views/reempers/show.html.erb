@@ -167,6 +167,9 @@
       <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Experiencia</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" id="valora-tab" data-toggle="tab" href="#valora" role="tab" aria-controls="valora" aria-selected="false">Valoraciones</a>
+      </li>
     </ul>
 
   </div>
@@ -212,7 +215,7 @@
             </div>
 
             <%= hidden_field_tag :valoration, nil, id: "valoration" %>
-            <%= hidden_field_tag :user_id, nil, :value => @reemper.user.id %>
+            <%= hidden_field_tag :user_id, nil, :value => current_user.id %>
             <%= hidden_field_tag :reemper_id, nil, :value =>  @reemper.id %>
 
         </div>
@@ -324,6 +327,36 @@
           
         </p>
       </div>
+
+      <div class="tab-pane fade" id="valora" role="tabpanel" aria-labelledby="valora-tab">
+        <div class="container">
+          <% @valoration.each do |valoracion| %>
+            <div class="card">
+              <div class="card-body no-padding-card">
+
+                <div class="row">
+                      <div class="col-md-2">
+                        <%= valoracion.user.avatar? ? image_tag(valoracion.user.avatar_url(), class: "img img-rounded img-fluid ") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ")%>
+                      </div>
+                      <div class="col-md-10">
+                          <p>
+                              <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><%= valoracion.user.names %></strong></a>
+                              <span class="float-right"><%= get_valoration(valoracion.valoration).html_safe %></span>
+
+                         </p>
+                         <br>
+                         <div class="clearfix"></div>
+                          <p><%= valoracion.description %></p>
+                      </div>
+                </div>
+
+              </div>
+            </div>
+          <% end -%>
+    
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -352,6 +385,10 @@
     .cke_bottom{
       border-top: none;
     } 
+
+    .no-padding-card{
+     padding: 0px !important; 
+    }
 .nav-link > .active{
     color: #fff !important;
     border: initial !important;
@@ -362,7 +399,7 @@
 .email-signature{
     background: #fff;
     font-family: 'Roboto Condensed', sans-serif;
-    padding: 50px 20px 15px 120px;
+    padding: 50px 20px 15px 79px;
     overflow: hidden;
     position: relative;
 }

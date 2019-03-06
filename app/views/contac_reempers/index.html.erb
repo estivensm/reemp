@@ -72,7 +72,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                     <%= button_tag "Responder", {:request => "estiven", class: "btn btn-success", :type => "submit"} %>
+                     <%= button_tag "Responder", class: "btn btn-success", :type => "submit", data: { dismiss: 'modal'} %>
                   </div>
                   <% end -%>
                 </div>
@@ -147,7 +147,7 @@
                   </div>
 
                   <div class="col-md-12">  
-                    <p><%= contac_reemper.answer %></p>
+                    <p><%== contac_reemper.answer %></p>
                   </div>
 
                   <div class="modal-footer">

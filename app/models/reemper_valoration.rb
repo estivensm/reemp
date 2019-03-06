@@ -12,6 +12,6 @@
 #
 
 class ReemperValoration < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  belongs_to :reemper, dependent: :destroy
+  belongs_to :user
+  belongs_to :reemper
 end
