@@ -13,6 +13,15 @@ class ReempersController < ApplicationController
     render :layout => "application"
   end
 
+  def reemper_info
+    respond_to do |format|
+      format.js
+      @reemper = Reemper.find(params[:id])
+      #render json: @reemper
+    end 
+    
+  end
+
   # GET /reempers/new
   def new
     @reemper = Reemper.new

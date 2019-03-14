@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch "My/:name", to: "consulting_rooms#update", as: "update_room"
   resources :reempers, :except => [:index, :show]
   get "reempers/:name", to: "reempers#show", as: "reemper_registration"
+  get "reemper_info/:id", to: "reempers#reemper_info", as: "reemper_info"
   resources :subspecialties, :except => [:show]
   resources :specialties, :except => [:show]
   resources :professions, :except => [:show]

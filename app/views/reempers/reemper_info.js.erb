@@ -1,0 +1,5 @@
+$("#card-users").fadeIn("show");
+$("#name").text("<%= @reemper.user.names %>");
+$("#cirugia").text("<%= @reemper.profession %>");
+$("#biograpy").text("<%= @reemper.biography %>");
+document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';
