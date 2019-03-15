@@ -3,8 +3,12 @@ $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
 $("#biograpy").text("<%= @reemper.biography %>");
 
-<% @valoration.each do |valoracion| %>
-	$("#valoration").append('<%= j render "parciales/user", valoracion: valoracion %>');
+<% if @valoration.any? %>
+	<% @valoration.each do |valoracion| %>
+		  $("#valoration").html('<%= j render "parciales/user", valoracion: valoracion %>');
+	<% end %>
+<% else %>
+	$("#valoration").remove();
 <% end %>
 
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';
