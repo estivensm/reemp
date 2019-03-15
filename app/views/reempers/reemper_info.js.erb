@@ -2,4 +2,8 @@ $("#card-users").fadeIn("show");
 $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
 $("#biograpy").text("<%= @reemper.biography %>");
+<% @valoration.each do |valoracion| %>
+	<%= valoracion.id %>
+<% end %>
+alert("<%= @valoration.count %>");
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';

@@ -17,15 +17,8 @@ class ReempersController < ApplicationController
     respond_to do |format|
       format.js
       @reemper = Reemper.find(params[:id])
-      @valoration = ReemperValoration.where(reemper_id: params[:id])
+      @valoration = ReemperValoration.where(reemper_id: @reemper.id)
       @consultorio = ConsultingRoom.where(reemper_id: @reemper.id)
-
-      datos = []
-      @valoration.each do |hola|
-        datos << {user: hola.user.id}
-      end
-
-      puts datos.to_json.to_s
 
       #render json: @reemper
     end 
