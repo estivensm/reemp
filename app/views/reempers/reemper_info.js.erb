@@ -12,3 +12,8 @@ $("#biograpy").text("<%= @reemper.biography %>");
 <% end %>
 
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';
+
+$("#btn-show").click(function(event) {
+	$(".remplace").html('<%= j render "parciales/user_info" %>');
+});
+
