@@ -1,6 +1,6 @@
 class ReempersController < ApplicationController
   before_action :set_reemper, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show, :reemper_info]
   #before_action :is_reemper?, only: [:new, :create]
   before_action :authenticate_admin!, only: [:index]
 
@@ -17,6 +17,16 @@ class ReempersController < ApplicationController
     respond_to do |format|
       format.js
       @reemper = Reemper.find(params[:id])
+      @valoration = ReemperValoration.where(reemper_id: params[:id])
+      @consultorio = ConsultingRoom.where(reemper_id: @reemper.id)
+
+      datos = []
+      @valoration.each do |hola|
+        datos << {user: hola.user.id}
+      end
+
+      puts datos.to_json.to_s
+
       #render json: @reemper
     end 
     
