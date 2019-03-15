@@ -17,37 +17,18 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       </li>
-        <% if action_name == "buscador" %>
-
-            <%= form_tag browser_path, :method => 'post',class: "needs-validation", :novalidate => true do %>
-
-            <div class="col-md-6 navbar-text">
-              <%= select_tag 'category_id', options_for_select(get_category.collect{ |u| [u.name, u.id] }),{:class => "form-control chosen-select1", :prompt => 'Especiadad(Cirugia Plastica)', id: "validationCustom01", :required => true}%>
-
-              <div class="invalid-feedback"></div>
-            </div>
-
-            <div class="col-md-5 navbar-text">
-                <%= text_field_tag :search2,params[:search1], autocomplete: "off", placeholder: "En la Ciudad", class: "form form-control" , id: "autocomplete" %>
-            </div>
-
-            <%= hidden_field_tag :city,params[:city], autocomplete: "off", id: "city" %>
-
-            <div class="col-md-2" style="float: right;">
-              <%= button_tag class: "submit1", :title => "Buscar" do %>
-                  <i class="fas fa-arrow-right icon-row"></i> Buscar            
-              <% end -%>
-            </div>
-
-          <% end -%>
-      <% end -%>
 
     </ul>
+
     <span class="navbar-text">
       <% if user_signed_in? %>
-        <%= button_to "Home", reeper_home_path , class: "btn-logins", method: :get %>
+        <% usuario = current_user.names + current_user.last_names %>
+        <%= link_to "Reemper", reeper_home_path , class: "btn-logins" %>
+        <%= link_to reeper_home_path , class: "btn-logins" do %>
+          <i class="fas fa-user-circle"></i> <%= usuario %>
+        <% end -%>
       <% else %>
-      <button class="btn-logins" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</button>
+        <button class="btn-logins" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</button>
       <% end -%>
     </span>
   </div>
@@ -57,17 +38,25 @@
 <style type="text/css" media="screen">
 
   .btn-logins{
-    background: #ffffff;
-    border: inherit;
+    background: inherit;
     border-radius: 55px;
-    padding: 9px;
-    width: 145px;
-    color: #40436f;
-    <% if  @categorias == "Salud" %>
-        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
-    <% elsif @categorias == "Mascotas" %>
-        box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
-    <% end -%>
+    border: 1px solid #22D3B1;
+    color: #ffff !important;
+    padding: 10px;
+    margin-right: 20px;
+  }
+
+  .btn-user{
+    background: inherit;
+    border-radius: 55px;
+    border: 1px solid #22D3B1;
+    color: #ffff !important;
+    padding: 10px;
+    margin-right: 20px;
+  }
+
+  .btn-reemper{
+    margin-right: 3px;
   }
 
   .logo-img{
@@ -77,7 +66,7 @@
   .navbar{
     margin-bottom: 0px;
     padding-bottom: 0px;
-    height: 100px;
+    height: 84px;
   }
 
   .submit1{

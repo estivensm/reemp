@@ -3,7 +3,7 @@
 
   <div class="row">
 
-    <div class="card col-md-4 " style="background-color: transparent;">
+    <div class="card col-md-4 " style="background-color: transparent; margin-top: 24px;">
       <div class="card-body" style=" padding: inherit;">
       	    <div class="col-md-12">
 		      <ol class="breadcrumb">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 35.66667% !important;">
-      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 463px;">
+      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 484px;">
 
       	<div class="container">
       		<div class="row">
@@ -81,8 +81,8 @@
         			<hr>
         		</div>
 
-        		<div class="col-md-12" style="padding: 10px;"> 
-        			<p id="biograpy" ></p>
+        		<div class="col-md-12 show-info" style="padding: 10px;"> 
+        			<p id="biograpy" style="margin-bottom: 0px;" ></p>
         		</div>
 
         		<ul class="nav nav-pills col-md-12 no-padding" id="pills-tab" role="tablist">
@@ -122,12 +122,19 @@
   }
 
   .card-remp{
-    max-height: 467px;
+    max-height: 408px;
+    margin-top: 76px !important;
     overflow: scroll;
     overflow-x: hidden;
     max-width: 30.33333%;
     border-radius: 10px;
 
+  }
+
+  .show-info{
+    background-color: #efefef;
+    margin-bottom: 10px;
+    border-radius: 10px;
   }
 
   .conten-img img{
@@ -146,9 +153,31 @@
   	padding: 10px;
   }
 
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #6DD5FA; 
+    border-radius: 15px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #dcd5d53d; 
+  }
+
 
   body{
-    background: linear-gradient(to bottom, #6DD5FA, #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom, #2A97BC, #006A8E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-repeat: no-repeat;
   }
 </style>
@@ -261,6 +290,11 @@
 <style type="text/css" media="screen">
 #map-reemper{
   margin-top: 15px;
+  border-radius: 10px !important;
+}
+
+.ais-GeoSearch-map{
+  border-radius: 10px !important; 
 }
 
 em {
@@ -287,15 +321,6 @@ em {
 	 font-size: 24px;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    margin-left: 8px;
-    left: 637px;
-    width: 565px;
-    margin-top: 10px;
-    
-}
 
  @media only screen and (min-width: 1600px) {
 
@@ -589,29 +614,6 @@ $(document).on('turbolinks:load',function() {
   });
 </script>
 
-<script type="text/javascript">
-
-          $('#reemper24').click(function(event) {
-            $.get("/reempers/" + 34, function(data, status){
-
-              if (data.avatar.url == null) {
-                document.getElementById("imagen-profile").src = "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"
-              } else {
-                document.getElementById("imagen-profile").src = data.avatar.url
-              }
-
-              $(".show1").fadeIn()
-              $(".margin").fadeIn()
-              $(".show1").css({'margin-left':'29px'});
-              $("#name").html(data.first_name + " " + data.first_last_name)
-              $("#adress").html(data.document)
-
-                
-            });
-
-          });
-
-</script>
 
 <style type="text/css" media="screen">
   /* GENERAL
@@ -619,12 +621,13 @@ $(document).on('turbolinks:load',function() {
 
 .bg-light{
   <% if  @categorias == "Salud" %>
-    background-color:  #6DD5FA !important;
+    background-color:  #28688dfa !important;
   <% elsif @categorias == "Mascotas" %>
     background-color: #DE12A1 !important;
     <% elsif @categorias == "Construcción" %>
     background-color: #FD9E04 !important;
   <% end -%>
+  padding-top: 0px;
 }
 
 .user-reemp{
