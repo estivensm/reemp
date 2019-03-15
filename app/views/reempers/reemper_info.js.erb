@@ -2,8 +2,9 @@ $("#card-users").fadeIn("show");
 $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
 $("#biograpy").text("<%= @reemper.biography %>");
+
 <% @valoration.each do |valoracion| %>
-	<%= valoracion.id %>
+	$("#valoration").append('<%= j render "parciales/user", valoracion: valoracion %>');
 <% end %>
-alert("<%= @valoration.count %>");
+
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';

@@ -1,0 +1,23 @@
+            <div class="card">
+              <div class="card-body no-padding-card">
+
+                <div class="row">
+                      <div class="col-md-2">
+                        <%= valoracion.user.avatar? ? image_tag(valoracion.user.avatar_url(), class: "img img-rounded img-fluid ") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ")%>
+                      </div>
+                      <div class="col-md-10">
+
+                          <p>
+                              <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong><%= valoracion.user.names %></strong></a>
+                              <span class="float-right"><%= get_valoration(valoracion.valoration).html_safe %></span>
+                         </p>
+
+                         <br>
+
+                         <div class="clearfix"></div>
+                          <p><%= valoracion.description %></p>
+                      </div>
+                </div>
+
+              </div>
+            </div>

@@ -20,7 +20,6 @@ class ReempersController < ApplicationController
       @valoration = ReemperValoration.where(reemper_id: @reemper.id)
       @consultorio = ConsultingRoom.where(reemper_id: @reemper.id)
 
-      #render json: @reemper
     end 
     
   end
