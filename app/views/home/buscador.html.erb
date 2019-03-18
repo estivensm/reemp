@@ -1,31 +1,62 @@
 <%= render "parciales/menu_show" %>
 <br>
 
+
   <div class="row">
 
-    <div class="card col-md-4 " style="background-color: transparent; margin-top: 24px;">
+    <div class="col-md-8" style="position: absolute; left: 0px;">
+      <input type="text" name="" class="input-search" value="<%= @specate %>">
+      <button class="btn-search">
+        Buscar <i class="fas fa-search"></i>
+      </button>
+      <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <% if !@categorias.blank? %>
+          <%= @categorias %>
+        <% end -%>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" id="masco">Mascotas</a>
+        <a class="dropdown-item" href="#" id="legal">Legal</a>
+        <a class="dropdown-item" href="#" id="empre">Empresa</a>
+        <a class="dropdown-item" href="#" id="constru">Construccion</a>
+      </div>
+    </div>
+
+<script type="text/javascript">
+$('.dropdown-menu show').on('show.bs.dropdown', function () {
+  alert("message?: DOMString");
+})
+</script>
+    <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px;">
       <div class="card-body" style=" padding: inherit;">
-      	    <div class="col-md-12">
-		      <ol class="breadcrumb">
 
-		          <% if !@categorias.blank? %>
-		            <li><a href="#"><%= @categorias %></a></li>
-		          <% end -%>
+      	 <div class="col-md-12 no-padding-left">
+  		      <ol class="breadcrumb">
 
-		          <% if !@specate.blank? %>
-		            <li><a href=""><%= @specate %></a></li>
-		          <% end -%>
+  		          <% if !@categorias.blank? %>
+  		            <li><a href="#"><%= @categorias %></a></li>
+  		          <% end -%>
 
-		          <% if !@ciudad.blank? %>
-		            <li><a href=""><%= @ciudad %></a></li>
-		          <% end -%>
-		      </ol>
-		    </div>
+  		          <% if !@specate.blank? %>
+  		            <li><a href=""><%= @specate %></a></li>
+  		          <% end -%>
+
+  		          <% if !@ciudad.blank? %>
+  		            <li><a href=""><%= @ciudad %></a></li>
+  		          <% end -%>
+  		      </ol>
+		      </div>
+
+
         <div id="map"></div>  
       </div>
     </div>
 
-    <div class="card col-md-4 card-remp">
+
+
+
+
+    <div class="card col-md-4 card-remp col-sm-12 col-xs-12" id="card-reempers">
       <div class="card-body" style="padding: inherit;">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
@@ -38,7 +69,7 @@
     </div>
 
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 35.66667% !important;">
-      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 484px;">
+      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 511px;">
 
         <div class="remplace">
                   <div class="container">
@@ -115,10 +146,98 @@
 
   </div>  
 
-
-
-
 <style type="text/css" media="screen">
+  #masco{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #DE12A1;
+    color: #ffff;
+    margin-bottom: 10px;   
+    width: 120px;
+    margin-left: 10px;
+  }
+
+  #legal{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #0b255b;
+    color: #ffff;   
+    width: 120px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  #empre{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #00deb4;
+    color: #ffff;   
+    width: 120px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  #constru{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #FD9E04;
+    color: #ffff;   
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  /* query para iphone 6/7/8 */
+    @media screen and (min-device-width : 414px) and (-webkit-device-pixel-ratio: 3){
+      :root, body {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+    }
+
+    /* query para orizontal iphone 6/7/8 */
+    @media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 3) {
+      :root, body {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+
+    }
+
+
+
+    @media (max-width: 576px) {
+      .btn-search{
+        left: 211px !important;
+      }
+
+      :root, body {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+    }
+
+    /*table asdasd*/
+    @media (min-width: 768px) and (max-width: 1024px) {
+      :root, body {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+      :root, body {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+      }
+    }
   #show-inforem{
     border-radius: 4px;
     background-color: red;
@@ -126,12 +245,70 @@
 
   .card-remp{
     max-height: 408px;
-    margin-top: 76px !important;
+    margin-top: 104px !important;
     overflow: scroll;
     overflow-x: hidden;
     max-width: 30.33333%;
     border-radius: 10px;
 
+  }
+
+  .dropdown-menu.show{
+    top: 9px !important;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .input-search{
+    border-radius: 43px;
+    border: initial;
+    height: 41px;
+    width: 97%;
+    padding-left: 148px;
+    <% if  @categorias == "Salud" %>
+      color:  #6DD5FA !important;
+    <% elsif @categorias == "Mascotas" %>
+      color: #DE12A1 !important;
+      <% elsif @categorias == "Construcción" %>
+      color: #FD9E04 !important;
+    <% end -%>
+
+    /* 211px */
+  }
+
+  :root, body {
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .btn-search{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #00deb4;
+    color: #ffff;   
+    width: 120px;
+    position: absolute;
+    left: 700px;
+    bottom: 3px;
+  }
+
+  .btn-catego{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    <% if  @categorias == "Salud" %>
+      background-color:  #6DD5FA !important;
+    <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1 !important;
+      <% elsif @categorias == "Construcción" %>
+      background-color: #FD9E04 !important;
+    <% end -%>
+    color: #ffff;   
+    width: 120px;
+    position: absolute;
+    left: 20px;
+    bottom: 3px;
   }
 
   .btn-info{
@@ -181,7 +358,7 @@
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #dcd5d53d; 
+    background: #006A8E; 
   }
 
 
@@ -315,7 +492,7 @@ em {
   width: calc(103% - 1rem);
   border: initial !important;
   padding: 5px !important;
-  box-shadow: initial !important;
+      box-shadow: 0 5px 19px 1px #e3e5ec;
 }
 
 .ais-GeoSearch-marker{
@@ -637,6 +814,7 @@ $(document).on('turbolinks:load',function() {
     background-color: #FD9E04 !important;
   <% end -%>
   padding-top: 0px;
+  box-shadow: -2px 2px 16px #383c3e;
 }
 
 .user-reemp{
@@ -695,7 +873,7 @@ $(document).on('turbolinks:load',function() {
 }
 
 .card-reemper{
-    box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe;
+    /* box-shadow: -2px -4px 10px #dcdcfe, 2px 7px 10px #dcdcfe; */
     margin-top: 10px; 
     margin-bottom: 10px;
 }
@@ -1012,9 +1190,9 @@ em{
 #pagination .pagination > li > a:hover,
 #pagination .pagination > li > span:focus,
 #pagination .pagination > li > span:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #0cc3f3;
-  background: red;
+  background: #0cc3f3;
 }
 
 .breadcrumb{
@@ -1025,12 +1203,11 @@ em{
     overflow: hidden;
     border-radius: 0;
     position: relative;
-        margin-bottom: 13px;
+    margin-bottom: 13px;
 }
 .breadcrumb li{
     float: left;
     margin-right: 10px;
-    background: #0cc3f3;
     border-radius: 20px;
     font-size: 16px;
     font-weight: bold;
@@ -1042,15 +1219,12 @@ em{
 .breadcrumb li:last-child{
     padding: -7px 18px;
     margin-right: 0;
-    background: #f48b07;
     color: #fff;
     position: relative;
 }
-.breadcrumb li:hover{ background: #f48b07; }
 .breadcrumb li:before{ display: none; }
 .breadcrumb li a{
     display: block;
-    padding: 2px 25px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
