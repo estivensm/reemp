@@ -22,11 +22,7 @@
       </div>
     </div>
 
-<script type="text/javascript">
-$('.dropdown-menu show').on('show.bs.dropdown', function () {
-  alert("message?: DOMString");
-})
-</script>
+
     <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px;">
       <div class="card-body" style=" padding: inherit;">
 
@@ -636,7 +632,7 @@ $(document).on('turbolinks:load',function() {
               '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
             '</div>'+
 
-            '<div class="col-md-5 no-padding-right name-reemp">'+
+            '<div class="col-md-7 no-padding-right name-reemp">'+
               '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true %> <i class="fas fa-check-circle"></i></h4>'+
 
               '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
