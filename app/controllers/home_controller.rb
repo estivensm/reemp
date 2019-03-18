@@ -53,6 +53,9 @@ class HomeController < ApplicationController
    @specate = params[:specialties]
    @categorias = params[:category]
    @ciudad = params[:city]
+
+    categoria = Category.where(name: "Salud")
+    @specialties = Specialty.where(category_id: categoria).all
   end
 
   def user_contact

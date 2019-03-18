@@ -405,6 +405,9 @@ em {
 
   });
 
+<% if @messaje.present? %>
+  toastr["error"]("<%= @messaje %>");
+<% end -%>
 </script>
 
 <style type="text/css" media="screen">

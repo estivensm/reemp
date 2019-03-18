@@ -22,11 +22,17 @@
 
     <span class="navbar-text">
       <% if user_signed_in? %>
-        <% usuario = current_user.names + current_user.last_names %>
-        <%= link_to "Reemper", reeper_home_path , class: "btn-logins" %>
-        <%= link_to reeper_home_path , class: "btn-logins" do %>
-          <i class="fas fa-user-circle"></i> <%= usuario %>
-        <% end -%>
+          <%= link_to "Reemper", reeper_home_path , class: "btn-logins" %>
+          <a class="dropdown-toggle btn-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% usuario = current_user.names + current_user.last_names %>
+            <%= usuario %>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
       <% else %>
         <button class="btn-logins" data-toggle="modal" data-target="#exampleModalCenter">Ingresar</button>
       <% end -%>
@@ -49,7 +55,6 @@
   .btn-user{
     background: inherit;
     border-radius: 55px;
-    border: 1px solid #22D3B1;
     color: #ffff !important;
     padding: 10px;
     margin-right: 20px;

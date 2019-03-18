@@ -5,22 +5,151 @@
   <div class="row">
 
     <div class="col-md-8" style="position: absolute; left: 0px;">
-      <input type="text" name="" class="input-search" value="<%= @specate %>">
-      <button class="btn-search">
-        Buscar <i class="fas fa-search"></i>
-      </button>
-      <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <% if !@categorias.blank? %>
-          <%= @categorias %>
-        <% end -%>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" id="masco">Mascotas</a>
-        <a class="dropdown-item" href="#" id="legal">Legal</a>
-        <a class="dropdown-item" href="#" id="empre">Empresa</a>
-        <a class="dropdown-item" href="#" id="constru">Construccion</a>
-      </div>
+      <%= form_tag browser_path, :method => 'post' do %>
+
+         <div class="custom-select input-search" id="select">
+            <select name="" class="">
+              <option value="">Selecciona una especialidad de salud</option>
+                <% @specialties.each do |espec|  %>
+                   <option><%= espec.name %></option>
+                <% end %>
+            </select>
+         </div>
+
+
+        <button class="btn-search">
+          Buscar <i class="fas fa-search"></i>
+        </button>
+
+        <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if !@categorias.blank? %>
+            <b id="search-btn"><%= @categorias %></b>
+          <% end -%>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" id="masco">Mascotas</a>
+          <a class="dropdown-item" id="legal">Legal</a>
+          <a class="dropdown-item" id="empre">Empresa</a>
+          <a class="dropdown-item" id="constru">Construccion</a>
+        </div>
+          <%= hidden_field_tag :category_id, nil , id: "category_id" %>
+          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
+          <%= hidden_field_tag :legal, nil, id: "legal" %>
+
+      <% end -%>
     </div>
+
+
+                  
+
+    <script type="text/javascript">
+
+      $("#masco").click(function(event) {
+        $("#search-btn").text($(this).text());
+        $("#category_id").val($(this).text());
+        $(".btn-catego").css({'background':'#DE12A1'});
+
+      });
+
+      $("#legal").click(function(event) {
+        $("#search-btn").text($(this).text());
+        $("#category_id").val($(this).text());
+        $(".btn-catego").css({'background':'#0b255b'});
+      });
+
+      $("#empre").click(function(event) {
+        $("#search-btn").text($(this).text())
+        $("#category_id").val($(this).text());
+        $(".btn-catego").css({'background':'#006A8E'});
+      });
+
+      $("#constru").click(function(event) {
+        $("#search-btn").text($(this).text());
+        $("#category_id").val($(this).text());
+        $(".btn-catego").css({'background':'#FD9E04'});
+      });
+
+    </script>
+
+
+<script type="text/javascript">   
+var x, i, j, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+for (i = 0; i < x.length; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < selElmnt.length; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var y, i, k, s, h;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < s.length; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            for (k = 0; k < y.length; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      $(".select-items").addClass('animated fadeInDown');
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active ");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  for (i = 0; i < y.length; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < x.length; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+      $(".select-items").addClass('animated fadeUpDown');
+
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+
+</script>
 
 
     <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px;">
@@ -143,6 +272,68 @@
   </div>  
 
 <style type="text/css" media="screen">
+  .custom-select {
+      position: relative;
+      font-family: Arial;
+    }
+
+    .custom-select select {
+      display: none; /*hide original SELECT element:*/
+    }
+
+    .select-selected {
+      text-align: center;
+      border-radius: 20px;
+      color: #9182ca !important;
+      width: 818px;
+    }
+
+    /*style the arrow inside the select element:*/
+
+    /*point the arrow upwards when the select box is open (active):*/
+    .select-selected.select-arrow-active:after {
+      border-color: transparent transparent #fff transparent;
+      top: 7px;
+    }
+
+    /*style the items (options), including the selected item:*/
+    .select-items div,.select-selected {
+      color: #ffffff;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      margin-top: -7px;
+    }
+
+    /*style items (options):*/
+    .select-items {
+      position: absolute;
+      top: 101%;
+      left: 139px;
+      right: 20px;
+      border-bottom-left-radius: 23px;
+      border-bottom-right-radius: 23px;
+      z-index: 99;
+      background: #fff;
+    }
+
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+      display: none;
+    }
+
+    .select-items div{
+      color: #000 !important;
+    }
+
+    .select-items div::before{
+      font-family: "FontAwesome";
+      content: "\f002";
+      color: gray;
+      float: left;
+      margin-right: 20px;
+    }
   #masco{
     border-radius: 43px;
     border: initial; 
@@ -152,6 +343,7 @@
     margin-bottom: 10px;   
     width: 120px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   #legal{
@@ -164,18 +356,20 @@
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   #empre{
     border-radius: 43px;
     border: initial; 
     padding: 5px;
-    background: #00deb4;
+    background: #006A8E;
     color: #ffff;   
     width: 120px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   #constru{
@@ -187,6 +381,7 @@
     width: 120px;
     margin-top: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 
   /* query para iphone 6/7/8 */
@@ -205,8 +400,6 @@
       }
 
     }
-
-
 
     @media (max-width: 576px) {
       .btn-search{
@@ -260,7 +453,7 @@
     border: initial;
     height: 41px;
     width: 97%;
-    padding-left: 148px;
+    padding-left: 0px;
     <% if  @categorias == "Salud" %>
       color:  #6DD5FA !important;
     <% elsif @categorias == "Mascotas" %>
@@ -294,11 +487,11 @@
     border: initial; 
     padding: 5px;
     <% if  @categorias == "Salud" %>
-      background-color:  #6DD5FA !important;
+      background-color:  #6DD5FA;
     <% elsif @categorias == "Mascotas" %>
-      background-color: #DE12A1 !important;
+      background-color: #DE12A1;
       <% elsif @categorias == "Construcción" %>
-      background-color: #FD9E04 !important;
+      background-color: #FD9E04;
     <% end -%>
     color: #ffff;   
     width: 120px;
