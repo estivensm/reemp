@@ -18,6 +18,7 @@ module Reemp
     config.time_zone = 'Bogota'
     config.active_record.default_timezone = :local 
     config.i18n.default_locale = :es
+    config.assets.initialize_on_precompile = false
     config.i18n.enforce_available_locales = true
   end
 end
