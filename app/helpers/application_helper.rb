@@ -251,5 +251,15 @@ module ApplicationHelper
 		
 	end
 
+	def get_contac
+		usuario = User.where(id: current_user.id)
+	    @reemper = Reemper.where(user_id: usuario).all
+	    @contac_reempers = ContacReemper.where(reemper_id: @reemper).where(state_request: "pending")
+
+	    @answer_reemper = ContacReemper.where(state_request: "delivered").where(user_id: current_user.id)
+
+	    return @contac_reempers
+	end
+
 	
 end

@@ -1,5 +1,5 @@
 $("#card-users").fadeIn("show");
-$("#info-reemp").html('<%= j render "parciales/reemper_info", valoration: @valoration %>');
+$("#info-reemp").html('<%= j render "parciales/reemper_info", reemper: @reemper %>');
 $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
 $("#biograpy").text("<%= @reemper.biography %>");

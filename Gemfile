@@ -35,6 +35,7 @@ gem 'devise'
 gem 'mini_magick', '~> 4.8'
 #AASM para maquina de estados
 gem "aasm"
+gem 'popper_js', '~> 1.14.5'
 #ingresar con google
 gem 'omniauth-google'
 #mensajes de alerta

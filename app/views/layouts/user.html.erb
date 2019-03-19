@@ -75,7 +75,41 @@
           </li>
         </ul>
       -->
+
         <ul class="navbar-nav navbar-nav-right">
+          <% if get_contac.any? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="fas fa-bell"></i>
+                <span class="count"><%= get_contac.count %></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <a class="dropdown-item">
+                  <p class="mb-0 font-weight-normal float-left">hay <%= get_contac.count %> notificaciones
+                  </p>
+                  <span class="badge badge-pill badge-warning float-right">View all</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <% get_contac.each do |remp|%>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon">
+                        <img src="<%= remp.reemper.user.avatar_url() %>" alt="">
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <h6 class="preview-subject font-weight-medium text-dark"><%= remp.reemper.user.names %></h6>
+                      <p class="font-weight-light small-text">
+                        <%== remp.description %>
+                      </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                <% end -%>
+              </div>
+            </li>
+          <% end -%>
+
           <li class="nav-item dropdown">
           <li class="nav-item dropdown d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -113,6 +147,7 @@
               
             </div>
           </li>
+
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>

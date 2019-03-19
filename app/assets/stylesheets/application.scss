@@ -17,6 +17,9 @@
  *= require_self
  */
 
+
+
+
 @import "bootstrap";
 @import "chosen";
 @import "toastr";
@@ -5745,7 +5748,6 @@ input:focus {
       flex-direction: row;
       align-items: center; }
       .navbar.default-layout .navbar-menu-wrapper .navbar-nav .nav-item {
-        margin-left: 1rem;
         margin-right: 1rem; }
         .navbar.default-layout .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
           color: inherit;
@@ -7035,17 +7037,18 @@ ul {
     font-size: 0.9rem;
     margin-top: 0;
     position: absolute;
-    top: calc(63px - 6px);
+    top: calc(60px - 6px);
     right: 0;
     left: auto;
     border: 1px solid rgba(182, 182, 182, 0.1);
     padding: 0 0 20px;
-    max-width: 0px;
+    max-width: 296px;
     border-radius: 6px;
     -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.13);
     -moz-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.13);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.13);
-    overflow: hidden; }
+    overflow: hidden;
+    }
     .rtl .nav .nav-item.dropdown .navbar-dropdown, .rtl
     .navbar-nav .nav-item.dropdown .navbar-dropdown {
       right: auto;

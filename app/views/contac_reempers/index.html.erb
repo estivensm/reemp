@@ -72,7 +72,7 @@
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                     <%= button_tag "Responder", class: "btn btn-success", :type => "submit", data: { dismiss: 'modal'} %>
+                     <%= button_tag "Responder", class: "btn btn-success" %>
                   </div>
                   <% end -%>
                 </div>
@@ -115,7 +115,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modal-reemper<%= contac_reemper.id %>">Tu Respuesta <%= contac_reemper.user.names %></h5>
+                    <h5 class="modal-title" id="modal-reemper<%= contac_reemper.id %>">la Respuesta de <%= contac_reemper.reemper.user.names %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
