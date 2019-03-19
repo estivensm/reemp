@@ -18,7 +18,7 @@
 
 
         <button class="btn-search">
-          Buscar <i class="fas fa-search"></i>
+          <b>Buscar</b> <i class="fas fa-search"></i>
         </button>
 
         <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -240,6 +240,29 @@ document.addEventListener("click", closeAllSelect);
       margin-top: -7px;
     }
 
+    #btn-show{
+      <% if  @categorias == "Salud" %>
+        background-color:  #6DD5FA;
+      <% elsif @categorias == "Mascotas" %>
+        background-color: #DE12A1;
+      <% elsif @categorias == "Legal"%>
+        background-color: #0b255b;
+      <% elsif @categorias == "Construcción" %>
+        background-color: #FD9E04;
+      <% end -%> 
+      color: #fff;
+      border: initial;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+
+    #btn-show::after{  
+      font-family: "FontAwesome";
+      content: "\f067";
+      margin-left: 5px;
+    }
+
     /*style items (options):*/
     .select-items {
       position: absolute;
@@ -411,24 +434,20 @@ document.addEventListener("click", closeAllSelect);
   .btn-search{
     border-radius: 43px;
     border: initial; 
-    padding: 5px;
+    padding: 9px;
     <% if  @categorias == "Salud" %>
       background-color:  #6DD5FA;
-      color: #ffff;
     <% elsif @categorias == "Mascotas" %>
       background-color: #DE12A1;
-      color: #ffff;
     <% elsif @categorias == "Legal"%>
       background-color: #0b255b;
-      color: #ffff;
     <% elsif @categorias == "Construcción" %>
       background-color: #FD9E04;
-      color: #0b255b;
-    <% end -%> 
+    <% end -%>
+    color: #fff; 
     width: 120px;
     position: absolute;
-    left: 700px;
-    bottom: 3px;
+    left: 713px;
   }
 
   .btn-catego{
@@ -492,7 +511,15 @@ document.addEventListener("click", closeAllSelect);
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #6DD5FA; 
+    <% if  @categorias == "Salud" %>
+      background-color:  #6DD5FA;
+    <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1;
+    <% elsif @categorias == "Legal"%>
+      background-color: #0b255b;
+    <% elsif @categorias == "Construcción" %>
+      background-color: #FD9E04;
+    <% end -%> 
     border-radius: 15px;
   }
 
