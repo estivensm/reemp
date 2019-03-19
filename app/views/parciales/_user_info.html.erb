@@ -1,5 +1,5 @@
 <div class="row">
-
+  <i class="fas fa-arrow-left" id="back"></i>
   <div class="col-md-12">
     <strong>Mas Sobre Mi</strong>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
@@ -15,10 +15,6 @@
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
   </div>
 
-  <div class="col-md-12 text-center">
-     <button id="back">Volver</button>  
-  </div>
-
 </div>
 
 <style type="text/css" media="screen">
@@ -26,10 +22,11 @@
   #back{
     background: inherit;
     border-radius: 55px;
-    border: 1px solid #22D3B1;
+    border: 1px solid initial;
     color: #28688dfa !important;
     padding: 10px;
     margin-right: 20px;
+    cursor: pointer;
   }
 
 </style>
@@ -37,6 +34,13 @@
 
 <script type="text/javascript">
   $("#back").click(function(event) {
-    
+    $("#info-reemp").removeClass('none').addClass('show');
+    $(".remplace").addClass('none');
+
+  if($('#info-reemp').css('display') != 'show')
+      console.log($('#info-reemp'));
+    { 
+
+    }
   });
 </script>

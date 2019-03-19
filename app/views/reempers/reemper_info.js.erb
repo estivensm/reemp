@@ -1,4 +1,5 @@
 $("#card-users").fadeIn("show");
+$("#info-reemp").html('<%= j render "parciales/reemper_info" %>');
 $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
 $("#biograpy").text("<%= @reemper.biography %>");
@@ -14,6 +15,15 @@ $("#biograpy").text("<%= @reemper.biography %>");
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';
 
 $("#btn-show").click(function(event) {
+	$("#info-reemp").addClass('none');
+
+	if($('.remplace').css('display') == 'none')
+		$(".remplace").removeClass('none').addClass('show');
+		$("#info-reemp").removeClass('show').addClass('none');
+	{	
+
+	}
+
 	$(".remplace").html('<%= j render "parciales/user_info" %>');
 });
 

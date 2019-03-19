@@ -29,8 +29,8 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" id="masco">Mascotas</a>
           <a class="dropdown-item" id="legal">Legal</a>
-          <a class="dropdown-item" id="empre">Empresa</a>
-          <a class="dropdown-item" id="constru">Construccion</a>
+          <a class="dropdown-item" id="empre">Salud</a>
+          <a class="dropdown-item" id="constru">Construcción</a>
         </div>
           <%= hidden_field_tag :category_id, nil , id: "category_id" %>
           <%= hidden_field_tag :specialties, nil, id: "specialties" %>
@@ -60,7 +60,7 @@
       $("#empre").click(function(event) {
         $("#search-btn").text($(this).text())
         $("#category_id").val($(this).text());
-        $(".btn-catego").css({'background':'#006A8E'});
+        $(".btn-catego").css({'background':'#6DD5FA'});
       });
 
       $("#constru").click(function(event) {
@@ -177,10 +177,6 @@ document.addEventListener("click", closeAllSelect);
       </div>
     </div>
 
-
-
-
-
     <div class="card col-md-4 card-remp col-sm-12 col-xs-12" id="card-reempers">
       <div class="card-body" style="padding: inherit;">
         <div class="col-dm-12 no-padding" id="hits"></div>
@@ -194,87 +190,25 @@ document.addEventListener("click", closeAllSelect);
     </div>
 
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 35.66667% !important;">
-      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 511px;">
-
-        <div class="remplace">
-                  <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <img class="img-xs rounded-circle" src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg" id="reemper-img" />
-            </div>  
-
-            <div class="col-md-8">
-              <div class="col-md-2 float-right">
-                <h6><i class="fab fa-instagram icon-inst"></i></h6>
-              </div>
-              <h6 id="name"></h6>   
-              <p id="cirugia"></p>
-              <span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-            </div> 
-
-            <div class="col-md-12 no-padding">
-              <hr>
-            </div>
-
-            <div class="col-md-12 conten-img no-padding ">
-              <div class="row">
-                
-                <div class="col-md-4">
-                  <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
-                </div>
-
-                <div class="col-md-4">
-                  <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
-                </div>
-
-                <div class="col-md-4">
-                  <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
-                </div>
-
-              </div>
-            </div>
-
-            <div class="col-md-12 no-padding">
-              <hr>
-            </div>
-
-            <div class="col-md-12 show-info" style="padding: 10px;"> 
-              <p id="biograpy" style="margin-bottom: 0px;" ></p>
-              <button style="float: right;" class="btn-info" id="btn-show">Mas Informacion</button>
-            </div>
-
-            <ul class="nav nav-pills col-md-12 no-padding" id="pills-tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reseñas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
-          </li>
-        </ul>
-
-        <div class="tab-content col-md-12 no-padding" id="pills-tabContent">
-          <div class="panel tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            
-          <div id="valoration"></div>
-
-          </div>
-          <div class="panel tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-        </div>
-
-
-          </div>
-        </div>
-        </div>
-
+      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 521px;">
+          <div class="remplace"></div>
+          <div id="info-reemp"></div>
       </div>
     </div>
-
-  </div>  
+  
 
 <style type="text/css" media="screen">
   .custom-select {
       position: relative;
       font-family: Arial;
+    }
+
+    .none{
+      display: none;
+    }
+
+    .show{
+      display: block;
     }
 
     .custom-select select {
@@ -365,7 +299,7 @@ document.addEventListener("click", closeAllSelect);
     border-radius: 43px;
     border: initial; 
     padding: 5px;
-    background: #006A8E;
+    background: #6DD5FA;
     color: #ffff;   
     width: 120px;
     margin-bottom: 10px;
@@ -435,7 +369,7 @@ document.addEventListener("click", closeAllSelect);
   }
 
   .card-remp{
-    max-height: 408px;
+    max-height: 417px;
     margin-top: 104px !important;
     overflow: scroll;
     overflow-x: hidden;
@@ -458,9 +392,11 @@ document.addEventListener("click", closeAllSelect);
     padding-left: 0px;
     <% if  @categorias == "Salud" %>
       color:  #6DD5FA !important;
-    <% elsif @categorias == "Mascotas" %>
+    <% elsif @categorias == "Mascotas" %> 
       color: #DE12A1 !important;
-      <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Legal"%>
+      color: #0b255b !important;
+    <% elsif @categorias == "Construcción" %>
       color: #FD9E04 !important;
     <% end -%>
 
@@ -476,8 +412,19 @@ document.addEventListener("click", closeAllSelect);
     border-radius: 43px;
     border: initial; 
     padding: 5px;
-    background: #00deb4;
-    color: #ffff;   
+    <% if  @categorias == "Salud" %>
+      background-color:  #6DD5FA;
+      color: #ffff;
+    <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1;
+      color: #ffff;
+    <% elsif @categorias == "Legal"%>
+      background-color: #0b255b;
+      color: #ffff;
+    <% elsif @categorias == "Construcción" %>
+      background-color: #FD9E04;
+      color: #0b255b;
+    <% end -%> 
     width: 120px;
     position: absolute;
     left: 700px;
@@ -492,7 +439,9 @@ document.addEventListener("click", closeAllSelect);
       background-color:  #6DD5FA;
     <% elsif @categorias == "Mascotas" %>
       background-color: #DE12A1;
-      <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Legal"%>
+      background-color: #0b255b;
+    <% elsif @categorias == "Construcción" %>
       background-color: #FD9E04;
     <% end -%>
     color: #ffff;   
@@ -1001,7 +950,9 @@ $(document).on('turbolinks:load',function() {
     background-color:  #28688dfa !important;
   <% elsif @categorias == "Mascotas" %>
     background-color: #DE12A1 !important;
-    <% elsif @categorias == "Construcción" %>
+  <% elsif @categorias == "Legal" %>
+    background-color: #210554 !important;   
+  <% elsif @categorias == "Construcción" %>
     background-color: #FD9E04 !important;
   <% end -%>
   padding-top: 0px;
