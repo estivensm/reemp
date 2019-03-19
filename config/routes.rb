@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :reempers, :except => [:index, :show]
   get "reempers/:name", to: "reempers#show", as: "reemper_registration"
   get "reemper_info/:id", to: "reempers#reemper_info", as: "reemper_info"
+  get "reemper/:categoria", to: "home#informacion", as: "info"
   resources :subspecialties, :except => [:show]
   resources :specialties, :except => [:show]
   resources :professions, :except => [:show]

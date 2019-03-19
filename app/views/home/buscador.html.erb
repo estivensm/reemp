@@ -61,6 +61,11 @@
         $("#search-btn").text($(this).text());
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#DE12A1'});
+        var name = $(this).text()
+          $.get("/reemper/" + name, function(data, status){
+
+              alert(data);
+          });
 
       });
 
@@ -68,18 +73,33 @@
         $("#search-btn").text($(this).text());
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#0b255b'});
+        var name = $(this).text()
+          $.get("/reemper/" + name, function(data, status){
+
+              
+          });
       });
 
       $("#empre").click(function(event) {
         $("#search-btn").text($(this).text())
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#6DD5FA'});
+        var name = $(this).text()
+          $.get("/reemper/" + name, function(data, status){
+
+              
+          });
       });
 
       $("#constru").click(function(event) {
         $("#search-btn").text($(this).text());
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#FD9E04'});
+        var name = $(this).text()
+          $.get("/reemper/" + name, function(data, status){
+
+              
+          });
       });
 
     </script>

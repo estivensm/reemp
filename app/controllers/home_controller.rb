@@ -49,6 +49,12 @@ class HomeController < ApplicationController
   	
   end
 
+  def informacion
+    @cate = params[:categoria]
+    @hola = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    puts @hola
+  end
+
   def buscador
    @specate = params[:specialties]
    @categorias = params[:category]
