@@ -232,14 +232,18 @@
                     <%= hidden_field_tag :lat, nil, id: "lat" %>
                     <%= hidden_field_tag :lng, nil, id: "lng" %>
 
+
+                  <% if state_reemp == true %>
+                    <%= submit_tag "Desactivar", class: "btn btn-outline-danger", :onclick => "return getLocation();", id: "btn1" %>
+                    <%= hidden_field_tag :state_loc, nil, :value => "desactivado" %>
+                  <% else %>
+                    <%= submit_tag "Activar Ubicacion", class: "btn btn-outline-success", :onclick => "return getLocation();", id: "btn2" %>
                     <%= hidden_field_tag :state_loc, nil, :value => "dinamico" %>
-                    
                     <%= hidden_field_tag :img_reemp, nil, :value => "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/406/mapas-y-banderas.png"%>
 
-                    <%= submit_tag "Activar Ubicacion", class: "btn btn-outline-success", :onclick => "return getLocation();" %>
+                  <% end -%>
                 <% end -%>
 
-                <%= link_to "Desactivar Ubicacion",update_reemper_path(:lat => 123, :lng => 123, :act => "desac"), method: :post, class: "btn btn-outline-danger", style: "display: none;", remote: true, id: "btn2" %>
 
               </div>
 
@@ -393,13 +397,13 @@ function showPosition(position) {
   var bt1 =  document.getElementById("btn1")
   var bt2 =  document.getElementById("btn2")
 
-  $(bt1).click(function(event) {
-    $(this).css({'display':'none'});
+  $(bt1).dblclick(function(event) {
+    $(bt1).css({'display':'none'});
     $(bt2).css({'display':'block'});
   });
 
-  $(bt2).click(function(event) {
-    $(this).css({'display':'none'});
+  $(bt2).dblclick(function(event) {
+    $(bt2).css({'display':'none'});
     $(bt1).css({'display':'block'});
 
   });

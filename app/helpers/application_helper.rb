@@ -261,5 +261,17 @@ module ApplicationHelper
 	    return @contac_reempers
 	end
 
+
+	def state_reemp
+		usuario = User.where(id: current_user.id)
+      	@reemper_state = Reemper.where(user_id: usuario).where(state_loc: "dinamico").present?
+
+		if @reemper_state == true
+			return true
+		else
+			return false 
+		end
+	end
+
 	
 end
