@@ -27,10 +27,23 @@
           <% end -%>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" id="masco">Mascotas</a>
-          <a class="dropdown-item" id="legal">Legal</a>
-          <a class="dropdown-item" id="empre">Salud</a>
-          <a class="dropdown-item" id="constru">Construcción</a>
+          <% if  @categorias == "Salud"%>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="constru">Construcción</a>
+          <% elsif @categorias == "Mascotas" %>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+            <a class="dropdown-item" id="constru">Construcción</a>
+          <% elsif @categorias == "Legal"%>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+            <a class="dropdown-item" id="constru">Construcción</a>
+          <% elsif @categorias == "Construcción" %>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+          <% end -%> 
         </div>
           <%= hidden_field_tag :category_id, nil , id: "category_id" %>
           <%= hidden_field_tag :specialties, nil, id: "specialties" %>
@@ -450,6 +463,25 @@ document.addEventListener("click", closeAllSelect);
     left: 713px;
   }
 
+  .btn-contac{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    <% if  @categorias == "Salud" %>
+      background-color:  #6DD5FA;
+    <% elsif @categorias == "Mascotas" %>
+      background-color: #DE12A1;
+    <% elsif @categorias == "Legal"%>
+      background-color: #0b255b;
+    <% elsif @categorias == "Construcción" %>
+      background-color: #FD9E04;
+    <% end -%>
+    color: #ffff;   
+    float: right;
+    text-align: center;
+    width: 36px;
+  }
+
   .btn-catego{
     border-radius: 43px;
     border: initial; 
@@ -471,7 +503,7 @@ document.addEventListener("click", closeAllSelect);
   }
 
   .btn-info{
-    border-radius: 10px;
+    border-radius: 39px;
     border: 1px solid #ffff;
     margin-top: 10px
   }

@@ -11,6 +11,21 @@
 		    <h6 id="name"></h6>   
 		    <p id="cirugia"></p>
 		    <span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+
+			<% if user_signed_in?  %>
+	          <% if @reemper.user.id == current_user.id  %>
+	          <% else %>
+	            <%= link_to new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn-contac" do %>
+	            	<i class="fas fa-comments"></i>
+	            <% end -%>
+	          <% end -%>
+
+	          
+	          <% else %>
+	            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter" style="float: right;">
+	              <i class="fas fa-sign-in-alt"></i>
+	            </button>
+	        <% end -%>
 		</div> 
 
 		<div class="col-md-12 no-padding">
@@ -50,7 +65,7 @@
 		    </li>
 
 		    <li class="nav-item">
-			    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+			    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">(<% @valoration.count %>opiniones)</a>
 		    </li>
 		</ul>
 
@@ -62,3 +77,5 @@
 		</div>
 	</div>
 </div>
+
+

@@ -31,7 +31,7 @@ class ContacReempersController < ApplicationController
   def create
     @contac_reemper = ContacReemper.new(contac_reemper_params)
 
-    respond_to do |format|
+    respond_to do |format|  
       if @contac_reemper.save
         format.html { redirect_to @contac_reemper, notice: 'Contac reemper was successfully updated.' }
         format.json { render :show, status: :created, location: @contac_reemper }
