@@ -107,7 +107,7 @@
     <tbody>
       <% @answer_reemper.each do |contac_reemper| %>
         <tr>
-          <td><%= contac_reemper.user.names %>
+          <td><%= contac_reemper.reemper.user.names %>
              <i class="fas fa-info-circle" data-toggle="modal" data-target="#modal-reemper<%= contac_reemper.id%>" id="icon-info"></i>
           </td>
             <!-- Modal -->
