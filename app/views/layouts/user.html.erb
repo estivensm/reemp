@@ -234,7 +234,7 @@
 
 
                   <% if state_reemp == true %>
-                    <%= submit_tag "Desactivar", class: "btn btn-outline-danger", :onclick => "return getLocation();", id: "btn1" %>
+                    <%= submit_tag "Desactivar Ubicacion", class: "btn btn-outline-danger", :onclick => "return getLocation();", id: "btn1" %>
                     <%= hidden_field_tag :state_loc, nil, :value => "desactivado" %>
                   <% else %>
                     <%= submit_tag "Activar Ubicacion", class: "btn btn-outline-success", :onclick => "return getLocation();", id: "btn2" %>
