@@ -231,7 +231,15 @@ document.addEventListener("click", closeAllSelect);
     .select-selected {
       text-align: center;
       border-radius: 20px;
-      color: #9182ca !important;
+      <% if  @categorias == "Salud" %>
+        color:  #28688dfa !important;
+      <% elsif @categorias == "Mascotas" %>
+        color: #DE12A1 !important;
+      <% elsif @categorias == "Legal" %>
+        color: #210554 !important;   
+      <% elsif @categorias == "Construcción" %>
+        color: #FD9E04 !important;
+      <% end -%>
       width: 818px;
     }
 
