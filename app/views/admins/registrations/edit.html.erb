@@ -38,11 +38,9 @@
       </div>
 
       <div class="form-group row">
-
         <fieldset class="col-12 col-sm-12 header-poner">
-          <div class="container">
-            <div class="row">
-              <legend class="text-change">Actualizacion de Contraseñas</legend>
+          <legend class="text-change">Actualizacion de Contraseñas</legend>
+            <div class="form-row">
                 <div class="col-sm-6">   
                   <label for="validationCustom01">Contraseña</label>
                   <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :placeholder => "Contraseña"  %>
@@ -53,10 +51,9 @@
                   <label for="validationCustom01">Confirmar Contraseña</label>
                   <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirmar Contraseña"  %>
                 </div>
-              </div>
             </div>
+            
         </fieldset>
-
       </div>
 
 
