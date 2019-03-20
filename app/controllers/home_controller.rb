@@ -50,9 +50,36 @@ class HomeController < ApplicationController
   end
 
   def informacion
-    @cate = params[:categoria]
-    @hola = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    puts @hola
+
+    if params[:categoria] == "Salud"
+
+        categoria = Category.where(name: "Salud")
+        @specialties = Specialty.where(category_id: categoria).all
+
+        render json: @specialties
+
+      elsif params[:categoria] == "Mascotas"
+
+        catemas = Category.where(name: "Mascotas")
+        @specmas = Specialty.where(category_id: catemas).all
+
+        render json: @specmas
+
+      elsif params[:categoria] == "Construccion"
+
+        catecons = Category.where(name: "Construccion")
+        @specate = Specialty.where(category_id: catecons).all
+
+        render json: @specate
+
+      elsif params[:categoria] == "Legal"  
+        catelegal = Category.where(name: "Legal")
+        @specilegal = Specialty.where(category_id: catelegal).all
+        
+        render json: @specilegal
+
+    end
+
   end
 
   def buscador
