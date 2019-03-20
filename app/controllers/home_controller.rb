@@ -109,17 +109,17 @@ class HomeController < ApplicationController
   end
 
   def admin_contact
-    @contacts = Contact.all.paginate(:page => params[:page], :per_page => 10)
+    @contacts = Contact.all.paginate(:page => params[:page], :per_page => 6)
     render :layout => "admin" 
   end
 
   def admin_users
-    @users = User.all.paginate(:page => params[:page], :per_page => 10)
+    @users = User.all.paginate(:page => params[:page], :per_page => 6)
     render :layout => "admin" 
   end
 
   def all_admins
-    @admins = Admin.all.paginate(:page => params[:page], :per_page => 10)
+    @admins = Admin.all.paginate(:page => params[:page], :per_page => 6)
     render :layout => "admin" 
   end
 
