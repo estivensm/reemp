@@ -21,7 +21,9 @@
          <div class="custom-select input-search" id="select">
             <select name="" class="" id="cambio">
               <option value="">Cirugia Plastica</option>
-              <option value="1">asdasd</option>
+              <% @specialties.each do |cate| %>
+                <option value="1"><%= cate.category.name %></option>
+              <% end -%>
             </select>
          </div>
 
