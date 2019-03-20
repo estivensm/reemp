@@ -46,7 +46,7 @@
 
   <div class = "col-md-12 paginate text-center title-table1">
     <nav class="pagination-outer" aria-label="Page navigation">
-      <%= will_paginate @contacts, previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
+      <%= will_paginate @contacts, renderer: BootstrapPagination::Rails, previous_label: "&laquo;", next_label: "&raquo;", inner_window: 1, outer_window: 0 %>
     </nav>
   </div>
 
@@ -62,63 +62,3 @@
     toastr["error"]("<%= flash[:delete] %> con <b>Exito!</b>");
   <% end -%>
 </script>
-
-<style type="text/css" media="screen">
-  .demo{ background-color: #5f1155; }
-.pagination-outer{ text-align: center; }
-.pagination{
-    display: inline-flex;
-    position: relative;
-    z-index: 1;
-}
-.pagination li a.page-link{
-    color: #fdeeac;
-    background: transparent;
-    font-size: 22px;
-    font-weight: 700;
-    text-align: center;
-    line-height: 40px;
-    width: 45px;
-    height: 45px;
-    padding: 0;
-    margin: 10px 4px;
-    border: 2px solid #fdeeac;
-    border-radius: 0;
-    transition: all 0.4s ease 0s;
-}
-.pagination li.active a.page-link,
-.pagination li a.page-link:hover,
-.pagination li.active a.page-link:hover{
-    color: #5f1155;
-    background-color: transparent;
-}
-.pagination li a.page-link:before{
-    content: " ";
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    background: transparent;
-    border: 2px solid rgba(0,0,0,0);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index:-1;
-    transition: all 0.4s;
-}
-.pagination li a.page-link:hover:before,
-.pagination li.active a.page-link:before {
-    background: #fdeeac;
-    width: calc(100% - 10px);
-    height: calc(100% + 15px);
-    border: 2px solid #fdeeac;
-}
-@media only screen and (max-width: 480px){
-    .pagination{ display: block; }
-    .pagination li{
-        margin-bottom: 10px;
-        display: inline-block;
-    }
-}
-</style>

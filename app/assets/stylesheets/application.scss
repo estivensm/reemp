@@ -7577,16 +7577,36 @@ label{
     font-weight: normal !important;
 }
 
-.pagination > .active > span{
-  background: linear-gradient(120deg, #00e4d0, #5983e8);
-  color: #fff;
-  border-color: #00e4d0;
+  
+.pagination-outer{ text-align: center; }
+.pagination{
+    display: inline-flex;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
 }
 
-.pagination > .active{
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+.pagination li a{
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #4cb1da;
+  margin-left: 6px;
+  margin-right: 6px;
+  box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
 }
+
+.pagination li span {
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #4cb1da;
+  margin-right: 6px;
+  box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+}
+
+.pagination > .active > span{
+  background-color: #4cb1da;
+  color: #FFFf;
+  box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+}
+
 
   .delete-account{
     border-color: #d43f3a;
