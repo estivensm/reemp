@@ -18,7 +18,7 @@
 
          <div class="custom-select input-search" id="select">
             <select name="" class="" id="cambio">
-              <option value="">Selecciona una especialidad de <%= categoria %></option>
+              <option value="">Cirugia Plastica</option>
               <option value="1">asdasd</option>
             </select>
          </div>
@@ -63,6 +63,10 @@
                   
 
     <script type="text/javascript">
+
+      jQuery(document).ready(function($) {
+        $("#reemper").click();
+      });
 
       $("#masco").click(function(event) {
         $("#search-btn").text($(this).text());
@@ -217,7 +221,7 @@ document.addEventListener("click", closeAllSelect);
     </div>
 
     <div class="card col-md-4 card-remp col-sm-12 col-xs-12" id="card-reempers">
-      <div class="card-body" style="padding: inherit; padding-top: 15px; padding-bottom: 15px;">
+      <div class="card-body" style="padding: 8px 0px 10px 15px;">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
 
@@ -225,7 +229,7 @@ document.addEventListener("click", closeAllSelect);
     </div>
 
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 39.6667% !important;">
-      <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 521px;">
+      <div class="card-body" style=" padding: 15px; background-color: #fcf8fc; overflow-y: auto; max-height: 521px;">
           <div class="remplace"></div>
           <div id="info-reemp"></div>
       </div>
@@ -251,7 +255,8 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .select-selected {
-      text-align: center;
+      text-align: left;
+            padding-left: 133px !important;
       border-radius: 20px;
       <% if  @categorias == "Salud" %>
         color:  #28688dfa !important;
@@ -284,16 +289,7 @@ document.addEventListener("click", closeAllSelect);
     }
 
     #btn-show{
-      <% if  @categorias == "Salud" %>
-        border-bottom: 1px solid #6DD5FA;
-      <% elsif @categorias == "Mascotas" %>
-        border-bottom: 1px solid #DE12A1;
-      <% elsif @categorias == "Legal"%>
-        border-bottom: 1px solid #0b255b;
-      <% elsif @categorias == "Construccion" %>
-        border-bottom: 1px solid #FD9E04;
-      <% end -%> 
-      color: #fff;
+      color: #8b868b;
       margin-top: 10px;
       cursor: pointer;
     }
@@ -437,6 +433,8 @@ document.addEventListener("click", closeAllSelect);
     max-height: 417px;
     margin-top: 104px !important;
     overflow: scroll;
+    background-color: #fdf6f6fa;
+    padding: 0px 8px 0px 8px;
     overflow-x: hidden;
     max-width: 30.33333%;
     border-radius: 10px;
@@ -479,15 +477,7 @@ document.addEventListener("click", closeAllSelect);
     border-radius: 43px;
     border: initial; 
     padding: 9px;
-    <% if  @categorias == "Salud" %>
-      background-color:  #6DD5FA;
-    <% elsif @categorias == "Mascotas" %>
-      background-color: #DE12A1;
-    <% elsif @categorias == "Legal"%>
-      background-color: #0b255b;
-    <% elsif @categorias == "Construccion" %>
-      background-color: #FD9E04;
-    <% end -%>
+    background-color: #22D3B1;
     color: #fff; 
     width: 120px;
     position: absolute;
@@ -540,13 +530,13 @@ document.addEventListener("click", closeAllSelect);
   }
 
   .show-info{
-    background-color: #efefef;
+    background-color: #ffff;
     margin-bottom: 10px;
     border-radius: 10px;;
   }
 
   .conten-img img{
-  	height: 83px;
+  	height: 63px;
     border-radius: 11px;
   }
 
@@ -569,6 +559,8 @@ document.addEventListener("click", closeAllSelect);
   /* Track */
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
+        border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
   }
    
   /* Handle */
@@ -609,17 +601,10 @@ document.addEventListener("click", closeAllSelect);
 
     .btn-services{
       border-radius: 20px;
-      border: initial;
-      <% if  @categorias == "Salud" %>
-        background-color:  #6DD5FA;
-      <% elsif @categorias == "Mascotas" %>
-        background-color: #DE12A1;
-      <% elsif @categorias == "Legal"%>
-        background-color: #0b255b;
-      <% elsif @categorias == "Construccion" %>
-        background-color: #FD9E04;
-      <% end -%> 
-      color: #ffff;
+      border: initial; 
+      background-color: #ffff;
+      color: #716b71d9;
+      border: 1px solid #716b7173;
     }
 
 
@@ -752,10 +737,11 @@ em {
 }
 
 .ais-Hits-item{
-  width: calc(103% - 1rem);
+  width: 100%;
   border: initial !important;
   border-radius: 10px;
   padding: 1px;
+  margin-left: 0px;
   box-shadow: 0 5px 19px 1px #e3e5ec;
 }
 
@@ -901,7 +887,7 @@ $(document).on('turbolinks:load',function() {
             '</div>'+
 
             '<div class="col-md-7 no-padding-right name-reemp">'+
-              '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true %> <br>'+
+              '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true, id: "reemper" %> <br>'+
               '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
 
               '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
@@ -1065,7 +1051,6 @@ $(document).on('turbolinks:load',function() {
   });
 </script>
 
-
 <style type="text/css" media="screen">
   /* GENERAL
 // ------------------------- */
@@ -1133,18 +1118,9 @@ $(document).on('turbolinks:load',function() {
 
 #pills-home-tab{
   border-radius: 20px;
-  background: #eeeeef !important;
-  color: #0000008a !important;
-
-  <% if  @categorias == "Salud" %>
-    border-color:  #0cc3f3 !important;
-  <% elsif @categorias == "Mascotas" %>
-    border-color: #DE12A1 !important;
-  <% elsif @categorias == "Legal" %>
-    border-color: #210554 !important;   
-  <% elsif @categorias == "Construccion" %>
-    border-color: #FD9E04 !important;
-  <% end -%>
+  background: #fff !important;
+  color: #716b71d9 !important;
+  border: 1px solid #716b7173 !important;
 }
 
 .img-icon{

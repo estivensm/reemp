@@ -7,15 +7,13 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       </li>
-
     </ul>
 
     <span class="navbar-text">
       <% if user_signed_in? %>
           <%= link_to "Reemper", reeper_home_path , class: "btn-logins" %>
           <a class="dropdown-toggle btn-user" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% usuario = current_user.names + current_user.last_names %>
-            <%= usuario %>
+            <i class="fas fa-user-circle icon-user" ></i> <%= current_user.names %>
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -36,10 +34,15 @@
   .btn-logins{
     background: inherit;
     border-radius: 55px;
-    border: 1px solid #fff;
+    border: 2px solid #22D3B1;
     color: #ffff !important;
-    padding: 10px;
+    padding: 10px 50px 10px 50px;
     margin-right: 20px;
+  }
+
+  .icon-user{
+    font-size: 20px;
+    margin-right: 4px;
   }
 
   .btn-user{
@@ -55,7 +58,7 @@
   }
 
   .logo-img{
-    width: 151px;
+    width: 200px;
   }
 
   .navbar{
