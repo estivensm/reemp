@@ -5,11 +5,10 @@
 		</div> 
 
 		<div class="col-md-5 no-padding-right">
-		    <h4 id="name"></h4>   
+		    <h6 id="name" style="margin-bottom: 5px;"></h6>   
 		    <p style="margin-bottom: 0px;" id="cirugia"></p>
-		    <span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-		    <br>
-		    <small>a 1,2k de tu ubicacion</small>
+		    <p style="margin-bottom: 0px;"><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></p>
+		    <p style="margin-bottom: 0px;" class="ubica">a 1,2k de tu ubicacion</p>
 
 			<%# if user_signed_in?  %>
 	          <%# if @reemper.user.id == current_user.id  %>
@@ -32,7 +31,7 @@
 		</div> 
 
 		<div class="col-md-4 no-padding-right">
-		    <h6><i class="fab fa-instagram icon-inst"></i> <small> @estiven </small></h6>
+		    <h6><i class="fab fa-instagram icon-inst"></i> <small class="ubica"> @estiven </small></h6>
 			<button class="btn-services">Sitio Web <i class="fas fa-angle-right"></i> </button>
 		</div>
 

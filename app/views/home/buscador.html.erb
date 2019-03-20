@@ -13,52 +13,6 @@
 
   <div class="row row-principal">
 
-    <div class="col-md-7" style="position: absolute; left: 58px; max-width: 57.33333%;">
-      <%= form_tag browser_path, :method => 'post' do %>
-
-         <div class="custom-select input-search" id="select">
-            <select name="" class="" id="cambio">
-              <option value="">Cirugia Plastica</option>
-              <option value="1">asdasd</option>
-            </select>
-         </div>
-
-
-        <button class="btn-search">
-          <b>Buscar</b> <i class="fas fa-search"></i>
-        </button>
-
-        <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if !@categorias.blank? %>
-            <b id="search-btn"><%= @categorias %></b>
-          <% end -%>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <% if  @categorias == "Salud"%>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
-          <% elsif @categorias == "Mascotas" %>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
-          <% elsif @categorias == "Legal"%>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
-          <% elsif @categorias == "Construccion" %>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="empre">Salud</a>
-          <% end -%> 
-        </div>
-          <%= hidden_field_tag :category_id, nil , id: "category_id" %>
-          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
-          <%= hidden_field_tag :legal, nil, id: "legal" %>
-
-      <% end -%>
-    </div>
-
 
                   
 
@@ -194,33 +148,79 @@ document.addEventListener("click", closeAllSelect);
 
 </script>
 
+<div class="col-md-7">
+  <div class="row">
+      <div class="col-md-12" style="padding-left: 27px;">
+      <%= form_tag browser_path, :method => 'post' do %>
 
-    <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px; max-width: 29.33333%;" >
+         <div class="custom-select input-search" id="select">
+            <select name="" class="" id="cambio">
+              <option value="">Cirugia Plastica</option>
+              <option value="1">asdasd</option>
+            </select>
+         </div>
+
+
+        <button class="btn-search">
+          <b>Buscar</b> <i class="fas fa-search"></i>
+        </button>
+
+        <button class="dropdown-toggle btn-catego" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if !@categorias.blank? %>
+            <b id="search-btn"><%= @categorias %></b>
+          <% end -%>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% if  @categorias == "Salud"%>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="constru">Construccion</a>
+          <% elsif @categorias == "Mascotas" %>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+            <a class="dropdown-item" id="constru">Construccion</a>
+          <% elsif @categorias == "Legal"%>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+            <a class="dropdown-item" id="constru">Construccion</a>
+          <% elsif @categorias == "Construccion" %>
+            <a class="dropdown-item" id="masco">Mascotas</a>
+            <a class="dropdown-item" id="legal">Legal</a>
+            <a class="dropdown-item" id="empre">Salud</a>
+          <% end -%> 
+        </div>
+          <%= hidden_field_tag :category_id, nil , id: "category_id" %>
+          <%= hidden_field_tag :specialties, nil, id: "specialties" %>
+          <%= hidden_field_tag :legal, nil, id: "legal" %>
+
+      <% end -%>
+    </div>
+
+    <div class="col-md-12" style="padding-left: 27px; margin-top: 10px;">
+      <ol class="breadcrumb">
+
+        <% if !@categorias.blank? %>
+          <li><a href="#"><%= @categorias %></a></li>
+        <% end -%>
+
+        <% if !@specate.blank? %>
+          <li><a href=""><%= @specate %></a></li>
+        <% end -%>
+
+        <% if !@ciudad.blank? %>
+          <li><a href=""><%= @ciudad %></a></li>
+        <% end -%>
+
+      </ol>
+    </div>
+
+    <div class="card col-md-6 " style="background-color: transparent;     padding-right: 6px; /*max-width: 29.33333%;*/" >
       <div class="card-body" style=" padding: inherit;">
-
-      	 <div class="col-md-12 no-padding-left">
-  		      <ol class="breadcrumb">
-
-  		          <% if !@categorias.blank? %>
-  		            <li><a href="#"><%= @categorias %></a></li>
-  		          <% end -%>
-
-  		          <% if !@specate.blank? %>
-  		            <li><a href=""><%= @specate %></a></li>
-  		          <% end -%>
-
-  		          <% if !@ciudad.blank? %>
-  		            <li><a href=""><%= @ciudad %></a></li>
-  		          <% end -%>
-  		      </ol>
-		      </div>
-
-
         <div id="map"></div>  
       </div>
     </div>
 
-    <div class="card col-md-4 card-remp col-sm-12 col-xs-12" id="card-reempers">
+    <div class="card col-md-6 card-remp col-sm-12 col-xs-12" id="card-reempers">
       <div class="card-body" style="padding: 8px 0px 10px 15px;">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
@@ -228,6 +228,8 @@ document.addEventListener("click", closeAllSelect);
       </div>
     </div>
 
+  </div>
+</div>
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 39.6667% !important;">
       <div class="card-body" style=" padding: 15px; background-color: #fcf8fc; overflow-y: auto; max-height: 521px;">
           <div class="remplace"></div>
@@ -254,12 +256,24 @@ document.addEventListener("click", closeAllSelect);
       display: none; /*hide original SELECT element:*/
     }
 
+    #name{
+      color: gray;
+    }
+
+    #cirugia{
+      color: gray;
+    }
+
+    .ubica{
+      color: gray;
+    }
+
     .select-selected {
       text-align: left;
-            padding-left: 133px !important;
+      padding-left: 143px !important;
       border-radius: 20px;
       <% if  @categorias == "Salud" %>
-        color:  #28688dfa !important;
+        color: #7cd2f8 !important;
       <% elsif @categorias == "Mascotas" %>
         color: #DE12A1 !important;
       <% elsif @categorias == "Legal" %>
@@ -431,12 +445,11 @@ document.addEventListener("click", closeAllSelect);
 
   .card-remp{
     max-height: 417px;
-    margin-top: 104px !important;
     overflow: scroll;
     background-color: #fdf6f6fa;
     padding: 0px 8px 0px 8px;
     overflow-x: hidden;
-    max-width: 30.33333%;
+    /*max-width: 30.33333%;*/
     border-radius: 10px;
 
   }
@@ -519,7 +532,7 @@ document.addEventListener("click", closeAllSelect);
     color: #ffff;   
     width: 120px;
     position: absolute;
-    left: 20px;
+    left: 32px;
     bottom: 3px;
   }
 
@@ -755,6 +768,7 @@ em {
 
 .icon-inst{
 	 font-size: 24px;
+   color: gray;
 }
 
 
