@@ -60,7 +60,7 @@
   }
 
   .info{
-    margin-top: 90px;
+    margin-top: 10px;
   }
 
   .logo a{
@@ -89,7 +89,7 @@
   .ingresar{  
     padding: 0px 20px;
     border-radius: 20px;
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .link_salud{
@@ -123,9 +123,17 @@
   }
 
   .background{
-    background: url('/reemp2.png')no-repeat center top;
+    background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/413/reemp2.png')no-repeat center top;
     background-size: cover;
     height:670px;
+
+  }
+  .info-reemper{
+
+    background: url('/info.jpeg')no-repeat center top;
+    background-size: cover;
+    height:670px;
+
 
   }
 
