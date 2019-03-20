@@ -11,9 +11,9 @@
   <% categoria = "Construccion" %> 
 <% end -%> 
 
-  <div class="row">
+  <div class="row row-principal">
 
-    <div class="col-md-8" style="position: absolute; left: 0px;">
+    <div class="col-md-7" style="position: absolute; left: 58px; max-width: 57.33333%;">
       <%= form_tag browser_path, :method => 'post' do %>
 
          <div class="custom-select input-search" id="select">
@@ -191,7 +191,7 @@ document.addEventListener("click", closeAllSelect);
 </script>
 
 
-    <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px;">
+    <div class="card col-md-4 " style="background-color: transparent; margin-top: 56px; max-width: 29.33333%;" >
       <div class="card-body" style=" padding: inherit;">
 
       	 <div class="col-md-12 no-padding-left">
@@ -217,18 +217,14 @@ document.addEventListener("click", closeAllSelect);
     </div>
 
     <div class="card col-md-4 card-remp col-sm-12 col-xs-12" id="card-reempers">
-      <div class="card-body" style="padding: inherit;">
+      <div class="card-body" style="padding: inherit; padding-top: 15px; padding-bottom: 15px;">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
-
-        <div class="col-md-12">
-          <div class="col-md-12" id="pagination"></div>
-        </div>
 
       </div>
     </div>
 
-    <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 35.66667% !important;">
+    <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 39.6667% !important;">
       <div class="card-body" style=" padding: 15px;background-color: #ffff; overflow-y: auto; max-height: 521px;">
           <div class="remplace"></div>
           <div id="info-reemp"></div>
@@ -266,7 +262,7 @@ document.addEventListener("click", closeAllSelect);
       <% elsif @categorias == "Construccion" %>
         color: #FD9E04 !important;
       <% end -%>
-      width: 818px;
+      width: 701px;
     }
 
     /*style the arrow inside the select element:*/
@@ -289,18 +285,17 @@ document.addEventListener("click", closeAllSelect);
 
     #btn-show{
       <% if  @categorias == "Salud" %>
-        background-color:  #6DD5FA;
+        border-bottom: 1px solid #6DD5FA;
       <% elsif @categorias == "Mascotas" %>
-        background-color: #DE12A1;
+        border-bottom: 1px solid #DE12A1;
       <% elsif @categorias == "Legal"%>
-        background-color: #0b255b;
+        border-bottom: 1px solid #0b255b;
       <% elsif @categorias == "Construccion" %>
-        background-color: #FD9E04;
+        border-bottom: 1px solid #FD9E04;
       <% end -%> 
       color: #fff;
-      border: initial;
-      border-radius: 10px;
       margin-top: 10px;
+      cursor: pointer;
     }
 
 
@@ -496,7 +491,7 @@ document.addEventListener("click", closeAllSelect);
     color: #fff; 
     width: 120px;
     position: absolute;
-    left: 713px;
+    left: 594px;
   }
 
   .btn-contac{
@@ -595,6 +590,38 @@ document.addEventListener("click", closeAllSelect);
   ::-webkit-scrollbar-thumb:hover {
     background: #006A8E; 
   }
+
+.row-principal {
+  margin-right: 43.5px;
+  margin-left: 45.5px;
+}
+
+    .row-style{
+      margin-left: 0px; 
+      margin-right: 0px;
+    }
+
+    .espacios{
+      margin-top: 10px;
+      margin-bottom: -4px;
+    }
+
+    .btn-services{
+      border-radius: 20px;
+      border: initial;
+      <% if  @categorias == "Salud" %>
+        background-color:  #6DD5FA;
+      <% elsif @categorias == "Mascotas" %>
+        background-color: #DE12A1;
+      <% elsif @categorias == "Legal"%>
+        background-color: #0b255b;
+      <% elsif @categorias == "Construccion" %>
+        background-color: #FD9E04;
+      <% end -%> 
+      color: #ffff;
+    }
+
+
 
 
   body{
@@ -894,7 +921,8 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-
+   
+  /*
     search.addWidget(
       instantsearch.widgets.pagination({
         container: '#pagination',
@@ -904,7 +932,7 @@ $(document).on('turbolinks:load',function() {
         }
       })
     );
-
+  */
 
    
   /*

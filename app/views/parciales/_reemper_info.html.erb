@@ -1,31 +1,54 @@
 <div class="container">
-    <div class="row">
-		<div class="col-md-4">
+    <div class="row row-style">
+		<div class="col-md-3 no-padding">
 		    <img class="img-xs rounded-circle" src="https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg" id="reemper-img" />
-		</div>  
+		</div> 
 
-		<div class="col-md-8">
-		    <div class="col-md-2 float-right">
-		        <h6><i class="fab fa-instagram icon-inst"></i></h6>
-		    </div>
+		<div class="col-md-5 no-padding-right">
 		    <h4 id="name"></h4>   
 		    <p style="margin-bottom: 0px;" id="cirugia"></p>
 		    <span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+		    <br>
+		    <small>a 1,2k de tu ubicacion</small>
 
-			<% if user_signed_in?  %>
-	          <% if @reemper.user.id == current_user.id  %>
-	          <% else %>
-	            <%= link_to new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn-contac" do%>
-	            	<i class="fas fa-comments"></i>
-	            <% end -%>
-	          <% end -%>
+			<%# if user_signed_in?  %>
+	          <%# if @reemper.user.id == current_user.id  %>
+	          <%# else %>
+	            <%# link_to new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn-contac" do%>
+	            	<!--
+	            		<i class="fas fa-comments"></i>
+	            	-->
+	            <%# end -%>
+	          <%# end -%>
 
 	          
-	          <% else %>
+	          <%# else %>
+	          <!--
 	            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter" style="float: right;">
 	              <i class="fas fa-sign-in-alt"></i>
 	            </button>
-	        <% end -%>
+	          -->
+	        <%# end -%>
+		</div> 
+
+		<div class="col-md-4 no-padding-right">
+		    <h6><i class="fab fa-instagram icon-inst"></i> <small> @estiven </small></h6>
+			<button class="btn-services">Sitio Web <i class="fas fa-angle-right"></i> </button>
+		</div>
+
+		<div class="col-md-12 no-padding espacios">
+
+		 <div class="row row-style">
+
+			 <div class="col-md-3 no-padding-left">
+			 	<button class="btn-services">Contacto</button>
+			 </div>
+
+			 <div class="col-md-7 no-padding-left">
+			 	<button class="btn-services">Servicios y Precios</button>
+			 </div>
+		 </div>
+
 		</div> 
 
 		<div class="col-md-12 no-padding">
@@ -33,17 +56,17 @@
 		</div>
 
 		<div class="col-md-12 conten-img no-padding ">
-		    <div class="row">
+		    <div class="row row-style">
 		                
-		    <div class="col-md-4">
+		    <div class="col-md-4 no-padding-left">
 		        <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
 		    </div>
 
-		    <div class="col-md-4">
+		    <div class="col-md-4 no-padding-left">
 		        <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
 		    </div>
 
-		    <div class="col-md-4">
+		    <div class="col-md-4 no-padding-left">
 		        <img src="https://st2.depositphotos.com/1017986/11089/i/950/depositphotos_110891284-stock-photo-group-of-happy-medics-or.jpg" alt="">
 		    </div>
 
@@ -56,7 +79,7 @@
 
 		<div class="col-md-12 show-info" style="padding: 10px;"> 
 		  <p id="biograpy" style="margin-bottom: 0px;" ></p>
-		  <button style="float: right;" id="btn-show">Mas Informacion</button>
+		  <label  style="float: right;" id="btn-show">Mas Sobre Mi</label>
 		</div>
 
 		<ul class="nav nav-pills col-md-12 no-padding" id="pills-tab" role="tablist">
