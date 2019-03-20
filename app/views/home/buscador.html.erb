@@ -8,11 +8,9 @@
       <%= form_tag browser_path, :method => 'post' do %>
 
          <div class="custom-select input-search" id="select">
-            <select name="" class="">
+            <select name="" class="" id="cambio">
               <option value="">Selecciona una especialidad de salud</option>
-                <% @specialties.each do |espec|  %>
-                   <option><%= espec.name %></option>
-                <% end %>
+              <option value="1">asdasd</option>
             </select>
          </div>
 
@@ -30,16 +28,16 @@
           <% if  @categorias == "Salud"%>
             <a class="dropdown-item" id="masco">Mascotas</a>
             <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="constru">Construcción</a>
+            <a class="dropdown-item" id="constru">Construccion</a>
           <% elsif @categorias == "Mascotas" %>
             <a class="dropdown-item" id="legal">Legal</a>
             <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construcción</a>
+            <a class="dropdown-item" id="constru">Construccion</a>
           <% elsif @categorias == "Legal"%>
             <a class="dropdown-item" id="masco">Mascotas</a>
             <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construcción</a>
-          <% elsif @categorias == "Construcción" %>
+            <a class="dropdown-item" id="constru">Construccion</a>
+          <% elsif @categorias == "Construccion" %>
             <a class="dropdown-item" id="masco">Mascotas</a>
             <a class="dropdown-item" id="legal">Legal</a>
             <a class="dropdown-item" id="empre">Salud</a>
@@ -62,9 +60,9 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#DE12A1'});
         var name = $(this).text()
-          $.get("/reemper/" + name, function(data, status){
+          $.get("/remp/" + name, function(data, status){
 
-              alert(data);
+              //$("#select").append("<option>" + data. + "</option>")
           });
 
       });
@@ -74,9 +72,9 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#0b255b'});
         var name = $(this).text()
-          $.get("/reemper/" + name, function(data, status){
+          $.get("/remp/" + name, function(data, status){
 
-              
+              console.log(data);
           });
       });
 
@@ -85,9 +83,8 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#6DD5FA'});
         var name = $(this).text()
-          $.get("/reemper/" + name, function(data, status){
-
-              
+          $.get("/remp/" + name, function(data, status){
+              $('#cambio').append('<option value="2">Foo</option>');
           });
       });
 
@@ -96,8 +93,8 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#FD9E04'});
         var name = $(this).text()
-          $.get("/reemper/" + name, function(data, status){
-
+          $.get("/remp/" + name, function(data, status){
+console.log(data);
               
           });
       });
@@ -257,7 +254,7 @@ document.addEventListener("click", closeAllSelect);
         color: #DE12A1 !important;
       <% elsif @categorias == "Legal" %>
         color: #210554 !important;   
-      <% elsif @categorias == "Construcción" %>
+      <% elsif @categorias == "Construccion" %>
         color: #FD9E04 !important;
       <% end -%>
       width: 818px;
@@ -288,7 +285,7 @@ document.addEventListener("click", closeAllSelect);
         background-color: #DE12A1;
       <% elsif @categorias == "Legal"%>
         background-color: #0b255b;
-      <% elsif @categorias == "Construcción" %>
+      <% elsif @categorias == "Construccion" %>
         background-color: #FD9E04;
       <% end -%> 
       color: #fff;
@@ -460,7 +457,7 @@ document.addEventListener("click", closeAllSelect);
       color: #DE12A1 !important;
     <% elsif @categorias == "Legal"%>
       color: #0b255b !important;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
       color: #FD9E04 !important;
     <% end -%>
 
@@ -482,7 +479,7 @@ document.addEventListener("click", closeAllSelect);
       background-color: #DE12A1;
     <% elsif @categorias == "Legal"%>
       background-color: #0b255b;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
       background-color: #FD9E04;
     <% end -%>
     color: #fff; 
@@ -501,7 +498,7 @@ document.addEventListener("click", closeAllSelect);
       background-color: #DE12A1;
     <% elsif @categorias == "Legal"%>
       background-color: #0b255b;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
       background-color: #FD9E04;
     <% end -%>
     color: #ffff;   
@@ -520,7 +517,7 @@ document.addEventListener("click", closeAllSelect);
       background-color: #DE12A1;
     <% elsif @categorias == "Legal"%>
       background-color: #0b255b;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
       background-color: #FD9E04;
     <% end -%>
     color: #ffff;   
@@ -577,7 +574,7 @@ document.addEventListener("click", closeAllSelect);
       background-color: #DE12A1;
     <% elsif @categorias == "Legal"%>
       background-color: #0b255b;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
       background-color: #FD9E04;
     <% end -%> 
     border-radius: 15px;
@@ -1043,7 +1040,7 @@ $(document).on('turbolinks:load',function() {
     background-color: #DE12A1 !important;
   <% elsif @categorias == "Legal" %>
     background-color: #210554 !important;   
-  <% elsif @categorias == "Construcción" %>
+  <% elsif @categorias == "Construccion" %>
     background-color: #FD9E04 !important;
   <% end -%>
   padding-top: 0px;
@@ -1057,7 +1054,7 @@ $(document).on('turbolinks:load',function() {
     color:  #0cc3f3 !important;
   <% elsif @categorias == "Mascotas" %>
     color: #DE12A1 !important;
-    <% elsif @categorias == "Construcción" %>
+    <% elsif @categorias == "Construccion" %>
     color: #FD9E04 !important;
   <% end -%>
 }
@@ -1068,7 +1065,7 @@ $(document).on('turbolinks:load',function() {
     color:  #0cc3f3 !important;
   <% elsif @categorias == "Mascotas" %>
     color: #DE12A1 !important;
-  <% elsif @categorias == "Construcción" %>
+  <% elsif @categorias == "Construccion" %>
     color: #210554 !important;
   <% end -%>
 }
@@ -1082,7 +1079,7 @@ $(document).on('turbolinks:load',function() {
       background-color:  #0cc3f3 !important;
     <% elsif @categorias == "Mascotas" %>
       background-color: #DE12A1 !important;
-      <% elsif @categorias == "Construcción" %>
+      <% elsif @categorias == "Construccion" %>
       background-color: #210554 !important;
     <% end -%>
     border-radius: 42px;
@@ -1392,7 +1389,7 @@ em{
       color:  #0cc3f3 !important;
     <% elsif @categorias == "Mascotas" %>
       color: #DE12A1 !important;
-      <% elsif @categorias == "Construcción" %>
+      <% elsif @categorias == "Construccion" %>
       color: #FD9E04 !important;
     <% end -%>
   border-radius: 4px;
@@ -1407,7 +1404,7 @@ em{
       background: #DE12A1 !important;
       border-color: #fff;
       color: #fdfdfdfc !important;
-      <% elsif @categorias == "Construcción" %>
+      <% elsif @categorias == "Construccion" %>
       background: #210554 !important;
       border-color: #FD9E04;
       color: #fdfdfdfc !important;
