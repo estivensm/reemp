@@ -8,8 +8,8 @@
 		    <div class="col-md-2 float-right">
 		        <h6><i class="fab fa-instagram icon-inst"></i></h6>
 		    </div>
-		    <h6 id="name"></h6>   
-		    <p id="cirugia"></p>
+		    <h4 id="name"></h4>   
+		    <p style="margin-bottom: 0px;" id="cirugia"></p>
 		    <span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
 
 			<% if user_signed_in?  %>
@@ -64,13 +64,13 @@
 		    	<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Reseñas</a>
 		    </li>
 
-		    <li class="nav-item">
-			    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">(<%= @valoration.count %> opiniones)</a>
+		    <li class="nav-item" disabled>
+			    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" >(<%= @valoration.count %> opiniones)</a>
 		    </li>
 		</ul>
 
 		<div class="tab-content col-md-12 no-padding" id="pills-tabContent">
-		    <div class="panel tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">     
+		    <div class="panel tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="    padding: 0px;">     
 		    <div id="valoration"></div>
 		    </div>
 		    <div class="panel tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>

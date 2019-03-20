@@ -1,6 +1,15 @@
 <%= render "parciales/menu_show" %>
 <br>
 
+<% if  @categorias == "Salud" %>
+  <% categoria = "Salud" %> 
+<% elsif @categorias == "Mascotas" %>
+  <% categoria = "Mascotas" %> 
+<% elsif @categorias == "Legal"%>
+  <% categoria = "Legal" %>
+<% elsif @categorias == "Construccion" %>
+  <% categoria = "Construccion" %> 
+<% end -%> 
 
   <div class="row">
 
@@ -9,7 +18,7 @@
 
          <div class="custom-select input-search" id="select">
             <select name="" class="" id="cambio">
-              <option value="">Selecciona una especialidad de salud</option>
+              <option value="">Selecciona una especialidad de <%= categoria %></option>
               <option value="1">asdasd</option>
             </select>
          </div>
@@ -440,9 +449,11 @@ document.addEventListener("click", closeAllSelect);
   }
 
   .dropdown-menu.show{
-    top: 9px !important;
+    top: -1px !important;
     text-align: center;
-    border-radius: 10px;
+    border-top: initial;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
   }
 
   .input-search{
@@ -862,10 +873,10 @@ $(document).on('turbolinks:load',function() {
             '</div>'+
 
             '<div class="col-md-7 no-padding-right name-reemp">'+
-              '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true %> <i class="fas fa-check-circle"></i></h4>'+
+              '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true %> <br>'+
+              '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
 
               '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
-              '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
             '</div>'+
          '</div>'+
 
@@ -1073,6 +1084,11 @@ $(document).on('turbolinks:load',function() {
 .fa-star{
   color:#aeaeae!important;
 }
+
+.good{
+  margin-top: 9px;
+  margin-bottom: 7px;
+}
 .reemper-show{
     padding: 4px;
     <% if  @categorias == "Salud" %>
@@ -1086,6 +1102,21 @@ $(document).on('turbolinks:load',function() {
     color: #fff;
 }
 
+#pills-home-tab{
+  border-radius: 20px;
+  background: #eeeeef !important;
+  color: #0000008a !important;
+
+  <% if  @categorias == "Salud" %>
+    border-color:  #0cc3f3 !important;
+  <% elsif @categorias == "Mascotas" %>
+    border-color: #DE12A1 !important;
+  <% elsif @categorias == "Legal" %>
+    border-color: #210554 !important;   
+  <% elsif @categorias == "Construccion" %>
+    border-color: #FD9E04 !important;
+  <% end -%>
+}
 
 .img-icon{
   height: 40px;
