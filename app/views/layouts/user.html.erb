@@ -85,7 +85,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                 <a class="dropdown-item">
-                  <p class="mb-0 font-weight-normal float-left">Hay <%= get_contac.count %> Mensajes
+                  <p class="mb-0 font-weight-normal float-left">Hay <%= get_contac.count %> Mensaje
                   </p>
                   <span class="badge badge-pill badge-warning float-right">View all</span>
                 </a>
@@ -94,7 +94,7 @@
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon">
-                        <img src="<%= remp.user.avatar_url() %>" alt="">
+                        <%= remp.user.avatar? ? image_tag(remp.user.avatar_url(), class: "") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "")%>
                       </div>
                     </div>
                     <div class="preview-item-content">
