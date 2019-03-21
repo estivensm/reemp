@@ -2,7 +2,7 @@ $("#card-users").fadeIn("show");
 $("#info-reemp").html('<%= j render "parciales/reemper_info", reemper: @reemper %>');
 $("#name").text("<%= @reemper.user.names %>");
 $("#cirugia").text("<%= @reemper.profession %>");
-$("#biograpy").text("<%= @reemper.biography %>");
+$("#biograpy").text("<%= @reemper.biography[0..120] %>");
 
 <% if @valoration.any? %>
 	<% @valoration.each do |valoracion| %>
