@@ -38,27 +38,10 @@
           <% end -%>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <% if  @categorias == "Salud"%>
-            <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
-            <a class="dropdown-item" id="legal"><b>Legal</b></a>
-            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
-            <a class="dropdown-item" id="saludca"><b>Salud</b></a>
-          <% elsif @categorias == "Mascotas" %>
-            <a class="dropdown-item" id="legal"><b>Legal</b></a>
-            <a class="dropdown-item" id="empre"><b>Salud</b></a>
-            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
-            <a class="dropdown-item" id="mascotasca"><b>Mascotas</b></a>
-          <% elsif @categorias == "Legal"%>
-            <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
-            <a class="dropdown-item" id="empre"><b>Salud</b></a>
-            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
-            <a class="dropdown-item" id="legalca"><b>Legal</b></a>
-          <% elsif @categorias == "Construccion" %>
             <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
             <a class="dropdown-item" id="legal"><b>Legal</b></a>
             <a class="dropdown-item" id="empre"><b>Salud</b></a>
             <a class="dropdown-item" id="contruca"><b>Construccion</b></a>            
-          <% end -%> 
         </div>
           <%= hidden_field_tag :category_id, nil , id: "category_id" %>
           <%= hidden_field_tag :specialties, nil, id: "specialties" %>
@@ -92,7 +75,7 @@
     </div>
 
     <div class="card col-md-6 card-remp col-sm-12 col-xs-12" id="card-reempers">
-      <div class="card-body" style="padding: 8px 0px 10px 15px;">
+      <div class="card-body" style="padding: 8px 0px 10px 15px; overflow-y: auto;">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
 
@@ -608,11 +591,8 @@ document.addEventListener("click", closeAllSelect);
 
   .card-remp{
     max-height: 417px;
-    overflow: scroll;
     background-color: #fdf6f6fa;
-    padding: 0px 8px 0px 8px;
-    overflow-x: hidden;
-    /*max-width: 30.33333%;*/
+    padding: 0px 5px 0px 8px;
     border-radius: 10px;
 
   }
@@ -747,6 +727,8 @@ document.addEventListener("click", closeAllSelect);
     box-shadow: inset 0 0 5px grey;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
+    border-top-left-radius: 48px;
+    border-bottom-left-radius: 48px;
     margin-right: 100px;
   }
    
@@ -762,8 +744,10 @@ document.addEventListener("click", closeAllSelect);
       background-color: #FD9E04;
     <% end -%> 
     border-radius: 15px;
-    border-top-right-radius: 50px;
+    border-top-right-radius: 51px;
+    border-top-left-radius: 48px;
     border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 48px;
   }
 
   /* Handle on hover */
@@ -929,6 +913,7 @@ em {
   border-radius: 10px;
   padding: 1px;
   margin-left: 0px;
+  margin-right: 6px;
   box-shadow: 0 5px 19px 1px #e3e5ec;
 }
 
