@@ -686,7 +686,7 @@ document.addEventListener("click", closeAllSelect);
 
     <!-- Button trigger modal -->
     <!-- Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn-show" data-target="#myModal" style="display: none;">
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn-modal" data-target="#myModal" style="display: none;">
       Launch demo modal
     </button>
 
@@ -1039,7 +1039,7 @@ $(document).on('turbolinks:load',function() {
           },
           events: {
             click({ event, item, marker, map }) {
-              $("#btn-show").click();
+              $("#btn-modal").click();
               document.getElementById("p").innerHTML = item.category.name;
             },
           },
