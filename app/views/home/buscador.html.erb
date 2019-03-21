@@ -94,10 +94,6 @@
 
     <script type="text/javascript">
 
-      jQuery(document).ready(function($) {
-        $("#reemper").click();
-      });
-
       $("#masco").click(function(event) {
         $("#search-btn").text($(this).text());
         $("#category_id").val($(this).text());
@@ -141,6 +137,21 @@
             //console.log(data);              
           //});
       });
+
+    function myFunction(event) {
+      var x = document.createEvent("MouseEvent");
+      x.initMouseEvent("mouseover", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+
+      document.getElementById("myDiv").dispatchEvent(x);
+    }
+
+
+    $(document).ready(function(){
+      // we call the function
+      myFunction("click");
+    });
+
+
 
     </script>
 
@@ -299,6 +310,7 @@ document.addEventListener("click", closeAllSelect);
   margin-top: 5px; 
   margin-bottom: 5px;
 }
+
 .body-reemp-info{
   padding: 12px !important;
   background-color: #fcf8fc; 
@@ -315,6 +327,10 @@ document.addEventListener("click", closeAllSelect);
     padding: 10px;
     margin-right: 20px;
     cursor: pointer;
+  }
+
+  .title-cate{
+    color: #A9AEB4!important;
   }
 
   #biograpy{
