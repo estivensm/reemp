@@ -1,6 +1,6 @@
 <%= render "parciales/menu_show" %>
 <br>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <% if  @categorias == "Salud" %>
   <% categoria = "Salud" %> 
 <% elsif @categorias == "Mascotas" %>
@@ -238,6 +238,35 @@ document.addEventListener("click", closeAllSelect);
 </script>
 
 <style type="text/css" media="screen">
+
+  @media only screen and (min-height: 670px) {     
+    .btn-search{
+      background-color: red !important;
+    } 
+  }
+  
+  /*
+
+  @media only screen and (min-width: 1280px) and (max-width: 980px) {
+    .btn-search{
+      background-color: red !important;
+    }
+  }
+
+
+  @media only screen and (min-width: 1280px) {
+    .btn-search{
+      background-color: red !important;
+    }
+  }
+
+
+  @media only screen and (min-width: 980px) {
+    body{
+      background-color: red !important;
+    }
+  }
+*/
   @media only screen and (min-width: 1600px) {
 
     /* Large screen, non-retina */
@@ -686,7 +715,7 @@ document.addEventListener("click", closeAllSelect);
 
     <!-- Button trigger modal -->
     <!-- Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn-modal" data-target="#myModal" style="display: none;">
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="btn-show" data-target="#myModal" style="display: none;">
       Launch demo modal
     </button>
 
@@ -1010,7 +1039,6 @@ $(document).on('turbolinks:load',function() {
     })
   );
   */
-    var hello = 'hola'
 
 
     search.addWidget(
@@ -1039,7 +1067,7 @@ $(document).on('turbolinks:load',function() {
           },
           events: {
             click({ event, item, marker, map }) {
-              $("#btn-modal").click();
+              $("#btn-show").click();
               document.getElementById("p").innerHTML = item.category.name;
             },
           },
@@ -1086,6 +1114,7 @@ $(document).on('turbolinks:load',function() {
 <style type="text/css" media="screen">
   /* GENERAL
 // ------------------------- */
+
 
 .user-reemp a{
   color: #6E7780;
