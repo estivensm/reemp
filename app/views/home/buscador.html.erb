@@ -138,6 +138,19 @@
           //});
       });
 
+        window.onscroll = function() {myFunction()};
+
+        var header = document.getElementById("cita-btn");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+          if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+          } else {
+            header.classList.remove("sticky");
+          }
+        }
+
     </script>
 
 
@@ -901,6 +914,10 @@ document.addEventListener("click", closeAllSelect);
   border-radius: 10px !important; 
 }
 
+.sticky{
+  background-color: red !important;
+}
+
 em {
   background: cyan;
   font-style: normal;
@@ -1052,20 +1069,28 @@ $(document).on('turbolinks:load',function() {
 
       '<div class="card col-sm-12 no-padding card-reemper">'+
         '<div class="card-body" style="padding: 8px !important;">'+
+          '<a href="/reemper_info/{{objectID}}" data-remote="true" style="cursor: pointer;">'+
 
-          '<div class="form-row">'+
-            '<div class="col-md-4 no-padding-left">'+
-              '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
+            '<div class="form-row">'+
+              '<div class="col-md-4 no-padding-left">'+
+                '<img class="img-xs rounded-circle" src="{{#helpers.highlight}}{ "attribute": "user.avatar" }{{/helpers.highlight}}" />'+
+              '</div>'+
+
+              '<div class="col-md-7 no-padding-right name-reemp">'+
+                '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true, id: "reemper" %> <br>'+
+
+                '<a href="/reemper_info/{{objectID}}" data-remote="true" style="cursor: pointer;">'+
+                  '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
+                '</a>'+
+
+                '<a href="/reemper_info/{{objectID}}" data-remote="true">'+
+                  '<label style="font-size: 14px;color:#0cc3f3; cursor: pointer;">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
+                '</a>'+  
+
+              '</div>'+
             '</div>'+
 
-            '<div class="col-md-7 no-padding-right name-reemp">'+
-              '<h4 class="user-reemp"> <%= link_to '{{user.name}}',CGI::unescape(reemper_info_path("{{objectID}}")), class: "", remote: true, id: "reemper" %> <br>'+
-              '<span><i class="fas fa-star good" ></i><i class="fas fa-star "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span><br>'+
-
-              '<label style="font-size: 14px;color:#0cc3f3">{{#helpers.highlight}}{ "attribute": "profession" }{{/helpers.highlight}}</label><br />'+
-            '</div>'+
-         '</div>'+
-
+          '</a>'+
         '</div>'+
       '</div>';
 
