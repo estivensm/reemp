@@ -39,21 +39,25 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <% if  @categorias == "Salud"%>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
+            <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
+            <a class="dropdown-item" id="legal"><b>Legal</b></a>
+            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
+            <a class="dropdown-item" id="saludca"><b>Salud</b></a>
           <% elsif @categorias == "Mascotas" %>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
+            <a class="dropdown-item" id="legal"><b>Legal</b></a>
+            <a class="dropdown-item" id="empre"><b>Salud</b></a>
+            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
+            <a class="dropdown-item" id="mascotasca"><b>Mascotas</b></a>
           <% elsif @categorias == "Legal"%>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="empre">Salud</a>
-            <a class="dropdown-item" id="constru">Construccion</a>
+            <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
+            <a class="dropdown-item" id="empre"><b>Salud</b></a>
+            <a class="dropdown-item" id="constru"><b>Construccion</b></a>
+            <a class="dropdown-item" id="legalca"><b>Legal</b></a>
           <% elsif @categorias == "Construccion" %>
-            <a class="dropdown-item" id="masco">Mascotas</a>
-            <a class="dropdown-item" id="legal">Legal</a>
-            <a class="dropdown-item" id="empre">Salud</a>
+            <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
+            <a class="dropdown-item" id="legal"><b>Legal</b></a>
+            <a class="dropdown-item" id="empre"><b>Salud</b></a>
+            <a class="dropdown-item" id="contruca"><b>Construccion</b></a>            
           <% end -%> 
         </div>
           <%= hidden_field_tag :category_id, nil , id: "category_id" %>
@@ -114,12 +118,13 @@
       $("#masco").click(function(event) {
         $("#search-btn").text($(this).text());
         $("#category_id").val($(this).text());
+        $("#mascotasca").val($(this).text());
         $(".btn-catego").css({'background':'#DE12A1'});
         var name = $(this).text()
-          $.get("/remp/" + name, function(data, status){
 
-              //$("#select").append("<option>" + data. + "</option>")
-          });
+          //$.get("/remp/" + name, function(data, status){
+            //$("#select").append("<option>" + data. + "</option>")
+          //});
 
       });
 
@@ -128,20 +133,20 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#0b255b'});
         var name = $(this).text()
-          $.get("/remp/" + name, function(data, status){
-
-              console.log(data);
-          });
+          //$.get("/remp/" + name, function(data, status){
+            //console.log(data);
+          //});
       });
 
       $("#empre").click(function(event) {
         $("#search-btn").text($(this).text())
         $("#category_id").val($(this).text());
+        $("#saludca").val($(this).text());
         $(".btn-catego").css({'background':'#6DD5FA'});
         var name = $(this).text()
-          $.get("/remp/" + name, function(data, status){
-              $('#cambio').append('<option value="2">Foo</option>');
-          });
+          //$.get("/remp/" + name, function(data, status){
+              //$('#cambio').append('<option value="2">Foo</option>');
+          //});
       });
 
       $("#constru").click(function(event) {
@@ -149,10 +154,9 @@
         $("#category_id").val($(this).text());
         $(".btn-catego").css({'background':'#FD9E04'});
         var name = $(this).text()
-          $.get("/remp/" + name, function(data, status){
-console.log(data);
-              
-          });
+          //$.get("/remp/" + name, function(data, status){
+            //console.log(data);              
+          //});
       });
 
     </script>
@@ -307,11 +311,36 @@ document.addEventListener("click", closeAllSelect);
 */
 
 .body-reemp-info{
-  padding: 15px; 
+  padding: 12px !important;
   background-color: #fcf8fc; 
   overflow-y: auto; 
   max-height: 521px;
 }
+
+
+  #back{
+    background: inherit;
+    border-radius: 55px;
+    border: 1px solid initial;
+    color: #28688dfa !important;
+    padding: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  #biograpy{
+    color: #6E7780;
+    font-size: 16px;
+  }
+
+  .row-user-info{
+    margin-left: 0px; 
+    margin-right: 0px;
+    background-color: #fff;
+    box-shadow: 0 1px 10px 0 #6e77801c;
+    border-radius: 10px;
+  }
+
 
   @media only screen and (min-width: 1600px) {
 
@@ -466,6 +495,58 @@ document.addEventListener("click", closeAllSelect);
   }
 
   #constru{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #FD9E04;
+    color: #ffff;   
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+
+  #mascotasca{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #DE12A1;
+    color: #ffff;
+    margin-bottom: 10px;   
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  #legalca{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #0b255b;
+    color: #ffff;   
+    width: 120px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  #saludca{
+    border-radius: 43px;
+    border: initial; 
+    padding: 5px;
+    background: #6DD5FA;
+    color: #ffff;   
+    width: 120px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  #contruca{
     border-radius: 43px;
     border: initial; 
     padding: 5px;
