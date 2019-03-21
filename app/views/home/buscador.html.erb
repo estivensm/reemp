@@ -98,7 +98,7 @@
   </div>
 </div>
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 39.6667% !important;">
-      <div class="card-body" style=" padding: 15px; background-color: #fcf8fc; overflow-y: auto; max-height: 521px;">
+      <div class="card-body body-reemp-info">
           <div class="remplace"></div>
           <div id="info-reemp"></div>
       </div>
@@ -245,8 +245,20 @@ document.addEventListener("click", closeAllSelect);
     } 
 
     :root, body {
-        overflow: auto !important;
-        zoom: 106% !important;
+        zoom: 105% !important;
+        background-size: 100% 1000px !important;
+    }
+
+    .card-remp{
+      max-height: 500px !important;
+    }
+
+    .body-reemp-info{
+      max-height: 634px !important;
+    }
+
+    #map{
+      height: 500px;
     }
   }
 
@@ -272,6 +284,14 @@ document.addEventListener("click", closeAllSelect);
     }
   }
 */
+
+.body-reemp-info{
+  padding: 15px; 
+  background-color: #fcf8fc; 
+  overflow-y: auto; 
+  max-height: 521px;
+}
+
   @media only screen and (min-width: 1600px) {
 
     /* Large screen, non-retina */
