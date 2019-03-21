@@ -15,7 +15,7 @@
 
 <div class="col-md-7">
   <div class="row">
-      <div class="col-md-12" style="padding-left: 27px;">
+      <div class="col-md-12" style="padding-left: 27px; height: 42px;">
       <%= form_tag browser_path, :method => 'post' do %>
 
          <div class="custom-select input-search" id="select">
@@ -137,21 +137,6 @@
             //console.log(data);              
           //});
       });
-
-    function myFunction(event) {
-      var x = document.createEvent("MouseEvent");
-      x.initMouseEvent("mouseover", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-
-      document.getElementById("myDiv").dispatchEvent(x);
-    }
-
-
-    $(document).ready(function(){
-      // we call the function
-      myFunction("click");
-    });
-
-
 
     </script>
 
@@ -667,8 +652,10 @@ document.addEventListener("click", closeAllSelect);
     background-color: #22D3B1;
     color: #fff; 
     width: 120px;
-    position: absolute;
-    left: 589px;
+    position: relative;
+    z-index: 1;
+    top: -41px;
+    float: right;
   }
 
   .btn-contac{
@@ -705,9 +692,11 @@ document.addEventListener("click", closeAllSelect);
     <% end -%>
     color: #ffff;   
     width: 120px;
-    position: absolute;
-    left: 32px;
-    bottom: 3px;
+    position: relative;
+    z-index: 1;
+    top: -37px;
+    right: -4px;
+    float: left;
   }
 
   .btn-info{
