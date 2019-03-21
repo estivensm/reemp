@@ -124,15 +124,58 @@
 
   .background{
     background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/413/reemp2.png')no-repeat center top;
-    background-size: cover;
-    height:670px;
+    background-size: 100% 670px;
+    height:800px;
 
   }
   .info-reemper{
 
-    background: url('/info.jpeg')no-repeat center top;
-    background-size: cover;
-    height:670px;
+    background: url('https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/414/colectivo1.png')no-repeat center top;
+    background-size: 100% 900px;
+    height:900px;
+
+
+  }
+  .info-reemper h1{
+
+    color:white;
+    padding-top:125px;
+
+
+
+  }
+
+  .info-text .col-md-6
+  {
+      padding: 50px 30px 0px 0px;
+      color:white;
+  }
+
+
+  .info-text h3
+  {
+    margin-bottom: 15px;   
+  }
+
+   .info-text a
+  {
+   padding: 8px 56px;
+    background: white;
+    color: #3BBAFF;
+    border-radius: 27px;  
+  }
+
+  .info-text p
+  {
+      font-size: 20px;
+      margin-bottom: 25px;   
+  
+  }
+
+  .space-info{
+
+    background:#6184E8;
+    height:100px;
 
 
   }
