@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <legend>Mensajes Enviados de Usuarios</legend>
 <% if @contac_reempers.any? %>
   <table class="table">
@@ -13,71 +16,10 @@
       <% @contac_reempers.each do |contac_reemper| %>
         <tr>
           <td><%= contac_reemper.user.names %>
-             <i class="fas fa-info-circle" data-toggle="modal" data-target="#modal-reemper<%= contac_reemper.id%>" id="icon-info"></i>
+            <%= link_to edit_contac_reemper_path(contac_reemper.id), remote: true do %>
+              <i class="fas fa-info-circle" id="icon-info"></i>
+            <% end -%>
           </td>
-            <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modal-reemper<%= contac_reemper.id%>">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modal-reemper<%= contac_reemper.id %>">Responder A <%= contac_reemper.user.names %></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <div class="card card-reemper">
-                    <div class="card-body" style="padding-left: 2px;">
-
-                      <div class="container">
-                        <div class="row">
-
-                          <div class="col-md-2">
-                            <%= contac_reemper.user.avatar? ? image_tag(contac_reemper.user.avatar_url(), class: "img-reemper") : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg", class: "img-reemper")%>
-                          </div>
-
-                          <div class="col-md-4">
-                            <h5><%= contac_reemper.user.names %></h5>
-                              <strong>Numero de Contacto: </strong>
-                              <p><%= contac_reemper.user.phone %></p>
-
-                              <strong>Email</strong>
-                              <p><%= contac_reemper.user.email %></p>
-                          </div>
-
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">  
-                    <p><%= contac_reemper.description %></p>
-                  </div>
-
-                  <div class="modal-body">
-                      <%= form_tag reemper_contact_path, remote: true, method: :post do %>
-                        <div class="field">
-                          <%= label_tag "Responder" %>
-                          <%= text_area_tag :answer, nil, class: "ckeditor" %>
-                        </div>
-
-                        <%= hidden_field_tag :user_id, nil, :value => contac_reemper.user.id %>
-                        <%= hidden_field_tag :state_request, nil, :value => "delivered" %>
-
-                        <% if contac_reemper.reemper_id.present?%>
-                          <%= hidden_field_tag :reemper_id, nil, :value =>  contac_reemper.reemper_id %>
-                        <% end -%>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                     <%= button_tag "Responder", class: "btn btn-success" %>
-                  </div>
-                  <% end -%>
-                </div>
-              </div>
-            </div>
           <td><%= get_state(contac_reemper.state_request) %></td>
           <td><%= link_to 'Eliminar', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>

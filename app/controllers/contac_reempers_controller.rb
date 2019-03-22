@@ -24,6 +24,9 @@ class ContacReempersController < ApplicationController
 
   # GET /contac_reempers/1/edit
   def edit
+    respond_to do |format|  
+      format.js
+    end 
   end
 
   # POST /contac_reempers
@@ -43,25 +46,12 @@ class ContacReempersController < ApplicationController
     end
   end
 
-  def request_reemper
-    @reemper_reques = ContacReemper.create(answer: params[:answer], user_id: params[:user_id], reemper_id: params[:reemper_id], state_request: params[:state_request])
-
-    respond_to do |format|
-      if @reemper_reques.save
-        ContacReemper.where(reemper_id: @reemper).update(state_request: "delivered")
-        format.js
-      else
-        format.html { render :new }
-      end
-    end
-  end
-
   # PATCH/PUT /contac_reempers/1
   # PATCH/PUT /contac_reempers/1.json
   def update
     respond_to do |format|
       if @contac_reemper.update(contac_reemper_params)
-        format.html { redirect_to @contac_reemper, notice: 'Contac reemper was successfully updated.' }
+        format.html { redirect_to contac_reempers_path, notice: 'Contac reemper was successfully updated.' }
         format.json { render :show, status: :ok, location: @contac_reemper }
       else
         format.html { render :edit }

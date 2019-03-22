@@ -21,15 +21,25 @@
           </div>
         <% end %>
 
+        <% if action_name == "new"%>
 
         <div class="field">
           <%= form.label "Mensaje" %>
           <%= form.text_area :description, :rows => 9, class: "form form-control" %>
         </div>
+          <%= form.hidden_field :user_id, :value => current_user.id %>
+          <%= form.hidden_field :reemper_id, :value => @reemper.id %>
+          <%= form.hidden_field :state_request, :value => "pending" %>
 
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-        <%= form.hidden_field :reemper_id, :value => @reemper.id %>
-        <%= form.hidden_field :state_request, :value => "pending" %>
+        <% elsif action_name == "edit" %>
+
+        <div class="field">
+          <%= form.label "Respuesta" %>
+          <%= form.text_area :answer, :rows => 9, class: "form form-control" %>
+        </div>
+          <%= form.hidden_field :reemper_id, :value => @contac_reemper.reemper.id %> 
+          <%= form.hidden_field :state_request, :value => "delivered" %>         
+        <% end -%>
     </div> 
 
     <div class="modal-footer">

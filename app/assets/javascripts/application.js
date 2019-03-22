@@ -13,8 +13,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery3
-//= require popper
 //= require jquery_ujs
+//= require popper
 //= require bootstrap-sprockets
 //= require toastr_rails
 //= require algolia/v3/algoliasearch.min
