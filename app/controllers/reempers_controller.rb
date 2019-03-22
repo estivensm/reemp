@@ -26,7 +26,12 @@ class ReempersController < ApplicationController
 
   # GET /reempers/new
   def new
-    @reemper = Reemper.new
+    if Reemper.where(user_id: current_user.id).present?
+      render file: "#{Rails.root}/public/404", :layout => false, :status => :not_found
+    else
+      @reemper = Reemper.new
+    end
+
 
   end
 
