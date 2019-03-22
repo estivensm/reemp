@@ -16,10 +16,10 @@ class ContacReemper < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :reemper, optional: true
 
-  after_create :state 
+  #after_create :state 
 
 
-  def state
-  	ContacReemper.where(user_id: self.user.id).where(reemper_id: self.reemper.id).update(state_request: "delivered");
-  end
+  #def state
+  	#ContacReemper.where(user_id: self.user.id).where(reemper_id: self.reemper.id).update(state_request: "delivered");
+  #end
 end
