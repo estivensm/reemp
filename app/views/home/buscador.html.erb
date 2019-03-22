@@ -37,7 +37,7 @@
             <b id="search-btn"><%= @categorias %></b>
           <% end -%>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu options-catego" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" id="masco"><b>Mascotas</b></a>
             <a class="dropdown-item" id="legal"><b>Legal</b></a>
             <a class="dropdown-item" id="empre"><b>Salud</b></a>
@@ -236,6 +236,14 @@ document.addEventListener("click", closeAllSelect);
 </script>
 
 <style type="text/css" media="screen">
+
+  .options-catego a{
+    top: -1px !important;
+    text-align: center;
+    border-top: initial;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+  }
 
   @media only screen and (min-height: 673px) {     
 
@@ -613,14 +621,6 @@ document.addEventListener("click", closeAllSelect);
     padding: 0px 5px 0px 8px;
     border-radius: 10px;
 
-  }
-
-  .dropdown-menu.show{
-    top: -1px !important;
-    text-align: center;
-    border-top: initial;
-    border-bottom-left-radius: 13px;
-    border-bottom-right-radius: 13px;
   }
 
   .input-search{

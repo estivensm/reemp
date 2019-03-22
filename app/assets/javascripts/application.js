@@ -20,7 +20,6 @@
 //= require algolia/v3/algoliasearch.min
 //= require hogan
 //= require ckeditor-jquery
-//= require chosen-jquery
 //= require sweetalert2
 //= require sweet-alert2-rails
 //= require turbolinks 
@@ -67,21 +66,6 @@ $(document).on('turbolinks:load',function() {
     }, false);
   })();
 
-  $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          placeholder_text_single: "Seleccione una opción",
-          placeholder_text_multiple: "Seleccione una varias opciones",
-          width: "460px"
-
-  });
-
-  $('.ckeditor').ckeditor({
-  // optional config
-  
-  }) ;
 
 
 
