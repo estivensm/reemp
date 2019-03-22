@@ -134,7 +134,15 @@
                           <div class="body-messaje col-md-8">
                             <span class="tip tip-left"></span>
                             <div class="message">
-                              <strong><%= contac_reemper.user.names? ? contac_reemper.user.names : "Usuario Reemp" %></strong><br><br>
+                              <div class="row">
+                                <div class="col-md-5">
+                                  <b><%= contac_reemper.user.names? ? contac_reemper.user.names : "Usuario Reemp" %></b>
+                                </div>
+
+                                <div class="col-md-7 no-padding-right">
+                                  <p class="badge badge-success"><%= contac_reemper.user.email %></p>
+                                </div>
+                              </div>
 
                               <span><%== contac_reemper.description %></span>
                             </div>
@@ -143,7 +151,17 @@
                           <div class="body-messaje col-md-8 float-right">
                             <span class="tip tip-right"></span>
                               <div class="message">
-                                <b><%= contac_reemper.reemper.user.names? ? contac_reemper.reemper.user.names : "Usuario Reemp" %></b><br><br>
+
+                                <div class="row">
+                                  <div class="col-md-7">
+                                    <p class="badge badge-success"><%= contac_reemper.reemper.user.email %></p>
+                                  </div>
+
+                                  <div class="col-md-4 no-padding-right">
+                                      <strong><%= contac_reemper.reemper.user.names? ? contac_reemper.reemper.user.names : "Usuario Reemp" %></strong>
+                                  </div>
+                                </div>
+
                                 <span><%== contac_reemper.answer %> </span>
                               </div>
                           </div>
@@ -230,12 +248,12 @@
 }
 
 .message b{
-  float: right;
+  float: left;
   font-size: 20px;
 }
 
 .message strong{
-  float: left;
+  float: right;
   font-size: 20px;
 }
 
@@ -246,7 +264,7 @@
   padding: 12px;
   background-color: #ffffff;
   border-radius: 3px;
-  border: 4px solid #40afdc;
+  border: 2px solid #40afdc;
 }
 
 .tip {
@@ -254,7 +272,7 @@
   height: 0px;
   position: absolute;
   background: transparent;
-  border: 10px solid #40afdc;
+  border: 12px solid #40afdc;
 }
 
 .tip-left {
