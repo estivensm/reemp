@@ -96,7 +96,8 @@ class HomeController < ApplicationController
   end
 
   def reemper_home
-      reempers = Reemper.where(user_id: current_user.id)
+      usuario = User.find(current_user.id)
+      reempers = Reemper.where(user_id: usuario)
       @reemper_valoration = ReemperValoration.where(user_id: current_user.id).where(reemper_id: reempers)
   end
 
