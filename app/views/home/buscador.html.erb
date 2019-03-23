@@ -320,8 +320,8 @@ document.addEventListener("click", closeAllSelect);
 }
 
 .body-reemp-info{
-  padding: 12px !important;
-  background-color: #fcf8fc; 
+  padding: 40px 12px 12px 12px !important;
+  background-color: #f7f7f7; 
   overflow-y: auto; 
   max-height: 521px;
 }
@@ -343,7 +343,8 @@ document.addEventListener("click", closeAllSelect);
 
   #biograpy{
     color: #6E7780;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 100;
   }
 
   .row-user-info{
@@ -382,10 +383,12 @@ document.addEventListener("click", closeAllSelect);
 
     #cirugia{
       color: #6E7780;
+      font-weight: 100;
     }
 
     .ubica{
       color: #6E7780;
+      font-weight: 100;
     }
 
     .select-selected {
@@ -423,16 +426,22 @@ document.addEventListener("click", closeAllSelect);
     }
 
     #btn-show{
-      color: #6E7780;
-      margin-top: 10px;
-      cursor: pointer;
+    color: #b7b7b7;
+    font-weight: 100 !important;
+    margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 14px;
+}
     }
 
 
     #btn-show::after{  
-      font-family: "FontAwesome";
+      /*font-family: "FontAwesome";
       content: "\f067";
-      margin-left: 5px;
+      margin-left: 5px;*/
+
     }
 
     /*style items (options):*/
@@ -785,11 +794,14 @@ document.addEventListener("click", closeAllSelect);
     }
 
     .btn-services{
-      border-radius: 20px;
-      border: initial; 
-      background-color: #ffff;
-      color: #6E7780;
-      box-shadow: 0 1px 10px 0 #6e77801c;
+    border-radius: 20px;
+    border: initial;
+    font-weight: 100;
+    background-color: #ffff;
+    color: #6E7780;
+    font-size: 14px;
+    padding: 3px 20px;
+    box-shadow: 0 1px 10px 0 #6e77801c;
     }
 
 
@@ -897,7 +909,7 @@ document.addEventListener("click", closeAllSelect);
     <div id="hits"></div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.30.0/dist/algoliasearchLite.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@beta"></script>

@@ -37,23 +37,21 @@
 
 		<div class="col-md-12 no-padding espacios">
 
-		 <div class="row row-style">
+		 <div class="row row-style" style="margin: 10px 0px 22px 0px; ">
 
-			 <div class="col-md-3 no-padding-left">
+			 <div class="col-md-12 no-padding-left">
 			 	<button class="btn-services">Contacto</button>
-			 	            <%= link_to "Enviar Pregunta", new_contac_reemper_path(:reemper => @reemper.id), remote: true, class: "btn btn-primary" %>
+			 	            <%= link_to "Enviar Pregunta", new_contac_reemper_path(:reemper => @reemper.id), remote: 
+			 	            true, class: "btn btn-primary", style: "display:none" %>
+			 	            <button class="btn-services">Servicios y Precios</button>
 			 </div>
 
-			 <div class="col-md-7 no-padding-left">
-			 	<button class="btn-services">Servicios y Precios</button>
-			 </div>
+			
 		 </div>
 
 		</div> 
 
-		<div class="col-md-12 no-padding">
-		  <hr>
-		</div>
+		
 
 		<div class="col-md-12 conten-img no-padding ">
 		    <div class="row row-style">
@@ -77,11 +75,8 @@
 		    </div>
 		</div>
 
-		<div class="col-md-12 no-padding">
-		    <hr>
-		</div>
-
-		<div class="col-md-12 show-info" style="padding: 10px;"> 
+	
+		<div class="col-md-12 show-info" style="padding: 10px;margin-top: 22px;"> 
 		  <p id="biograpy" style="margin-bottom: 0px;" ></p>
 		  <label  style="float: right;" id="btn-show">Mas Sobre Mi</label>
 		</div>
