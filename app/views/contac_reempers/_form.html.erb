@@ -1,10 +1,18 @@
 <div id="product-modal" class="modal fade">
+  <% if action_name == "new" %>
     <div class="modal-dialog">
+  <% else %>
+    <div class="modal-dialog modal-lg">
+  <% end -%>
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header padding-lef">
-            <h4 class="modal-title">Enviar Mensaje</h4>  
+          <% if action_name == "new" %>
+            <h4 class="modal-title">Enviar Mensaje </h4>  
+          <% else %>
+            <h4 class="modal-title">Responder a <%= @contac_reemper.user.names %></h4>
+          <% end -%>
         </div>
 
     <%= form_with(model: contac_reemper, html: {class: "needs-validation", :novalidate => true, remote: true }) do |form| %>
@@ -23,6 +31,19 @@
 
         <% if action_name == "new"%>
 
+        <div class="row" style="margin-bottom: 10px;">
+    
+          <div class="col-md-4 text-center">
+            <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "img-question img-rounded img-fluid") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid")%>
+          </div>
+
+          <div class="col-md-7 no-padding">
+            <b>Nombre</b><p><%= @reemper.user.names? ? @reemper.user.names : "Usuario Reemp" %></p>
+            <b>Email</b><p><%= @reemper.user.email %></p>
+          </div>
+
+        </div>
+
         <div class="field">
           <%= form.label "Mensaje" %>
           <%= form.text_area :description, :rows => 9, class: "form form-control" %>
@@ -33,13 +54,38 @@
 
         <% elsif action_name == "edit" %>
 
-        <div class="field">
-          <%= form.label "Respuesta" %>
-          <%= form.text_area :answer, :rows => 9, class: "form form-control" %>
+        <div class="row">
+    
+          <div class="col-md-3 text-center">
+            <%= @contac_reemper.user.avatar? ? image_tag(@contac_reemper.user.avatar_url(), class: "img-question img-rounded img-fluid") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid")%>
+          </div>
+
+          <div class="reemper-message col-md-8">
+            <span class="tip tip-left"></span>
+              <div class="message">
+                <div class="row">
+                  <div class="col-md-5">
+                    <b><%= @contac_reemper.user.names? ? @contac_reemper.user.names : "Usuario Reemp" %></b>
+                  </div>
+
+                  <div class="col-md-7 no-padding-right">
+                    <p class="badge badge-success"><%= @contac_reemper.user.email %></p>
+                  </div>
+                </div>
+
+                <span><%== contac_reemper.description %></span>
+            </div>
+          </div>
+
         </div>
-          <%= form.hidden_field :reemper_id, :value => @contac_reemper.reemper.id %> 
-          <%= form.hidden_field :state_request, :value => "delivered" %>         
-        <% end -%>
+
+          <div class="field">
+            <%= form.label "Respuesta" %>
+            <%= form.text_area :answer, :rows => 9, class: "form form-control" %>
+          </div>
+            <%= form.hidden_field :reemper_id, :value => @contac_reemper.reemper.id %> 
+            <%= form.hidden_field :state_request, :value => "delivered" %>         
+          <% end -%>
     </div> 
 
     <div class="modal-footer">
