@@ -107,14 +107,14 @@
          <div class="row info-text">
            <div class="col-md-6" >
              <h3>Genera ingresos extra</h3>
-             <p>Ofrece tus servicios como profesional
+             <p id="p-1">Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
                 <button id="btn-1">Ampliar</button>
            </div>
             <div class="col-md-6" style="padding-left: 50px;padding-right: 0px;">
              <h3>Genera ingresos extra</h3>
-             <p>Ofrece tus servicios como profesional
+             <p id="p-2">Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
                 <button id="btn-2">Ampliar</button>
@@ -123,14 +123,14 @@
            <div class="row info-text">
            <div class="col-md-6">
              <h3>Genera ingresos extra</h3>
-             <p>Ofrece tus servicios como profesional
+             <p id="p-3">Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
                 <button id="btn-3">Ampliar</button>
            </div>
            <div class="col-md-6" style="padding-left: 50px;padding-right: 0px;">
              <h3>Genera ingresos extra</h3>
-             <p>Ofrece tus servicios como profesional
+             <p id="p-4">Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
                 <button id="btn-4">Ampliar</button>
@@ -422,12 +422,37 @@ em {
   toastr["error"]("<%= @messaje %>");
 <% end -%>
 
-$("#btn-1").click(function () {   
-  if (this.text() == "Ampliar") {
-    alert("Ampliar");
-  } else if (this.text()== "Reducir") {
-    alert("Reducir");
-  }
+
+$("#btn-1").click(function(event) {
+  $(this).text($(this).text() == 'Ampliar' ? 'Reducir' : 'Ampliar');
+  $("#p-1").toggleClass("comment");
+  $("#p-2").removeClass('comment');
+  $("#p-3").removeClass('comment');
+  $("#p-4").removeClass('comment');
+});
+
+$("#btn-2").click(function(event) {
+  $(this).text($(this).text() == 'Ampliar' ? 'Reducir' : 'Ampliar');
+  $("#p-2").toggleClass("comment");
+  $("#p-1").removeClass('comment');
+  $("#p-3").removeClass('comment');
+  $("#p-4").removeClass('comment');
+});
+
+$("#btn-3").click(function(event) {
+  $(this).text($(this).text() == 'Ampliar' ? 'Reducir' : 'Ampliar');
+  $("#p-3").toggleClass("comment");
+  $("#p-1").removeClass('comment');
+  $("#p-2").removeClass('comment');
+  $("#p-4").removeClass('comment');
+});
+
+$("#btn-4").click(function(event) {
+  $(this).text($(this).text() == 'Ampliar' ? 'Reducir' : 'Ampliar');
+  $("#p-4").toggleClass("comment");
+  $("#p-1").removeClass('comment');
+  $("#p-2").removeClass('comment');
+  $("#p-3").removeClass('comment');
 });
 
 
@@ -452,6 +477,15 @@ $("#btn-1").click(function () {
     left: 60px;
     top: 9px;
     display: none;
+  }
+
+  .comment{
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    color: #5d7ae9;
+    -webkit-transition: width 2s, height 4s; /* Safari */
+    transition: width 2s, height 4s;
   }
 
   #icon-masco{
