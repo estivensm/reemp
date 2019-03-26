@@ -1087,8 +1087,8 @@ $(document).on('turbolinks:load',function() {
     search.addWidget(
       instantsearch.widgets.configure({
         aroundLatLngViaIP: true,
-        hitsPerPage: 10
-        //filters: "user.name: E"
+        hitsPerPage: 10,
+        filters: 'category.name:"Construccion"',
       })
     );
 

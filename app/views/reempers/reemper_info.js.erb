@@ -12,6 +12,14 @@ $("#biograpy").text("<%= @reemper.biography %>");
 	$("#valoration").remove();
 <% end %>
 
+<% if @consultorio.any? %>
+	<% @consultorio.each do |consultorio| %>
+		  $("#my-consulto").html('<%= j render "parciales/consultorio", consultorio: consultorio %>');
+	<% end %>
+<% else %>
+	$("#my-consulto").remove();
+<% end %>
+
 document.getElementById("reemper-img").src = '<%= @reemper.user.avatar.url() %>';
 
 $("#btn-show").click(function(event) {

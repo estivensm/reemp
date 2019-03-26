@@ -65,7 +65,6 @@ gem 'jquery-ui-rails'
 gem 'jquery-validation-rails'
 gem 'jquery-rails'
 #Editor texto
-gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 #bootstrap
 gem 'bootstrap', '~> 4.3.1'
 #angolia 
