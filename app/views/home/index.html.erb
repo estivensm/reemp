@@ -110,14 +110,14 @@
              <p>Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
-                <a href="">Ampliar</a>
+                <button id="btn-1">Ampliar</button>
            </div>
             <div class="col-md-6" style="padding-left: 50px;padding-right: 0px;">
              <h3>Genera ingresos extra</h3>
              <p>Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
-                 <a href="">Ampliar</a>
+                <button id="btn-2">Ampliar</button>
            </div>
          </div>  
            <div class="row info-text">
@@ -126,14 +126,14 @@
              <p>Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
-                 <a href="">Ampliar</a>
+                <button id="btn-3">Ampliar</button>
            </div>
            <div class="col-md-6" style="padding-left: 50px;padding-right: 0px;">
              <h3>Genera ingresos extra</h3>
              <p>Ofrece tus servicios como profesional
                 a miles de usuarios, y recibe el pago
                 de tus servicios.</p>
-                 <a href="">Ampliar</a>
+                <button id="btn-4">Ampliar</button>
            </div>
          </div>
 
@@ -421,6 +421,18 @@ em {
 <% if @messaje.present? %>
   toastr["error"]("<%= @messaje %>");
 <% end -%>
+
+$("#btn-1").click(function () {   
+  if (this.text() == "Ampliar") {
+    alert("Ampliar");
+  } else if (this.text()== "Reducir") {
+    alert("Reducir");
+  }
+});
+
+
+
+
 </script>
 
 <style type="text/css" media="screen">
@@ -563,6 +575,8 @@ em {
     padding: 0px !important;
 
   }
+
+
 
 
   
