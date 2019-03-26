@@ -1,4 +1,4 @@
-<div id="product-modal" class="modal fade" oncontextmenu="return false">  
+<div id="product-modal" class="modal fade">  
   <% if action_name == "new" %>
     <div class="modal-dialog">
   <% else %>
@@ -37,10 +37,19 @@
             <%= @reemper.user.avatar? ? image_tag(@reemper.user.avatar_url(), class: "img-question img-rounded img-fluid") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid")%>
           </div>
 
-          <div class="col-md-7 no-padding">
+          <div class="col-md-5 no-padding">
             <b>Nombre</b><p><%= @reemper.user.names? ? @reemper.user.names : "Usuario Reemp" %></p>
             <b>Email</b><p><%= @reemper.user.email %></p>
           </div>
+          
+          <% if @reemper.user.phone.present? %>
+            <div class="col-md-3 text-center">
+              <a href="https://api.whatsapp.com/send?phone=<%= @reemper.user.phone %>&text=Vengo de Reemp" target="_blank">
+                <i class="fab fa-whatsapp icon-what"></i>
+                <span class="badge badge-success">Contacto <br> Via Whatsapp </span>
+              </a>
+            </div>
+          <% end -%>
 
         </div>
 
