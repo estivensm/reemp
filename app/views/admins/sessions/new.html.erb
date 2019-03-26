@@ -1,47 +1,58 @@
-<div class="card col-md-4 offset-md-4">
-  <div class="card-body">
-
-    <div class="col-md-12 text-center img-admin">
-        <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" alt="">
-      </div>
-<%= devise_error_messages! %>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "needs-validation", :novalidate => true }) do |f| %>
-        <div class="col-md-12 no-padding">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form form-control", placeholder: "Email", id: "validationCustom01", :required => true %>
-
-          <div class="invalid-feedback">
-              Este Campo Tiene Que Estar Completado
-          </div>
-          <br>
-        </div>
-
-        <div class="col-md-12 no-padding">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password", class: "form form-control", placeholder: "Contraseña", id: "validationCustom01", :required => true %>
-
-          <div class="invalid-feedback">
-              Este Campo Tiene Que Estar Completado
-          </div>
-          <br>
-        </div>
-
+<% if user_signed_in? %>
+  <div class="card col-md-4 offset-md-4">
+    <div class="card-body">
+        <h1 align="center">hola <%= current_user.names? ? current_user.names : "Usuario Reeemp" %></h1>
+        <p align="center">Debes cerrar sessión para poder ingresar </p>
         <div class="col-md-12 text-center">
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name), class: "iniciar"  %><br />
-          <% end -%>
-          <br>
+              <%= link_to "salir", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
         </div>
-
-        <div class="col-md-12 text-center">
-          <%= f.submit "Ingresar", class: "btn btn-success" %>
-          <%= link_to "Volver", :back, class: "btn btn-light" %>
-        </div>
-      <% end %>
-
+    </div>
   </div>
-</div>
+  <% else %>
+  <div class="card col-md-4 offset-md-4">
+    <div class="card-body">
 
+      <div class="col-md-12 text-center img-admin">
+          <img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/374/1.png" alt="">
+        </div>
+          <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "needs-validation", :novalidate => true }) do |f| %>
+          <div class="col-md-12 no-padding">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form form-control", placeholder: "Email", id: "validationCustom01", :required => true %>
+
+            <div class="invalid-feedback">
+                Este Campo Tiene Que Estar Completado
+            </div>
+            <br>
+          </div>
+
+          <div class="col-md-12 no-padding">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "form form-control", placeholder: "Contraseña", id: "validationCustom01", :required => true %>
+
+            <div class="invalid-feedback">
+                Este Campo Tiene Que Estar Completado
+            </div>
+            <br>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name), class: "iniciar"  %><br />
+            <% end -%>
+            <br>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <%= f.submit "Ingresar", class: "btn btn-success" %>
+            <%= link_to "Volver", :back, class: "btn btn-light" %>
+          </div>
+        <% end %>
+
+    </div>
+  </div>
+<% end -%>
 
 <style type="text/css" media="screen">
 

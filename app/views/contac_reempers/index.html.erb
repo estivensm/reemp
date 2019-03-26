@@ -1,39 +1,60 @@
-<legend>Mensajes Enviados de Usuarios</legend>
-<% if @contac_reempers.any? %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>EL Usuario</th>
-        <th>Estado el Mensaje</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @contac_reempers.each do |contac_reemper| %>
-        <tr>
-          <td><%= contac_reemper.user.names %>
-            <%= link_to edit_contac_reemper_path(contac_reemper.id), remote: true do %>
-              <i class="fas fa-info-circle" id="icon-info"></i>
-            <% end -%>
-          </td>
-          <td><%= get_state(contac_reemper.state_request) %></td>
-          <td><%= link_to 'Eliminar', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <div class="col-md-12 text-center no-padding">
-        <i class="far fa-envelope"></i>       
+<div class="row">
+  <div class="col-md-6">
+    <legend align="center">
+      Mensajes Enviados de Usuarios
+      <div class="float-right">
+        <span class="badge badge-success"><%= @contac_reempers.count %></span>
       </div>
-    </div>
-  </div>
-<% end -%>
+    </legend>
+      <% if @contac_reempers.any? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>EL Usuario</th>
+              <th>Estado el Mensaje</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
 
-<legend>Mensajes Respondidos</legend>
+          <tbody>
+            <% @contac_reempers.each do |contac_reemper| %>
+
+            <% if contac_reemper.state_request == "pending" %>
+              <% color = "warning" %>
+            <% else %>
+              <% color = "success" %>
+            <% end -%>
+            
+              <tr>
+                <td><%= contac_reemper.user.names %>
+                  <%= link_to edit_contac_reemper_path(contac_reemper.id), remote: true do %>
+                    <i class="fas fa-info-circle" id="icon-info"></i>
+                  <% end -%>
+                </td>
+                <td><span class="badge badge-<%= color %>"><%= get_state(contac_reemper.state_request) %></span></td>
+                <td><%= link_to 'Eliminar', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <div class="col-md-12 text-center no-padding">
+              <i class="far fa-envelope"></i>       
+            </div>
+          </div>
+        </div>
+      <% end -%>
+  </div>
+
+  <div class="col-md-6">
+    <legend align="center">
+      Mensajes Respondidos
+      <div class="float-right">
+        <span class="badge badge-success"><%= @answer_reemper.count %></span>
+      </div>
+    </legend>
 <% if @answer_reemper.any? %>
   <table class="table">
     <thead>
@@ -45,6 +66,12 @@
 
     <tbody>
       <% @answer_reemper.each do |contac_reemper| %>
+        <% if contac_reemper.state_request == "pending" %>
+              <% color = "warning" %>
+        <% else %>
+              <% color = "success" %>
+        <% end -%>
+            
         <tr>
           <td><%= contac_reemper.reemper.user.names %>
              <i class="fas fa-info-circle" data-toggle="modal" data-target="#modal-reemper<%= contac_reemper.id%>" id="icon-info"></i>
@@ -140,7 +167,7 @@
                 </div>
               </div>
             </div>
-            <td><%= get_state(contac_reemper.state_request) %></td>
+            <td><span class="badge badge-<%= color %>"><%= get_state(contac_reemper.state_request) %></span></td>
           </tr>
         <% end %>
       </tbody>
@@ -154,6 +181,60 @@
       </div>
     </div>
 <% end -%>
+  </div>
+
+  <div class="col-md-12">
+    <legend align="center">
+      HISTORIAL DE MENSAJES
+      <div class="float-right">
+        <span class="badge badge-success"><%= @contac.count %></span>
+      </div>
+    </legend>
+
+      <% if @contac.any? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>EL Usuario</th>
+              <th>Estado el Mensaje</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @contac.each do |contac_reemper| %>
+
+              <% if contac_reemper.state_request == "pending" %>
+                <% color = "warning" %>
+              <% else %>
+                <% color = "success" %>
+              <% end -%>
+            
+              <tr>
+                <td><%= contac_reemper.user.names %>
+                  <%= link_to edit_contac_reemper_path(contac_reemper.id), remote: true do %>
+                    <i class="fas fa-info-circle" id="icon-info"></i>
+                  <% end -%>
+                </td>
+                <td><span class="badge badge-<%= color %>"><%= get_state(contac_reemper.state_request) %></span></td>
+                <td><%= link_to 'Eliminar', contac_reemper, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% else %>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <div class="col-md-12 text-center no-padding">
+              <i class="far fa-envelope"></i>       
+            </div>
+          </div>
+        </div>
+    <% end -%>
+  </div>
+</div>
+
+
 <style type="text/css" media="screen">
 
   #icon-info{

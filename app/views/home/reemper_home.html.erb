@@ -1,15 +1,53 @@
-<h1>Hola <%= current_user.names %></h1>
-<div class="row">
+<% if @reemper_valoration.any? %>
+	<legend>Tus Valoraciones <%= current_user.names %> </legend>
 	
-</div>
-<div class="col-md-6">
-	<% @reemper_valoration.each do |valoracion| %>
-		<P><%= valoracion.description%></P>
-	<% end -%>
-</div>
+	<div class="row">
+		<% @reemper_valoration.each do |valoracion| %>
+			<div class="col-md-6">
+				<div class="card" style="box-shadow: 0 1px 10px 0 #6e77801c;">
+					<div class="card-body no-padding-card">
+					    <div class="row">
+
+					      <div class="col-md-3 no-padding">
+					        <%= valoracion.user.avatar? ? image_tag(valoracion.user.avatar_url(), class: "img-fluid img-avatar") : image_tag("https://image.ibb.co/jw55Ex/def_face.jpg", class: "img img-rounded img-fluid ")%>
+					      </div>
+
+					      <div class="col-md-9">
+					        <p>
+					          <a class="float-left" href=""><strong><%= valoracion.user.names? ? valoracion.user.names : "Usuario Reemp" %></strong></a>
+					          <span class="float-right"><%= get_valoration(valoracion.valoration).html_safe %></span>
+					        </p>
+
+					        <br>
+
+					        <div class="clearfix"></div>
+					        <i>"<%= valoracion.description %>"</i>
+					      </div>
+
+					    </div>
+					</div>
+				</div>
+			</div>
+		<% end -%>
+	</div>
+
+<% else %>
+	<h1>hola <%= current_user.names? ? current_user.names : "Usuario Reemp" %></h1>
+<% end -%>
+
 
 <script type="text/javascript">
 	<% if notice.present? %>
 		    toastr["success"]("<%= notice %>");
 	<% end -%>
 </script>
+
+<style type="text/css" media="screen">
+
+.img-avatar{
+	border-radius: 50%;
+    height: 107px;
+    margin-top: 2px;
+}
+
+</style>

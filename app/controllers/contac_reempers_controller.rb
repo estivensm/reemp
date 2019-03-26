@@ -1,14 +1,14 @@
 class ContacReempersController < ApplicationController
   before_action :set_contac_reemper, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /contac_reempers
   # GET /contac_reempers.json
   def index
     usuario = User.where(id: current_user.id)
     @reemper = Reemper.where(user_id: usuario).all
     @contac_reempers = ContacReemper.where(reemper_id: @reemper).where(state_request: "pending")
-
     @answer_reemper = ContacReemper.where(state_request: "delivered").where(user_id: current_user.id)
+    @contac = ContacReemper.where(reemper_id: @reemper)
   end
 
   # GET /contac_reempers/1

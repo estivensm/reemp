@@ -1,4 +1,4 @@
-<div id="product-modal" class="modal fade">
+<div id="product-modal" class="modal fade" oncontextmenu="return false">  
   <% if action_name == "new" %>
     <div class="modal-dialog">
   <% else %>
@@ -15,7 +15,7 @@
           <% end -%>
         </div>
 
-    <%= form_with(model: contac_reemper, html: {class: "needs-validation", :novalidate => true, remote: true }) do |form| %>
+    <%= form_with(model: contac_reemper, html: {class: "needs-validation", :novalidate => true }) do |form| %>
      <div class="modal-body">
         <% if contac_reemper.errors.any? %>
           <div id="error_explanation">
@@ -46,7 +46,11 @@
 
         <div class="field">
           <%= form.label "Mensaje" %>
-          <%= form.text_area :description, :rows => 9, class: "form form-control" %>
+          <%= form.text_area :description, :rows => 9, class: "form form-control", id: "validationCustom01", :required => true %>
+
+          <div class="invalid-feedback">
+                Requerido!
+          </div>
         </div>
           <%= form.hidden_field :user_id, :value => current_user.id %>
           <%= form.hidden_field :reemper_id, :value => @reemper.id %>

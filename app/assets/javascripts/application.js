@@ -15,6 +15,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require popper
+//= require lightboxgallery
 //= require bootstrap-sprockets
 //= require toastr_rails
 //= require algolia/v3/algoliasearch.min

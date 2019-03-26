@@ -1,6 +1,6 @@
 class ReemperValorationsController < ApplicationController
   before_action :set_reemper_valoration, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /reemper_valorations
   # GET /reemper_valorations.json
   def index

@@ -18,10 +18,16 @@
             <button class="btn-user dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" >
              <i class="fas fa-user-circle icon-user" ></i> <%= current_user.names %>
             </button>
-            <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item" type="button">Action</button>
-              <button class="dropdown-item" type="button">Another action</button>
-              <button class="dropdown-item" type="button">Something else here</button>
+            <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu2" id="manu-show">
+              <%= link_to "Configuracion de tu cuenta", edit_user_registration_path, class: "dropdown-item", target: "_blank" %>
+              <button class="dropdown-item" type="button">Historial</button>
+              <% if remmper_have %>
+                <button class="dropdown-item" type="button">Ya Eres Reemper</button>
+              <% else %>
+                <%= link_to "Conviertete en Reemper", new_reemper_path, class: "dropdown-item" %>
+              <% end -%>
+              <%= link_to "Cerrar Sección", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+
             </div>
           </div>
         </div>
@@ -84,11 +90,29 @@
     right: -38px;
   }
 
+  #manu-show{
+    left: -196px;
+    width: 225%;
+    text-align: right !important;
+    top: 127%;
+    background: #ececef;
+  }
+
 </style>
 
 
 <script type="text/javascript">
-  $('#dropdownMenu2').on('show.bs.dropdown', function () {
-  console.log("asdasdasd");
-})
+
+jQuery(document).ready(function($) {
+
+  $('.dropdown').on('show.bs.dropdown', function () {
+      $("#manu-show").toggle("size");
+  })
+
+  $('.dropdown').on('hide.bs.dropdown', function () {
+      $("#manu-show").toggle("size");
+  })
+
+
+});
 </script>

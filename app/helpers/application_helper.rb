@@ -17,6 +17,8 @@ module ApplicationHelper
 	def get_lenguaje
 		[
 	      ['Ingles', 'Ingles'],
+	      ['Español', 'Español'],
+	      ['Portugués', 'Portugués']
 	     
 	  	]
 	end
