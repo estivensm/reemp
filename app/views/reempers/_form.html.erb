@@ -126,6 +126,13 @@
     <br>
   </div>
 
+
+  <div class="col-md-12">
+    <%= form.label "Subespecialidades " %>
+    <%= form.select 'subspecialty_ids', get_subspecialty.map { |u| [u.name, u.id] }, {:prompt => 'subespecialidades'},{:class => 'form form-control', id: "validationCustom01", :required => true, multiple: true }%>
+    <br>
+  </div>
+
 </div>
 
   <div class="col-md-12">

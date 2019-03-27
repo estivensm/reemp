@@ -206,6 +206,10 @@ module ApplicationHelper
 		ConsultingRoom.where(user_id: current_user.id).present?
 	end
 
+	def get_subspecialty
+		Subspecialty.all
+	end
+	
 	def get_academic(number)
 		if number == "1"
 			return "Bajo"

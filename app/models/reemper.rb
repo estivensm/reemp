@@ -34,6 +34,7 @@ class Reemper < ActiveRecord::Base
 	
 	belongs_to :category, optional: true
 	belongs_to :specialty, optional: true
+	has_and_belongs_to_many :subspecialties
 	belongs_to :contac_reemper, dependent: :destroy, optional: true
 	belongs_to :user
 
@@ -48,6 +49,8 @@ class Reemper < ActiveRecord::Base
 	   	attribute :category do
 	      { name: category.name }
 	    end
+		  # all attributes will be sent
+		add_attribute :specialidades
 
 	   	attribute :specialty do
 	      { name: specialty.name }
@@ -61,6 +64,12 @@ class Reemper < ActiveRecord::Base
 
 	    geoloc :lat, :lng
 	    
+	end
+
+	def specialidades
+	  self.subspecialties.map do |s|
+	    { name: s.name }
+	  end
 	end
 	#mount_uploader :img_reemp, ReemperIconUploader
 end

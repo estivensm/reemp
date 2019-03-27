@@ -13,8 +13,9 @@
 
   <div class="row row-principal">
 
-<div class="col-md-7">
+<div class="col-md-7"> <!-- col-md-7 -->
   <div class="row">
+
       <div class="col-md-12" style="padding-left: 27px; height: 42px;">
       <%= form_tag browser_path, :method => 'post' do %>
 
@@ -68,13 +69,13 @@
       </ol>
     </div>
 
-    <div class="card col-md-6 " style="background-color: transparent; padding-right: 6px; /*max-width: 29.33333%;*/" >
+    <div class="card col-md-6 color-card" style="padding-right: 6px; /*max-width: 29.33333%;*/" > <!-- col-md-6  -->
       <div class="card-body" style=" padding: inherit;">
         <div id="map"></div>  
       </div>
     </div>
 
-    <div class="card col-md-6 card-remp col-sm-12 col-xs-12" id="card-reempers">
+    <div class="card col-md-6 card-remp col-sm-12 col-xs-12" id="card-reempers"><!-- col-md-6 -->
       <div class="card-body body-users">
         <div class="col-dm-12 no-padding" id="hits"></div>
         <div class="col-dm-12 no-padding" id="hits1"></div>
@@ -82,8 +83,48 @@
       </div>
     </div>
 
+
+
   </div>
 </div>
+
+    <div class="card col-md-5 color-card col-sm-12 col-xs-12" id="card-comments">
+      <div class="card-body body-comment">
+
+        <div class="col-md-12 card-comment">
+          <h6>Pregunta: <a class="a-catego">Legal</a></h6>
+          <i>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever "</i>
+          <div class="float-right col-md-4">
+            <p class="show-question">Ver Respuesta</p>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12 card-comment">
+          <h6>Pregunta: <a class="a-catego">Mascotas</a></h6>
+          <i>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown"</i>
+          <div class="float-right col-md-4">
+            <p class="show-question">Ver Respuesta</p>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-12 card-comment">
+          <h6>Pregunta: <a class="a-catego">Legal</a></h6>
+          <i>"Lorem Ipsum is simply dummy text of the printing printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown "</i>
+          <div class="float-right col-md-4">
+            <p class="show-question">Ver Respuesta</p>
+          </div>
+        </div>
+
+        <div class="col-md-12 no-padding">
+          <input type="text" name="" class="form form-control imput-comment" placeholder="Dejamos Cualquier inquietud" >
+          <button id="row-button">
+            <i class="fas fa-location-arrow"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
     <div class="card col-md-5 animated bounceInRight" id="card-users" style="background-color: transparent; display: none; max-width: 39.6667% !important;">
       <div class="card-body body-reemp-info">
           <div class="remplace"></div>
@@ -138,19 +179,6 @@
             //console.log(data);              
           //});
       });
-
-        window.onscroll = function() {myFunction()};
-
-        var header = document.getElementById("cita-btn");
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-          if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-          } else {
-            header.classList.remove("sticky");
-          }
-        }
 
     </script>
 
@@ -238,7 +266,63 @@ document.addEventListener("click", closeAllSelect);
 
 
 <style type="text/css" media="screen">
+  .body-comment{
+    padding: 15px 12px 12px 12px !important;
+    background-color: #00A2CB; 
+    overflow-y: auto; 
+    max-height: 517px;
+  }
 
+  .imput-comment{
+    border-radius: 21px;
+    background-color: #005E84;
+    border-color:  #005E84;
+  }
+
+  .imput-comment:focus{
+    border-radius: 21px;
+    background-color: #005E84;
+    color: #ffff;
+    border-color:  #005E84;
+  }
+
+
+  #row-button{
+    background-color: #00deb4;
+    color: #ffff;
+    font-size: 27px;
+    border-radius: 44px;
+    border: initial;
+    width: 77px;
+    position: absolute;
+    top: 2px;
+    right: -4px;
+  }
+
+  .show-question{
+    font-size: 16px;
+    color: #00deb4;
+  }
+  .color-card{
+    background-color: transparent;
+  }
+
+  .a-catego{
+    text-decoration: underline !important;
+    color: #00deb4 !important; 
+  }
+
+  .card-comment{
+    background-color: #0087AD;
+    border-radius: 10px;
+    color: #ffff;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .body-comments{
+    background: red; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
+  }
   .options-catego a{
     top: -1px !important;
     text-align: center;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_131324) do
+ActiveRecord::Schema.define(version: 2019_03_27_155146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,11 @@ ActiveRecord::Schema.define(version: 2019_03_06_131324) do
     t.string "twitter"
     t.string "state_loc"
     t.string "img_reemp"
+  end
+
+  create_table "reempers_subspecialties", id: false, force: :cascade do |t|
+    t.bigint "reemper_id", null: false
+    t.bigint "subspecialty_id", null: false
   end
 
   create_table "specialties", force: :cascade do |t|
